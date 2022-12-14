@@ -2,7 +2,7 @@ import { Component } from "react";
 import Rating from "./rating";
 import { Link } from 'react-router-dom';
 
-const subtitle = "bigamer t-shirt’s";
+const subtitle = "Crowd Control Esports t-shirt’s";
 const title = "explore our products";
 
 
@@ -10,25 +10,25 @@ let ProductListContent = [
     {
         imgUrl: 'assets/images/product/01.jpg',
         imgAlt: 'Product Thumb',
-        title: 'Bigamer T-Shirt Here',
+        title: 'Crowd Control Esports T-Shirt Here',
         price: '$380.00',
     },
     {
         imgUrl: 'assets/images/product/02.jpg',
         imgAlt: 'Product Thumb',
-        title: 'Bigamer T-Shirt Here',
+        title: 'Crowd Control Esports T-Shirt Here',
         price: '$380.00',
     },
     {
         imgUrl: 'assets/images/product/03.jpg',
         imgAlt: 'Product Thumb',
-        title: 'Bigamer T-Shirt Here',
+        title: 'Crowd Control Esports T-Shirt Here',
         price: '$380.00',
     },
     {
         imgUrl: 'assets/images/product/04.jpg',
         imgAlt: 'Product Thumb',
-        title: 'Bigamer T-Shirt Here',
+        title: 'Crowd Control Esports T-Shirt Here',
         price: '$380.00',
     },
 ]
