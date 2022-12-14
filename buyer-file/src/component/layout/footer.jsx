@@ -5,8 +5,8 @@ import SocialMedia from '../section/socialmedia';
 
 const postTitle = "Top jackpot games";
 const newsTitle = "Our Newsletter";
-const desc = "Upropriate brand economca sound technolog after covalent technology enable prospective wastng markets whereas propriate and brand economca sound technolog";
-const newsdesc = "Bigamer esports organization supported by community leaders";
+const desc = "We're creating the best in interactive entertainment by making games that change the way people have fun.";
+const newsdesc = "Crowd Control Esports organization supported by community leaders";
 
 // let FooterItemList = [
 //     {
@@ -92,7 +92,7 @@ class Footer extends Component {
                                 <div className="footer-middle-item-wrapper">
                                     <div className="footer-middle-item mb-lg-0">
                                         <div className="fm-item-title mb-4">
-                                            <img src="assets/images/logo/logo33.png" alt="logo" />
+                                            <img src="assets/images/logo/logo.png" alt="logo" />
                                         </div>
                                         <div className="fm-item-content">
                                             <p className="mb-4">{desc}</p>

@@ -68,13 +68,13 @@ class HeaderTwo extends Component {
                                 <div className="brand-logo d-none d-lg-inline-block">
                                     <div className="logo">
                                         <Link to="/">
-                                            <img src="assets/images/logo/logo11.png" alt="logo" />
+                                            <img src="assets/images/logo/logo.png" alt="logo" />
                                         </Link>
                                     </div>
                                 </div>
                                 <div className="header-wrapper justify-content-lg-end">
                                     <div className="mobile-logo d-lg-none">
-                                        <Link to="/"><img src="assets/images/logo/logo11.png" alt="logo" /></Link>
+                                        <Link to="/"><img src="assets/images/logo/logo.png" alt="logo" /></Link>
                                     </div>
                                     <div className="menu-area">
                                         <ul className="menu">

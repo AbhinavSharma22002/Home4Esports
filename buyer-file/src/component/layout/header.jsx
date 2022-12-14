@@ -54,7 +54,7 @@ class Header extends Component {
                         <div className="brand-logo d-none d-lg-inline-block">
                             <div className="logo">
                                 <Link to="/">
-                                    <img src="assets/images/logo/logo33.png" alt="logo" />
+                                    <img src="assets/images/logo/logo.png" alt="logo" />
                                 </Link>
                             </div>
                         </div>
@@ -82,12 +82,12 @@ class Header extends Component {
                             <div className="header-bottom">
                                 <div className="header-wrapper justify-content-lg-end">
                                     <div className="mobile-logo d-lg-none">
-                                        <Link to="/"><img src="assets/images/logo/logo33.png" alt="logo" /></Link>
+                                        <Link to="/"><img src="assets/images/logo/logo.png" alt="logo" /></Link>
                                     </div>
                                     <div className="menu-area">
                                         <ul className="menu">
                                         <li><NavLink to="/contact">Home</NavLink></li>
-                                            
+                                    
 
                                             <li className="menu-item-has-children">
                                                 <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Features</a>
