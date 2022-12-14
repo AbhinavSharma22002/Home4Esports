@@ -38,7 +38,6 @@ class Header extends Component {
     }
 
     render() { 
-
         window.addEventListener('scroll', function() {
             var value = window.scrollY;
             if (value > 200) {
