@@ -23,6 +23,8 @@ import SignUp from "./pages/signup";
 import TeamPage from "./pages/team";
 import TeamSinglePage from "./pages/team-single";
 import ErrorPage from "./pages/errorpage";
+import AdminPageSection from "./pages/adminpage";
+import ProductMgmt from "./pages/productmgmt";
 
 // import Footer from "./component/layout/footer";
 // import Header from "./component/layout/header";
@@ -58,6 +60,8 @@ function App() {
 				<Route path="contact" element={<ContactUs />} />
 				<Route path="login" element={<LogIn />} />
 				<Route path="signup" element={<SignUp />} />
+				<Route path="adminpage" element={<AdminPageSection/>}/>
+				<Route path="productmgmt" element={<ProductMgmt/>}/>
 			</Routes>
 		</BrowserRouter>
 	);
