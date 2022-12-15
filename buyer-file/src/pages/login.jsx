@@ -1,10 +1,12 @@
 import { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import Footer from "../component/layout/footer";
 import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import SocialMedia from "../component/section/socialmedia";
-
+import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth'
+import {auth} from "../firebase/fire.js";
+import { useNavigate } from 'react-router-dom';
 const title = "Login";
 
 class LogIn extends Component {
@@ -12,10 +14,22 @@ class LogIn extends Component {
     constructor(props){
         super(props);
         this.state = {
-            userName: '',
+            userEmail: '',
             userPass: '',
         };
+        this.history =  useNavigate();
+        
+    this.handleSubmit = this.handleSubmit.bind(this);
     }
+    handleSubmit(event) {
+    event.preventDefault();
+    signInWithEmailAndPassword(auth, this.state.userEmail, this.state.userPass)
+    .then(
+        this.history.push('/')
+        )
+  .catch(err => console.error(err.message))
+  }
+    
     render() { 
         return (
             <Fragment>
@@ -28,12 +42,12 @@ class LogIn extends Component {
                             <form className="account-form">
                                 <div className="form-group">
                                     <input
-                                        type="text"
-                                        name="name"
+                                        type="email"
+                                        name="email"
                                         id="item01"
-                                        value={this.state.userName}
-                                        onChange={(e)=>{this.setState({userName: e.target.value});}}
-                                        placeholder="User Name *"
+                                        value={this.state.userEmail}
+                                        onChange={(e)=>{this.setState({userEmail: e.target.value});}}
+                                        placeholder="Email *"
                                     />
                                 </div>
                                 <div className="form-group">
@@ -56,7 +70,9 @@ class LogIn extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <button className="d-block default-button"><span>Submit Now</span></button>
+                                    <button className="d-block default-button" 
+                                    onClick = {this.handleSubmit}
+                                    ><span>Submit Now</span></button>
                                 </div>
                             </form>
                             <div className="account-bottom">

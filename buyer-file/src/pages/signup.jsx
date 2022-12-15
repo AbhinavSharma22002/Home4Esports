@@ -5,6 +5,9 @@ import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import SocialMedia from "../component/section/socialmedia";
 
+import {auth} from '../firebase/fire'
+import {createUserWithEmailAndPassword} from 'firebase/auth'
+
 const title = "Register Now";
 
 class SignUp extends Component {
@@ -18,7 +21,19 @@ class SignUp extends Component {
             regPassword: '',
             regConPassword: '',
         };
+         
+    this.handleSubmit = this.handleSubmit.bind(this);
     }
+    handleSubmit(event) {
+    event.preventDefault();
+    // Create a new user with email and password using firebase
+      createUserWithEmailAndPassword(auth, this.state.regEmail,this.state.regPassword)
+      .then((res) => {
+          console.log(res.user)
+        })
+      .catch(err => console.error(err.message))
+  }
+
     render() { 
         return (
             <Fragment>
@@ -80,7 +95,9 @@ class SignUp extends Component {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <button className="d-block default-button"><span>Get Started Now</span></button>
+                                    <button className="d-block default-button" 
+                                    onClick = {this.handleSubmit}
+                                    ><span>Get Started Now</span></button>
                                 </div>
                             </form>
                             <div className="account-bottom">
