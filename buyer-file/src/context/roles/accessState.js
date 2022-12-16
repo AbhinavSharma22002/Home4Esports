@@ -7,7 +7,7 @@ const AccessState = (props) => {
       method: "GET"
     };
     const response = await fetch(
-      `${process.env.SERVER}/api/user/status`,
+      `http://localhost:3001/api/user/status`,
       requestOptions
     );
     const data = await response.json();
@@ -17,10 +17,11 @@ const AccessState = (props) => {
   const LoginRequest = async(item)=>{
     const requestOptions = {
         method: "POST",
-        body: JSON.stringify(item)
+        body: JSON.stringify(item),
+        headers: { 'Content-Type': 'application/json' }
       };
       const response = await fetch(
-        `${process.env.SERVER}/api/user/login`,
+        `http://localhost:3001/api/user/login`,
         requestOptions
       );
       const data = await response.json();
@@ -29,10 +30,11 @@ const AccessState = (props) => {
   const SignUpRequest= async(item)=>{
     const requestOptions = {
         method: "POST",
-        body: JSON.stringify(item)
+        body: JSON.stringify(item),
+        headers: { 'Content-Type': 'application/json' }
       };
       const response = await fetch(
-        `${process.env.SERVER}/api/user/signup`,
+        `http://localhost:3001/api/user/signup`,
         requestOptions
       );
       const data = await response.json();

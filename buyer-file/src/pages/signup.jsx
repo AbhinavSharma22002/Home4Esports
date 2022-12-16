@@ -1,5 +1,5 @@
-import { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Component, Fragment,useState,useContext } from "react";
+import { Link,useNavigate  } from "react-router-dom";
 import Footer from "../component/layout/footer";
 import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
@@ -7,36 +7,34 @@ import SocialMedia from "../component/section/socialmedia";
 import accessContext from '../context/roles/accessContext';
 
 const title = "Register Now";
-class SignUp extends Component {
-    static context = accessContext;
-    constructor(props){
-        super(props);
-        this.state = {
-            regFName: '',
-            regLName: '',
-            regEmail: '',
-            regPassword: '',
-            regConPassword: '',
-        };        
-    this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    handleSubmit(event) {
-    event.preventDefault();
-    const data = this.context.SignUpRequest({
-        regEmail: this.state.regEmail,
-        regPassword: this.state.regPassword,
-        regFName: this.state.regFName,
-        regLName: this.state.regLName
-    });
-    console.log(data);
-    const { navigate } = this.props;
-    navigate("/");
-  }
 
-    render() { 
-        return (
-            <Fragment>
-                <Header />
+const SignUpFunction = ()=>{
+	const [regFName, setregFName] = useState('');
+	const [regLName, setregLName] = useState('');
+	const [regEmail, setregEmail] = useState('');
+	const [regPassword, setregPassword] = useState('');
+	const [regConPassword, setregConPassword] = useState('');
+    const Context = useContext(accessContext);
+    const {SignUpRequest} = Context;
+    const navigate =useNavigate();
+    const handleSubmit = (event)=>{
+        event.preventDefault();
+        const data = SignUpRequest({
+        regEmail: regEmail,
+        regPassword: regPassword,
+        regFName: regFName,
+        regLName: regLName
+        });
+        
+    if(data.status==='Success')
+    navigate("/login");
+    else{
+        navigate("/signup");
+    }
+    }
+    return (
+        <>
+        <Header />
                 <PageHeader title={'REGISTRATION PAGE'} curPage={'Sign Up'} />
                 <div className="login-section padding-top padding-bottom">
                     <div className=" container">
@@ -48,8 +46,8 @@ class SignUp extends Component {
                                         type="text"
                                         name="name"
                                         id="item01"
-                                        value={this.state.regFName}
-                                        onChange={(e)=>{this.setState({regFName: e.target.value});}}
+                                        value={regFName}
+                                        onChange={(e)=>{setregFName( e.target.value)}}
                                         placeholder="First Name *"
                                     />
                                 </div>
@@ -58,8 +56,8 @@ class SignUp extends Component {
                                         type="text"
                                         name="name"
                                         id="item02"
-                                        value={this.state.regLName}
-                                        onChange={(e)=>{this.setState({regLName: e.target.value});}}
+                                        value={regLName}
+                                        onChange={(e)=>{setregLName( e.target.value)}}
                                         placeholder="Last Name *"
                                     />
                                 </div>
@@ -68,8 +66,8 @@ class SignUp extends Component {
                                         type="text"
                                         name="email"
                                         id="item03"
-                                        value={this.state.regEmail}
-                                        onChange={(e)=>{this.setState({regEmail: e.target.value});}}
+                                        value={regEmail}
+                                        onChange={(e)=>{setregEmail( e.target.value)}}
                                         placeholder="Your email *" 
                                     />
                                 </div>
@@ -78,8 +76,8 @@ class SignUp extends Component {
                                         type="password"
                                         name="password"
                                         id="item04"
-                                        value={this.state.regPassword}
-                                        onChange={(e)=>{this.setState({regPassword: e.target.value});}}
+                                        value={regPassword}
+                                        onChange={(e)=>{setregPassword( e.target.value)}}
                                         placeholder="Password *"
                                     />
                                 </div>
@@ -88,14 +86,14 @@ class SignUp extends Component {
                                         type="password"
                                         name="conpassword"
                                         id="item05"
-                                        value={this.state.regConPassword}
-                                        onChange={(e)=>{this.setState({regConPassword: e.target.value});}}
+                                        value={regConPassword}
+                                        onChange={(e)=>{setregConPassword( e.target.value)}}
                                         placeholder="Confirm Password *"
                                     />
                                 </div>
                                 <div className="form-group">
                                     <button className="d-block default-button" 
-                                    onClick = {this.handleSubmit}
+                                    onClick = {handleSubmit}
                                     ><span>Get Started Now</span></button>
                                 </div>
                             </form>
@@ -110,7 +108,18 @@ class SignUp extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
+            <Footer />
+        </>
+    );
+};
+
+
+
+class SignUp extends Component {
+    render() { 
+        return (
+            <Fragment>
+                <SignUpFunction />
             </Fragment>
         );
     }
