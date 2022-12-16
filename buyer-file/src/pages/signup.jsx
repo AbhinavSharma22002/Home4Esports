@@ -4,11 +4,11 @@ import Footer from "../component/layout/footer";
 import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import SocialMedia from "../component/section/socialmedia";
+import accessContext from '../context/roles/accessContext';
 
 const title = "Register Now";
-
 class SignUp extends Component {
-
+    static context = accessContext;
     constructor(props){
         super(props);
         this.state = {
@@ -17,8 +17,22 @@ class SignUp extends Component {
             regEmail: '',
             regPassword: '',
             regConPassword: '',
-        };
+        };        
+    this.handleSubmit = this.handleSubmit.bind(this);
     }
+    handleSubmit(event) {
+    event.preventDefault();
+    const data = this.context.SignUpRequest({
+        regEmail: this.state.regEmail,
+        regPassword: this.state.regPassword,
+        regFName: this.state.regFName,
+        regLName: this.state.regLName
+    });
+    console.log(data);
+    const { navigate } = this.props;
+    navigate("/");
+  }
+
     render() { 
         return (
             <Fragment>
@@ -80,7 +94,9 @@ class SignUp extends Component {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <button className="d-block default-button"><span>Get Started Now</span></button>
+                                    <button className="d-block default-button" 
+                                    onClick = {this.handleSubmit}
+                                    ><span>Get Started Now</span></button>
                                 </div>
                             </form>
                             <div className="account-bottom">

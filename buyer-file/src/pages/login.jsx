@@ -1,21 +1,34 @@
 import { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import Footer from "../component/layout/footer";
 import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import SocialMedia from "../component/section/socialmedia";
-
+import accessContext from '../context/roles/accessContext';
 const title = "Login";
 
 class LogIn extends Component {
-
+    static context = accessContext;
     constructor(props){
         super(props);
+        
         this.state = {
-            userName: '',
+            userEmail: '',
             userPass: '',
         };
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+    handleSubmit(event) {
+    event.preventDefault();
+    const data = this.context.LoginRequest({
+        userEmail: this.state.userEmail,
+        userPass: this.state.userPass
+    });
+    console.log(data);
+    const { navigate } = this.props;
+    navigate("/");
+  }
+    
     render() { 
         return (
             <Fragment>
@@ -28,12 +41,12 @@ class LogIn extends Component {
                             <form className="account-form">
                                 <div className="form-group">
                                     <input
-                                        type="text"
-                                        name="name"
+                                        type="email"
+                                        name="email"
                                         id="item01"
-                                        value={this.state.userName}
-                                        onChange={(e)=>{this.setState({userName: e.target.value});}}
-                                        placeholder="User Name *"
+                                        value={this.state.userEmail}
+                                        onChange={(e)=>{this.setState({userEmail: e.target.value});}}
+                                        placeholder="Email *"
                                     />
                                 </div>
                                 <div className="form-group">
@@ -56,7 +69,9 @@ class LogIn extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <button className="d-block default-button"><span>Submit Now</span></button>
+                                    <button className="d-block default-button" 
+                                    onClick = {this.handleSubmit}
+                                    ><span>Submit Now</span></button>
                                 </div>
                             </form>
                             <div className="account-bottom">
