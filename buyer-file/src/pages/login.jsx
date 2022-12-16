@@ -1,7 +1,7 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
+import Footer from "../component/layout/Footer";
+import Header from "../component/layout/Header";
 import PageHeader from "../component/layout/pageheader";
 import SocialMedia from "../component/section/socialmedia";
 
@@ -61,7 +61,7 @@ class LogIn extends Component {
                             </form>
                             <div className="account-bottom">
                                 <span className="d-block cate pt-10">Don’t Have any Account? <Link to="/signup"> Sign Up</Link></span>
-                                <span className="d-block cate pt-10">Admin Dashboard <Link to="/adminpage"> Click Here</Link></span>
+                                <span className="d-block cate pt-10">Admin Dashboard <Link to="/Admin"> Click Here</Link></span>
                                 <span className="or"><span>or</span></span>
                                 <h5 className="subtitle">Login With Social Media</h5>
                                 <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center mt-4">

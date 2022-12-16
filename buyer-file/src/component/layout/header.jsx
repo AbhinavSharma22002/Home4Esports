@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const contactNumber = "+800-123-4567 6587";
 const contactAddress = "vbjwivhiewuuh";
@@ -37,12 +37,12 @@ class Header extends Component {
         // document.querySelector('.header-bar').classList.toggle('active')
     }
 
-    render() { 
-        window.addEventListener('scroll', function() {
+    render() {
+        window.addEventListener('scroll', function () {
             var value = window.scrollY;
             if (value > 200) {
                 document.querySelector('.header-section').classList.add(['header-fixed'], ['fadeInUp'])
-            }else{
+            } else {
                 document.querySelector('.header-section').classList.remove(['header-fixed'], ['fadeInUp'])
             }
         });
@@ -65,7 +65,7 @@ class Header extends Component {
                                         <li>
                                             <i className="icofont-ui-call"></i> <span>{contactNumber}</span>
                                         </li>
-                                        
+
                                         <li>
                                             <i className="icofont-location-pin"></i> {contactAddress}
                                         </li>
@@ -86,40 +86,38 @@ class Header extends Component {
                                     </div>
                                     <div className="menu-area">
                                         <ul className="menu">
-                                        <li><NavLink to="/contact">Home</NavLink></li>
-                                    
+                                            <li><Link to="/">Home</Link></li>
+
 
                                             <li className="menu-item-has-children">
                                                 <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Features</a>
                                                 <ul className="submenu dropdown-menu" aria-labelledby="dropdown">
-                                                    <li><NavLink to="/about">About</NavLink></li>
-                                                    <li><NavLink to="/gallery">gallery</NavLink></li>
-                                                    <li><NavLink to="/game-list">game list 1</NavLink></li>
-                                                    <li><NavLink to="/game-list2">game list 2</NavLink></li>
-                                                    <li><NavLink to="/partners">partners</NavLink></li>
-                                                    <li><NavLink to="/achievements">achievement</NavLink></li>
-                                                    <li><NavLink to="/team">team</NavLink></li>
-                                                    <li><NavLink to="/team-single">team single</NavLink></li>
-                                                    <li><NavLink to="/404">404 Page</NavLink></li>
+                                                    <li><Link to="/about">About</Link></li>
+                                                    <li><Link to="/gallery">gallery</Link></li>
+                                                    <li><Link to="/game-list">game list 1</Link></li>
+                                                    <li><Link to="/game-list2">game list 2</Link></li>
+                                                    <li><Link to="/partners">partners</Link></li>
+                                                    <li><Link to="/achievements">achievement</Link></li>
+                                                    <li><Link to="/team">team</Link></li>
                                                 </ul>
                                             </li>
                                             <li className="menu-item-has-children">
                                                 <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Shop</a>
                                                 <ul className="submenu dropdown-menu">
-                                                    <li><NavLink to="/shop">shop</NavLink></li>
-                                                    <li><NavLink to="/shop-single">Shop Details</NavLink></li>
-                                                    <li><NavLink to="/cart-page">Cart Page</NavLink></li>
+                                                    <li><Link to="/shop">shop</Link></li>
+                                                    <li><Link to="/shop-single">Shop Details</Link></li>
+                                                    <li><Link to="/cart-page">Cart Page</Link></li>
                                                 </ul>
                                             </li>
                                             <li className="menu-item-has-children">
                                                 <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Blog</a>
                                                 <ul className="submenu dropdown-menu">
-                                                    <li><NavLink to="/blog">Blog</NavLink></li>
-                                                    <li><NavLink to="/blog-2">Blog 2</NavLink></li>
-                                                    <li><NavLink to="/blog-single">Blog Single</NavLink></li>
+                                                    <li><Link to="/blog">Blog</Link></li>
+                                                    <li><Link to="/blog-2">Blog 2</Link></li>
+                                            
                                                 </ul>
                                             </li>
-                                            <li><NavLink to="/contact">Contact</NavLink></li>
+                                            <li><Link to="/contact">Contact</Link></li>
                                         </ul>
                                         <Link to="/login" className="login"><i className="icofont-user"></i> <span>LOG IN</span> </Link>
                                         <Link to="/signup" className="signup"><i className="icofont-users"></i> <span>SIGN UP</span></Link>
@@ -142,5 +140,5 @@ class Header extends Component {
         );
     }
 }
- 
+
 export default Header;

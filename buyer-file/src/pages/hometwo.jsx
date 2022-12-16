@@ -2,7 +2,7 @@ import { Component, Fragment } from "react";
 
 
 
-import Footer from "../component/layout/footer";
+import Footer from "../component/layout/Footer";
 import HeaderTwo from "../component/layout/headertwo";
 import BannerTwo from '../component/section/bannertwo';
 import CollectionSectionTwo from '../component/section/collectiontwo';

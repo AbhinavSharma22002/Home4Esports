@@ -1,6 +1,6 @@
 import { Component, Fragment } from "react";
 
-import Header from '../component/layout/header'
+import Header from '../component/layout/Header'
 import PageHeader from '../component/layout/pageheader'
 import AboutSection from '../component/section/about'
 import VideoTestimonial from "../component/section/videotestimonial";
@@ -8,7 +8,7 @@ import SponsorSection from "../component/section/sponsor";
 import ProductSection from "../component/section/product";
 import CtaSection from "../component/section/cta";
 import HrShape from "../component/layout/hrshape";
-import Footer from "../component/layout/footer";
+import Footer from "../component/layout/Footer";
 
 
 class AboutPage extends Component {

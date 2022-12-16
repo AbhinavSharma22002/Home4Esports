@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import Header from '../../component/layout/Header'
+import Header from '../layout/Header'
 import Footer from '../layout/Footer';
 import '../../assets/css/Admin.css'
 import Game from '../../assets/images/banner/Game.png'
@@ -19,7 +19,7 @@ const Admin = () => {
                 </div>
 
                 <div className='head-1'>
-                    <Link to="/">
+                    <Link to="/Mgmt">
                         <img src={Merch} alt="logo" />
                     </Link>
                 </div>

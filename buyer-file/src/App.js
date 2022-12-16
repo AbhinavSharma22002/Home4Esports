@@ -22,10 +22,12 @@ import ShopDetails from "./pages/shopdetails";
 import SignUp from "./pages/signup";
 import TeamPage from "./pages/team";
 import TeamSinglePage from "./pages/team-single";
-import ErrorPage from "./pages/errorpage";
 import AdminPageSection from "./pages/adminpage";
 import ProductMgmt from "./pages/productmgmt";
-
+import Admin from "./component/section/Admin";
+import Schedule from "./component/section/Schedule";
+import Mgmt from "./component/section/Mgmt";
+import React from "react";
 // import Footer from "./component/layout/footer";
 // import Header from "./component/layout/header";
 // import PageHeader from './component/layout/pageheader';
@@ -50,7 +52,6 @@ function App() {
 				<Route path="achievements" element={<AchievementPage />} />
 				<Route path="team" element={<TeamPage />} />
 				<Route path="team-single" element={<TeamSinglePage />} />
-				<Route path="*" element={<ErrorPage />} />
 				<Route path="shop" element={<ShopPage />} />
 				<Route path="shop-single" element={<ShopDetails />} />
 				<Route path="cart-page" element={<ShopCart />} />
@@ -62,6 +63,9 @@ function App() {
 				<Route path="signup" element={<SignUp />} />
 				<Route path="adminpage" element={<AdminPageSection/>}/>
 				<Route path="productmgmt" element={<ProductMgmt/>}/>
+				<Route path="admin" element={<Admin/>}/>
+				<Route path="Schedule" element={<Schedule />} />
+				<Route path="Mgmt" element={<Mgmt />} />
 			</Routes>
 		</BrowserRouter>
 	);
