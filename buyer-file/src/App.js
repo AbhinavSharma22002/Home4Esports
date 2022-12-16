@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Swiper from 'swiper';
 import 'swiper/css';
 import {useState,useEffect} from 'react';
@@ -35,7 +35,6 @@ import ProductMgmt from "./pages/productmgmt";
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const navigate = useNavigate();
 	useEffect(() => {
 		async function value() {
 			const requestOptions = {
@@ -81,14 +80,14 @@ function App() {
 				<Route path="contact" element={<ContactUs />} />
 				{!isLoggedIn ? (
 					<>
-						<Route path="login" element={<LogIn navigate={navigate}/>} />
-						<Route path="signup" element={<SignUp navigate={navigate}/>} />
+						<Route path="login" element={<LogIn />} />
+						<Route path="signup" element={<SignUp />} />
 					</>
 				)
 					: (
 						<>
-							<Route path="adminpage" element={<AdminPageSection />} />
-							<Route path="productmgmt" element={<ProductMgmt />} />
+						<Route path="adminpage" element={<AdminPageSection />} />
+						<Route path="productmgmt" element={<ProductMgmt />} />
 						</>
 					)}
 

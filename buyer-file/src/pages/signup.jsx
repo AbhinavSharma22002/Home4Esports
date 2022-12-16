@@ -29,8 +29,6 @@ class SignUp extends Component {
         regLName: this.state.regLName
     });
     console.log(data);
-    const { navigate } = this.props;
-    navigate("/");
   }
 
     render() { 

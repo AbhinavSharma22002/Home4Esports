@@ -25,8 +25,6 @@ class LogIn extends Component {
         userPass: this.state.userPass
     });
     console.log(data);
-    const { navigate } = this.props;
-    navigate("/");
   }
     
     render() { 
