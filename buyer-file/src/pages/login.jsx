@@ -4,30 +4,29 @@ import Footer from "../component/layout/footer";
 import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import SocialMedia from "../component/section/socialmedia";
-import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth'
-import {auth} from "../firebase/fire.js";
-import { useNavigate } from 'react-router-dom';
+import accessContext from '../context/roles/accessContext';
 const title = "Login";
 
 class LogIn extends Component {
-
+    static context = accessContext;
     constructor(props){
         super(props);
+        
         this.state = {
             userEmail: '',
             userPass: '',
         };
-        this.history =  useNavigate();
-        
-    this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(event) {
     event.preventDefault();
-    signInWithEmailAndPassword(auth, this.state.userEmail, this.state.userPass)
-    .then(
-        this.history.push('/')
-        )
-  .catch(err => console.error(err.message))
+    const data = this.context.LoginRequest({
+        userEmail: this.state.userEmail,
+        userPass: this.state.userPass
+    });
+    console.log(data);
+    const { navigate } = this.props;
+    navigate("/");
   }
     
     render() { 

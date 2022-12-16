@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app"
-import { getAuth } from "firebase/auth"
+const { initializeApp } = require("firebase/app");
+const { getAuth } = require("firebase/auth");
 
 const firebaseConfig = {
   apiKey: "AIzaSyCzDS3vRa0bphCvUIPvS-0rTiijvril1DI",
@@ -15,4 +15,4 @@ measurementId: "G-TZ3JSPQ9E1"
 // Initialize Firebase and Firebase Authentication
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
-export {auth};
+module.exports =  auth;

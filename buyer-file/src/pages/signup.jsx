@@ -4,14 +4,11 @@ import Footer from "../component/layout/footer";
 import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import SocialMedia from "../component/section/socialmedia";
-
-import {auth} from '../firebase/fire'
-import {createUserWithEmailAndPassword} from 'firebase/auth'
+import accessContext from '../context/roles/accessContext';
 
 const title = "Register Now";
-
 class SignUp extends Component {
-
+    static context = accessContext;
     constructor(props){
         super(props);
         this.state = {
@@ -20,18 +17,20 @@ class SignUp extends Component {
             regEmail: '',
             regPassword: '',
             regConPassword: '',
-        };
-         
+        };        
     this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(event) {
     event.preventDefault();
-    // Create a new user with email and password using firebase
-      createUserWithEmailAndPassword(auth, this.state.regEmail,this.state.regPassword)
-      .then((res) => {
-          console.log(res.user)
-        })
-      .catch(err => console.error(err.message))
+    const data = this.context.SignUpRequest({
+        regEmail: this.state.regEmail,
+        regPassword: this.state.regPassword,
+        regFName: this.state.regFName,
+        regLName: this.state.regLName
+    });
+    console.log(data);
+    const { navigate } = this.props;
+    navigate("/");
   }
 
     render() { 

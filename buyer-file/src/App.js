@@ -1,7 +1,9 @@
 
-import {BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Swiper from 'swiper';
 import 'swiper/css';
+import {useState,useEffect} from 'react';
+import AccessState from './context/roles/accessState';
 import ScrollToTop from "./component/layout/scrolltop";
 import AboutPage from "./pages/about";
 import AchievementPage from "./pages/achievement";
@@ -31,12 +33,31 @@ import ProductMgmt from "./pages/productmgmt";
 // import PageHeader from './component/layout/pageheader';
 // import GameList from './component/section/gamelist';
 
-
 function App() {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const navigate = useNavigate();
+	useEffect(() => {
+		async function value() {
+			const requestOptions = {
+				method: "GET"
+			  };
+			  const response = await fetch(
+				`${process.env.SERVER}/api/user/status`,
+				requestOptions
+			  );
+      		const json = await response.json();
+	  		if(json.user){
+				setIsLoggedIn(true);
+	  		}
+	  		else{
+				setIsLoggedIn(false);
+	  		}
+    	}
+    	value();
+	}, []);
+
 	return (
-		// <div className="App">
-		// 	<ShopPage />
-		// </div>
+		<AccessState>
 		<BrowserRouter>
 			<ScrollToTop />
 			<Routes>
@@ -58,12 +79,22 @@ function App() {
 				<Route path="blog-2" element={<BlogPageTwo />} />
 				<Route path="blog-single" element={<BlogDetails />} />
 				<Route path="contact" element={<ContactUs />} />
-				<Route path="login" element={<LogIn />} />
-				<Route path="signup" element={<SignUp />} />
-				<Route path="adminpage" element={<AdminPageSection/>}/>
-				<Route path="productmgmt" element={<ProductMgmt/>}/>
+				{!isLoggedIn ? (
+					<>
+						<Route path="login" element={<LogIn navigate={navigate}/>} />
+						<Route path="signup" element={<SignUp navigate={navigate}/>} />
+					</>
+				)
+					: (
+						<>
+							<Route path="adminpage" element={<AdminPageSection />} />
+							<Route path="productmgmt" element={<ProductMgmt />} />
+						</>
+					)}
+
 			</Routes>
 		</BrowserRouter>
+		</AccessState>
 	);
 }
 

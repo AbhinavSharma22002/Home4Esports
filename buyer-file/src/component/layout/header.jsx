@@ -28,6 +28,11 @@ let SocialMideaList = [
 ]
 
 class Header extends Component {
+
+    constructor(props) {
+    super(props);
+    }
+
     menuTrigger() {
         document.querySelector('.menu').classList.toggle('active')
         document.querySelector('.header-bar').classList.toggle('active')
@@ -36,7 +41,7 @@ class Header extends Component {
         document.querySelector('.header-top').classList.toggle('open')
         // document.querySelector('.header-bar').classList.toggle('active')
     }
-
+    
     render() { 
         window.addEventListener('scroll', function() {
             var value = window.scrollY;
@@ -46,8 +51,8 @@ class Header extends Component {
                 document.querySelector('.header-section').classList.remove(['header-fixed'], ['fadeInUp'])
             }
         });
-
         return (
+            <>
             <header className="header-section">
                 <div className="container">
                     <div className="header-holder d-flex flex-wrap justify-content-between align-items-center">
@@ -121,9 +126,21 @@ class Header extends Component {
                                             </li>
                                             <li><NavLink to="/contact">Contact</NavLink></li>
                                         </ul>
-                                        <Link to="/login" className="login"><i className="icofont-user"></i> <span>LOG IN</span> </Link>
-                                        <Link to="/signup" className="signup"><i className="icofont-users"></i> <span>SIGN UP</span></Link>
 
+                                        {!this.props.isLoggedIn ? (
+                                            <>
+                                                    <Link to="/login" className="login"><i className="icofont-user"></i> <span>LOG IN</span> </Link>
+                                                    <Link to="/signup" className="signup"><i className="icofont-users"></i> <span>SIGN UP</span></Link>
+                                                    </>
+				                                )
+					                        : (
+                                                <>
+                                                <Link to="/adminpage" className="adminpage"><i className="icofont-user"></i> <span>Admin Page</span> </Link>
+                                                <Link to="/productmgmt" className="productmgmt"><i className="icofont-users"></i> <span>Product Management</span></Link>
+                                                </>
+					                    )}
+
+                                    
                                         <div className="header-bar d-lg-none" onClick={this.menuTrigger}>
                                             <span></span>
                                             <span></span>
@@ -139,6 +156,7 @@ class Header extends Component {
                     </div>
                 </div>
             </header>
+            </>
         );
     }
 }
