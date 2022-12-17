@@ -1,5 +1,6 @@
-import { Component } from "react";
-import { NavLink, Link } from 'react-router-dom';
+import { Component,useState,useEffect, useContext  } from "react";
+import { NavLink, Link,useNavigate } from 'react-router-dom';
+import accessContext from '../../context/roles/accessContext';
 
 const contactNumber = "+800-123-4567 6587";
 const contactAddress = "vbjwivhiewuuh";
@@ -27,33 +28,54 @@ let SocialMideaList = [
     },
 ]
 
-class Header extends Component {
+const HeaderFunction = (props)=>{
+    
+    const navigate =useNavigate();
+const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    constructor(props) {
-    super(props);
-    }
-
-    menuTrigger() {
+    const Context = useContext(accessContext);
+    const {LoggedInStates} = Context;
+	useEffect(() => {
+		function value() {
+             const requestOptions = {
+                method: "GET"
+            };
+            fetch(
+                `http://localhost:3001/api/user/status`,
+                requestOptions
+            ).then((response) => response.json())
+            .then((responseJSON) => {
+                if(responseJSON===null){
+                    setIsLoggedIn(false);
+                }
+                else{
+                    setIsLoggedIn(true);
+                }
+            });
+		}
+		value();
+	}, []);
+const menuTrigger = ()=> {
         document.querySelector('.menu').classList.toggle('active')
         document.querySelector('.header-bar').classList.toggle('active')
     }
-    menuTriggerTwo() {
+ const menuTriggerTwo = ()=> {
         document.querySelector('.header-top').classList.toggle('open')
         // document.querySelector('.header-bar').classList.toggle('active')
     }
-    
-    render() { 
-        window.addEventListener('scroll', function() {
-            var value = window.scrollY;
-            if (value > 200) {
-                document.querySelector('.header-section').classList.add(['header-fixed'], ['fadeInUp'])
-            }else{
-                document.querySelector('.header-section').classList.remove(['header-fixed'], ['fadeInUp'])
-            }
-        });
-        return (
-            <>
-            <header className="header-section">
+    const Logout = ()=>{
+    const requestOptions = {
+      method: "POST"
+    };
+    fetch(
+      `http://localhost:3001/api/user/logout`,
+      requestOptions
+    );
+    setIsLoggedIn(false);
+       navigate("/");
+    }
+return (
+    <header className="header-section">
                 <div className="container">
                     <div className="header-holder d-flex flex-wrap justify-content-between align-items-center">
                         <div className="brand-logo d-none d-lg-inline-block">
@@ -125,28 +147,29 @@ class Header extends Component {
                                                 </ul>
                                             </li>
                                             <li><NavLink to="/contact">Contact</NavLink></li>
-                                        </ul>
-
-                                        {!this.props.isLoggedIn ? (
-                                            <>
-                                                    <Link to="/login" className="login"><i className="icofont-user"></i> <span>LOG IN</span> </Link>
-                                                    <Link to="/signup" className="signup"><i className="icofont-users"></i> <span>SIGN UP</span></Link>
-                                                    </>
+                                            {isLoggedIn ? (
+                                                    <>
+                                                <li><Link to="/adminpage" className="adminpage"><i className="icofont-user"></i> <span>Admin Page</span> </Link></li>
+                                                <li><Link to="/productmgmt" className="productmgmt"><i className="icofont-users"></i> <span>Product Management</span></Link></li>
+                                                <li><button className="logout" onClick ={Logout}><i className="icofont-user" 
+                                                ></i><span>Logout</span> </button></li>
+                                                </>
 				                                )
 					                        : (
                                                 <>
-                                                <Link to="/adminpage" className="adminpage"><i className="icofont-user"></i> <span>Admin Page</span> </Link>
-                                                <Link to="/productmgmt" className="productmgmt"><i className="icofont-users"></i> <span>Product Management</span></Link>
+                                                    <li><Link to="/login" className="login"><i className="icofont-user"></i> <span>LOG IN</span> </Link></li>
+                                                    <li><Link to="/signup" className="signup"><i className="icofont-users"></i> <span>SIGN UP</span></Link></li>
                                                 </>
 					                    )}
+                                        </ul>
 
                                     
-                                        <div className="header-bar d-lg-none" onClick={this.menuTrigger}>
+                                        <div className="header-bar d-lg-none" onClick={menuTrigger}>
                                             <span></span>
                                             <span></span>
                                             <span></span>
                                         </div>
-                                        <div className="ellepsis-bar d-lg-none" onClick={this.menuTriggerTwo}>
+                                        <div className="ellepsis-bar d-lg-none" onClick={menuTriggerTwo}>
                                             <i className="icofont-info-square"></i>
                                         </div>
                                     </div>
@@ -156,6 +179,25 @@ class Header extends Component {
                     </div>
                 </div>
             </header>
+);
+};
+class Header extends Component {
+   constructor(props){
+        super(props);
+   }
+    
+    render() { 
+        window.addEventListener('scroll', function() {
+            var value = window.scrollY;
+            if (value > 200) {
+                document.querySelector('.header-section').classList.add(['header-fixed'], ['fadeInUp'])
+            }else{
+                document.querySelector('.header-section').classList.remove(['header-fixed'], ['fadeInUp'])
+            }
+        });
+        return (
+            <>
+            <HeaderFunction/>
             </>
         );
     }

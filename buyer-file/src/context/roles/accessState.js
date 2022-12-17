@@ -1,26 +1,30 @@
 import accessContext from "./accessContext";
 
 const AccessState = (props) => {
-
   const LoggedInStates = async () => {
     const requestOptions = {
       method: "GET"
     };
-    const response = await fetch(
-      `${process.env.SERVER}/api/user/status`,
+    let data = null;
+    await fetch(
+      `http://localhost:3001/api/user/status`,
       requestOptions
-    );
-    const data = await response.json();
+    ).then((response) => response.json())
+    .then((responseJSON) => {
+       // do stuff with responseJSON here...
+       data = responseJSON;
+    });
     return data;
   };
 
   const LoginRequest = async(item)=>{
     const requestOptions = {
         method: "POST",
-        body: JSON.stringify(item)
+        body: JSON.stringify(item),
+        headers: { 'Content-Type': 'application/json' }
       };
       const response = await fetch(
-        `${process.env.SERVER}/api/user/login`,
+        `http://localhost:3001/api/user/login`,
         requestOptions
       );
       const data = await response.json();
@@ -29,10 +33,11 @@ const AccessState = (props) => {
   const SignUpRequest= async(item)=>{
     const requestOptions = {
         method: "POST",
-        body: JSON.stringify(item)
+        body: JSON.stringify(item),
+        headers: { 'Content-Type': 'application/json' }
       };
       const response = await fetch(
-        `${process.env.SERVER}/api/user/signup`,
+        `http://localhost:3001/api/user/signup`,
         requestOptions
       );
       const data = await response.json();
