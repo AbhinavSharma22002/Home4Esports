@@ -32,27 +32,6 @@ import ProductMgmt from "./pages/productmgmt";
 // import PageHeader from './component/layout/pageheader';
 // import GameList from './component/section/gamelist';
 function App() {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	useEffect(() => {
-		async function value() {
-			const requestOptions = {
-				method: "GET"
-			};
-			const response = await fetch(
-				`http://localhost:3001/api/user/status`,
-				requestOptions
-			);
-			const json = await response.json();
-			if (json.user) {
-				setIsLoggedIn(true);
-			}
-			else {
-				setIsLoggedIn(false);
-			}
-		}
-		value();
-	}, []);
-
 	return (
 		<AccessState>
 			<BrowserRouter>

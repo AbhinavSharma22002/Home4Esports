@@ -1,16 +1,19 @@
 import accessContext from "./accessContext";
 
 const AccessState = (props) => {
-
   const LoggedInStates = async () => {
     const requestOptions = {
       method: "GET"
     };
-    const response = await fetch(
+    let data = null;
+    await fetch(
       `http://localhost:3001/api/user/status`,
       requestOptions
-    );
-    const data = await response.json();
+    ).then((response) => response.json())
+    .then((responseJSON) => {
+       // do stuff with responseJSON here...
+       data = responseJSON;
+    });
     return data;
   };
 

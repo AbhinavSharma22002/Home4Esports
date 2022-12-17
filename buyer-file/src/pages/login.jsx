@@ -75,7 +75,6 @@ const LoginFunction = ()=>{
                             </form>
                             <div className="account-bottom">
                                 <span className="d-block cate pt-10">Don’t Have any Account? <Link to="/signup"> Sign Up</Link></span>
-                                <span className="d-block cate pt-10">Admin Dashboard <Link to="/adminpage"> Click Here</Link></span>
                                 <span className="or"><span>or</span></span>
                                 <h5 className="subtitle">Login With Social Media</h5>
                                 <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center mt-4">

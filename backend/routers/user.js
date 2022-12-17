@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const auth = require("../firebase/fire");
-const {signInWithEmailAndPassword,createUserWithEmailAndPassword} = require('firebase/auth');
+const {signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut } = require('firebase/auth');
+
 router.get("/status",(req,res)=>{
 	auth.onAuthStateChanged((user) => {
 		res.json(user);
@@ -34,4 +35,12 @@ router.post("/signup",(req,res)=>{
   }
 });
 
+router.post("/logout",(req,res)=>{
+  try{
+    signOut(auth)
+  }
+  catch(error){
+    res.status(500).send({status: "Internal_Error"});
+  }
+});
 module.exports = router;
