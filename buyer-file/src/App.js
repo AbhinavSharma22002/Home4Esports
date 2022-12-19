@@ -14,7 +14,6 @@ import GalleryPage from "./pages/gallery";
 import GameListSection from "./pages/gamelist";
 import GameListTwoSection from "./pages/gamelisttwo";
 import HomePage from './pages/home';
-import HomeTwo from './pages/hometwo';
 import LogIn from "./pages/login";
 import PartnerPage from "./pages/partner";
 import ShopPage from "./pages/shop";
@@ -23,14 +22,11 @@ import ShopDetails from "./pages/shopdetails";
 import SignUp from "./pages/signup";
 import TeamPage from "./pages/team";
 import TeamSinglePage from "./pages/team-single";
+import Admin from "./component/section/Admin";
+import Schedule from "./component/section/Schedule";
+import Mgmt from "./component/section/Mgmt";
+import React from "react";
 import ErrorPage from "./pages/errorpage";
-import AdminPageSection from "./pages/adminpage";
-import ProductMgmt from "./pages/productmgmt";
-
-// import Footer from "./component/layout/footer";
-// import Header from "./component/layout/header";
-// import PageHeader from './component/layout/pageheader';
-// import GameList from './component/section/gamelist';
 function App() {
 	return (
 		<AccessState>
@@ -38,7 +34,6 @@ function App() {
 				<ScrollToTop />
 				<Routes>
 					<Route path="/" element={<HomePage />} />
-					<Route path="index-2" element={<HomeTwo />} />
 					<Route path="about" element={<AboutPage />} />
 					<Route path="gallery" element={<GalleryPage />} />
 					<Route path="game-list" element={<GameListSection />} />
@@ -57,8 +52,9 @@ function App() {
 					<Route path="contact" element={<ContactUs />} />
 					<Route path="login" element={<LogIn />} />
 					<Route path="signup" element={<SignUp />} />
-					<Route path="adminpage" element={<AdminPageSection />} />
-					<Route path="productmgmt" element={<ProductMgmt />} />
+					<Route path="admin" element={<Admin/>}/>
+					<Route path="Schedule" element={<Schedule />} />
+					<Route path="Mgmt" element={<Mgmt />} />
 				</Routes>
 			</BrowserRouter>
 		</AccessState>

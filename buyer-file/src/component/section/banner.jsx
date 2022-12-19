@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 
-const title = "TODAY BIG MATCHE";
+const title = "TODAY BIG MATCH";
 const desc = "Time : 08:30Pm   -  30 December 2021";
 const btnText = "Watch Now";
 

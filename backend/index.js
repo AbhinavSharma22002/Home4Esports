@@ -1,3 +1,5 @@
+const connectToMongo = require("./backend");
+connectToMongo();
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
@@ -9,9 +11,6 @@ app.use(bodyParser.json());
 app.use(Cors());
 
 require('dotenv').config({path:__dirname+'/bin/.env'});
-
-// const database = require("./database/connectMongo");
-// database();
 
 const indexRouter = require("./routers/index");
 const userRouter = require("./routers/user");

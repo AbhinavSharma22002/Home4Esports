@@ -17,20 +17,24 @@ const SignUpFunction = ()=>{
     const Context = useContext(accessContext);
     const {SignUpRequest} = Context;
     const navigate =useNavigate();
-    const handleSubmit = (event)=>{
+    const handleSubmit = async (event)=>{
         event.preventDefault();
-        const data = SignUpRequest({
+        if(regConPassword===regPassword){
+        const data = await SignUpRequest({
         regEmail: regEmail,
         regPassword: regPassword,
         regFName: regFName,
         regLName: regLName
-        });
-        
-    if(data.status==='Success')
-    navigate("/login");
-    else{
-        navigate("/signup");
+    });
+    if (data.status === 200) {
+      navigate("/login");
     }
+        }
+     setregFName("");
+     setregLName("");
+     setregEmail("");
+     setregPassword("");
+     setregConPassword("");
     }
     return (
         <>

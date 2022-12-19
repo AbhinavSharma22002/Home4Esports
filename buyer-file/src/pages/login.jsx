@@ -18,12 +18,15 @@ const LoginFunction = ()=>{
 
     const handleSubmit= async (event)=>{
         event.preventDefault();
-        const data = await  LoginRequest({
+        const response = await  LoginRequest({
         userEmail: userEmail,
         userPass: userPass
-    });
-    if(data.status==='Success')
-    navigate("/");
+    });    
+    const data = await response.json();
+    if (response.status === 200) {
+      localStorage.setItem("token", data);
+      navigate("/");
+    }
     else{
         navigate("/login");
     }
