@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";
 
-import Footer from "../component/layout/Footer";
-import Header from "../component/layout/Header";
+import Footer from "../component/layout/footer";
+import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import Pagination from "../component/section/pagination";
 import SearchBar from "../component/sidebar/search";

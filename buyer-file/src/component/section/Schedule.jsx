@@ -1,7 +1,7 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../layout/Footer";
-import Header from "../layout/Header";
+import Footer from "../layout/footer";
+import Header from "../layout/header";
 import PageHeader from "../layout/pageheader";
 import SocialMedia from "./socialmedia";
 

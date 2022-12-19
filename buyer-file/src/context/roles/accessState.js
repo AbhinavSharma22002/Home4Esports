@@ -1,22 +1,6 @@
 import accessContext from "./accessContext";
 
 const AccessState = (props) => {
-  const LoggedInStates = async () => {
-    const requestOptions = {
-      method: "GET"
-    };
-    let data = null;
-    await fetch(
-      `http://localhost:3001/api/user/status`,
-      requestOptions
-    ).then((response) => response.json())
-    .then((responseJSON) => {
-       // do stuff with responseJSON here...
-       data = responseJSON;
-    });
-    return data;
-  };
-
   const LoginRequest = async(item)=>{
     const requestOptions = {
         method: "POST",
@@ -27,8 +11,7 @@ const AccessState = (props) => {
         `http://localhost:3001/api/user/login`,
         requestOptions
       );
-      const data = await response.json();
-      return data;
+      return response;
   };
   const SignUpRequest= async(item)=>{
     const requestOptions = {
@@ -40,12 +23,11 @@ const AccessState = (props) => {
         `http://localhost:3001/api/user/signup`,
         requestOptions
       );
-      const data = await response.json();
-      return data;
+      return response;
   };
 
   return (
-    <accessContext.Provider value={{LoggedInStates,LoginRequest,SignUpRequest}}>
+    <accessContext.Provider value={{LoginRequest,SignUpRequest}}>
       {props.children}
     </accessContext.Provider>
   );

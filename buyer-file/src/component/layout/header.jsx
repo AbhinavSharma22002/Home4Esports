@@ -36,22 +36,25 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
     const Context = useContext(accessContext);
     const {LoggedInStates} = Context;
 	useEffect(() => {
-		function value() {
+		const value= async()=> {
              const requestOptions = {
-                method: "GET"
+                method: "GET",
+                headers: {
+                    "auth-token":localStorage.getItem('token')
+                    },
             };
-            fetch(
+            const response = await fetch(
                 `http://localhost:3001/api/user/status`,
                 requestOptions
-            ).then((response) => response.json())
-            .then((responseJSON) => {
-                if(responseJSON===null){
-                    setIsLoggedIn(false);
-                }
-                else{
+            );
+
+            if(response.status===200){
+                    console.log(response.json());
                     setIsLoggedIn(true);
-                }
-            });
+            }
+            else{
+                    setIsLoggedIn(false);
+            }
 		}
 		value();
 	}, []);
@@ -64,15 +67,9 @@ const menuTrigger = ()=> {
         // document.querySelector('.header-bar').classList.toggle('active')
     }
     const Logout = ()=>{
-    const requestOptions = {
-      method: "POST"
-    };
-    fetch(
-      `http://localhost:3001/api/user/logout`,
-      requestOptions
-    );
+    localStorage.removeItem("token");
     setIsLoggedIn(false);
-       navigate("/");
+    navigate("/");
     }
 return (
     <header className="header-section">
@@ -149,8 +146,8 @@ return (
                                             <li><NavLink to="/contact">Contact</NavLink></li>
                                             {isLoggedIn ? (
                                                     <>
-                                                <li><Link to="/adminpage" className="adminpage"><i className="icofont-user"></i> <span>Admin Page</span> </Link></li>
-                                                <li><Link to="/productmgmt" className="productmgmt"><i className="icofont-users"></i> <span>Product Management</span></Link></li>
+                                                <li><Link to="/admin" className="adminpage"><i className="icofont-user"></i> <span>Admin Page</span> </Link></li>
+                                                <li><Link to="/Mgmt" className="productmgmt"><i className="icofont-users"></i> <span>Product Management</span></Link></li>
                                                 <li><button className="logout" onClick ={Logout}><i className="icofont-user" 
                                                 ></i><span>Logout</span> </button></li>
                                                 </>

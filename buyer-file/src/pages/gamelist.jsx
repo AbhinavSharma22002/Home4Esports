@@ -1,6 +1,6 @@
 import { Component, Fragment } from "react";
-import Footer from "../component/layout/Footer";
-import Header from "../component/layout/Header";
+import Footer from "../component/layout/footer";
+import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import GameList from "../component/section/gamelist";
 import VideoSection from "../component/section/video";
