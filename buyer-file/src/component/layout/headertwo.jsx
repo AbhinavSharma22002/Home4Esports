@@ -97,7 +97,6 @@ class HeaderTwo extends Component {
                                                     <li><NavLink to="/achievements">achievement</NavLink></li>
                                                     <li><NavLink to="/team">team</NavLink></li>
                                                     <li><NavLink to="/team-single">team single</NavLink></li>
-                                                    <li><NavLink to="/404">404 Page</NavLink></li>
                                                 </ul>
                                             </li>
                                             <li className="menu-item-has-children">

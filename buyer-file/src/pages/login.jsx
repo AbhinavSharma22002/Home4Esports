@@ -1,37 +1,25 @@
-import { Component, Fragment,useState, useContext  } from "react";
-import { Link,useNavigate  } from "react-router-dom";
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
+import { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+import Footer from "../component/layout/Footer";
+import Header from "../component/layout/Header";
 import PageHeader from "../component/layout/pageheader";
 import SocialMedia from "../component/section/socialmedia";
-import accessContext from '../context/roles/accessContext';
+
 const title = "Login";
 
+class LogIn extends Component {
 
-const LoginFunction = ()=>{
-	const [userEmail, setuserEmail] = useState('');
-	const [userPass, setuserPass] = useState('');
-
-    const Context = useContext(accessContext);
-    const {LoginRequest} = Context;
-    const navigate =useNavigate();
-
-    const handleSubmit= async (event)=>{
-        event.preventDefault();
-        const data = await  LoginRequest({
-        userEmail: userEmail,
-        userPass: userPass
-    });
-    if(data.status==='Success')
-    navigate("/");
-    else{
-        navigate("/login");
+    constructor(props){
+        super(props);
+        this.state = {
+            userName: '',
+            userPass: '',
+        };
     }
-    }
-
-    return (
-        <>
-        <Header />
+    render() { 
+        return (
+            <Fragment>
+                <Header />
                 <PageHeader title={'LOGIN FOR GAMING'} curPage={'Login'} />
                 <div className="login-section padding-top padding-bottom">
                     <div className=" container">
@@ -40,12 +28,12 @@ const LoginFunction = ()=>{
                             <form className="account-form">
                                 <div className="form-group">
                                     <input
-                                        type="email"
-                                        name="email"
+                                        type="text"
+                                        name="name"
                                         id="item01"
-                                        value={userEmail}
-                                        onChange={(e)=>{setuserEmail(e.target.value)}}
-                                        placeholder="Email *"
+                                        value={this.state.userName}
+                                        onChange={(e)=>{this.setState({userName: e.target.value});}}
+                                        placeholder="User Name *"
                                     />
                                 </div>
                                 <div className="form-group">
@@ -53,8 +41,8 @@ const LoginFunction = ()=>{
                                         type="password"
                                         name="password"
                                         id="item02"
-                                        value={userPass}
-                                        onChange={(e)=>{setuserPass(e.target.value)}}
+                                        value={this.state.userPass}
+                                        onChange={(e)=>{this.setState({userPass: e.target.value});}}
                                         placeholder="Password *"
                                     />
                                 </div>
@@ -68,13 +56,12 @@ const LoginFunction = ()=>{
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <button className="d-block default-button" 
-                                    onClick = {handleSubmit}
-                                    ><span>Submit Now</span></button>
+                                    <button className="d-block default-button"><span>Submit Now</span></button>
                                 </div>
                             </form>
                             <div className="account-bottom">
                                 <span className="d-block cate pt-10">Don’t Have any Account? <Link to="/signup"> Sign Up</Link></span>
+                                <span className="d-block cate pt-10">Admin Dashboard <Link to="/Admin"> Click Here</Link></span>
                                 <span className="or"><span>or</span></span>
                                 <h5 className="subtitle">Login With Social Media</h5>
                                 <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center mt-4">
@@ -85,15 +72,6 @@ const LoginFunction = ()=>{
                     </div>
                 </div>
                 <Footer />
-        </>
-    );
-};
-
-class LogIn extends Component {
-    render() { 
-        return (
-            <Fragment>
-                <LoginFunction/>
             </Fragment>
         );
     }
