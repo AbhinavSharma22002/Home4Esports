@@ -1,0 +1,23 @@
+.container-1{
+    display: flex;
+    justify-content: space-evenly;
+   
+}
+
+.head-1 img{
+    margin: 249px 0px;
+    border:1px solid blanchedalmond;
+    height: 190px;
+    border-radius: 8%;
+    transform: translate(0px);
+    cursor: pointer;
+}
+
+.head-1  img:hover{ 
+   border-radius: 30%;
+   transition: .2s;
+   box-shadow: 6px 6px 40px 10px #5F4B8BFF;
+   transform: translate3d(10px, 0, 0px);
+}
+
+

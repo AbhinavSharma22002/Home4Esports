@@ -1,40 +1,28 @@
-import { Component, Fragment,useState,useContext } from "react";
-import { Link,useNavigate  } from "react-router-dom";
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
+import { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+import Footer from "../component/layout/Footer";
+import Header from "../component/layout/Header";
 import PageHeader from "../component/layout/pageheader";
 import SocialMedia from "../component/section/socialmedia";
-import accessContext from '../context/roles/accessContext';
 
 const title = "Register Now";
 
-const SignUpFunction = ()=>{
-	const [regFName, setregFName] = useState('');
-	const [regLName, setregLName] = useState('');
-	const [regEmail, setregEmail] = useState('');
-	const [regPassword, setregPassword] = useState('');
-	const [regConPassword, setregConPassword] = useState('');
-    const Context = useContext(accessContext);
-    const {SignUpRequest} = Context;
-    const navigate =useNavigate();
-    const handleSubmit = (event)=>{
-        event.preventDefault();
-        const data = SignUpRequest({
-        regEmail: regEmail,
-        regPassword: regPassword,
-        regFName: regFName,
-        regLName: regLName
-        });
-        
-    if(data.status==='Success')
-    navigate("/login");
-    else{
-        navigate("/signup");
+class SignUp extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            regFName: '',
+            regLName: '',
+            regEmail: '',
+            regPassword: '',
+            regConPassword: '',
+        };
     }
-    }
-    return (
-        <>
-        <Header />
+    render() { 
+        return (
+            <Fragment>
+                <Header />
                 <PageHeader title={'REGISTRATION PAGE'} curPage={'Sign Up'} />
                 <div className="login-section padding-top padding-bottom">
                     <div className=" container">
@@ -46,8 +34,8 @@ const SignUpFunction = ()=>{
                                         type="text"
                                         name="name"
                                         id="item01"
-                                        value={regFName}
-                                        onChange={(e)=>{setregFName( e.target.value)}}
+                                        value={this.state.regFName}
+                                        onChange={(e)=>{this.setState({regFName: e.target.value});}}
                                         placeholder="First Name *"
                                     />
                                 </div>
@@ -56,8 +44,8 @@ const SignUpFunction = ()=>{
                                         type="text"
                                         name="name"
                                         id="item02"
-                                        value={regLName}
-                                        onChange={(e)=>{setregLName( e.target.value)}}
+                                        value={this.state.regLName}
+                                        onChange={(e)=>{this.setState({regLName: e.target.value});}}
                                         placeholder="Last Name *"
                                     />
                                 </div>
@@ -66,8 +54,8 @@ const SignUpFunction = ()=>{
                                         type="text"
                                         name="email"
                                         id="item03"
-                                        value={regEmail}
-                                        onChange={(e)=>{setregEmail( e.target.value)}}
+                                        value={this.state.regEmail}
+                                        onChange={(e)=>{this.setState({regEmail: e.target.value});}}
                                         placeholder="Your email *" 
                                     />
                                 </div>
@@ -76,8 +64,8 @@ const SignUpFunction = ()=>{
                                         type="password"
                                         name="password"
                                         id="item04"
-                                        value={regPassword}
-                                        onChange={(e)=>{setregPassword( e.target.value)}}
+                                        value={this.state.regPassword}
+                                        onChange={(e)=>{this.setState({regPassword: e.target.value});}}
                                         placeholder="Password *"
                                     />
                                 </div>
@@ -86,15 +74,13 @@ const SignUpFunction = ()=>{
                                         type="password"
                                         name="conpassword"
                                         id="item05"
-                                        value={regConPassword}
-                                        onChange={(e)=>{setregConPassword( e.target.value)}}
+                                        value={this.state.regConPassword}
+                                        onChange={(e)=>{this.setState({regConPassword: e.target.value});}}
                                         placeholder="Confirm Password *"
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <button className="d-block default-button" 
-                                    onClick = {handleSubmit}
-                                    ><span>Get Started Now</span></button>
+                                    <button className="d-block default-button"><span>Get Started Now</span></button>
                                 </div>
                             </form>
                             <div className="account-bottom">
@@ -108,18 +94,7 @@ const SignUpFunction = ()=>{
                         </div>
                     </div>
                 </div>
-            <Footer />
-        </>
-    );
-};
-
-
-
-class SignUp extends Component {
-    render() { 
-        return (
-            <Fragment>
-                <SignUpFunction />
+                <Footer />
             </Fragment>
         );
     }

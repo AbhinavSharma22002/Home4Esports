@@ -159,7 +159,7 @@ class Footer extends Component {
                                                         placeholder="Your Email *"
                                                     />
                                                 </div>
-                                                <button type="submit" className="default-button"><span>Send Massage <i className="icofont-circled-right"></i></span></button>
+                                                <button type="submit" className="default-button"><span>Send Message <i className="icofont-circled-right"></i></span></button>
                                             </form>
                                         </div>
                                     </div>
