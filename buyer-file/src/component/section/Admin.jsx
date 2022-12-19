@@ -3,28 +3,31 @@ import { Link } from 'react-router-dom';
 import Header from '../layout/Header'
 import Footer from '../layout/Footer';
 import '../../assets/css/Admin.css'
-import Game from '../../assets/images/banner/Game.png'
-import Merch from '../../assets/images/banner/Merch.png'
+import Newgame from '../../assets/images/banner/Newgame.png'
+import Newmerch from '../../assets/images/banner/Newmerch.png'
 import { Fragment } from 'react';
 const Admin = () => {
     return (
         <Fragment >
         <div>
+           
             <Header />
             <div className='container-1'>
                 <div className='head-1'>
                     <Link to="/Schedule">
-                        <img src={Game} alt="logo" />
+                        <img src={Newgame} alt="logo" />
                     </Link>
                 </div>
 
                 <div className='head-1'>
                     <Link to="/Mgmt">
-                        <img src={Merch} alt="logo" />
+                        <img src={Newmerch} alt="logo" />
                     </Link>
                 </div>
-
+        
+           
             </div>
+            
         </div>
         <Footer />
         </Fragment>

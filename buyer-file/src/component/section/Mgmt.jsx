@@ -32,51 +32,55 @@ class Mgmt extends Component {
                                 <div className="form-group">
                                     <input
                                         type="text"
-                                        name="name"
+                                        name="productTitle"
                                         id="item01"
-                                        value={this.state.regFName}
-                                        onChange={(e)=>{this.setState({regFName: e.target.value});}}
-                                        placeholder="Team 1st name *"
+                                        value={this.state.productTitle}
+                                        onChange={(e)=>{this.setState({productName: e.target.value});}}
+                                        placeholder="Enter Product Title*"
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <input  
+                                    <input
                                         type="text"
-                                        name="name"
+                                        name="productPrice"
                                         id="item02"
-                                        value={this.state.regLName}
-                                        onChange={(e)=>{this.setState({regLName: e.target.value});}}
-                                        placeholder="Team 2nd name *"
+                                        value={this.state.productPrice}
+                                        onChange={(e)=>{this.setState({productPrice: e.target.value});}}
+                                        placeholder="Enter Product Price *"
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <input 
-                                        type="text"
-                                        name="email"
+                                    <select name="productSize"
                                         id="item03"
-                                        value={this.state.regEmail}
-                                        onChange={(e)=>{this.setState({regEmail: e.target.value});}}
-                                        placeholder="...... *" 
-                                    />
+                                        value={this.state.productSize}
+                                        onChange={(e)=>{this.setState({productSize: e.target.value});}}
+                                        >
+                                             <option>-Select Size-</option>
+                                         <option value="small">S</option>
+                                        <option value="medium">M</option>
+                                         <option value="long">L</option>
+                                        <option value="extra">XL</option>
+                                </select>
+                                    
                                 </div>
                                 <div className="form-group">
                                     <input 
-                                        type="password"
-                                        name="password"
+                                        type="file"
+                                        name="uploadProduct"
                                         id="item04"
-                                        value={this.state.regPassword}
-                                        onChange={(e)=>{this.setState({regPassword: e.target.value});}}
-                                        placeholder="...... *"
+                                        value={this.state.uploadProduct}
+                                        onChange={(e)=>{this.setState({uploadProduct: e.target.value});}}
+                                        placeholder="Please Select Products *"
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <input 
-                                        type="password"
-                                        name="conpassword"
-                                        id="item05"
-                                        value={this.state.regConPassword}
-                                        onChange={(e)=>{this.setState({regConPassword: e.target.value});}}
-                                        placeholder="..... *"
+                                    <textarea
+                                    name="description"
+                                    id="item05"
+                                    value={this.state.productDescrition}
+                                    onChange={(e)=>{this.setState({productDescrition: e.target.value});}}
+                                    placeholder="Enter Product Description here*"
+                                    
                                     />
                                 </div>
                                 <div className="form-group">
