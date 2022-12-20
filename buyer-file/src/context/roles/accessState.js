@@ -25,6 +25,7 @@ const AccessState = (props) => {
       );
       return response;
   };
+<<<<<<< HEAD
   const NewsLetter= async(item)=>{
     const requestOptions = {
         method: "POST",
@@ -39,6 +40,11 @@ const AccessState = (props) => {
   };
   return (
     <accessContext.Provider value={{LoginRequest,SignUpRequest, NewsLetter}}>
+=======
+
+  return (
+    <accessContext.Provider value={{LoginRequest,SignUpRequest}}>
+>>>>>>> master
       {props.children}
     </accessContext.Provider>
   );

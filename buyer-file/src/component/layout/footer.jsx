@@ -151,11 +151,15 @@ const NewsLetter = ()=>{
                                                         placeholder="Your Email *"
                                                     />
                                                 </div>
+<<<<<<< HEAD
                                                 <div className="form-group">
                                     <button className=" default-button" 
                                     onClick = {handleSubmit}
                                     ><span>Send Message</span></button>
                                 </div>
+=======
+                                                <button type="submit" className="default-button"><span>Send Message <i className="icofont-circled-right"></i></span></button>
+>>>>>>> master
                                             </form>
                                         </div>
                                     </div>
