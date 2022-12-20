@@ -23,6 +23,7 @@ import SignUp from "./pages/signup";
 import TeamPage from "./pages/team";
 import TeamSinglePage from "./pages/team-single";
 import ErrorPage from "./pages/errorpage";
+import AccessState from "./context/roles/accessState";
 
 // import Footer from "./component/layout/footer";
 // import Header from "./component/layout/header";
@@ -35,6 +36,7 @@ function App() {
 		// <div className="App">
 		// 	<ShopPage />
 		// </div>
+		<AccessState>
 		<BrowserRouter>
 			<ScrollToTop />
 			<Routes>
@@ -60,6 +62,7 @@ function App() {
 				<Route path="signup" element={<SignUp />} />
 			</Routes>
 		</BrowserRouter>
+		</AccessState>
 	);
 }
 
