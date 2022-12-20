@@ -143,7 +143,7 @@ const NewsLetter = ()=>{
                                                 <div className="form-group mb-2">
                                                     <input
                                                         type="email"
-                                                        name="name"
+                                                        name="email"
                                                         id="item02"
                                                         className="form-control"
                                                         value={userEmail}
@@ -151,15 +151,11 @@ const NewsLetter = ()=>{
                                                         placeholder="Your Email *"
                                                     />
                                                 </div>
-<<<<<<< HEAD
                                                 <div className="form-group">
                                     <button className=" default-button" 
                                     onClick = {handleSubmit}
                                     ><span>Send Message</span></button>
                                 </div>
-=======
-                                                <button type="submit" className="default-button"><span>Send Message <i className="icofont-circled-right"></i></span></button>
->>>>>>> master
                                             </form>
                                         </div>
                                     </div>
