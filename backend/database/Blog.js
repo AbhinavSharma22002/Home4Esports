@@ -11,7 +11,15 @@ const BlogSchema = new Schema({
     required: true,
   },
   image: [{
-      type: String
+    pk:{
+      type: String,
+      required: true
+    },
+    link:{
+      type: String,
+      required: true
+    }
+      
   }],
   body: {
     type: String

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Blog= require("../database/Blog");
+const User = require("../database/User")
 const fetchuser = require('../middleware/Fetchuser');
 
 router.get("/getAll",async(req,res)=>{
@@ -21,7 +22,7 @@ async (req, res) => {
     //check for access level
   const { title,image,body} = req.body;
   for(let i=0;i<image.length;i++){
-    body.replace(`{Image${i+1}}`,image[i]);
+    body.replace(`{Image}`,image[i].link);
   }
   try {
     let blog = await Blog.create({

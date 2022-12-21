@@ -28,8 +28,9 @@ import Mgmt from "./component/section/Mgmt";
 import Customer from "./component/section/Customer";
 import React from "react";
 import ErrorPage from "./pages/errorpage";
-function App() {
-	
+import CreateBlog from "./component/section/createBlog";
+
+function App() {	
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [isAdmin, setIsAdmin] = useState(false);
     useEffect(() => {
@@ -91,6 +92,7 @@ const [isAdmin, setIsAdmin] = useState(false);
 							<Route path="Schedule" element={<Schedule />} />
 							<Route path="Mgmt" element={<Mgmt />} />
 							<Route path="Customer" element={<Customer/>}/>
+							<Route path="createBlog" element={<CreateBlog/>}/>
 							</>
 						):(
 							<>
