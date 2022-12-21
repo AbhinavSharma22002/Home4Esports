@@ -36,7 +36,6 @@ const UserSchema = new Schema({
     required: function () {
         return this.role === "admin" ? false : true;
     }
-
 });
 const User = mongoose.model("users", UserSchema);
 module.exports = User;

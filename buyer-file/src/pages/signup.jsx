@@ -21,10 +21,10 @@ const SignUpFunction = ()=>{
         event.preventDefault();
         if(regConPassword===regPassword){
         const data = await SignUpRequest({
-        regEmail: regEmail,
-        regPassword: regPassword,
-        regFName: regFName,
-        regLName: regLName
+        email: regEmail,
+        password: regPassword,
+        name: regFName,
+        Lname: regLName
     });
     if (data.status === 200) {
       navigate("/login");

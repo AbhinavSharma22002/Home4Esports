@@ -7,11 +7,11 @@ const saltRounds = 10;
 const jwt = require("jsonwebtoken");
 const JWT_secret = process.env.JWT_secret;
 const fetchUser = require("../middleware/Fetchuser");
-
+//login
 router.post("/login",
 [
-  body("userEmail", "Enter a valid email").isEmail(),
-  body("userPass", "Enter a valid password").exists(),
+  body("email", "Enter a valid email").isEmail(),
+  body("password", "Enter a valid password").exists(),
 ],
 async (req, res) => {
   //If there are errors, return bad request
@@ -19,23 +19,23 @@ async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const { userEmail, userPass } = req.body;
+  const { email, password } = req.body;
 
   try {
-    let user = await User.findOne({userEmail });
+    let user = await User.findOne({email });
 
     if (!user) {
       return res
         .status(400)
-        .json({ error: "please try to login with correct credintials" });
+        .json({ error: "please try to login with correct credentials" });
     }
 
-    let passwordCompare = await bcrypt.compare(userPass, user.password);
+    let passwordCompare = await bcrypt.compare(password, user.password);
 
     if (!passwordCompare) {
       return res
         .status(400)
-        .json({ error: "please try to login with correct credintials" });
+        .json({ error: "please try to login with correct credentials" });
     }
 
     let data = {
@@ -50,13 +50,13 @@ async (req, res) => {
     res.status(500).send("Some error occured");
   }
 });
-
+//signup
 router.post("/signup",
 [
-  body("regFName", "Enter your first Name").isLength({ min: 5 }),
-  body("regFName", "Enter your last Name").isLength({ min: 5 }),
-  body("regEmail", "Enter valid Email").isEmail(),
-  body("regPassword", "Enter valid Password").isLength({ min: 5 }),
+  body("name", "Enter your first Name").isLength({ min: 5 }),
+  body("Lname", "Enter your last Name").isLength({ min: 5 }),
+  body("email", "Enter valid Email").isEmail(),
+  body("password", "Enter valid Password").isLength({ min: 5 }),
 ],async (req,res)=>{
    //If there are errors, return bad request
    const errors = validationResult(req);
@@ -64,23 +64,23 @@ router.post("/signup",
      return res.status(400).json({ errors: errors.array()});
    }
 
-   const { regEmail, regPassword, fname,lname } = req.body;
+   const { email, password, name,Lname} = req.body;
 
    try {
-     let user = await User.findOne({ regEmail });
+     let user = await User.findOne({ email });
 
      if (user !== null) {
        return res.status(400).json({ error: "please try some other email" });
      }
 
      let salt = await bcrypt.genSalt(saltRounds);
-     let hash = await bcrypt.hash(regPassword, salt);
+     let hash = await bcrypt.hash(password, salt);
 
      user = await User.create({
-       fname: fname,
-       lname:lname,
+       fname: name,
+       lname:Lname,
        password: hash,
-       email: regEmail
+       email: email,
      });
 
      const data = {
