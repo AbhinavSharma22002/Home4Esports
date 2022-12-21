@@ -26,8 +26,20 @@ const AccessState = (props) => {
       return response;
   };
 
+  const NewsLetter= async(item)=>{
+    const requestOptions = {
+        method: "POST",
+        body: JSON.stringify(item),
+        headers: { 'Content-Type': 'application/json' }
+      };
+      const response = await fetch(
+        `http://localhost:3001/api/newsletter`,
+        requestOptions
+      );
+      return response;
+  };
   return (
-    <accessContext.Provider value={{LoginRequest,SignUpRequest}}>
+    <accessContext.Provider value={{LoginRequest,SignUpRequest, NewsLetter}}>
       {props.children}
     </accessContext.Provider>
   );
