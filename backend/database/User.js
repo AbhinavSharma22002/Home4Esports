@@ -27,8 +27,8 @@ const UserSchema = new Schema({
   },
    role: {
     type: String,
-    enum: ["admin", "partner", "basic"],
-    default: "basic"
+    enum: ["admin", "local"],
+    default: "local"
 },
     default: function () {
         return this.role === "local" ? undefined : this.value;
