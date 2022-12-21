@@ -27,15 +27,9 @@ const UserSchema = new Schema({
   },
    role: {
     type: String,
-    enum: ["admin", "local"],
-    default: "local"
-},
-    default: function () {
-        return this.role === "local" ? undefined : this.value;
-    },
-    required: function () {
-        return this.role === "admin" ? false : true;
-    }
+    default: "local",
+    required: true
+}
 });
 const User = mongoose.model("users", UserSchema);
 module.exports = User;

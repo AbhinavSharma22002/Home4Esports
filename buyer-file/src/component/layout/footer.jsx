@@ -22,13 +22,9 @@ const NewsLetter = ()=>{
         email: userEmail,
         name: userName
     });    
-    const data = await response.json();
     if (response.status === 200) {
-      localStorage.setItem("token", data.authData);
-      navigate("/");
-    }
-    else{
-        navigate("/footer");
+      setuserEmail('');
+      setuserName('');
     }
     }
     return(

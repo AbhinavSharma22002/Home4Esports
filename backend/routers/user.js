@@ -80,7 +80,7 @@ router.post("/signup",
        fname: name,
        lname:Lname,
        password: hash,
-       email: email,
+       email: email
      });
 
      const data = {

@@ -25,9 +25,42 @@ import TeamSinglePage from "./pages/team-single";
 import Admin from "./component/section/Admin";
 import Schedule from "./component/section/Schedule";
 import Mgmt from "./component/section/Mgmt";
+import Customer from "./component/section/Customer";
 import React from "react";
 import ErrorPage from "./pages/errorpage";
 function App() {
+	
+const [isLoggedIn, setIsLoggedIn] = useState(false);
+const [isAdmin, setIsAdmin] = useState(false);
+    useEffect(() => {
+		const value= async()=> {
+             const requestOptions = {
+                method: "GET",
+                headers: {
+                    "auth-token":localStorage.getItem('token')
+                    },
+            };
+            const response = await fetch(
+                `http://localhost:3001/api/user/status`,
+                requestOptions
+            );
+			const data = await response.json();
+            if(response.status===200){
+                    setIsLoggedIn(true);
+					if(data.role==="admin"){
+						setIsAdmin(true);
+					}
+					else{
+						setIsAdmin(false);
+					}
+            }
+            else{
+					setIsAdmin(false);
+                    setIsLoggedIn(false);
+            }
+		}
+		value();
+	}, []);
 	return (
 		<AccessState>
 			<BrowserRouter>
@@ -50,11 +83,25 @@ function App() {
 					<Route path="blog-2" element={<BlogPageTwo />} />
 					<Route path="blog-single" element={<BlogDetails />} />
 					<Route path="contact" element={<ContactUs />} />
-					<Route path="login" element={<LogIn />} />
-					<Route path="signup" element={<SignUp />} />
-					<Route path="admin" element={<Admin/>}/>
-					<Route path="Schedule" element={<Schedule />} />
-					<Route path="Mgmt" element={<Mgmt />} />
+					{isLoggedIn?(
+						<>
+						{isAdmin?(
+							<>
+							<Route path="admin" element={<Admin/>}/>
+							<Route path="Schedule" element={<Schedule />} />
+							<Route path="Mgmt" element={<Mgmt />} />
+							<Route path="Customer" element={<Customer/>}/>
+							</>
+						):(
+							<>
+							</>
+						)}
+						</>
+					):(<>
+						<Route path="login" element={<LogIn />} />
+						<Route path="signup" element={<SignUp />} />
+					</>)
+				}
 				</Routes>
 			</BrowserRouter>
 		</AccessState>
