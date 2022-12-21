@@ -53,7 +53,8 @@ async (req, res) => {
 
 router.post("/signup",
 [
-  body("regFName", "Enter valid Name").isLength({ min: 5 }),
+  body("regFName", "Enter your first Name").isLength({ min: 5 }),
+  body("regFName", "Enter your last Name").isLength({ min: 5 }),
   body("regEmail", "Enter valid Email").isEmail(),
   body("regPassword", "Enter valid Password").isLength({ min: 5 }),
 ],async (req,res)=>{
@@ -63,7 +64,7 @@ router.post("/signup",
      return res.status(400).json({ errors: errors.array()});
    }
 
-   const { regEmail, regPassword, name } = req.body;
+   const { regEmail, regPassword, fname,lname } = req.body;
 
    try {
      let user = await User.findOne({ regEmail });
@@ -76,7 +77,8 @@ router.post("/signup",
      let hash = await bcrypt.hash(regPassword, salt);
 
      user = await User.create({
-       name: name,
+       fname: fname,
+       lname:lname,
        password: hash,
        email: regEmail
      });
