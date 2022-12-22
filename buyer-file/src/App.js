@@ -6,9 +6,7 @@ import AccessState from './context/roles/accessState';
 import ScrollToTop from "./component/layout/scrolltop";
 import AboutPage from "./pages/about";
 import AchievementPage from "./pages/achievement";
-import BlogPage from "./pages/blog";
 import BlogDetails from "./pages/blog-single";
-import BlogPageTwo from "./pages/blogtwo";
 import ContactUs from "./pages/contact";
 import GalleryPage from "./pages/gallery";
 import GameListSection from "./pages/gamelist";
@@ -61,6 +59,8 @@ const [isAdmin, setIsAdmin] = useState(false);
             }
 		}
 		value();
+		
+		// window.location.reload(false);
 	}, []);
 	return (
 		<AccessState>
@@ -80,8 +80,6 @@ const [isAdmin, setIsAdmin] = useState(false);
 					<Route path="shop" element={<ShopPage />} />
 					<Route path="shop-single" element={<ShopDetails />} />
 					<Route path="cart-page" element={<ShopCart />} />
-					<Route path="blog" element={<BlogPage />} />
-					<Route path="blog-2" element={<BlogPageTwo />} />
 					<Route path="blog-single" element={<BlogDetails />} />
 					<Route path="contact" element={<ContactUs />} />
 					{isLoggedIn?(

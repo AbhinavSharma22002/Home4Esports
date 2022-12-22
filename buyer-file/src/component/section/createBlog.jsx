@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import { Link,useNavigate  } from "react-router-dom";
 import Header from '../layout/header'
 import Footer from '../layout/footer';
 import PageHeader from "../layout/pageheader";
@@ -9,6 +10,8 @@ const CreateBlog = ()=>{
     const [noVideo,setNoVideo] = useState(0);
     const [clicked,setClicked] = useState(false);
     const [image,setImage] = useState([]);
+    
+    const navigate =useNavigate();
     const handleSave=(e)=>{
         e.preventDefault();
         setClicked(true);
@@ -69,6 +72,7 @@ const CreateBlog = ()=>{
         );
         if(response.status===200){
             alert("Success");
+            navigate("/");
         }
     }
     return (
