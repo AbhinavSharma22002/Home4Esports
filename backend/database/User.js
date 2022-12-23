@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const UserSchema = new Schema({
-  name: {
+  fname: {
     type: String,
     required: true,
+  },
+  lname:{
+    type:String,
+    required:true
   },
   password: {
     type: String,
@@ -20,7 +24,12 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
     required: true,
-  }
+  },
+   role: {
+    type: String,
+    default: "local",
+    required: true
+}
 });
 const User = mongoose.model("users", UserSchema);
 module.exports = User;

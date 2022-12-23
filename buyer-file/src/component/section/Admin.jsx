@@ -5,12 +5,12 @@ import Footer from '../layout/footer';
 import '../../assets/css/Admin.css'
 import Newgame from '../../assets/images/banner/Newgame.png'
 import Newmerch from '../../assets/images/banner/Newmerch.png'
+import Setting from "../../assets/images/banner/settinglogo.jpg"
 import { Fragment } from 'react';
 const Admin = () => {
     return (
         <Fragment >
         <div>
-           
             <Header />
             <div className='container-1'>
                 <div className='head-1'>
@@ -24,10 +24,19 @@ const Admin = () => {
                         <img src={Newmerch} alt="logo" />
                     </Link>
                 </div>
-        
-           
+
+                <div className='head-1'>
+                    <Link to="/Customer">
+                        <img src={Setting} alt="logo" />
+                    </Link>
+                </div>
+
+                <div className='head-1'>
+                    <Link to="/createBlog">
+                        <img src={Setting} alt="logo" />
+                    </Link>
+                </div>
             </div>
-            
         </div>
         <Footer />
         </Fragment>
