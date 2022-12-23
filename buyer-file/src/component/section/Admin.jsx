@@ -10,11 +10,7 @@ import { Fragment } from 'react';
 const Admin = () => {
     return (
         <Fragment >
-<<<<<<< HEAD
-        <div>    
-=======
         <div>
->>>>>>> feature/main/devyansh
             <Header />
             <div className='container-1'>
                 <div className='head-1'>

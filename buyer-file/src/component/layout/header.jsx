@@ -117,13 +117,7 @@ return (
                                         <Link to="/"><img src="assets/images/logo/logo.png" alt="logo" /></Link>
                                     </div>
                                     <div className="menu-area">
-<<<<<<< HEAD
-                                        <ul className="menu">
-                                        <li><NavLink to="/">Home</NavLink></li>
-                                    
-=======
                                         <ul className="menu">                                   
->>>>>>> feature/main/devyansh
 
                                             <li className="menu-item-has-children">
                                                 <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Features</a>

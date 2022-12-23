@@ -210,9 +210,4 @@ class Footer extends Component {
         );
     }
 }
-<<<<<<< HEAD
- 
-export default Footer;  
-=======
 export default Footer;
->>>>>>> feature/main/devyansh

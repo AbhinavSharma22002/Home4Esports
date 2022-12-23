@@ -26,10 +26,6 @@ import Mgmt from "./component/section/Mgmt";
 import Customer from "./component/section/Customer";
 import React from "react";
 import ErrorPage from "./pages/errorpage";
-<<<<<<< HEAD
-import Blog01 from "./component/section/Blog01"
-function App() {
-=======
 import CreateBlog from "./component/section/createBlog";
 
 function App() {	
@@ -66,7 +62,6 @@ const [isAdmin, setIsAdmin] = useState(false);
 		
 		// window.location.reload(false);
 	}, []);
->>>>>>> feature/main/devyansh
 	return (
 		<AccessState>
 			<BrowserRouter>
@@ -87,14 +82,6 @@ const [isAdmin, setIsAdmin] = useState(false);
 					<Route path="cart-page" element={<ShopCart />} />
 					<Route path="blog-single" element={<BlogDetails />} />
 					<Route path="contact" element={<ContactUs />} />
-<<<<<<< HEAD
-					<Route path="login" element={<LogIn />} />
-					<Route path="signup" element={<SignUp />} />
-					<Route path="admin" element={<Admin/>}/>
-					<Route path="Schedule" element={<Schedule />} />
-					<Route path="Mgmt" element={<Mgmt />} />
-					<Route path="Blog01" element={<Blog01 />} />
-=======
 					{isLoggedIn?(
 						<>
 						{isAdmin?(
@@ -115,7 +102,6 @@ const [isAdmin, setIsAdmin] = useState(false);
 						<Route path="signup" element={<SignUp />} />
 					</>)
 				}
->>>>>>> feature/main/devyansh
 				</Routes>
 			</BrowserRouter>
 		</AccessState>
