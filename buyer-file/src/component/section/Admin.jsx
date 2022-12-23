@@ -9,13 +9,13 @@ import { Fragment } from 'react';
 const Admin = () => {
     return (
         <Fragment >
-        <div>
-           
+        <div>    
             <Header />
             <div className='container-1'>
                 <div className='head-1'>
                     <Link to="/Schedule">
                         <img src={Newgame} alt="logo" />
+                
                     </Link>
                 </div>
 

@@ -2,8 +2,8 @@ import { Component,useState,useEffect, useContext  } from "react";
 import { NavLink, Link,useNavigate } from 'react-router-dom';
 import accessContext from '../../context/roles/accessContext';
 
-const contactNumber = "+800-123-4567 6587";
-const contactAddress = "vbjwivhiewuuh";
+const contactNumber = "+91 954 092 2345";
+const contactAddress = "Sec-82, Gurugram, Haryana, India-122004";
 
 let SocialMideaList = [
     {
@@ -110,7 +110,7 @@ return (
                                     </div>
                                     <div className="menu-area">
                                         <ul className="menu">
-                                        <li><NavLink to="/contact">Home</NavLink></li>
+                                        <li><NavLink to="/">Home</NavLink></li>
                                     
 
                                             <li className="menu-item-has-children">
@@ -138,7 +138,7 @@ return (
                                             <li className="menu-item-has-children">
                                                 <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Blog</a>
                                                 <ul className="submenu dropdown-menu">
-                                                    <li><NavLink to="/blog">Blog</NavLink></li>
+                                                    <li><NavLink to="/blog01">Blog</NavLink></li>
                                                     <li><NavLink to="/blog-2">Blog 2</NavLink></li>
                                                     <li><NavLink to="/blog-single">Blog Single</NavLink></li>
                                                 </ul>

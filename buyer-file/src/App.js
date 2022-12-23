@@ -27,6 +27,7 @@ import Schedule from "./component/section/Schedule";
 import Mgmt from "./component/section/Mgmt";
 import React from "react";
 import ErrorPage from "./pages/errorpage";
+import Blog01 from "./component/section/Blog01"
 function App() {
 	return (
 		<AccessState>
@@ -55,6 +56,7 @@ function App() {
 					<Route path="admin" element={<Admin/>}/>
 					<Route path="Schedule" element={<Schedule />} />
 					<Route path="Mgmt" element={<Mgmt />} />
+					<Route path="Blog01" element={<Blog01 />} />
 				</Routes>
 			</BrowserRouter>
 		</AccessState>

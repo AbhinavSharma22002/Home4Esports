@@ -7,11 +7,11 @@ const btnText = "Watch Now";
 
 
 class BannerSection extends Component {
-    render() { 
+    render() {
         return (
-            <section className="banner-section" style={{ backgroundImage: "url(/assets/images/banner/bg.jpg)" }}>
+            <div className="banner-section" style={{ backgroundImage: "url(/assets/images/banner/bg.jpg)"}}>
                 <div className="container">
-                    <div className="">
+                    <div >
                         <div className="banner-content text-center">
                             <h4 className="fw-normal theme-color mb-4">{title}</h4>
                             <img src="assets/images/banner/01.png" alt="banner text thumb" className="mb-4" />
@@ -31,9 +31,9 @@ class BannerSection extends Component {
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         );
     }
 }
- 
+
 export default BannerSection;
