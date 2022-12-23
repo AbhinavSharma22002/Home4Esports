@@ -11,7 +11,7 @@ import Instagram from "../component/sidebar/instagram";
 import RecentPost from "../component/sidebar/recentpost";
 import SearchBar from "../component/sidebar/search";
 import Tags from "../component/sidebar/tags";
-import queryString from 'query-string';
+
 
 
 const BlogDetailsFunction = (props)=>{
