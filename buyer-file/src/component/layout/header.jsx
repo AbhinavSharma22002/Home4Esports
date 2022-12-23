@@ -32,6 +32,7 @@ const HeaderFunction = (props)=>{
     
     const navigate =useNavigate();
 const [isLoggedIn, setIsLoggedIn] = useState(false);
+const [isAdmin, setIsAdmin] = useState(false);
 
     const Context = useContext(accessContext);
     const {LoggedInStates} = Context;
@@ -47,12 +48,18 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
                 `http://localhost:3001/api/user/status`,
                 requestOptions
             );
-
+            const data = await response.json();
             if(response.status===200){
-                    console.log(response.json());
                     setIsLoggedIn(true);
+                    if(data.role==="admin"){
+                        setIsAdmin(true);
+                    }
+                    else{
+                        setIsAdmin(false);
+                    }
             }
             else{
+                setIsAdmin(false);
                     setIsLoggedIn(false);
             }
 		}
@@ -69,6 +76,7 @@ const menuTrigger = ()=> {
     const Logout = ()=>{
     localStorage.removeItem("token");
     setIsLoggedIn(false);
+    setIsAdmin(false);
     navigate("/");
     }
 return (
@@ -109,9 +117,13 @@ return (
                                         <Link to="/"><img src="assets/images/logo/logo.png" alt="logo" /></Link>
                                     </div>
                                     <div className="menu-area">
+<<<<<<< HEAD
                                         <ul className="menu">
                                         <li><NavLink to="/">Home</NavLink></li>
                                     
+=======
+                                        <ul className="menu">                                   
+>>>>>>> feature/main/devyansh
 
                                             <li className="menu-item-has-children">
                                                 <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Features</a>
@@ -146,9 +158,15 @@ return (
                                             <li><NavLink to="/contact">Contact</NavLink></li>
                                             {isLoggedIn ? (
                                                     <>
-                                                <li><Link to="/admin" className="adminpage"><i className="icofont-user"></i> <span>Admin Page</span> </Link></li>
-                                                <li><Link to="/Mgmt" className="productmgmt"><i className="icofont-users"></i> <span>Product Management</span></Link></li>
-                                                <li><button className="logout" onClick ={Logout}><i className="icofont-user" 
+                                                    {isAdmin?(
+                                                        <>
+                                                        <li><Link to="/admin" className="adminpage"><i className="icofont-user"></i> <span>Admin Page</span> </Link></li>
+                                                        </>
+                                                    ):(
+                                                        <>
+                                                        </>
+                                                    )}
+                                                  <li><button className="logout" onClick ={Logout}><i className="icofont-user" 
                                                 ></i><span>Logout</span> </button></li>
                                                 </>
 				                                )

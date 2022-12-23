@@ -4,7 +4,7 @@ const multer = require('multer');
 let upload = multer({dest: 'uploads/'});
 
 router.post("/upload",upload.single('image'),(req,res)=>{
-    res.status(200).send("HELLO world");
+    res.status(200).json({val: "HELLO world"});
 });
 
 module.exports = router;

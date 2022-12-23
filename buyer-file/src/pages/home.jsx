@@ -35,7 +35,11 @@ class HomePage extends Component {
                 <ProductSection />
                 <HrShape />
                 <SponsorSection />
+
+
                 <BlogSection />
+
+                
                 <TestimonialSection />
                 <Footer />
             </Fragment>

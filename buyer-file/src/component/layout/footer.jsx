@@ -1,48 +1,35 @@
-import { Component } from "react";
-import { Link } from "react-router-dom";
+import { Component, Fragment,useState, useContext  } from "react";
+import { Link,useNavigate  } from "react-router-dom";
 import Rating from "../section/rating";
 import SocialMedia from '../section/socialmedia';
+import accessContext from "../../context/roles/accessContext";
 
 const postTitle = "Top jackpot games";
 const newsTitle = "Our Newsletter";
 const desc = "We're creating the best in interactive entertainment by making games that change the way people have fun.";
 const newsdesc = "Crowd Control Esports organization supported by community leaders";
+const NewsLetter = ()=>{
+    const [userEmail, setuserEmail] = useState('');
+	const [userName, setuserName] = useState('');
 
-// let FooterItemList = [
-//     {
-//         imgUrl: 'assets/images/footer/01.jpg',
-//         imgAlt: 'Footer Blog Post',
-//         title: 'free Poker Game',
-//         proName: 'Poker',
-//         proPrice: '$230',
-//     },
-//     {
-//         imgUrl: 'assets/images/footer/02.jpg',
-//         imgAlt: 'Footer Blog Post',
-//         title: 'CLUB Poker Game',
-//         proName: 'Poker',
-//         proPrice: '$230',
-//     },
-//     {
-//         imgUrl: 'assets/images/footer/03.jpg',
-//         imgAlt: 'Footer Blog Post',
-//         title: 'ROYAL Poker Game',
-//         proName: 'Poker',
-//         proPrice: '$300',
-//     },
-// ]
+    const Context = useContext(accessContext);
+    const {NewsLetter} = Context;
+    const navigate =useNavigate();
 
-class Footer extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            newsName: '',
-            newsEmail: '',
-        };
+    const handleSubmit= async (event)=>{
+        event.preventDefault();
+        const response = await  NewsLetter({
+        email: userEmail,
+        name: userName
+    });    
+    if (response.status === 200) {
+      setuserEmail('');
+      setuserName('');
     }
-    render() { 
-        return (
-            <footer className="footer-section">
+    }
+    return(
+        <>
+ <footer className="footer-section">
                 <div className="footer-top">
                     <div className="container">
                         <div className="row g-3 justify-content-center g-lg-0">
@@ -128,6 +115,7 @@ class Footer extends Component {
                                     </div>
                                 </div>
                             </div>
+                         
                             <div className="col-lg-4 col-md-6 col-12">
                                 <div className="footer-middle-item-wrapper">
                                     <div className="footer-middle-item-3 mb-lg-0">
@@ -143,28 +131,33 @@ class Footer extends Component {
                                                         name="name"
                                                         id="item01"
                                                         className="form-control"
-                                                        value={this.state.newsName}
-                                                        onChange={(e)=>{this.setState({newsName: e.target.value});}}
+                                                        value={userName}
+                                                        onChange={(e)=>{setuserName(e.target.value)}}
                                                         placeholder="Your Name *"
                                                     />
                                                 </div>
                                                 <div className="form-group mb-2">
                                                     <input
                                                         type="email"
-                                                        name="name"
+                                                        name="email"
                                                         id="item02"
                                                         className="form-control"
-                                                        value={this.state.newsEmail}
-                                                        onChange={(e)=>{this.setState({newsEmail: e.target.value});}}
+                                                        value={userEmail}
+                                                        onChange={(e)=>{setuserEmail(e.target.value)}}
                                                         placeholder="Your Email *"
                                                     />
                                                 </div>
-                                                <button type="submit" className="default-button"><span>Send Message <i className="icofont-circled-right"></i></span></button>
+                                                <div className="form-group">
+                                    <button className=" default-button" 
+                                    onClick = {handleSubmit}
+                                    ><span>Send Message</span></button>
+                                </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -173,15 +166,53 @@ class Footer extends Component {
                         <div className="row">
                             <div className="col-12">
                                 <div className="footer-bottom-content text-center">
-                                    {/* <p>&copy;2022 <Link to="/">BiGamer</Link> - eSpost And Gameing React Template.</p> */}
+                                    {<p>&copy;2022-23 <Link to="/">Crowd Control Esports</Link> - #Home4Esports</p>}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </footer>
+        </>
+    );
+};
+
+// let FooterItemList = [
+//     {
+//         imgUrl: 'assets/images/footer/01.jpg',
+//         imgAlt: 'Footer Blog Post',
+//         title: 'free Poker Game',
+//         proName: 'Poker',
+//         proPrice: '$230',
+//     },
+//     {
+//         imgUrl: 'assets/images/footer/02.jpg',
+//         imgAlt: 'Footer Blog Post',
+//         title: 'CLUB Poker Game',
+//         proName: 'Poker',
+//         proPrice: '$230',
+//     },
+//     {
+//         imgUrl: 'assets/images/footer/03.jpg',
+//         imgAlt: 'Footer Blog Post',
+//         title: 'ROYAL Poker Game',
+//         proName: 'Poker',
+//         proPrice: '$300',
+//     },
+// ]
+
+class Footer extends Component {
+    render() { 
+        return (
+            <Fragment>
+                <NewsLetter/>
+            </Fragment>
         );
     }
 }
+<<<<<<< HEAD
  
 export default Footer;  
+=======
+export default Footer;
+>>>>>>> feature/main/devyansh
