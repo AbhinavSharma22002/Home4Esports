@@ -1,6 +1,4 @@
 import { Component, Fragment,useState,useEffect } from "react";
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import Author from "../component/section/author";
 import CommentForm from "../component/section/commentform";
@@ -61,7 +59,6 @@ const BlogDetailsFunction = (props)=>{
 	}, []);
     return (
         <>
-        <Header />
                 <PageHeader title={BlogContent.title} curPage={'Blog Details'} />
                 <div className="blog-section blog-single padding-top padding-bottom aside-bg">
                     <div className="container">
@@ -116,7 +113,6 @@ const BlogDetailsFunction = (props)=>{
                         </div>
                     </div>
                 </div>
-                <Footer />
         </>
     );
 };

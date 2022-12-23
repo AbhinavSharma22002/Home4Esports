@@ -1,16 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import Header from '../layout/header'
-import Footer from '../layout/footer';
-import { Fragment } from 'react';
+import { Fragment,useState,useEffect } from 'react';
 const Admin = () => {
+    useEffect(()=>{
+        //get data
+    },[]);
     return (
         <Fragment >
         <div>
-            <Header />
             
         </div>
-        <Footer />
         </Fragment>
     )
 }

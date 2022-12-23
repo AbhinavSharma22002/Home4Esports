@@ -60,11 +60,11 @@ const [isAdmin, setIsAdmin] = useState(false);
             }
             else{
                 setIsAdmin(false);
-                    setIsLoggedIn(false);
+                setIsLoggedIn(false);
             }
 		}
 		value();
-	}, []);
+	});
 const menuTrigger = ()=> {
         document.querySelector('.menu').classList.toggle('active')
         document.querySelector('.header-bar').classList.toggle('active')
@@ -77,6 +77,7 @@ const menuTrigger = ()=> {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     setIsAdmin(false);
+    props.setIsLoggedIn(false);
     navigate("/");
     }
 return (
@@ -206,7 +207,7 @@ class Header extends Component {
         });
         return (
             <>
-            <HeaderFunction/>
+            <HeaderFunction setIsLoggedIn={this.props.setIsLoggedIn}/>
             </>
         );
     }

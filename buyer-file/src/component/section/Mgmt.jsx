@@ -1,7 +1,5 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../layout/footer";
-import Header from "../layout/header";
 import PageHeader from "../layout/pageheader";
 import SocialMedia from "./socialmedia";
 
@@ -22,7 +20,6 @@ class Mgmt extends Component {
     render() { 
         return (
             <Fragment>
-                <Header />
                 <PageHeader title={'MERCHANDISE PAGE '} curPage={'merchandise form'} />
                 <div className="login-section padding-top padding-bottom">
                     <div className=" container">
@@ -91,7 +88,6 @@ class Mgmt extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
             </Fragment>
         );
     }
