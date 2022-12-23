@@ -30,6 +30,12 @@ const Admin = () => {
                         <img src={Setting} alt="logo" />
                     </Link>
                 </div>
+
+                <div className='head-1'>
+                    <Link to="/createBlog">
+                        <img src={Setting} alt="logo" />
+                    </Link>
+                </div>
             </div>
         </div>
         <Footer />
