@@ -2,10 +2,6 @@ import { Component, Fragment } from "react";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from "swiper";
-
-
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import Rating from "../component/section/rating";
 import SearchBar from "../component/sidebar/search";
@@ -96,7 +92,6 @@ class ShopDetails extends Component {
     render() {
         return (
             <Fragment>
-                <Header />
                 <PageHeader title={'OUR SHOP SINGLE'} curPage={'Blog Details'} />
                 <div className="shop-single padding-top padding-bottom aside-bg">
                     <div className="container">
@@ -325,7 +320,6 @@ class ShopDetails extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
             </Fragment>
         );
     }

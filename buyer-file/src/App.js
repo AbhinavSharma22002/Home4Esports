@@ -18,6 +18,10 @@ import ShopPage from "./pages/shop";
 import ShopCart from "./pages/shopcart";
 import ShopDetails from "./pages/shopdetails";
 import SignUp from "./pages/signup";
+
+
+import Footer from "./component/layout/footer";
+import Header from "./component/layout/header";
 import TeamPage from "./pages/team";
 import TeamSinglePage from "./pages/team-single";
 import Admin from "./component/section/Admin";
@@ -39,7 +43,11 @@ const [isAdmin, setIsAdmin] = useState(false);
                     "auth-token":localStorage.getItem('token')
                     },
             };
-            const response = await fetch(
+			let response = await fetch(
+                `http://localhost:3001/api/user/getAll`,
+                requestOptions
+            );
+            response = await fetch(
                 `http://localhost:3001/api/user/status`,
                 requestOptions
             );
@@ -59,15 +67,14 @@ const [isAdmin, setIsAdmin] = useState(false);
             }
 		}
 		value();
-		
-		// window.location.reload(false);
-	}, []);
+	},[isLoggedIn]);
 	return (
 		<AccessState>
-			<BrowserRouter>
 				<ScrollToTop />
+			
+			<Header setIsLoggedIn={setIsLoggedIn}/>
 				<Routes>
-					<Route path="/" element={<HomePage />} />
+					<Route path="/" element={<HomePage/>} />
 					<Route path="about" element={<AboutPage />} />
 					<Route path="gallery" element={<GalleryPage />} />
 					<Route path="game-list" element={<GameListSection />} />
@@ -98,12 +105,13 @@ const [isAdmin, setIsAdmin] = useState(false);
 						)}
 						</>
 					):(<>
-						<Route path="login" element={<LogIn />} />
+						<Route path="login" element={<LogIn setIsLoggedIn={setIsLoggedIn}/>} />
 						<Route path="signup" element={<SignUp />} />
 					</>)
 				}
 				</Routes>
-			</BrowserRouter>
+			
+			<Footer />
 		</AccessState>
 	);
 }

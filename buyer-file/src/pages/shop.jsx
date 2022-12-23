@@ -1,7 +1,5 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import Pagination from "../component/section/pagination";
 import Rating from "../component/section/rating";
@@ -97,7 +95,6 @@ class ShopPage extends Component {
     render() {
         return (
             <Fragment>
-                <Header />
                 <PageHeader title={'SHOP PAGE'} curPage={'Shop'} />
                 <div className="shop-page padding-top padding-bottom aside-bg">
                     <div className="container">
@@ -165,7 +162,6 @@ class ShopPage extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
             </Fragment>
         );
     }

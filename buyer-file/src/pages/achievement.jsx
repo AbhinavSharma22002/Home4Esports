@@ -346,7 +346,6 @@ class AchievementPage extends Component {
     render() { 
         return (
             <Fragment>
-                <Header />
                 <PageHeader title={'OUR ACHIEVEMENTS'} curPage={'ACHIEVEMENT'} />
                 <div className="achievement-section padding-top padding-bottom">
                     <div className="container">
@@ -501,7 +500,6 @@ class AchievementPage extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
             </Fragment>
         );
     }

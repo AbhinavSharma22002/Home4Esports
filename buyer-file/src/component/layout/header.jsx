@@ -62,10 +62,10 @@ const HeaderFunction = (props) => {
                 setIsAdmin(false);
                 setIsLoggedIn(false);
             }
-        }
-        value();
-    }, []);
-    const menuTrigger = () => {
+		}
+		value();
+	});
+const menuTrigger = ()=> {
         document.querySelector('.menu').classList.toggle('active')
         document.querySelector('.header-bar').classList.toggle('active')
     }
@@ -73,11 +73,12 @@ const HeaderFunction = (props) => {
         document.querySelector('.header-top').classList.toggle('open')
         // document.querySelector('.header-bar').classList.toggle('active')
     }
-    const Logout = () => {
-        localStorage.removeItem("token");
-        setIsLoggedIn(false);
-        setIsAdmin(false);
-        navigate("/");
+    const Logout = ()=>{
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setIsAdmin(false);
+    props.setIsLoggedIn(false);
+    navigate("/");
     }
     return (
         <header className="header-section">
@@ -205,7 +206,7 @@ class Header extends Component {
         });
         return (
             <>
-                <HeaderFunction />
+            <HeaderFunction setIsLoggedIn={this.props.setIsLoggedIn}/>
             </>
         );
     }
