@@ -1,7 +1,5 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../layout/footer";
-import Header from "../layout/header";
 import PageHeader from "../layout/pageheader";
 import SocialMedia from "./socialmedia";
 
@@ -22,7 +20,6 @@ class Schedule extends Component {
     render() {
         return (
             <Fragment>
-                <Header />
                 <PageHeader title={'RESULT PAGE '} curPage={'result Form'} />
                 <div className="login-section padding-top padding-bottom">
                     <div className=" container">
@@ -105,7 +102,6 @@ class Schedule extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
             </Fragment>
         );
     }

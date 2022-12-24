@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import Header from '../layout/header'
-import Footer from '../layout/footer';
 import '../../assets/css/Admin.css'
 import Newgame from '../../assets/images/banner/Newgame.png'
 import Newmerch from '../../assets/images/banner/Newmerch.png'
@@ -11,11 +9,11 @@ const Admin = () => {
     return (
         <Fragment >
         <div>
-            <Header />
             <div className='container-1'>
                 <div className='head-1'>
                     <Link to="/Schedule">
                         <img src={Newgame} alt="logo" />
+                
                     </Link>
                 </div>
 
@@ -38,7 +36,6 @@ const Admin = () => {
                 </div>
             </div>
         </div>
-        <Footer />
         </Fragment>
     )
 }

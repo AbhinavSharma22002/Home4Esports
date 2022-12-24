@@ -1,8 +1,8 @@
 import { Component, Fragment } from "react";
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import GoogleMap from "../component/section/googlemap";
+import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 
 const infosubtitle = "Get in touch with us";
@@ -15,19 +15,19 @@ let infoListContent = [
         imgUrl: 'assets/images/contact/icon/01.png',
         imgAlt: 'Contact Info Thumb',
         title: 'Office Address',
-        desc: '1201 park street, Fifth Avenue',
+        desc: 'Sec-82, Gurugram, Haryana, India-122004',
     },
     {
         imgUrl: 'assets/images/contact/icon/02.png',
         imgAlt: 'Contact Info Thumb',
         title: 'Phone number',
-        desc: '+22698 745 632, 02 982 745',
+        desc: '+91 954 092 2345',
     },
     {
         imgUrl: 'assets/images/contact/icon/03.png',
         imgAlt: 'Contact Info Thumb',
         title: 'Send Email',
-        desc: 'yourmail@gmail.com',
+        desc: 'ccesports@gmail.com',
     },
 ]
 
@@ -44,9 +44,21 @@ class ContactUs extends Component {
     }
 
     render() { 
+        const sendEmail = (e) => {
+            
+            e.preventDefault();
+        
+            emailjs.sendForm('service_qqfu3vo', 'template_lg1tlv1',e.target, 'cEJhncmDmn0afNfar')
+              .then((result) => {
+                  console.log(result.text);
+              }, (error) => {
+                  console.log(error.text);
+              });
+          };
+
         return (
+
             <Fragment>
-                <Header />
                 <PageHeader title={'CONTACT US'} curPage={'CONTACT'} />
                 <div className="info-section padding-top padding-bottom">
                     <div className="container">
@@ -84,8 +96,8 @@ class ContactUs extends Component {
                                 <div className="col-12 col-lg-9">
                                     <div className="contact-form-wrapper text-center">
                                         <h2 className="mb-5">{contacttitle}</h2>
-                                        <form className="contact-form" action="contact.php" id="contact-form" method="POST">
-                                            <div className="form-group">
+                                        <form className="contact-form" id="contact-form" onSubmit={sendEmail}>
+                                            <div className="form-group" >
                                                 <input
                                                     type="text"
                                                     name="name"
@@ -137,7 +149,7 @@ class ContactUs extends Component {
                                                     ></textarea>
                                             </div>
                                             <div className="form-group w-100 text-center">
-                                                <button className="default-button" type="submit"><span>Send our Message</span></button>
+                                                <button className="default-button" type="submit" value="send"><span>Send Message</span></button>
                                             </div>
                                         </form>
                                         <p className="form-message"></p>
@@ -158,7 +170,6 @@ class ContactUs extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
             </Fragment>
         );
     }

@@ -1,7 +1,5 @@
 import { Component, Fragment,useState,useContext } from "react";
 import { Link,useNavigate  } from "react-router-dom";
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import SocialMedia from "../component/section/socialmedia";
 import accessContext from '../context/roles/accessContext';
@@ -38,7 +36,6 @@ const SignUpFunction = ()=>{
     }
     return (
         <>
-        <Header />
                 <PageHeader title={'REGISTRATION PAGE'} curPage={'Sign Up'} />
                 <div className="login-section padding-top padding-bottom">
                     <div className=" container">
@@ -112,7 +109,6 @@ const SignUpFunction = ()=>{
                         </div>
                     </div>
                 </div>
-            <Footer />
         </>
     );
 };

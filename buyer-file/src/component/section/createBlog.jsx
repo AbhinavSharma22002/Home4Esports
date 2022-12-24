@@ -1,7 +1,5 @@
 import { Fragment, useState } from "react";
 import { Link,useNavigate  } from "react-router-dom";
-import Header from '../layout/header'
-import Footer from '../layout/footer';
 import PageHeader from "../layout/pageheader";
 const CreateBlog = ()=>{
     const [title,setTitle] = useState('');
@@ -77,7 +75,6 @@ const CreateBlog = ()=>{
     }
     return (
         <><Fragment>
-            <Header/>
                 <PageHeader title={'Blog Creation Page '} curPage={'Blog Creation form'} />
                 <div className="login-section padding-top padding-bottom">
                     <div className=" container">
@@ -132,7 +129,6 @@ const CreateBlog = ()=>{
                         
                     </div>
                 </div>
-                <Footer />
                 
             </Fragment>
 

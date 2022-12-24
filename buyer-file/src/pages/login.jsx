@@ -8,7 +8,7 @@ import accessContext from '../context/roles/accessContext';
 const title = "Login";
 
 
-const LoginFunction = ()=>{
+const LoginFunction = (props)=>{
 	const [userEmail, setuserEmail] = useState('');
 	const [userPass, setuserPass] = useState('');
 
@@ -25,6 +25,7 @@ const LoginFunction = ()=>{
     const data = await response.json();
     if (response.status === 200) {
       localStorage.setItem("token", data.authData);
+      props.setIsLoggedIn(true);
       navigate("/");
     }
     else{
@@ -34,7 +35,6 @@ const LoginFunction = ()=>{
 
     return (
         <>
-        <Header />
                 <PageHeader title={'LOGIN FOR GAMING'} curPage={'Login'} />
                 <div className="login-section padding-top padding-bottom">
                     <div className=" container">
@@ -87,19 +87,8 @@ const LoginFunction = ()=>{
                         </div>
                     </div>
                 </div>
-                <Footer />
         </>
     );
 };
-
-class LogIn extends Component {
-    render() { 
-        return (
-            <Fragment>
-                <LoginFunction/>
-            </Fragment>
-        );
-    }
-}
  
-export default LogIn;
+export default LoginFunction;

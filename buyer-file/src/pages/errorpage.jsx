@@ -1,7 +1,5 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 
 const title = 'Oops! This Page Not Found';
@@ -13,7 +11,6 @@ class ErrorPage extends Component {
     render() { 
         return (
             <Fragment>
-                <Header />
                 <PageHeader title={'ERROR PAGE'} curPage={'ERROR PAGE'} />
                 <section className="fore-zero padding-top padding-bottom">
                     <div className="container">
@@ -31,7 +28,6 @@ class ErrorPage extends Component {
                         </div>
                     </div>
                 </section>
-                <Footer />
             </Fragment>
         );
     }
