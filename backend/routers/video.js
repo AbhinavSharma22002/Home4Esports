@@ -1,16 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const Product= require("../database/Product");
+const Video= require("../database/Video");
 const fetchuser = require('../middleware/Fetchuser');
 
 router.get("/getAll",async(req,res)=>{
     try {
-        let products = await await Product.find({});
-        return res.status(200).send(products);
+        let videos = await await Video.find({});
+        return res.status(200).json({videos});
       } catch (error) {
         console.error(error.message);
-        res.status(500).send("Some error occured");
+        res.status(500).send("Some error occurred");
       }
+});
+router.post("/getById",async (req,res)=>{
+  try {
+      let id = req.body.id;
+      let videos = await await Video.findById(id);
+      return res.status(200).json({videos});
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Some error occurred");
+    }
 });
 router.post("/create",
 fetchuser,
@@ -19,17 +29,13 @@ async (req, res) => {
     let userId = req.user.id;
     const user = await User.findById(userId).select("-password");
     //check for access level
-  const { title,price,size,image,description} = req.body;
+  const { title,genre,image,link} = req.body;
   try {
-    let Product = await Product.create({
+    let video = await Video.create({
         title: title,
-        price: price,
-        size: size,
-        description: description,
+        genre: genre,
         image: image,
-        author: {
-            id: user._id
-        }
+        link:link
       });
     return res.status(200).send("Success");
   } catch (error) {
