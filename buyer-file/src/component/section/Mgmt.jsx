@@ -1,9 +1,7 @@
 import { Fragment, useState } from "react";
-import { Link,useNavigate  } from "react-router-dom";
-import { Component } from "react";
-import { Link } from "react-router-dom";
+import {useNavigate  } from "react-router-dom";
 import PageHeader from "../layout/pageheader";
-import SocialMedia from "./socialmedia";
+
 
 
 const Mgmt = ()=>{
