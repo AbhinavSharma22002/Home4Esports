@@ -15,7 +15,7 @@ class AboutPage extends Component {
     render() { 
         return (
             <Fragment>
-                <PageHeader title={'ABOUT CLOUD CONTROL ESPORTS'} curPage={'About Us'} />
+                <PageHeader title={'ABOUT BIGAMER'} curPage={'About Us'} />
                 <AboutSection imgUrl={'assets/images/about/01.png'} />
                 <VideoTestimonial />
                 <ProductSection />
