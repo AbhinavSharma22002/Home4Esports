@@ -110,4 +110,31 @@ router.get(
     }
   }
 );
+router.get("/getAll",fetchUser,async(req,res)=>{
+  try {
+    const users = await User.find().select("-password -date");
+    res.send(users);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Internal server error");
+  }
+});
+router.post("/update",fetchUser,async(req,res)=>{
+  try {
+    let user= req.body.user;
+    let user_id = req.body.id;
+    await User.findByIdAndUpdate(user_id, user,function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Updated User : ", docs);
+    }
+    });
+    res.send("Success");
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Internal server error");
+  }
+});
 module.exports = router;

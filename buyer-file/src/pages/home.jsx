@@ -1,4 +1,4 @@
-import { Component, Fragment } from "react";
+import { Component, Fragment,useEffect } from "react";
 import Footer from "../component/layout/footer";
 import Header from "../component/layout/header";
 
@@ -16,15 +16,9 @@ import ProductSection from "../component/section/product";
 import SponsorSection from "../component/section/sponsor";
 import TestimonialSection from "../component/section/testimonial";
 import VideoSection from "../component/section/video";
-
-
-
-
-class HomePage extends Component {
-    render() { 
-        return (
-            <Fragment>
-                <Header />
+const HomeFunction = ()=>{
+    return (
+        <>
                 <BannerSection />
                 <CollectionSection />
                 <AboutSection imgUrl={'assets/images/about/01.png'} />
@@ -41,7 +35,17 @@ class HomePage extends Component {
 
                 
                 <TestimonialSection />
-                <Footer />
+        </>
+    );
+}
+class HomePage extends Component {
+    constructor(props){
+        super(props);
+    }
+    render() { 
+        return (
+            <Fragment>
+                <HomeFunction/>
             </Fragment>
         );
     }

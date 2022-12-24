@@ -15,7 +15,6 @@ class AboutPage extends Component {
     render() { 
         return (
             <Fragment>
-                <Header />
                 <PageHeader title={'ABOUT BIGAMER'} curPage={'About Us'} />
                 <AboutSection imgUrl={'assets/images/about/01.png'} />
                 <VideoTestimonial />
@@ -23,7 +22,6 @@ class AboutPage extends Component {
                 <HrShape />
                 <SponsorSection />
                 <CtaSection imgUrl={'assets/images/cta/01.png'} />
-                <Footer />
             </Fragment>
         );
     }

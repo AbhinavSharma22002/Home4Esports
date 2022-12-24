@@ -1,6 +1,4 @@
 import { Component, Fragment } from "react";
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 
 
@@ -8,7 +6,6 @@ class PartnerPage extends Component {
     render() { 
         return (
             <Fragment>
-                <Header />
                 <PageHeader title={'OUR PARTNERS'} curPage={'PARTNERS'} />
                 <div className="partner-section padding-top padding-bottom">
                     <div className="container">
@@ -206,7 +203,6 @@ class PartnerPage extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
             </Fragment>
         );
     }

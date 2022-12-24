@@ -1,6 +1,4 @@
 import { Component, Fragment } from "react";
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
 import PageHeaderTwo from "../component/layout/pageheadertwo";
 import SocialMedia from "../component/section/socialmedia";
 
@@ -68,7 +66,6 @@ class TeamSinglePage extends Component {
     render() { 
         return (
             <Fragment>
-                <Header />
                 <PageHeaderTwo />
                 <div className="about-team padding-top padding-bottom">
                     <div className="container">
@@ -118,7 +115,6 @@ class TeamSinglePage extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
             </Fragment>
         );
     }
