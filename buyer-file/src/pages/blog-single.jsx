@@ -11,7 +11,6 @@ import SearchBar from "../component/sidebar/search";
 import Tags from "../component/sidebar/tags";
 
 
-
 const BlogDetailsFunction = (props)=>{
 
     const [BlogContent, setBlogContent] = useState({body:[]});

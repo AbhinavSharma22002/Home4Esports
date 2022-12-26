@@ -1,13 +1,13 @@
 const User = require("../database/User");
 const express = require('express');
 const router = express.Router();
-const Product= require("../database/Product");
+const Video= require("../database/Video");
 const fetchuser = require('../middleware/Fetchuser');
 
 router.get("/getAll",async(req,res)=>{
     try {
-        let products = await Product.find({});
-        return res.status(200).send(products);
+        let video = await Video.find({});
+        return res.status(200).send(video);
       } catch (error) {
         console.error(error.message);
         res.status(500).send("Some error occurred");
@@ -20,12 +20,13 @@ async (req, res) => {
     let userId = req.user.id;
     const user = await User.findById(userId).select("-password");
     //check for access level
-  const { productTitle,productPrice,productSize,image} = req.body;
+  const { videoTitle,videoGenre,link,image} = req.body;
+ 
   try {
-    let product = await Product.create({
-        title: productTitle,
-        price: productPrice,
-        size: productSize,
+    let video = await Video.create({
+        title: videoTitle,
+        genre: videoGenre,
+        link: link,
         image: image,
         author: {
             id: user._id
