@@ -27,12 +27,11 @@ import TeamSinglePage from "./pages/team-single";
 import Admin from "./component/section/Admin";
 import Schedule from "./component/section/Schedule";
 import Mgmt from "./component/section/Mgmt";
+import StreamForm from "./component/section/StreamForm";
 import Customer from "./component/section/Customer";
 import React from "react";
 import ErrorPage from "./pages/errorpage";
 import CreateBlog from "./component/section/createBlog";
-import StreamForm from "./component/section/StreamForm";
-
 function App() {	
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [isAdmin, setIsAdmin] = useState(false);
@@ -97,9 +96,9 @@ const [isAdmin, setIsAdmin] = useState(false);
 							<Route path="admin" element={<Admin/>}/>
 							<Route path="Schedule" element={<Schedule />} />
 							<Route path="Mgmt" element={<Mgmt />} />
+							<Route path="StreamForm" element={<StreamForm/>}/>
 							<Route path="Customer" element={<Customer/>}/>
 							<Route path="createBlog" element={<CreateBlog/>}/>		
-							<Route path="StreamForm" element={<StreamForm/>}/>
 							</>
 						):(
 							<>
