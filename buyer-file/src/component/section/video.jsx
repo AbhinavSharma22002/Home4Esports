@@ -23,9 +23,9 @@ const VideoTestimonial = (props)=>{
                 for(let i = 0;i<data.length;i++){
                     array.push({
                         imgUrl: `${data[i].image}`,
-                        productTitle: `${data[i].title}`,
-                        productPrice: `${data[i].price}`,
-                        productSize: `${data[i].size}`,
+                        videoTitle: `${data[i].title}`,
+                        videoGenre: `${data[i].genre}`,
+                        link: `${data[i].link}`,
                         to: `${data[i]._id}`
                     });
                 }

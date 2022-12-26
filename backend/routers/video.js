@@ -25,7 +25,7 @@ async (req, res) => {
   try {
     let video = await Video.create({
         title: videoTitle,
-        price: videoGenre,
+        genre: videoGenre,
         link: link,
         image: image,
         author: {
