@@ -10,7 +10,7 @@ router.get("/getAll",async(req,res)=>{
         return res.status(200).send(products);
       } catch (error) {
         console.error(error.message);
-        res.status(500).send("Some error occured");
+        res.status(500).send("Some error occurred");
       }
 });
 router.post("/create",

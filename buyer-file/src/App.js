@@ -31,7 +31,7 @@ import Customer from "./component/section/Customer";
 import React from "react";
 import ErrorPage from "./pages/errorpage";
 import CreateBlog from "./component/section/createBlog";
-import StreamForm from "./component/section/streamForm";
+import StreamForm from "./component/section/StreamForm";
 
 function App() {	
 const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -99,7 +99,7 @@ const [isAdmin, setIsAdmin] = useState(false);
 							<Route path="Mgmt" element={<Mgmt />} />
 							<Route path="Customer" element={<Customer/>}/>
 							<Route path="createBlog" element={<CreateBlog/>}/>		
-							<Route path="streamForm" element={<StreamForm/>}/>
+							<Route path="StreamForm" element={<StreamForm/>}/>
 							</>
 						):(
 							<>
