@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const VideoSchema = new Schema({
-  Title: {
+  title: {
     type: String,
     required: true
   },
