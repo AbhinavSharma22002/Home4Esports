@@ -32,11 +32,7 @@ import Customer from "./component/section/Customer";
 import React from "react";
 import ErrorPage from "./pages/errorpage";
 import CreateBlog from "./component/section/createBlog";
-<<<<<<< HEAD
-=======
-import StreamForm from "./component/section/streamForm";
 
->>>>>>> 296b312f793a9216cbe38443f60714c4f3fd94d2
 function App() {	
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [isAdmin, setIsAdmin] = useState(false);
@@ -76,7 +72,6 @@ const [isAdmin, setIsAdmin] = useState(false);
 	return (
 		<AccessState>
 				<ScrollToTop />
-			
 			<Header setIsLoggedIn={setIsLoggedIn}/>
 				<Routes>
 					<Route path="/" element={<HomePage/>} />
@@ -103,12 +98,9 @@ const [isAdmin, setIsAdmin] = useState(false);
 							<Route path="Mgmt" element={<Mgmt />} />
 							<Route path="StreamForm" element={<StreamForm/>}/>
 							<Route path="Customer" element={<Customer/>}/>
-<<<<<<< HEAD
-							<Route path="createBlog" element={<CreateBlog/>}/>		
-=======
 							<Route path="createBlog" element={<CreateBlog/>}/>	
 							<Route path="streamForm" element={<StreamForm/>}/>	
->>>>>>> 296b312f793a9216cbe38443f60714c4f3fd94d2
+							
 							</>
 						):(
 							<>
