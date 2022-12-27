@@ -15,7 +15,7 @@ const formSchema = new Schema({
   },
   team: [{
     type: mongoose.Schema.Types.ObjectId, 
-    ref: "Team"
+    ref: "team"
 }],
   teamSize:{
     type: Number,

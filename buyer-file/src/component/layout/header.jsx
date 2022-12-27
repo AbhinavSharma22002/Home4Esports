@@ -138,9 +138,7 @@ const menuTrigger = ()=> {
                                                 <li><NavLink to="/game-list2">game list 2</NavLink></li>
                                                 <li><NavLink to="/partners">partners</NavLink></li>
                                                 <li><NavLink to="/achievements">achievement</NavLink></li>
-                                                <li><NavLink to="/team">team</NavLink></li>
-                                                <li><NavLink to="/team-single">team single</NavLink></li>
-                                                {/* <li><NavLink to="/404">404 Page</NavLink></li> */}
+                                                <li><NavLink to="/tournaments">tournaments</NavLink></li>
                                             </ul>
                                         </li>
                                         <li className="menu-item-has-children">

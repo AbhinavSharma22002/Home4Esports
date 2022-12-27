@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const User = require("./User");
 const { Schema } = mongoose;
 const TeamSchema = new Schema({
   teamName: {
@@ -20,10 +19,21 @@ const TeamSchema = new Schema({
     default: Date.now,
     required: true,
   },
+  tier:{
+    type: Number,
+    default: 3,
+    required: true
+  },
+  clicked:{
+    type: Number,
+    default: 0,
+    required: true
+  },
   teamMembers:[{
-    type: mongoose.Schema.Types.ObjectId,
+    id: {type: mongoose.Schema.Types.ObjectId,
     ref:"users",
     required:true
+    }
   }]
 });
 const Team = mongoose.model("team", TeamSchema);

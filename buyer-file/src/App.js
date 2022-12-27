@@ -18,6 +18,7 @@ import ShopPage from "./pages/shop";
 import ShopCart from "./pages/shopcart";
 import ShopDetails from "./pages/shopdetails";
 import SignUp from "./pages/signup";
+import Tournments from "./pages/tournaments";
 
 
 import Footer from "./component/layout/footer";
@@ -100,6 +101,7 @@ const showAlert = (message,type)=>{
 					<Route path="cart-page" element={<ShopCart showAlert={showAlert}/>} />
 					<Route path="blog-single" element={<BlogDetails showAlert={showAlert}/>} />
 					<Route path="contact" element={<ContactUs showAlert={showAlert}/>} />
+					<Route path="tournaments" element={<Tournments showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
 					{isLoggedIn?(
 						<>
 						{isAdmin?(
