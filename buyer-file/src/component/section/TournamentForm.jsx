@@ -38,7 +38,7 @@ const TournamentForm = (props)=> {
     const handleUpload = async (e)=>{
         e.preventDefault();
         const data = {
-            name,description,game,team,teamSize,noOfTeams,startDate,priceMoney
+            name,description,game,team,teamSize,noOfTeams,startDate,priceMoney,image
         };
         console.log(data);
         const requestOptions = {
