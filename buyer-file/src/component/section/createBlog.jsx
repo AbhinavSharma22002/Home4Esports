@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { Link,useNavigate  } from "react-router-dom";
 import PageHeader from "../layout/pageheader";
-const CreateBlog = ()=>{
+const CreateBlog = (props)=>{
     const [title,setTitle] = useState('');
     const [body,setBody] = useState('');
     const [noImage,setNoImage] = useState(0);
@@ -44,7 +44,6 @@ const CreateBlog = ()=>{
                 requestOptions
         );
 		const data = await response.json();
-        console.log(data.val);
         image.push({
            link : data.val,
            pk: pk1
@@ -69,7 +68,8 @@ const CreateBlog = ()=>{
                 requestOptions
         );
         if(response.status===200){
-            alert("Success");
+
+            props.showAlert("Blog Created!!","success");
             navigate("/");
         }
     }

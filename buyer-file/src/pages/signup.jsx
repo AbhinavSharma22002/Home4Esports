@@ -6,7 +6,7 @@ import accessContext from '../context/roles/accessContext';
 
 const title = "Register Now";
 
-const SignUpFunction = ()=>{
+const SignUpFunction = (props)=>{
 	const [regFName, setregFName] = useState('');
 	const [regLName, setregLName] = useState('');
 	const [regEmail, setregEmail] = useState('');
@@ -23,10 +23,13 @@ const SignUpFunction = ()=>{
         password: regPassword,
         name: regFName,
         Lname: regLName
-    });
-    if (data.status === 200) {
-      navigate("/login");
-    }
+        });
+        if (data.status === 200) {
+            navigate("/login");
+        }
+        else{
+            props.showAlert("Something Went Wrong!! Try Again","danger");
+        }
         }
      setregFName("");
      setregLName("");
@@ -36,6 +39,7 @@ const SignUpFunction = ()=>{
     }
     return (
         <>
+            <Fragment>
                 <PageHeader title={'REGISTRATION PAGE'} curPage={'Sign Up'} />
                 <div className="login-section padding-top padding-bottom">
                     <div className=" container">
@@ -109,20 +113,10 @@ const SignUpFunction = ()=>{
                         </div>
                     </div>
                 </div>
+            </Fragment>
         </>
     );
 };
 
-
-
-class SignUp extends Component {
-    render() { 
-        return (
-            <Fragment>
-                <SignUpFunction />
-            </Fragment>
-        );
-    }
-}
  
-export default SignUp;
+export default SignUpFunction;

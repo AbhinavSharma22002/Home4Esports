@@ -1,5 +1,6 @@
 import { Component, useState, useEffect, useContext } from "react";
 import { NavLink, Link, useNavigate } from 'react-router-dom';
+import Alert from "./alert";
 import accessContext from '../../context/roles/accessContext';
 import '../../assets/css/logout.css'
 const contactNumber = "+91 954 092 2345";
@@ -80,6 +81,15 @@ const menuTrigger = ()=> {
     props.setIsLoggedIn(false);
     navigate("/");
     }
+    
+        window.addEventListener('scroll', function () {
+            var value = window.scrollY;
+            if (value > 200) {
+                document.querySelector('.header-section').classList.add(['header-fixed'], ['fadeInUp'])
+            } else {
+                document.querySelector('.header-section').classList.remove(['header-fixed'], ['fadeInUp'])
+            }
+        });
     return (
         <header className="header-section">
             <div className="container">
@@ -125,7 +135,6 @@ const menuTrigger = ()=> {
                                             <ul className="submenu dropdown-menu" aria-labelledby="dropdown">
                                                 <li><NavLink to="/about">About</NavLink></li>
                                                 <li><NavLink to="/gallery">gallery</NavLink></li>
-                                                <li><NavLink to="/game-list">game list 1</NavLink></li>
                                                 <li><NavLink to="/game-list2">game list 2</NavLink></li>
                                                 <li><NavLink to="/partners">partners</NavLink></li>
                                                 <li><NavLink to="/achievements">achievement</NavLink></li>
@@ -140,14 +149,6 @@ const menuTrigger = ()=> {
                                                 <li><NavLink to="/shop">shop</NavLink></li>
                                                 <li><NavLink to="/shop-single">Shop Details</NavLink></li>
                                                 <li><NavLink to="/cart-page">Cart Page</NavLink></li>
-                                            </ul>
-                                        </li>
-                                        <li className="menu-item-has-children">
-                                            <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Blog</a>
-                                            <ul className="submenu dropdown-menu">
-                                                <li><NavLink to="/blog01">Blog</NavLink></li>
-                                                <li><NavLink to="/blog-2">Blog 2</NavLink></li>
-                                                <li><NavLink to="/blog-single">Blog Single</NavLink></li>
                                             </ul>
                                         </li>
                                         <li><NavLink to="/contact">Contact</NavLink></li>
@@ -186,30 +187,13 @@ const menuTrigger = ()=> {
                         </div>
                     </div>
                 </div>
+                
+                <div style={{height:'40px'}}>
+    				{props.alert===null?"": <Alert m={props.alert}/>}
+    			</div>
             </div>
         </header>
     );
 };
-class Header extends Component {
-    constructor(props) {
-        super(props);
-    }
 
-    render() {
-        window.addEventListener('scroll', function () {
-            var value = window.scrollY;
-            if (value > 200) {
-                document.querySelector('.header-section').classList.add(['header-fixed'], ['fadeInUp'])
-            } else {
-                document.querySelector('.header-section').classList.remove(['header-fixed'], ['fadeInUp'])
-            }
-        });
-        return (
-            <>
-            <HeaderFunction setIsLoggedIn={this.props.setIsLoggedIn}/>
-            </>
-        );
-    }
-}
-
-export default Header;
+export default HeaderFunction;

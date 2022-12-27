@@ -29,11 +29,7 @@ const HomeFunction = ()=>{
                 <ProductSection />
                 <HrShape />
                 <SponsorSection />
-
-
                 <BlogSection />
-
-                
                 <TestimonialSection />
         </>
     );
