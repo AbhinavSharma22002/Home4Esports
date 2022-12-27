@@ -32,6 +32,7 @@ import Customer from "./component/section/Customer";
 import React from "react";
 import ErrorPage from "./pages/errorpage";
 import CreateBlog from "./component/section/createBlog";
+import TournamentForm from "./component/section/TournamentForm";
 
 function App() {	
 const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -100,6 +101,7 @@ const showAlert = (message,type)=>{
 					<Route path="cart-page" element={<ShopCart showAlert={showAlert}/>} />
 					<Route path="blog-single" element={<BlogDetails showAlert={showAlert}/>} />
 					<Route path="contact" element={<ContactUs showAlert={showAlert}/>} />
+					<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert}/>} />
 					{isLoggedIn?(
 						<>
 						{isAdmin?(

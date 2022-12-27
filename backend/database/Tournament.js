@@ -13,6 +13,10 @@ const formSchema = new Schema({
     type: String,
     required: true
   },
+  image:{
+    type: String,
+    required: true
+  },
   team: [{
     type: mongoose.Schema.Types.ObjectId, 
     ref: "Team"
@@ -29,6 +33,10 @@ const formSchema = new Schema({
     type: Date,
     required: true
   },
+  priceMoney:{
+    type: Number,
+    required: true
+  },
   
   author: {
     id: {
@@ -38,7 +46,7 @@ const formSchema = new Schema({
   }
 });
 const tournament = mongoose.model("form", formSchema);
-module.exports = Video;
+module.exports = tournament;
 
 
 
