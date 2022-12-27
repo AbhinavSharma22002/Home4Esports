@@ -1,8 +1,4 @@
 import { Component, Fragment,useEffect } from "react";
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
-
-
 
 import HrShape from "../component/layout/hrshape";
 import AboutSection from "../component/section/about";
@@ -21,16 +17,16 @@ const HomeFunction = ()=>{
         <>
                 <BannerSection />
                 <CollectionSection />
-                <AboutSection imgUrl={'assets/images/about/01.png'} />
                 <MatchSection />
-                <PlayerSection />
-                <CtaSection imgUrl={'assets/images/cta/01.png'} />
                 <VideoSection />
                 <ProductSection />
+                <BlogSection />
+                <PlayerSection />
+                <CtaSection imgUrl={'assets/images/cta/01.png'} />
                 <HrShape />
                 <SponsorSection />
-                <BlogSection />
                 <TestimonialSection />
+                <AboutSection imgUrl={'assets/images/about/01.png'} />
         </>
     );
 }

@@ -1,0 +1,78 @@
+const express = require('express');
+const router = express.Router();
+const Team= require("../database/Team");
+const User = require("../database/User");
+const fetchuser = require('../middleware/Fetchuser');
+
+router.get("/getAll",async(req,res)=>{
+    try {
+        let teams = await team.find({});
+        return res.status(200).json({teams});
+      } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Some error occured");
+      }
+});
+
+router.post("/getById",async (req,res)=>{
+  try {
+      let id = req.body.id;
+      let teams = await Team.findById(id);
+      return res.status(200).json({teams});
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Some error occurred");
+    }
+});
+
+router.post("/create",
+fetchuser,
+async (req, res) => {
+
+    let userId = req.user.id;
+
+    const leader = await User.findById(userId).select("-password");
+    //check for access level
+    const { teamName,image,teamMembers} = req.body;
+  
+    try {
+        let team = await Team.create({
+            teamName: teamName,
+            author: leader._id,
+            image: image,
+            teamMembers: [{
+                id: leader._id
+            }]
+        });
+        return res.status(200).send("Success");
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Some error occurred");
+    }
+});
+
+router.post("/newMember",
+fetchuser,
+async (req, res) => {
+    let userId = req.user.id;
+    let team_id = req.body.id;
+    const user = await User.findById(userId).select("-password");
+    let teams = await Team.findById(team_id);
+    //check for access level
+  try {
+    for(let i = 0;i<teams.teamMembers.length;i++){
+        if(teams.teamMembers[i].id===user._id){
+            return res.status(200).send("You have already registered.");
+        }
+    }
+    teams.teamMembers.push({
+        id: user._id
+    })
+    let team = await Team.findOneAndUpdate({_id: team_id}, teams);
+    return res.status(200).send("Success");
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Some error occurred");
+  }
+});
+module.exports = router;

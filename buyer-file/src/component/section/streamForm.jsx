@@ -23,10 +23,7 @@ const StreamForm = (props)=>{
                     },
                 body : formData                
             };
-        const response = await fetch(
-                `http://localhost:3001/aws/image/upload`,
-                requestOptions
-        );
+        const response = await fetch(`http://localhost:3001/aws/image/upload`,requestOptions);
 		const data = await response.json();
         setImage(data.val)
     }
@@ -44,10 +41,7 @@ const StreamForm = (props)=>{
                     },
                 body: JSON.stringify(data),
             };
-            const response = await fetch(
-                `http://localhost:3001/api/video/create`,
-                requestOptions
-        );
+            const response = await fetch(`http://localhost:3001/api/video/create`,requestOptions);
         if(response.status===200){
             props.showAlert("Stream Created Success!!","success");
             navigate("/");

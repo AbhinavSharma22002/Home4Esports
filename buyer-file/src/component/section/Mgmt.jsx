@@ -49,7 +49,7 @@ const Mgmt = (props)=>{
                 requestOptions
         );
         if(response.status===200){
-            props.showAlert("Mercendise created Success!!","success");
+            props.showAlert("Merchandise created Success!!","success");
             navigate("/");
         }
     }

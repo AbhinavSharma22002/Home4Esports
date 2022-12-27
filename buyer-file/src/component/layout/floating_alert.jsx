@@ -51,7 +51,7 @@ setTimeout(()=>{
 },5000);
     return (
         <>
-        <div class="floating-alert">
+        <div className="floating-alert">
             <a href={`${SocialMideaList[index].IconLink}`} className="fb"><i className={`${SocialMideaList[index].IconName}`}></i></a>
         </div>
         </>
