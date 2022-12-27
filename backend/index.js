@@ -20,6 +20,7 @@ const productsRouter = require("./routers/products");
 const imageRouter = require("./routers/image");
 const videoRouter = require("./routers/video");
 const teamRouter = require("./routers/team");
+const tournamentRouter = require('./routers/tournament');
 app.use('/',indexRouter);
 app.use('/api/user/',userRouter);
 app.use('/api/newsletter/',newsletterRouter);
@@ -28,6 +29,7 @@ app.use('/api/products/',productsRouter);
 app.use('/aws/image/',imageRouter);
 app.use('/api/video/',videoRouter);
 app.use("/api/team/",teamRouter);
+app.use('/api/tournament/',tournamentRouter);
 server.listen(process.env.PORT,()=>{
     console.log(`RUnning on ${process.env.PORT}`);
 })

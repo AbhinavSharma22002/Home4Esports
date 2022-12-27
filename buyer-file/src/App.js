@@ -20,7 +20,6 @@ import ShopDetails from "./pages/shopdetails";
 import SignUp from "./pages/signup";
 import Tournments from "./pages/tournaments";
 
-
 import Footer from "./component/layout/footer";
 import Header from "./component/layout/header";
 import TeamPage from "./pages/team";
@@ -33,6 +32,8 @@ import Customer from "./component/section/Customer";
 import React from "react";
 import ErrorPage from "./pages/errorpage";
 import CreateBlog from "./component/section/createBlog";
+import TournamentForm from "./component/section/TournamentForm";
+import Floating_Alert from "./component/layout/floating_alert";
 
 function App() {	
 const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -115,6 +116,7 @@ const showAlert = (message,type)=>{
 							</>
 						):(
 							<>	
+							<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert}/>} />
 							</>
 						)}
 						</>
@@ -124,6 +126,10 @@ const showAlert = (message,type)=>{
 					</>)
 				}
 				</Routes>
+				
+                <div>
+                <Floating_Alert/>
+                </div>
 			
 			<Footer />
 		</AccessState>
