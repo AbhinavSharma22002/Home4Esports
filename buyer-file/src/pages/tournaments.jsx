@@ -1,17 +1,14 @@
 import { Fragment,useEffect,useState } from "react";
 import PageHeader from "../component/layout/pageheader";
-
+import { Link } from "react-router-dom";
 const TournamentFunc = (props)=>{
 
     
-    const [TournamentsList, setTournamentsList] = useState(false);
+    const [TournamentsList, setTournamentsList] = useState([]);
     useEffect(() => {
         const value = async () => {
             const requestOptions = {
-                method: "GET",
-                headers: {
-                    "auth-token": localStorage.getItem('token')
-                },
+                method: "GET"
             };
             const response = await fetch(
                 `http://localhost:3001/api/tournament/getAll`,
@@ -46,7 +43,7 @@ const TournamentFunc = (props)=>{
                                                 <div className="row gy-4 align-items-center justify-content-center">
                                                     <div className="col-xl-4 col-md-6 order-md-1">
                                                         <div className="match-game-info">
-                                                            <h4><a href="/TournamentForm">Create New Tournament</a></h4>
+                                                            <h4><Link to='/TournamentForm'>Create New Tournament</Link></h4>
                                                         </div>
                                                     </div>
                                                 </div>

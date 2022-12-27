@@ -56,11 +56,11 @@ const showAlert = (message,type)=>{
                     "auth-token":localStorage.getItem('token')
                     },
             };
-			let response = await fetch(
-                `http://localhost:3001/api/user/getAll`,
-                requestOptions
-            );
-            response = await fetch(
+			// let response = await fetch(
+            //     `http://localhost:3001/api/user/getAll`,
+            //     requestOptions
+            // );
+            const response = await fetch(
                 `http://localhost:3001/api/user/status`,
                 requestOptions
             );
@@ -116,9 +116,10 @@ const showAlert = (message,type)=>{
 							</>
 						):(
 							<>	
-							<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert}/>} />
 							</>
 						)}
+						
+						<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert}/>} />
 						</>
 					):(<>
 						<Route path="login" element={<LogIn setIsLoggedIn={setIsLoggedIn} showAlert={showAlert}/>} />
