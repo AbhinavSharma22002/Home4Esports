@@ -4,30 +4,33 @@ import Rating from "./rating";
 
 
 const subtitle = "today's";
-const title = "Our Game Collection";
-const btnText = "Browse All games";
+const title = "Our Features";
 
 
 let CollectionListContent = [
     {
         imgUrl: 'assets/images/game/01.png',
         imgAlt: 'collect thumb',
-        title: 'Witch Sports Team',
+        title: 'Studio',
+        link:'google.com'
     },
     {
         imgUrl: 'assets/images/game/02.png',
         imgAlt: 'collect thumb',
-        title: 'Wolves Sports Team',
+        title: 'Khelshaala',
+        link:'google.com'
     },
     {
         imgUrl: 'assets/images/game/03.png',
         imgAlt: 'collect thumb',
-        title: 'Robot Team',
+        title: 'Crowd Forge',
+        link:'google.com'
     },
     {
         imgUrl: 'assets/images/game/04.png',
         imgAlt: 'collect thumb',
-        title: 'Dragon Pro',
+        title: 'Metabits',
+        link:'google.com'
     },
 ]
 
@@ -54,16 +57,12 @@ class CollectionSection extends Component {
                                                 />
                                             </div>
                                             <div className="game-overlay">
-                                                <h4><Link to="/team-single">{val.title}</Link> </h4>
-                                                <Rating />
+                                                <h4><a href={val.link}>{val.title}</a> </h4>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             ))}
-                        </div>
-                        <div className="button-wrapper text-center mt-5">
-                            <Link to="/game-list" className="default-button"><span>{btnText} <i className="icofont-circled-right"></i></span> </Link>
                         </div>
                     </div>
                 </div>

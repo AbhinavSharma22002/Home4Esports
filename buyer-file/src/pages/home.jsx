@@ -21,16 +21,16 @@ const HomeFunction = ()=>{
         <>
                 <BannerSection />
                 <CollectionSection />
-                <AboutSection imgUrl={'assets/images/about/01.png'} />
                 <MatchSection />
-                <PlayerSection />
-                <CtaSection imgUrl={'assets/images/cta/01.png'} />
                 <VideoSection />
                 <ProductSection />
+                <BlogSection />
+                <PlayerSection />
+                <CtaSection imgUrl={'assets/images/cta/01.png'} />
                 <HrShape />
                 <SponsorSection />
-                <BlogSection />
                 <TestimonialSection />
+                <AboutSection imgUrl={'assets/images/about/01.png'} />
         </>
     );
 }
