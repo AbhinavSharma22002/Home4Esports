@@ -31,13 +31,12 @@ async (req, res) => {
     let userId = req.user.id;
     const user = await User.findById(userId).select("-password");
     //check for access level
-  const { name,description,game,team,teamSize,noOfTeams,startDate,priceMoney,image} = req.body;
+  const { name,description,game,teamSize,noOfTeams,startDate,priceMoney,image} = req.body;
   try {
     let tournament = await Tournament.create({
         name: name,
         description: description,
         game: game,
-        team:team,
         teamSize:teamSize,
         noOfTeams:noOfTeams,
         startDate:startDate,

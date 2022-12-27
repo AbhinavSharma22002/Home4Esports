@@ -10,7 +10,6 @@ const TournamentForm = (props)=> {
     const [name,setName] = useState('');
     const [description,setDescription] = useState('');
     const [game,setGame] = useState('');
-    const [team,setTeam] = useState('');
     const [teamSize,setTeamSize] = useState('');
     const [noOfTeams,setNoOfTeams] = useState('');
     const [startDate,setStartDate] = useState('');
@@ -38,7 +37,7 @@ const TournamentForm = (props)=> {
     const handleUpload = async (e)=>{
         e.preventDefault();
         const data = {
-            name,description,game,team,teamSize,noOfTeams,startDate,priceMoney,image
+            name,description,game,teamSize,noOfTeams,startDate,priceMoney,image
         };
         console.log(data);
         const requestOptions = {
@@ -107,30 +106,10 @@ const TournamentForm = (props)=> {
                             </div>
                             <div className="form-group">
                                 <input
-                                    type="text"
-                                    name=""
-                                    id=""
-                                    value={team} 
-                                    onChange={(e)=>{setTeam(e.target.value);}}
-                                    placeholder="Enter Team Name*"
-                                />
-                            </div>
-                            <div className="form-group">
-                                <input
                                     type="number"
                                     name=""
                                     id=""
                                     value={teamSize} 
-                                    onChange={(e)=>{setTeamSize(e.target.value);}}
-                                    placeholder="Enter Team Size*"
-                                />
-                            </div>
-                            <div className="form-group">
-                                <input
-                                    type="number"
-                                    name=""
-                                    id=""
-                                    value={team} 
                                     onChange={(e)=>{setTeamSize(e.target.value);}}
                                     placeholder="Enter Team Size*"
                                 />
@@ -171,7 +150,7 @@ const TournamentForm = (props)=> {
                                     name=""
                                     id="image"
                                     onChange={addFile}
-                                    placeholder="Please Select Product Image*"
+                                    placeholder="Please Select Tournament Image*"
                                 />
                             </div>
                             <div className="form-group">
