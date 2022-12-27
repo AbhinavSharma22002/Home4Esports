@@ -4,7 +4,7 @@ import PageHeader from "../layout/pageheader";
 
 
 
-const StreamForm = ()=>{
+const StreamForm = (props)=>{
     const title = "Video Stream Form";
 
     const [videoTitle,setVideoTitle] = useState('');
@@ -43,7 +43,7 @@ const StreamForm = ()=>{
             };
             const response = await fetch(`http://localhost:3001/api/video/create`,requestOptions);
         if(response.status===200){
-            alert("Success");
+            props.showAlert("Stream Created Success!!","success");
             navigate("/");
         }
     }

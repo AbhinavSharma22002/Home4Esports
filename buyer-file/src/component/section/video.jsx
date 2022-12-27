@@ -18,7 +18,6 @@ const VideoTestimonial = (props)=>{
            
             if(response.status===200){
                 const data = await response.json();
-                console.log(data);
 
                 for(let i = 0;i<data.length;i++){
                     array.push({
@@ -30,14 +29,14 @@ const VideoTestimonial = (props)=>{
                     });
                 }
             }
-         console.log(array);  
             setVideoList(array);
-            console.log(videoList);
     };
             someFunc();
     },[]);
 
-    return (
+    return (<>
+        {
+            (videoList.length!==0)?(<>
     <div className="video-section padding-top padding-bottom" style={{backgroundImage: "url(/assets/images/video/bg.jpg)"}}>
         <div className="container">
                     <div className="section-header">
@@ -77,7 +76,10 @@ const VideoTestimonial = (props)=>{
         </div>
         </div>
         </div>
-
+            </>):(<>
+            </>)
+        }
+        </>
     );
 }
 
