@@ -32,10 +32,7 @@ import Customer from "./component/section/Customer";
 import React from "react";
 import ErrorPage from "./pages/errorpage";
 import CreateBlog from "./component/section/createBlog";
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 function App() {	
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [isAdmin, setIsAdmin] = useState(false);
@@ -107,22 +104,12 @@ const showAlert = (message,type)=>{
 						<>
 						{isAdmin?(
 							<>
-<<<<<<< HEAD
-							<Route path="admin" element={<Admin/>}/>
-							<Route path="Schedule" element={<Schedule />} />
-							<Route path="Mgmt" element={<Mgmt />} />
-							<Route path="StreamForm" element={<StreamForm/>}/>
-							<Route path="Customer" element={<Customer/>}/>
-							<Route path="createBlog" element={<CreateBlog/>}/>	
-							<Route path="StreamForm" element={<StreamForm/>}/>	
-=======
 							<Route path="admin" element={<Admin showAlert={showAlert}/>}/>
 							<Route path="Schedule" element={<Schedule showAlert={showAlert}/>} />
 							<Route path="Mgmt" element={<Mgmt showAlert={showAlert}/>} />
 							<Route path="Customer" element={<Customer showAlert={showAlert}/>}/>
 							<Route path="createBlog" element={<CreateBlog showAlert={showAlert}/>}/>
 							<Route path="streamForm" element={<StreamForm showAlert={showAlert}/>}/>	
->>>>>>> master
 							</>
 						):(
 							<>	
