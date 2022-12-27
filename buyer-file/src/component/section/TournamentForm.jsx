@@ -49,7 +49,7 @@ const TournamentForm = (props)=> {
                 body: JSON.stringify(data),
             };
             const response = await fetch(
-                `http://localhost:3001/api/products/create`,
+                `http://localhost:3001/api/tournament/create`,
                 requestOptions
         );
         if(response.status===200){
