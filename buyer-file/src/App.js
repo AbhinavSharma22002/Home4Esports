@@ -18,6 +18,7 @@ import ShopPage from "./pages/shop";
 import ShopCart from "./pages/shopcart";
 import ShopDetails from "./pages/shopdetails";
 import SignUp from "./pages/signup";
+import Tournments from "./pages/tournaments";
 
 import Footer from "./component/layout/footer";
 import Header from "./component/layout/header";
@@ -55,11 +56,11 @@ const showAlert = (message,type)=>{
                     "auth-token":localStorage.getItem('token')
                     },
             };
-			let response = await fetch(
-                `http://localhost:3001/api/user/getAll`,
-                requestOptions
-            );
-            response = await fetch(
+			// let response = await fetch(
+            //     `http://localhost:3001/api/user/getAll`,
+            //     requestOptions
+            // );
+            const response = await fetch(
                 `http://localhost:3001/api/user/status`,
                 requestOptions
             );
@@ -101,7 +102,7 @@ const showAlert = (message,type)=>{
 					<Route path="cart-page" element={<ShopCart showAlert={showAlert}/>} />
 					<Route path="blog-single" element={<BlogDetails showAlert={showAlert}/>} />
 					<Route path="contact" element={<ContactUs showAlert={showAlert}/>} />
-					<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert}/>} />
+					<Route path="tournaments" element={<Tournments showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
 					{isLoggedIn?(
 						<>
 						{isAdmin?(
@@ -117,6 +118,8 @@ const showAlert = (message,type)=>{
 							<>	
 							</>
 						)}
+						
+						<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert}/>} />
 						</>
 					):(<>
 						<Route path="login" element={<LogIn setIsLoggedIn={setIsLoggedIn} showAlert={showAlert}/>} />

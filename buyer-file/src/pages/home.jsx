@@ -1,8 +1,4 @@
 import { Component, Fragment,useEffect } from "react";
-import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
-
-
 
 import HrShape from "../component/layout/hrshape";
 import AboutSection from "../component/section/about";
