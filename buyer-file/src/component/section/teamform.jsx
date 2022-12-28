@@ -38,7 +38,6 @@ const TeamForm = (props)=> {
         const data = {
             teamName,image,tournamentId:getID()
         };
-        console.log(data);
         const requestOptions = {
                 method: "POST",
                 headers: {
@@ -53,7 +52,8 @@ const TeamForm = (props)=> {
         );
         if(response.status===200){
             props.showAlert("Team Creation Success!!","success");
-            navigate("/");
+            
+            navigate(`/tournament?id=${data.tournamentId}`);
         }
     }
 
