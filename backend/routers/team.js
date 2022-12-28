@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Tournament= require("../database/Tournament");
 const Team= require("../database/Team");
 const User = require("../database/User");
 const fetchuser = require('../middleware/Fetchuser');
@@ -33,7 +34,9 @@ async (req, res) => {
 
     const leader = await User.findById(userId).select("-password");
     //check for access level
-    const { teamName,image,teamMembers} = req.body;
+    const { teamName,image,tournamentId} = req.body;
+   let tournament = await 
+    Tournament.findById(tournamentId);
   
     try {
         let team = await Team.create({
@@ -44,6 +47,10 @@ async (req, res) => {
                 id: leader._id
             }]
         });
+        tournament.team.push({
+          id:team._id
+        });
+        await Tournament.findOneAndUpdate({_id:tournamentId},tournament);
         return res.status(200).send("Success");
     } catch (error) {
         console.error(error.message);
