@@ -1,11 +1,16 @@
 import { Component, Fragment } from "react";
 import PageHeader from "../component/layout/pageheader";
+import ComingSoon from "../component/section/ComingSoon";
 
 
 class PartnerPage extends Component {
     render() { 
         return (
             <Fragment>
+                <div style={{display: "flex", justifyContent: "center", alignContent: "center"}}>
+                <ComingSoon/>
+                </div>
+                <div style={{filter:"blur(10px)"}}>
                 <PageHeader title={'OUR PARTNERS'} curPage={'PARTNERS'} />
                 <div className="partner-section padding-top padding-bottom">
                     <div className="container">
@@ -202,6 +207,7 @@ class PartnerPage extends Component {
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </Fragment>
         );

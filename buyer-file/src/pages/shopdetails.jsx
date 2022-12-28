@@ -7,6 +7,7 @@ import Rating from "../component/section/rating";
 import SearchBar from "../component/sidebar/search";
 import Categorie from "../component/sidebar/categorie";
 import RecentProduct from "../component/sidebar/recent-product";
+import ComingSoon from "../component/section/ComingSoon";
 
 
 const title = "The Title here";
@@ -92,6 +93,10 @@ class ShopDetails extends Component {
     render() {
         return (
             <Fragment>
+                 <div style={{display: "flex", justifyContent: "center", alignContent: "center"}}>
+                <ComingSoon/>
+                </div>
+                <div style={{filter:"blur(10px)"}}>
                 <PageHeader title={'OUR SHOP SINGLE'} curPage={'Blog Details'} />
                 <div className="shop-single padding-top padding-bottom aside-bg">
                     <div className="container">
@@ -319,6 +324,7 @@ class ShopDetails extends Component {
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </Fragment>
         );

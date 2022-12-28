@@ -1,9 +1,8 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 
-
-const subtitle = "WE OUR PARTNERS";
-const title = "BECOME A PARTNER of crowd control esports";
+const subtitle = "OUR PARTNERS";
+const title = "BECOME A PARTNER of Crowd Control Esports";
 const btnText = "BECOME A PARTNER";
 
 
