@@ -6,6 +6,7 @@ import Rating from "../component/section/rating";
 import Categorie from "../component/sidebar/categorie";
 import RecentProduct from "../component/sidebar/recent-product";
 import SearchBar from "../component/sidebar/search";
+import ComingSoon from "../component/section/ComingSoon";
 
 const showResult = "Showing 01 - 12 of 139 Results";
 
@@ -95,8 +96,13 @@ class ShopPage extends Component {
     render() {
         return (
             <Fragment>
+                <div style={{display: "flex", justifyContent: "center", alignContent: "center"}}>
+                <ComingSoon/>
+                </div>
+                <div style={{filter:"blur(10px)"}}>
+                    
                 <PageHeader title={'SHOP PAGE'} curPage={'Shop'} />
-                <div className="shop-page padding-top padding-bottom aside-bg">
+                <div className="shop-page padding-top padding-bottom aside-bg" >
                     <div className="container">
                         <div className="row justify-content-center pb-15">
                             <div className="col-lg-8 col-12">
@@ -161,6 +167,7 @@ class ShopPage extends Component {
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </Fragment>
         );
