@@ -5,9 +5,10 @@ const Team= require("../database/Team");
 const User = require("../database/User");
 const fetchuser = require('../middleware/Fetchuser');
 
-router.get("/getAll",async(req,res)=>{
+router.post("/getAll",async(req,res)=>{
     try {
-        let teams = await team.find({});
+        let tier = req.body.tier;
+        let teams = await team.find({tier: tier});
         return res.status(200).json({teams});
       } catch (error) {
         console.error(error.message);

@@ -39,7 +39,6 @@ const TournamentForm = (props)=> {
         const data = {
             name,description,game,teamSize,noOfTeams,startDate,priceMoney,image
         };
-        console.log(data);
         const requestOptions = {
                 method: "POST",
                 headers: {
