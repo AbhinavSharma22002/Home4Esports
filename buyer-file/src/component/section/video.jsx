@@ -55,8 +55,8 @@ const VideoTestimonial = (props)=>{
                                                         <div className="video-thumb position-relative video-overlay">
                                                             <img src={`${val.imgUrl}`} alt={`${val.imgAlt}`} className="w-100" />
                                                             <div className="video-icon">
-                                                                <a href={val.videoLink} target="_blank">
-                                                                    <i className="icofont-play-alt-1"></i>
+                                                                <a href={val.link} target="_blank">
+                                                                    <i className="icofont-play-~alt-1"></i>
                                                                     <span className="pluse"></span>
                                                                     </a>
                                                                     <div className="video-content text-center p-3">
