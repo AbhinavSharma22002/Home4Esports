@@ -8,24 +8,24 @@ const contactAddress = "Sec-82, Gurugram, Haryana, India-122004";
 
 let SocialMideaList = [
     {
-        IconName: 'icofont-facebook-messenger',
-        IconLink: '#',
+        IconName: 'icofont-facebook',
+        IconLink: 'https://www.facebook.com/CrowdControlEsportsFB',
     },
     {
-        IconName: 'icofont-twitter',
-        IconLink: '#',
+        IconName: 'icofont-youtube-play',
+        IconLink: 'https://www.youtube.com/c/CrowdControlEsports1',
     },
     {
-        IconName: 'icofont-vimeo',
-        IconLink: '#',
+        IconName: 'icofont-instagram',
+        IconLink: 'https://www.instagram.com/crowd_control_esports/',
     },
     {
-        IconName: 'icofont-skype',
-        IconLink: '#',
+        IconName: 'icofont-linkedin',
+        IconLink: 'https://www.linkedin.com/company/crowd-control-esports/mycompany/',
     },
     {
-        IconName: 'icofont-rss-feed',
-        IconLink: '#',
+        IconName: 'icofont-ebuddy',
+        IconLink: 'https://discord.com/invite/4fWwCjaFwG',
     },
 ]
 
@@ -116,7 +116,7 @@ const menuTrigger = ()=> {
                                 <ul className="social-icons d-flex align-items-center">
                                     {SocialMideaList.map((val, i) => (
                                         <li key={i}>
-                                            <a href={`${val.IconLink}`} className="fb"><i className={`${val.IconName}`}></i></a>
+                                            <a href={`${val.IconLink}`} className="fb" target="_blank"><i className={`${val.IconName}`}></i></a>
                                         </li>
                                     ))}
                                 </ul>
@@ -145,7 +145,7 @@ const menuTrigger = ()=> {
                                             <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Shop</a>
                                             <ul className="submenu dropdown-menu">
                                                 <li><NavLink to="/shop">shop</NavLink></li>
-                                                <li><NavLink to="/shop-single">Shop Details</NavLink></li>
+                                                {/* <li><NavLink to="/shop-single">Shop Details</NavLink></li> */}
                                                 <li><NavLink to="/cart-page">Cart Page</NavLink></li>
                                             </ul>
                                         </li>
