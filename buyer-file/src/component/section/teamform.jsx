@@ -12,6 +12,10 @@ const TeamForm = (props)=> {
 
 
     const navigate =useNavigate();
+    function getID(){
+        let pair = window.location.search.substring(1).split("=");
+        return pair[1];
+    }
     const addFile = async (e)=>{
         const formData = new FormData();
         formData.append("image",e.target.files[0]);
@@ -32,7 +36,7 @@ const TeamForm = (props)=> {
     const handleUpload = async (e)=>{
         e.preventDefault();
         const data = {
-            teamName,image
+            teamName,image,tournamentId:getID()
         };
         console.log(data);
         const requestOptions = {
