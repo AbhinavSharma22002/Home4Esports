@@ -8,7 +8,7 @@ const Admin = () => {
     return (
         <Fragment >
         <div>
-            
+            hi
         </div>
         </Fragment>
     )
