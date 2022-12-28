@@ -14,8 +14,7 @@ const Admin = () => {
             <div className='container-1'>
                 <div className='head-1'>
                     <Link to="/Schedule">
-                        <img src={Newgame} alt="logo" />
-                
+                        <img src={Newgame} alt="logo" />                
                     </Link>
                 </div>
 

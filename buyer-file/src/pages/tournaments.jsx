@@ -69,14 +69,14 @@ const TournamentFunc = (props)=>{
                                                         <div className="match-game-team">
                                                             <ul className="match-team-list d-flex flex-wrap align-items-center justify-content-center">
                                                                 <li className="match-team-thumb">
-                                                                    <a href={`/team?id=${val._id}`}><img src={val.image} alt='tournament_THUMBNAIL' /></a>
+                                                                    <Link to={`/tournament?id=${val._id}`}><img src={val.image} alt='tournament_THUMBNAIL' /></Link>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                     <div className="col-xl-4 col-md-6 order-md-1">
                                                         <div className="match-game-info">
-                                                            <h4><a href="/team-single">{val.name}</a></h4>
+                                                            <h4><Link to={`/tournament?id=${val._id}`}>{val.name}</Link></h4>
                                                             <p className="d-flex flex-wrap justify-content-center  justify-content-md-start">
                                                                 <span className="match-date">{val.startDate} </span>
                                                             </p>

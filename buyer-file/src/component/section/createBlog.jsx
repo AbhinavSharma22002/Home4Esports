@@ -6,7 +6,7 @@ const CreateBlog = (props)=>{
     const [body,setBody] = useState('');
     const [noImage,setNoImage] = useState(0);
     const [noVideo,setNoVideo] = useState(0);
-    const [clicked,setClicked] = useState(false);
+    const [clicked,setClicked] = useState(false);       
     const [image,setImage] = useState([]);
     
     const navigate =useNavigate();

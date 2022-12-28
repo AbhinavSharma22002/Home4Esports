@@ -145,7 +145,7 @@ const menuTrigger = ()=> {
                                             <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Shop</a>
                                             <ul className="submenu dropdown-menu">
                                                 <li><NavLink to="/shop">shop</NavLink></li>
-                                                <li><NavLink to="/shop-single">Shop Details</NavLink></li>
+                                                {/* <li><NavLink to="/shop-single">Shop Details</NavLink></li> */}
                                                 <li><NavLink to="/cart-page">Cart Page</NavLink></li>
                                             </ul>
                                         </li>

@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 
 
-const title = <h2 className="mb-3">JOIN <span className="theme-color text-uppercase">bigamer</span> ESPORTS TO BECOME NEXT PRO GAMER TODAY!</h2>;
+const title = <h2 className="mb-3">JOIN <span className="theme-color text-uppercase">Crowd control</span> ESPORTS TO BECOME NEXT PRO GAMER TODAY!</h2>;
 
 const subtitle = "Let's Play together";
 
