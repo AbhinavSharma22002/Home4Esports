@@ -34,6 +34,8 @@ import ErrorPage from "./pages/errorpage";
 import CreateBlog from "./component/section/createBlog";
 import TournamentForm from "./component/section/TournamentForm";
 import Floating_Alert from "./component/layout/floating_alert";
+import Tournament from "./pages/Tournament";
+
 
 function App() {	
 const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -103,6 +105,7 @@ const showAlert = (message,type)=>{
 					<Route path="blog-single" element={<BlogDetails showAlert={showAlert}/>} />
 					<Route path="contact" element={<ContactUs showAlert={showAlert}/>} />
 					<Route path="tournaments" element={<Tournments showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
+					<Route path="tournament" element={<Tournament showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
 					{isLoggedIn?(
 						<>
 						{isAdmin?(

@@ -1,4 +1,4 @@
-import { Component, Fragment,useEffect } from "react";
+import { Component, Fragment } from "react";
 
 import HrShape from "../component/layout/hrshape";
 import AboutSection from "../component/section/about";
@@ -31,9 +31,6 @@ const HomeFunction = ()=>{
     );
 }
 class HomePage extends Component {
-    constructor(props){
-        super(props);
-    }
     render() { 
         return (
             <Fragment>
