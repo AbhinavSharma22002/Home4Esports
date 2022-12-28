@@ -33,6 +33,7 @@ import React from "react";
 import ErrorPage from "./pages/errorpage";
 import CreateBlog from "./component/section/createBlog";
 import TournamentForm from "./component/section/TournamentForm";
+import TeamForm from "./component/section/teamform";
 import Floating_Alert from "./component/layout/floating_alert";
 import Tournament from "./pages/Tournament";
 
@@ -123,6 +124,7 @@ const showAlert = (message,type)=>{
 						)}
 						
 						<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert}/>} />
+						<Route path="TeamForm" element={<TeamForm showAlert={showAlert}/>} />
 						</>
 					):(<>
 						<Route path="login" element={<LogIn setIsLoggedIn={setIsLoggedIn} showAlert={showAlert}/>} />

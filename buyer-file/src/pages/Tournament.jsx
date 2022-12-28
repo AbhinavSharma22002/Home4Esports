@@ -11,7 +11,7 @@ const TournamentFunc = (props)=>{
      function getID(){
         let pair = window.location.search.substring(1).split("=");
         return pair[1];
-    };
+    }
     useEffect(() => {
             let val = getID();
         const value = async () => {
