@@ -2,7 +2,7 @@ const User = require("../database/User");
 const express = require('express');
 const router = express.Router();
 const Video= require("../database/Video");
-const fetchuser = require('../middleware/Fetchuser');
+const Fetchuser = require('../middleware/Fetchuser');
 
 router.get("/getAll",async(req,res)=>{
     try {
@@ -14,7 +14,7 @@ router.get("/getAll",async(req,res)=>{
       }
 });
 router.post("/create",
-fetchuser,
+Fetchuser,
 async (req, res) => {
 
     let userId = req.user.id;

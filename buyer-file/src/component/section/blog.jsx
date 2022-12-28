@@ -36,8 +36,9 @@ const BlogSectionFunction = ()=>{
     },[]);
     
 return (
-    <>
-    <div className="blog-section padding-top padding-bottom" style={{backgroundImage: "url(/assets/images/blog/bg.jpg)"}}>
+    <>{
+        (BlogListContent.length!==0)?(<>
+        <div className="blog-section padding-top padding-bottom" style={{backgroundImage: "url(/assets/images/blog/bg.jpg)"}}>
                 <div className="container">
                     <div className="section-header">
                         <p>{subtitle}</p>
@@ -52,6 +53,9 @@ return (
                     </div>
                 </div>
             </div>
+        </>):(<></>)
+    }
+   
     </>
 );
 };

@@ -26,9 +26,11 @@ const LoginFunction = (props)=>{
     if (response.status === 200) {
       localStorage.setItem("token", data.authData);
       props.setIsLoggedIn(true);
+      props.showAlert("Login Success","success");
       navigate("/");
     }
     else{
+      props.showAlert("Something Went Wrong, try again.","danger");
         navigate("/login");
     }
     }

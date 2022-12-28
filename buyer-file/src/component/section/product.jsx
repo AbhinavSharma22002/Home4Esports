@@ -5,34 +5,6 @@ import { Link } from 'react-router-dom';
 const subtitle = "Crowd Control Esports t-shirt’s";
 const title = "explore our products";
 
-
-/*let ProductListContent = [
-    {
-        imgUrl: 'assets/images/product/01.jpg',
-        imgAlt: 'Product Thumb',
-        title: 'Crowd Control Esports T-Shirt Here',
-        price: '$380.00',
-    },
-    {
-        imgUrl: 'assets/images/product/02.jpg',
-        imgAlt: 'Product Thumb',
-        title: 'Crowd Control Esports T-Shirt Here',
-        price: '$380.00',
-    },
-    {
-        imgUrl: 'assets/images/product/03.jpg',
-        imgAlt: 'Product Thumb',
-        title: 'Crowd Control Esports T-Shirt Here',
-        price: '$380.00',
-    },
-    {
-        imgUrl: 'assets/images/product/04.jpg',
-        imgAlt: 'Product Thumb',
-        title: 'Crowd Control Esports T-Shirt Here',
-        price: '$380.00',
-    },
-]
-*/
 const ProductSection = (props)=>{
     const [ProductListContent,setProductListContent] = useState([]);
     
@@ -61,16 +33,16 @@ const ProductSection = (props)=>{
                     });
                 }
             }
-         console.log(array);  
             setProductListContent(array);
-            console.log(ProductListContent);
     };
             someFunc();
     },[]);
 
 return(
     <>
-             <div className="product-section padding-top padding-bottom">
+    {
+        (ProductListContent.length!==0)?(<>
+        <div className="product-section padding-top padding-bottom">
                 <div className="container">
                     <div className="section-header">
                         <p>{subtitle}</p>
@@ -98,6 +70,8 @@ return(
                     </div>
                 </div>
             </div>
+        </>):(<></>)
+    }
     </>
 );
 

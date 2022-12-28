@@ -4,7 +4,7 @@ import PageHeader from "../layout/pageheader";
 
 
 
-const Mgmt = ()=>{
+const Mgmt = (props)=>{
     const title = "Merchandise Form";
 
     const [productTitle,setPoductTitle] = useState('');
@@ -49,7 +49,7 @@ const Mgmt = ()=>{
                 requestOptions
         );
         if(response.status===200){
-            alert("Success");
+            props.showAlert("Merchandise created Success!!","success");
             navigate("/");
         }
     }
