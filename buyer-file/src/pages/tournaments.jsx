@@ -1,6 +1,8 @@
 import { Fragment,useEffect,useState } from "react";
 import PageHeader from "../component/layout/pageheader";
 import { Link } from "react-router-dom";
+
+
 const TournamentFunc = (props)=>{
 
     
@@ -56,7 +58,9 @@ const TournamentFunc = (props)=>{
                         }
 
                             {TournamentsList.map((val, i) => (
+                                
                                 <div className="col-12" key={i}>
+                                    
                                     <div className="match-item item-layer">
                                         <div className="match-inner">
                                             <div className="match-header d-flex flex-wrap justify-content-between align-items-center">
