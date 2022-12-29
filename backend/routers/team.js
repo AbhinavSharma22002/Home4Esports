@@ -8,7 +8,7 @@ const fetchuser = require('../middleware/Fetchuser');
 router.post("/getAll",async(req,res)=>{
     try {
         let tier = req.body.tier;
-        let teams = await team.find({tier: tier});
+        let teams = await Team.find({tier: tier});
         return res.status(200).json({teams});
       } catch (error) {
         console.error(error.message);
@@ -79,6 +79,23 @@ async (req, res) => {
     let team = await Team.findOneAndUpdate({_id: team_id}, teams);
     return res.status(200).send("Success");
   } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Some error occurred");
+  }
+});
+
+router.post('/getByIdAndUpdate',async (req,res)=>{
+  let team = await Team.findById(req.body.id)
+  team.clicked += 1;
+  try{
+  await Team.findOneAndUpdate({_id: team._id}, team);
+  let arr=[];
+  for(let i = 0;i<team.teamMembers.length;i++){
+    let id = team.teamMembers[i].id;
+    arr.push(await User.findById(id));
+  }
+  res.status(200).json({team:team,members: arr});
+  }catch(error){
     console.error(error.message);
     res.status(500).send("Some error occurred");
   }

@@ -98,7 +98,6 @@ const showAlert = (message,type)=>{
 					<Route path="partners" element={<PartnerPage showAlert={showAlert}/>} />
 					<Route path="achievements" element={<AchievementPage showAlert={showAlert}/>} />
 					<Route path="team" element={<TeamPage showAlert={showAlert}/>} />
-					<Route path="team-single" element={<TeamSinglePage showAlert={showAlert}/>} />
 					<Route path="*" element={<ErrorPage showAlert={showAlert}/>} />
 					<Route path="shop" element={<ShopPage showAlert={showAlert}/>} />
 					<Route path="shop-single" element={<ShopDetails showAlert={showAlert}/>} />
