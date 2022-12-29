@@ -30,6 +30,7 @@ const TournamentFunc = (props)=>{
             })
 		}
 		value();
+        
 	},[]);
      useEffect(() => {
         const teamValue = async(teamARr)=>{
@@ -94,7 +95,7 @@ const TournamentFunc = (props)=>{
                         }
                         {
                             (TeamList.map((val,i)=>(
-                                <Teams val={val} key={i}/>
+                                <Teams val={val} key={i} Tournament={Tournament}/>
                             )))
                              
                         }
