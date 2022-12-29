@@ -8,49 +8,47 @@ const title = "Meet Our Squads ";
 
 
 const PlayerSection = (props)=>{
-    const [PlayerList,setPlayerList] = useState([]);
+    let index = 1;
+    const[tierOneList, setTierOneList] = useState([]);
+    const[tierTwoList, setTierTwoList] = useState([]);
+    const[tierThreeList, setTierThreeList] = useState([]);
 
-    // function getID(){
-    //     let pair = window.location.search.substring(1).split("=");
-    //     return pair[1];
-    // }
     useEffect(()=>{
-        const someFunc = async (props)=>{
-            let array = [];
-                const requestOptions = {
-                method: "GET"
+        const someFunc = async (tier)=>{
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json' 
+                    },
+                body: JSON.stringify({tier:tier}),
             };
             const response = await fetch(
                 `http://localhost:3001/api/team/getAll`,
                 requestOptions
             )
-           
+            const data = await response.json();
             if(response.status===200){
-                const data = await response.json();
-                console.log(data);
-
-                for(let i = 0;i<data.teams.length;i++){
-                    array.push({
-                        img: `${data.teams[i].image}`,
-                        name: `${data.teams[i].teamName}`,
-                        Date: `${data.teams[i].date}`,
-                        to: `${data.teams[i].team._id}`
-                    });
+                switch (tier) {
+                    case 1:
+                        setTierOneList(data.teams);
+                        break;
+                    case 2:
+                        setTierTwoList(data.teams);
+                        break;
+                    case 3:
+                        setTierThreeList(data.teams);
+                        break;
+                    default:
+                        break;
                 }
             }
-            setPlayerList(array);
     };
-            someFunc();
+            someFunc(1);
+            someFunc(2);
+            someFunc(3);
+
     },[]);
-
-
-//   array.push({
-//         image: `${data[i].image}`,
-//         teamName: `${data[i].teamName}`,
-//         author: `${data[i].author}`,
-//         date: `${data[i].date}`,
-//         to: `${data[i]._id}`
-//     });
+    console.log(tierThreeList);
 return(
     <>
     <Fragment>
@@ -85,7 +83,9 @@ return(
                                    },
                                }}
                            >
-                               {PlayerList.map((val, i) => (
+                               {
+                               
+                               tierThreeList.map((val, i) => (
                                    <SwiperSlide key={i}>
                                        <div className="player-item-2 text-center" style={{backgroundImage: `url({${val.image}})`}}>
                                            <div className="player-inner-2">
