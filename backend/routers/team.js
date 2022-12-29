@@ -89,7 +89,12 @@ router.post('/getByIdAndUpdate',async (req,res)=>{
   team.clicked += 1;
   try{
   await Team.findOneAndUpdate({_id: team._id}, team);
-  res.status(200).json({item:team});
+  let arr=[];
+  for(let i = 0;i<team.teamMembers.length;i++){
+    let id = team.teamMembers[i].id;
+    arr.push(await User.findById(id));
+  }
+  res.status(200).json({team:team,members: arr});
   }catch(error){
     console.error(error.message);
     res.status(500).send("Some error occurred");

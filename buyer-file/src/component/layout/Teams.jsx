@@ -8,12 +8,12 @@ const func = (props)=>{
             <div className="player-item">
                 <div className="player-inner">
                     <div className="player-thumb">
-                        <img src={`${props.val.v.image}`} alt="hello_thumbnail" />
+                        <img src={`${props.val.image}`} alt="hello_thumbnail" />
                     </div>
                     <div className="player-content text-center">
                         <div className="player-info-list">
-                            <Link to ={`/team?id=${props.val.v._id}`}>
-                            <h3 className="mb-0">{props.val.v.teamName}</h3>
+                            <Link to ={`/team?id=${props.val._id}`}>
+                            <h3 className="mb-0">{props.val.teamName}</h3>
                             </Link>
                         </div>
                     </div>
