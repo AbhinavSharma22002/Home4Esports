@@ -39,7 +39,6 @@ const TournamentForm = (props)=> {
         const data = {
             name,description,game,teamSize,noOfTeams,startDate,priceMoney,image
         };
-        console.log(data);
         const requestOptions = {
                 method: "POST",
                 headers: {
@@ -54,7 +53,7 @@ const TournamentForm = (props)=> {
         );
         if(response.status===200){
             props.showAlert("Tournament Host Success!!","success");
-            navigate("/");
+            navigate("/tournament");
         }
     }
 

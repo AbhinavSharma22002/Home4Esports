@@ -1,6 +1,7 @@
 import { Fragment,useEffect,useState } from "react";
 import PageHeaderTwo from "../component/layout/pageheader";
 import { Link } from "react-router-dom";
+import Teams from "../component/layout/Teams";
 const playerTitle = "Registered Teams";
 
 const TournamentFunc = (props)=>{
@@ -20,44 +21,39 @@ const TournamentFunc = (props)=>{
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({id: val})
             };
-            let response = await fetch(
+            fetch(
                 `http://localhost:3001/api/tournament/getById`,
                 requestOptions
-            );
-            let data = await response.json();
-                let arr = [];
-            if (response.status === 200) {
-                setTournament(data.tournament);
-                for(let i = 0;i<data.tournament.team.length;i++){
-                requestOptions={
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({id: data.tournament.team[i]})
-                };
-                response = await fetch(
-                `http://localhost:3001/api/team/getById`,
-                requestOptions
-            );
-
-            data = await response.json();
-            if(response.status ===200){
-                console.log(data.teams);
-                let v = data.teams;
-                arr.push({v});
-            }
-            else{
-                props.showAlert("Something went wrong!!","danger");
-            }
-                }
-                setTeamList(arr);
-            }
-            else {
-                props.showAlert("Something went wrong!!","danger");
-            }
+            ).then((res) => res.json())
+            .then((json) => {
+                setTournament(json.tournament);
+            })
 		}
 		value();
-	});
-
+	},[]);
+     useEffect(() => {
+        const teamValue = async(teamARr)=>{
+            let arr = [];
+            for(let i = 0;i<teamARr.length;i++){
+                let requestOptions={
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({id: teamARr[i].id})
+                };
+                const response = await fetch(
+                `http://localhost:3001/api/team/getById`,
+                requestOptions
+                );
+                let data = await response.json();
+                if(response.status===200){
+                    let v = data.teams;
+                    arr.push({v});
+                }
+            }
+            setTeamList(arr);
+        }
+        teamValue(Tournament.team);
+	},[Tournament]);
     return (
         <>
             <Fragment>
@@ -98,20 +94,7 @@ const TournamentFunc = (props)=>{
                         }
                         {
                             (TeamList.map((val,i)=>(
-                                    <div className="col-lg-4 col-sm-6 col-12" key={i}>
-                                        <div className="player-item">
-                                            <div className="player-inner">
-                                                <div className="player-thumb">
-                                                    <img src={`${val.image}`} alt="hello_thumbnail" />
-                                                </div>
-                                                <div className="player-content text-center">
-                                                    <div className="player-info-list">
-                                                        <h3 className="mb-0">{val.teamName}</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <Teams val={val} key={i}/>
                             )))
                              
                         }
