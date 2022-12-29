@@ -83,4 +83,16 @@ async (req, res) => {
     res.status(500).send("Some error occurred");
   }
 });
+
+router.post('/getByIdAndUpdate',async (req,res)=>{
+  let team = await Team.findById(req.body.id)
+  team.clicked += 1;
+  try{
+  await Team.findOneAndUpdate({_id: team._id}, team);
+  res.status(200).json({item:team});
+  }catch(error){
+    console.error(error.message);
+    res.status(500).send("Some error occurred");
+  }
+});
 module.exports = router;

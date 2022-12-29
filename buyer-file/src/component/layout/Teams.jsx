@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 
 const func = (props)=>{
     return (
@@ -11,7 +12,9 @@ const func = (props)=>{
                     </div>
                     <div className="player-content text-center">
                         <div className="player-info-list">
+                            <Link to ={`/team?id=${props.val.v._id}`}>
                             <h3 className="mb-0">{props.val.v.teamName}</h3>
+                            </Link>
                         </div>
                     </div>
                 </div>
