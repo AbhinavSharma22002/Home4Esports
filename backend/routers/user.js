@@ -43,7 +43,7 @@ async (req, res) => {
         id: user.id,
       },
     };
-    const authData = await jwt.sign(data, JWT_secret);
+    const authData = await jwt.sign(data, JWT_secret, { expiresIn: "1h"});
     return res.json({ authData });
   } catch (error) {
     console.error(error.message);
@@ -88,7 +88,7 @@ router.post("/signup",
          id: user.id,
        },
      };
-     const authData = await jwt.sign(data, JWT_secret);
+     const authData = await jwt.sign(data, JWT_secret,{expiresIn:"1h"});
 
      return res.json({ authData });
    } catch (error) {
