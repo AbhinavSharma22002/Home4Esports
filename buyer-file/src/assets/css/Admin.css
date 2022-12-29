@@ -4,10 +4,19 @@
    flex-wrap: wrap;
 }
 
+.head-1{
+    height: 564px;  
+    padding-top: 1px;
+}
+
+.head-1 link{
+    height: 144px;
+}
+
 .head-1 img{
-    margin: 249px 0px;
+    margin: 259px 0px;
     border:1px solid blanchedalmond;
-    height: 190px;
+    height: 175px;
     border-radius: 8%;
     transform: translate(0px);
     cursor: pointer;

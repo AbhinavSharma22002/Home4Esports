@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import '../../assets/css/Admin.css'
+import '../../assets/css/Adminsmall.css'
 import Newgame from '../../assets/images/banner/Newgame.png'
 import Newmerch from '../../assets/images/banner/Newmerch.png'
 import Blog from "../../assets/images/banner/blog.png"
@@ -13,7 +14,7 @@ const Admin = () => {
         <div>
             <div className='container-1'>
                 <div className='head-1'>
-                    <Link to="/Schedule">
+                    <Link to="/Schedule" className='link'>
                         <img src={Newgame} alt="logo" />                
                     </Link>
                 </div>

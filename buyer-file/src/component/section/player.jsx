@@ -1,8 +1,9 @@
-import { Component } from "react";
 import { Link } from "react-router-dom";
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SocialMedia from "./socialmedia";
+import React, {useState} from "react";
+
 
 const subtitle = "Our Team Players";
 const title = "Meet Our Squad Players ";
@@ -41,19 +42,30 @@ let PlayerListContent = [
     },
 ]
 
-class PlayerSection extends Component {
-    render() { 
+
+    const Player = () => {
+        const [active, setActive] = useState("First tear")
         return (
             <section className="player-section padding-top padding-bottom">
                 <div className="container-fluid">
+                   
                     <div className="section-header">
+
                         <p>{subtitle}</p>
                         <h2>{title}</h2>
                     </div>
+
+                    <div>
+                        <button style={{backgroundColor: "#ff0052",border:"2px solid black",borderRadius:"5px"}}  onClick={() => setActive("Firsttear")}>Tier 1</button>
+                        <button style={{backgroundColor: "#ff0052", border:"2px solid black",borderRadius:"5px"}}  onClick={() => setActive("Secondtear")}>Tier 2</button>
+                        <button style={{backgroundColor: "#ff0052", border:"2px solid black",borderRadius:"5px"}}  onClick={() => setActive("Thirdtear")}>Tier 3</button>
+                    </div> <br />
+                   
                     <div className="section-wrapper">
                         <div className="player-slider">
+                            
                             <Swiper
-                                spaceBetween={20}
+                                spaceBetween={50}
                                 slidesPerView={2}
                                 loop={'true'}
                                 autoplay={{
@@ -78,7 +90,7 @@ class PlayerSection extends Component {
                             >
                                 {PlayerListContent.map((val, i) => (
                                     <SwiperSlide key={i}>
-                                        <div className="player-item-2 text-center" style={{backgroundImage: `url(${val.bgImgUrl})`}}>
+                                        <div className="player-item-2 text-center" style={{ backgroundImage: `url(${val.bgImgUrl})` }}>
                                             <div className="player-inner-2">
                                                 <div className="player-thumb-2">
                                                     <Link to="/team-single">
@@ -101,7 +113,7 @@ class PlayerSection extends Component {
                 </div>
             </section>
         );
-    }
-}
- 
-export default PlayerSection;
+    };
+
+
+export default Player;
