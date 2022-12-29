@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Rating from './rating';
 
 const subtitle = "our LATEST VIDEOS";
-const title = "check our live streaming";
+const title = "check our live video";
 
 
 let VideoListContentTop = [

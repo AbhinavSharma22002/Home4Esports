@@ -8,7 +8,7 @@ const fetchuser = require('../middleware/Fetchuser');
 router.post("/getAll",async(req,res)=>{
     try {
         let tier = req.body.tier;
-        let teams = await team.find({tier: tier});
+        let teams = await Team.find({tier: tier});
         return res.status(200).json({teams});
       } catch (error) {
         console.error(error.message);
