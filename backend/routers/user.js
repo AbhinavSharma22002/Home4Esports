@@ -137,4 +137,14 @@ router.post("/update",fetchUser,async(req,res)=>{
     res.status(500).send("Internal server error");
   }
 });
+router.post("/getById",fetchUser,async(req,res)=>{
+  try {
+    const user= req.body.user;    
+    let successUser = await User.findById(user).select("-password -email -date -role");
+    res.status(200).json(successUser);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Internal server error");
+  }
+});
 module.exports = router;
