@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component} from "react";
 import { Autoplay } from "swiper";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -9,11 +9,12 @@ const subtitle = "our LATEST VIDEOS";
 const title = "check our live video";
 
 
+
 let VideoListContentTop = [
     {
         imgUrl: 'assets/images/video/06.jpg',
         imgAlt: 'Video Thum',
-        videoLink: 'https://www.youtube.com/embed/g5eQgEuiFC8',
+       videoLink: 'https://www.youtube.com/embed/0twXu-smd4k',
     },
 ]
 

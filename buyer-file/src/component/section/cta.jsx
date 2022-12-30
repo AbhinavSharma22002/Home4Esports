@@ -26,7 +26,7 @@ class CtaSection extends Component {
                                         <p className="theme-color text-uppercase ls-2">{subtitle}</p>
                                         {title}
                                         <p className="mb-4">{desc}</p>
-                                        <Link to="/signup" className="default-button"><span>{btnText} <i className="icofont-circled-right"></i></span></Link>
+                                        <a href="https://discord.com/invite/4fWwCjaFwG" className="default-button"><span>{btnText} <i className="icofont-circled-right"></i></span></a>
                                     </div>
                                 </div>
                                 <div className="col-lg-6">
