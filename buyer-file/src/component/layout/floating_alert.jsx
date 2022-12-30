@@ -1,59 +1,44 @@
-// import "./Floating_Alert.css";
-import {React,useState} from "react";
+import "./Floating_Alert.css";
+import { React, useState } from "react";
 
+const FloatingFunc = () => {
 
-const styleCSS = {
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position:'fixed',
-    bottom: '10px',
-    right: '10px',
-    width: '40px',
-    height: '40px',
-    borderRadius: '50%',
-    opacity: '0'
-};
-const FloatingFunc = ()=>{
-    
-const [index,setIndex] = useState(0);
-const [active,setActive] = useState(false);
-let SocialMideaList = [
-    {
-        IconName: 'icofont-facebook-messenger',
-        IconLink: '#',
-    },
-    {
-        IconName: 'icofont-twitter',
-        IconLink: '#',
-    },
-    {
-        IconName: 'icofont-vimeo',
-        IconLink: '#',
-    },
-    {
-        IconName: 'icofont-skype',
-        IconLink: '#',
-    },
-    {
-        IconName: 'icofont-rss-feed',
-        IconLink: '#',
-    },
-];
-setTimeout(()=>{
-    if(index===4){
-        setIndex(0);
-    }
-    else{
-        setIndex(index+1);
-    }
-},5000);
+    const [index, setIndex] = useState(0);
+    const [active, setActive] = useState(false);
+    let Social = [
+        {
+            IconName: 'i-icofont-linkedin',
+            IconLink: '#',
+        },
+        {
+            IconName: 'i-icofont-facebook',
+            IconLink: '#',
+        },
+        {
+            IconName: 'i-icofont-ebuddy',
+            IconLink: '#',
+        },
+        {
+            IconName: 'i-icofont-youtube-play',
+            IconLink: '#',
+        },
+        {
+            IconName: 'i-icofont-instagram',
+            IconLink: '#',
+        },
+    ]
+
+    setTimeout(() => {
+        if (index === 4) {
+            setIndex(0);
+        }
+        else {
+            setIndex(index + 1);
+        }
+    }, 5000);
     return (
         <>
-        <div className="floating-alert">
-            <a href={`${SocialMideaList[index].IconLink}`} className="fb"><i className={`${SocialMideaList[index].IconName}`}></i></a>
-        </div>
+            <a href={`${Social[index].IconLink}`}><i className={`${Social[index].IconName}`}></i></a>
         </>
     );
 };

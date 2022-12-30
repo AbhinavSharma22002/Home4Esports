@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Tournament= require("../database/Tournament");
 const User = require("../database/User");
+const Team = require("../database/Team");
 const Fetchuser = require('../middleware/Fetchuser');
 
 router.get("/getAll",async(req,res)=>{
@@ -17,7 +18,12 @@ router.post("/getById",async (req,res)=>{
     try {
         let id = req.body.id;
         let tournament = await await Tournament.findById(id);
-        return res.status(200).json({tournament});
+        let arr = [];
+        for(let i = 0;i<tournament.team.length;i++){
+          let d = tournament.team[i].id;
+          arr.push(await Team.findById(d))
+        }
+        return res.status(200).json({tournament,list: arr});
       } catch (error) {
         console.error(error.message);
         res.status(500).send("Some error occurred");

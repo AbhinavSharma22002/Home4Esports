@@ -8,7 +8,6 @@ const title = "Meet Our Squads ";
 
 
 const PlayerSection = (props)=>{
-    let index = 1;
     const[tierOneList, setTierOneList] = useState([]);
     const[tierTwoList, setTierTwoList] = useState([]);
     const[tierThreeList, setTierThreeList] = useState([]);
@@ -48,7 +47,10 @@ const PlayerSection = (props)=>{
             someFunc(3);
 
     },[]);
+    console.log(tierOneList);
+    console.log(tierTwoList);
     console.log(tierThreeList);
+
 return(
     <>
     <Fragment>
@@ -57,7 +59,121 @@ return(
                        <p>{subtitle}</p>
                        <h2>{title}</h2>
                    </div>
-                   <div className="section-wrapper">
+                   {
+                    (tierOneList.length!==0?(<>
+                    <div className="section-wrapper">
+                       <div className="player-slider">
+                           <Swiper
+                               spaceBetween={20}
+                               slidesPerView={2}
+                               loop={'true'}
+                               autoplay={{
+                                   delay: 5000,
+                                   disableOnInteraction: false,
+                               }}
+                               modules={[Autoplay]}
+                               breakpoints={{
+                                   0: {
+                                       width: 0,
+                                       slidesPerView: 1,
+                                   },
+                                   768: {
+                                       width: 768,
+                                       slidesPerView: 2,
+                                   },
+                                   1200: {
+                                       width: 1200,
+                                       slidesPerView: 3,
+                                   },
+                               }}
+                           >
+                               {
+                               
+                               tierOneList.map((val, i) => (
+                                   <SwiperSlide key={i}>
+                                       <div className="player-item-2 text-center" style={{backgroundImage: `url({${val.image}})`}}>
+                                       <Link to ={`/team?id=${val._id}`}>
+                                           <div className="player-inner-2">
+                                               <div className="player-thumb-2">
+                                                       <img src={val.image} />
+                                               </div>
+                                               <div className="player-content-2">
+                                                   <h2>{val.teamName}</h2>
+                                                   <h2>Date: {val.date}</h2>
+                                                   <h2>Tier: {val.tier}</h2>
+                                               </div>
+                                           </div>
+                                           </Link>
+                                       </div>
+                                   </SwiperSlide>
+                               ))}
+                           </Swiper>
+                       </div>
+                   </div>
+                   <hr/>
+                   <br/>
+                    </>):(<></>))
+}
+{
+    (tierTwoList.length!==0?(<>
+                    <div className="section-wrapper">
+                       <div className="player-slider">
+                           <Swiper
+                               spaceBetween={20}
+                               slidesPerView={2}
+                               loop={'true'}
+                               autoplay={{
+                                   delay: 5000,
+                                   disableOnInteraction: false,
+                               }}
+                               modules={[Autoplay]}
+                               breakpoints={{
+                                   0: {
+                                       width: 0,
+                                       slidesPerView: 1,
+                                   },
+                                   768: {
+                                       width: 768,
+                                       slidesPerView: 2,
+                                   },
+                                   1200: {
+                                       width: 1200,
+                                       slidesPerView: 3,
+                                   },
+                               }}
+                           >
+                               {
+                               
+                               tierTwoList.map((val, i) => (
+                                   <SwiperSlide key={i}>
+                                       <div className="player-item-2 text-center" style={{backgroundImage: `url({${val.image}})`}}>
+                                           <Link to ={`/team?id=${val._id}`}>
+                                           <div className="player-inner-2">
+                                               <div className="player-thumb-2">
+                                                       <img src={val.image} />
+                                               </div>
+                                               <div className="player-content-2">
+                                                   <h2>{val.teamName}</h2>
+                                                   <h2>Date: {val.date}</h2>
+                                                   <h2>Tier: {val.tier}</h2>
+                                               </div>
+                                           </div>
+                                           </Link>
+                                       </div>
+                                   </SwiperSlide>
+                               ))}
+                           </Swiper>
+                       </div>
+                   </div>
+                   <hr/>
+                   <br/>
+    
+    </>):(<></>))
+}
+
+{
+    (tierThreeList.length!==0?(<>
+                    <div className="section-wrapper">
                        <div className="player-slider">
                            <Swiper
                                spaceBetween={20}
@@ -88,24 +204,27 @@ return(
                                tierThreeList.map((val, i) => (
                                    <SwiperSlide key={i}>
                                        <div className="player-item-2 text-center" style={{backgroundImage: `url({${val.image}})`}}>
+                                           <Link to ={`/team?id=${val._id}`}>
                                            <div className="player-inner-2">
                                                <div className="player-thumb-2">
-                                                   <Link to="/">
                                                        <img src={val.image} />
-                                                   </Link>
                                                </div>
                                                <div className="player-content-2">
-                                                   <Link to="/"><h2>{val.teamName}</h2></Link>
+                                                   <h2>{val.teamName}</h2>
                                                    <h2>Date: {val.date}</h2>
                                                    <h2>Tier: {val.tier}</h2>
                                                </div>
                                            </div>
+                                           </Link>
                                        </div>
                                    </SwiperSlide>
                                ))}
                            </Swiper>
                        </div>
                    </div>
+    </>):(<></>))
+}
+
                </div>
     </Fragment>
     </>

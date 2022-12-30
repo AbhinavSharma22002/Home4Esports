@@ -31,43 +31,12 @@ useEffect(()=>{
             );
             let data = await response.json();
             if(response.status===200){
-                setTeam(data.item);
+                setTeam(data.team);
+                setMembers(data.members);
             }
     };
     value();
 },[]);
-useEffect(()=>{
-    const value = async ()=>{
-        let arr = [];
-        for(let i =0;i<team.teamMembers.length;i++){
-            let requestOptions = {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({id: team.teamMembers[i].id})
-            };
-            
-            const response = await fetch(
-            `http://localhost:3001/api/user/getById`,
-            requestOptions
-            );
-            let data = await response.json();
-            if(response.status===200){
-                let v = data.item;
-                
-                arr.push( {
-                    bgImgUrl: 'assets/images/team/home-2/1.jpg',
-                    imgUrl: v.image,
-                    imgAlt: 'Player Thumb',
-                    title: v.fname+" "+v.lname,
-                });
-            }
-        }
-        setMembers(arr);            
-    };
-    value();
-},[team]);
-console.log(team);
-console.log(members);
 return (
     <>
             <Fragment>
