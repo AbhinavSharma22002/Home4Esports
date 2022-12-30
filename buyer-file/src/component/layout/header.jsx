@@ -69,10 +69,13 @@ const HeaderFunction = (props) => {
 const menuTrigger = ()=> {
         document.querySelector('.menu').classList.toggle('active')
         document.querySelector('.header-bar').classList.toggle('active')
+       
     }
+   
     const menuTriggerTwo = () => {
+       
         document.querySelector('.header-top').classList.toggle('open')
-        // document.querySelector('.header-bar').classList.toggle('active')
+        document.querySelector('.header-bar').classList.toggle('active')
     }
     const Logout = ()=>{
     localStorage.removeItem("token");
@@ -102,6 +105,7 @@ const menuTrigger = ()=> {
                         </div>
                     </div>
                     <div className="header-menu-part">
+                        
                         <div className="header-top">
                             <div className="header-top-area">
                                 <ul className="left">
@@ -126,7 +130,7 @@ const menuTrigger = ()=> {
                             <div className="header-wrapper justify-content-lg-end">
                                 <div className="mobile-logo d-lg-none">
                                     <Link to="/"><img src="assets/images/logo/logo.png" alt="logo" /></Link>
-                                </div>
+                                </div>  
                                 <div className="menu-area">
                                     <ul className="menu">
                                            <li><Link to="/">Home</Link></li>
@@ -165,8 +169,8 @@ const menuTrigger = ()=> {
                                         )
                                             : (
                                                 <>
-                                                    <li><Link to="/login" className="login"><i className="icofont-user"></i> <span>LOG IN</span> </Link></li>
-                                                    <li><Link to="/signup" className="signup"><i className="icofont-users"></i> <span>SIGN UP</span></Link></li>
+                                                    <li><Link to="/login"><i className="icofont-user" ></i> <span>LOG IN</span> </Link></li>
+                                                    <li><Link to="/signup"><i className="icofont-users" ></i> <span>SIGN UP</span></Link></li>
                                                 </>
                                             )}
                                     </ul>
@@ -185,10 +189,9 @@ const menuTrigger = ()=> {
                         </div>
                     </div>
                 </div>
-                
-                <div style={{height:'40px'}}>
-    				{props.alert===null?"": <Alert m={props.alert}/>}
-    			</div>
+                <div>
+                {props.alert===null?"": <Alert m={props.alert}/>}
+                </div>
             </div>
         </header>
     );

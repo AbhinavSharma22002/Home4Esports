@@ -21,7 +21,7 @@ import SignUp from "./pages/signup";
 import Tournments from "./pages/tournaments";
 
 import Footer from "./component/layout/footer";
-import Header from "./component/layout/header";
+import Header from "./component/layout/header"
 import TeamPage from "./pages/team";
 import TeamSinglePage from "./pages/team-single";
 import Admin from "./component/section/Admin";
@@ -34,7 +34,7 @@ import ErrorPage from "./pages/errorpage";
 import CreateBlog from "./component/section/createBlog";
 import TournamentForm from "./component/section/TournamentForm";
 import TeamForm from "./component/section/teamform";
-import Floating_Alert from "./component/layout/floating_alert";
+import Floating_Alert from "./component/layout/Floating_alert";
 import Tournament from "./pages/Tournament";
 
 
@@ -47,7 +47,7 @@ const showAlert = (message,type)=>{
     setAlert([message,type])
     setTimeout(()=>{
       setAlert(null);
-    },1500);
+    },2000);
   };
 
 
