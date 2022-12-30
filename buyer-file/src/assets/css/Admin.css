@@ -1,32 +1,72 @@
-.container-1{
+.container-1 {
     display: flex;
     justify-content: space-evenly;
-   flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
-.head-1{
-    height: 564px;  
-    padding-top: 1px;
-}
-
-.head-1 link{
-    height: 144px;
-}
-
-.head-1 img{
-    margin: 259px 0px;
-    border:1px solid blanchedalmond;
-    height: 175px;
+.head-1 img {
+    margin: auto;
+    border: 1px solid blanchedalmond;
+    height: 190px;
     border-radius: 8%;
-    transform: translate(0px);
+    /* transform: translate(0px); */
     cursor: pointer;
 }
 
-.head-1  img:hover{ 
-   border-radius: 30%;
-   transition: .2s;
-   box-shadow: 6px 6px 40px 10px #5F4B8BFF;
-   transform: translate3d(10px, 0, 0px);
+.head-1 img:hover {
+    border-radius: 30%;
+    transition: .2s;
+    box-shadow: 6px 6px 40px 10px #5F4B8BFF;
+    transform: translate3d(10px, 0, 0px);
 }
 
+/* iphone SE ----------- */
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
+    .head-1 img {
+        margin: 14px;
+        border: 1px solid blanchedalmond;
+        height: 190px;
+        border-radius: 8%;
+        cursor: pointer
+    }
+}
 
+@media only screen and (min-device-width : 360px) and (max-device-width : 740px) {
+    .head-1 img {
+        margin: 14px;
+        border: 1px solid blanchedalmond;
+        height: 190px;
+        border-radius: 8%;
+        cursor: pointer
+    }
+}
+
+@media only screen and (min-device-width : 820px) and (max-device-width : 1180px) {
+    .head-1 img {
+        margin: 39px;
+        border: 1px solid blanchedalmond;
+        height: 190px;
+        border-radius: 8%;
+        cursor: pointer
+    }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .head-1 img {
+        margin: 14px;
+        border: 1px solid blanchedalmond;
+        height: 190px;
+        border-radius: 8%;
+        cursor: pointer
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px){
+.head-1 img {
+    margin: 40px;
+    border: 1px solid blanchedalmond;
+    height: 190px;
+    border-radius: 8%;
+    cursor: pointer;
+}
+}

@@ -18,9 +18,7 @@ class AboutPage extends Component {
                 <PageHeader title={'ABOUT CROWD CONTROL'} curPage={'About Us'} />
                 <AboutSection imgUrl={'assets/images/about/01.png'} />
                 <VideoTestimonial />
-                <ProductSection />
                 <HrShape />
-                <SponsorSection />
                 <CtaSection imgUrl={'assets/images/cta/01.png'} />
             </Fragment>
         );

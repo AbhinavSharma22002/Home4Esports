@@ -1,13 +1,39 @@
-.floating-alert {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.i-icofont-linkedin:before {
+   
+    font-size: xxx-large;
     position: fixed;
-    bottom: 10px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    opacity: 0;
+    right: 34px;
+    top: 90vh;
+}
+
+.i-icofont-youtube-play:before {
+   
+    font-size: xxx-large;
+    position: fixed;
+    right: 34px;
+    top: 90vh;
+}
+
+.i-icofont-facebook:before {
+    
+    font-size: xxx-large;
+    position: fixed;
+    right: 34px;
+    top: 90vh;
+}
+
+.i-icofont-ebuddy:before {
+  
+    font-size: xxx-large;
+    position: fixed;
+    right: 34px;
+    top: 90vh;
+}
+
+.i-icofont-instagram:before {
+    
+    font-size: xxx-large;
+    position: fixed;
+    right: 34px;
+    top: 90vh;
 }

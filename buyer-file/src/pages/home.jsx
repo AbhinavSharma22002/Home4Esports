@@ -7,7 +7,7 @@ import BlogSection from "../component/section/blog";
 import CollectionSection from "../component/section/collection";
 import CtaSection from "../component/section/cta";
 import MatchSection from "../component/section/match";
-import Player from "../component/section/Player"
+import Player from "../component/section/player"
 import ProductSection from "../component/section/product";
 import SponsorSection from "../component/section/sponsor";
 import TestimonialSection from "../component/section/testimonial";
