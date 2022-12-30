@@ -3,27 +3,27 @@ import { Component } from "react";
 
 const subtitle = "who we are";
 const title = "we are professional team esport";
-const desc = "Distinctively provide acces mutfuncto users whereas transparent proceses somes ncentivize eficient functionalities rather than an extensible archtectur services and cross";
+const desc = "We started with three gamers in a white-collar corporate, grinding for hours after work, in a car-turned-arena, to only realize that it wasn’t enough. Arenas expanded to rented B&B calling out more gamers. It still wasn’t enough. Something was missing. It was structure. ";
 
 
 let AboutListContent = [
     {
         imgUrl: 'assets/images/about/icon-1.png',
         imgAlt: 'About Icon',
-        title: '103k Community Earning',
-        desc: 'Distinctively provide acces mutfuncto users whereas communicate leveraged services',
+        title: 'About Ourselves',
+        desc: 'One of them decided to get intentional about structure in esports. His passion for esports and belief that esports could be a structured ecosystem for gamers, crew and fans led to the set up of CCE in 2020.',
     },
     {
         imgUrl: 'assets/images/about/icon-2.png',
         imgAlt: 'About Icon',
-        title: '34m+ Registered Players',
-        desc: 'Distinctively provide acces mutfuncto users whereas communicate leveraged services',
+        title: '15K+ Registered Players',
+        desc: 'We have arranged multiple tournaments and with more than 15K+ playesrs. We are in the top 5 upcoming esports startups in the country.',
     },
     {
         imgUrl: 'assets/images/about/icon-3.png',
         imgAlt: 'About Icon',
-        title: '240k Streams Complete',
-        desc: 'Distinctively provide acces mutfuncto users whereas communicate leveraged services',
+        title: '1000+ Streams Complete',
+        desc: 'We completes 1000+ streams in the last year and willing to do more in next years.',
     },
 ]
 

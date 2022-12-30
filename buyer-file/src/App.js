@@ -34,7 +34,7 @@ import ErrorPage from "./pages/errorpage";
 import CreateBlog from "./component/section/createBlog";
 import TournamentForm from "./component/section/TournamentForm";
 import TeamForm from "./component/section/teamform";
-import Floating_Alert from "./component/layout/Floating_alert";
+import Floating_Alert from "./component/layout/floating_alert";
 import Tournament from "./pages/Tournament";
 
 
