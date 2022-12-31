@@ -27,34 +27,12 @@ const TournamentFunc = (props)=>{
             ).then((res) => res.json())
             .then((json) => {
                 setTournament(json.tournament);
+                setTeamList(json.list);
             })
 		}
 		value();
         
 	},[]);
-     useEffect(() => {
-        const teamValue = async(teamARr)=>{
-            let arr = [];
-            for(let i = 0;i<teamARr.length;i++){
-                let requestOptions={
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({id: teamARr[i].id})
-                };
-                const response = await fetch(
-                `http://localhost:3001/api/team/getById`,
-                requestOptions
-                );
-                let data = await response.json();
-                if(response.status===200){
-                    let v = data.teams;
-                    arr.push({v});
-                }
-            }
-            setTeamList(arr);
-        }
-        teamValue(Tournament.team);
-	},[Tournament]);
     return (
         <>
             <Fragment>

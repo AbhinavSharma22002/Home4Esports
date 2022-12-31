@@ -43,7 +43,7 @@ async (req, res) => {
         id: user.id,
       },
     };
-    const authData = await jwt.sign(data, JWT_secret);
+    const authData = await jwt.sign(data, JWT_secret, { expiresIn: "1h"});
     return res.json({ authData });
   } catch (error) {
     console.error(error.message);
@@ -88,7 +88,7 @@ router.post("/signup",
          id: user.id,
        },
      };
-     const authData = await jwt.sign(data, JWT_secret);
+     const authData = await jwt.sign(data, JWT_secret,{expiresIn:"1h"});
 
      return res.json({ authData });
    } catch (error) {
@@ -137,9 +137,9 @@ router.post("/update",fetchUser,async(req,res)=>{
     res.status(500).send("Internal server error");
   }
 });
-router.post("/getById",fetchUser,async(req,res)=>{
+router.post("/getById",async(req,res)=>{
   try {
-    const user= req.body.user;    
+    const user= req.body.id;    
     let successUser = await User.findById(user).select("-password -email -date -role");
     res.status(200).json(successUser);
   } catch (error) {
