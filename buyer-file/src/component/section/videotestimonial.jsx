@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component} from "react";
 import { Autoplay } from "swiper";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -9,11 +9,12 @@ const subtitle = "our LATEST VIDEOS";
 const title = "check our live video";
 
 
+
 let VideoListContentTop = [
     {
         imgUrl: 'assets/images/video/06.jpg',
         imgAlt: 'Video Thum',
-        videoLink: 'https://www.youtube.com/embed/g5eQgEuiFC8',
+       videoLink: 'https://www.youtube.com/embed/0twXu-smd4k',
     },
 ]
 
@@ -21,21 +22,26 @@ let TestimonialListContent = [
     {
         imgUrl: 'assets/images/testimonial/01.jpg',
         imgAlt: 'testimonial thumb',
-        imgIconUrl: 'assets/images/testimonial/logo/01.png',
-        imgIconAlt: 'testimonial thumb',
         title: 'Somrat Islam',
-        desc: 'Edgeing nterfaces fnergstca plagiarize teams anbudng paradgms rapidiousl buildcaboration anden deassharing viaing and bleeding whereas goingi forward process and monetze',
-        dige: 'UI Designer',
+        desc: 'Ex-Microsoft, Esports Mentor India Accelerator, Speaker, Caster Esports (15+ Yrs),Corporates (8 Yrs)',
+        dige: 'Founder of CCE',
         ratingcount: '5.28',
+    },
+    {
+        imgUrl: 'assets/images/testimonial/03.jpg',
+        imgAlt: 'testimonial thumb',
+
+        title: 'Rajib Raj',
+        desc: 'ISB, SEEDS Board Member, Ex-Microsoft, Honeywell, EY-Esports (2+ Yrs), Corporates (15+ Yrs)',
+        dige: 'Co-Founder of CCE',
+        ratingcount: '5.80',
     },
     {
         imgUrl: 'assets/images/testimonial/02.jpg',
         imgAlt: 'testimonial thumb',
-        imgIconUrl: 'assets/images/testimonial/logo/02.png',
-        imgIconAlt: 'testimonial thumb',
         title: 'Rajib Raj',
-        desc: 'Edgeing nterfaces fnergstca plagiarize teams anbudng paradgms rapidiousl buildcaboration anden deassharing viaing and bleeding whereas goingi forward process and monetze',
-        dige: 'Web Designer',
+        desc: 'Creative Enterpreneur, Pro Gamer, Artist Esports (10+Yrs) ,Corporates (2 Yrs)',
+        dige: 'Co-Founder of CCE',
         ratingcount: '5.80',
     },
 ]
@@ -116,14 +122,9 @@ class VideoTestimonial extends Component {
                                                                         <p>{val.dige}</p>
                                                                     </div>
                                                                 </div>
-                                                                <img src={`${val.imgIconUrl}`} alt={`${val.imgIconAlt}`} />
                                                             </div>
                                                             <div className="testimonial-body">
                                                                 <p>{val.desc}</p>
-                                                            </div>
-                                                            <div className="testimonial-footer">
-                                                                <Rating />
-                                                                <h5>{val.ratingcount}</h5>
                                                             </div>
                                                         </div>
                                                     </div>
