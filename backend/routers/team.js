@@ -4,6 +4,9 @@ const Tournament= require("../database/Tournament");
 const Team= require("../database/Team");
 const User = require("../database/User");
 const fetchuser = require('../middleware/Fetchuser');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const JWT_secret = process.env.JWT_secret;
 
 router.post("/getAll",async(req,res)=>{
     try {
@@ -15,6 +18,21 @@ router.post("/getAll",async(req,res)=>{
         res.status(500).send("Some error occured");
       }
 });
+
+
+//invitation link 
+async function generateLink(teamId, expirationDate) {
+  console.log(teamId);
+  let payload = {
+    team: {
+      id: teamId,
+    },
+  };
+  const authData = await jwt.sign(payload, JWT_secret,{expiresIn:"1h"});
+  return authData;
+}
+
+
 
 router.post("/getById",async (req,res)=>{
   try {
@@ -52,18 +70,22 @@ async (req, res) => {
           id:team._id
         });
         await Tournament.findOneAndUpdate({_id:tournamentId},tournament);
-        return res.status(200).send("Success");
+        let link = process.env.FRONT + "/newMember?new="+  await generateLink(team._id,new Date(Date.now() + 7 * 24 * 60 * 60 * 1000));
+
+        return res.status(200).json({link});
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Some error occurred");
     }
 });
 
-router.post("/newMember",
+router.post("/newMember/:key",
 fetchuser,
 async (req, res) => {
     let userId = req.user.id;
-    let team_id = req.body.id;
+    let team_id = req.params.key;
+    const data = jwt.verify(team_id,JWT_secret);
+    team_id = data.team.id;
     const user = await User.findById(userId).select("-password");
     let teams = await Team.findById(team_id);
     //check for access level

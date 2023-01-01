@@ -36,6 +36,7 @@ import TournamentForm from "./component/section/TournamentForm";
 import TeamForm from "./component/section/teamform";
 import Floating_Alert from "./component/layout/floating_alert";
 import Tournament from "./pages/Tournament";
+import NewMember from "./component/section/member";
 
 
 function App() {	
@@ -106,6 +107,7 @@ const showAlert = (message,type)=>{
 					<Route path="contact" element={<ContactUs showAlert={showAlert}/>} />
 					<Route path="tournaments" element={<Tournments showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
 					<Route path="tournament" element={<Tournament showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
+					<Route path="newMember" element={<NewMember showAlert={showAlert} />} />
 					{isLoggedIn?(
 						<>
 						{isAdmin?(
