@@ -6,102 +6,108 @@ let GalleryData = [
         id: 1,
         image: 'assets/images/gallery/01.jpg',
         title: 'KHELSHALA',
+        catagory:'khelshala',
 
     },
     {
         id: 2,
         image: 'assets/images/gallery/02.jpg',
         title: 'KHELSHALA',
+        catagory:'khelshala',
     },
     {
         id: 3,
         image: 'assets/images/gallery/03.jpg',
         title: 'KHELSHALA',
+        catagory:'khelshala',
 
     },
     {
         id: 4,
         image: 'assets/images/gallery/04.jpg',
         title: 'KHELSHALA',
+        catagory:'khelshala',
     },
     {
         id: 5,
         image: 'assets/images/gallery/05.jpg',
         title: 'KHELSHALA',
+        catagory:'khelshala',
     },
     {
         id: 6,
         image: 'assets/images/gallery/06.jpg',
         title: 'KHELSHALA',
+        catagory:'khelshala',
 
     },
     {
         id: 7,
         image: 'assets/images/gallery/07.jpg',
-        title: 'KHELSHALA',
+        title: 'KHELSHALA',catagory:'khelshala',
 
     },
     {
         id: 8,
         image: 'assets/images/gallery/08.jpg',
-        title: 'KHELSHALA',
+        title: 'KHELSHALA',catagory:'khelshala',
 
     },
     {
         id: 9,
         image: 'assets/images/gallery/09.jpg',
-        title: 'KHELSHALA',
+        title: 'KHELSHALA',catagory:'event',
     },
     {
         id: 10,
         image: 'assets/images/gallery/20.jpg',
-        title: 'KHELSHALA',
+        title: 'KHELSHALA',catagory:'event',
 
     },
     {
         id: 11,
         image: 'assets/images/gallery/11.jpg',
-        title: 'KHELSHALA',
+        title: 'KHELSHALA',catagory:'event',
     },
     {
         id: 12,
         image: 'assets/images/gallery/12.jpg',
         title: 'KHELSHALA',
-
+        catagory:'event',
     },
     {
         id: 15,
         image: 'assets/images/gallery/15.jpg',
         title: 'KHELSHALA',
-
+        catagory:'event',
     },
     {
         id: 16,
         image: 'assets/images/gallery/16.jpg',
         title: 'KHELSHALA',
-
+        catagory:'event',
     },
     {
         id: 17,
         image: 'assets/images/gallery/17.jpg',
         title: 'KHELSHALA',
-
+        catagory:'event',
     },
     {
         id: 18,
         image: 'assets/images/gallery/18.jpg',
-        title: 'KHELSHALA',
+        title: 'KHELSHALA',catagory:'event',
     },
     {
         id: 19,
         image: 'assets/images/gallery/19.jpg',
-        title: 'KHELSHALA',
+        title: 'KHELSHALA',catagory:'event',
 
     },
     {
         id: 20,
         image: 'assets/images/gallery/10.jpg',
-        title: 'KHELSHALA',
+        title: 'KHELSHALA',catagory:'event',
     },
 ]
 
@@ -121,11 +127,12 @@ const GallerySection = () => {
         <div className="gallery-section padding-top padding-bottom">
             <div className="container">
                 <ul className="gallery-filter">
-                    <li onClick={() => setItems(GalleryData) }><span className="category">KHELSHALA</span> <span className="itemcount">18</span></li>
-                    {/* <li onClick={() => filterItem('origin') } ><span className="category">origin</span> <span className="itemcount">02</span></li>
-                    <li onClick={() => filterItem('steam') } ><span className="category">steam</span> <span className="itemcount">03</span></li>
-                    <li onClick={() => filterItem('playstation') } ><span className="category">playstation</span> <span className="itemcount">02</span></li>
-                    <li onClick={() => filterItem('uplay') } ><span className="category">uplay</span> <span className="itemcount">02</span></li> */}
+                    
+                   
+                    <li onClick={() => setItems(GalleryData) }><span className="category">All Photos</span></li>
+                    <li onClick={() => filterItem('khelshala') } ><span className="category">KHELSHALA</span> </li>
+                   <li onClick={() => filterItem('event') } ><span className="category">EVENTS</span> </li>
+                  {/*<li onClick={() => filterItem('uplay') } ><span className="category">uplay</span> <span className="itemcount">02</span></li> */}
                 </ul>
                 <div className="row g-4 masonary-gallery">
                     {
