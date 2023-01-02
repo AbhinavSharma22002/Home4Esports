@@ -7,6 +7,7 @@ import { Modal, Button } from "react-bootstrap";
 const MyTournament = (props)=>{
     const [myTournaments,setMyTournamentsList] = useState([]);
     const [isOpen,setIsOpen] = useState(false);
+    const [isMatchOpen,setIsMatchOpen] = useState(false);
     const [currId,setCurrId] = useState('');
 
     
@@ -17,7 +18,33 @@ const MyTournament = (props)=>{
     const [noOfTeams,setNoOfTeams] = useState('');
     const [startDate,setStartDate] = useState('');
     const [priceMoney,setPriceMoney] = useState('');
+    const [matches,setMatches] = useState([]);
+    const [noOfMatches,setNoOfMatches] = useState('');
 
+const openMatchModal = (msg,e)=>{
+        e.preventDefault();
+        setCurrId(msg);
+        let requestOptions = {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({id: msg})
+        };
+            fetch(
+                `http://localhost:3001/api/tournament/getById`,
+                requestOptions
+            ).then((res) => res.json())
+            .then((json) => {
+                json = json.tournament;
+                setMatches(json.matches);
+                setNoOfMatches(json.noOfMatches);
+            })
+    setIsMatchOpen(true);
+}
+const closeMatchModal = ()=>{
+    setIsMatchOpen(false);
+    setMatches([]);
+    setNoOfMatches('');
+}
 const openModal = (msg,e)=>{
         e.preventDefault();
         setCurrId(msg);
@@ -42,7 +69,6 @@ const openModal = (msg,e)=>{
             })
     setIsOpen(true);
 }
-
 const closeModal = ()=>{
     setIsOpen(false);
     setCurrId('');
@@ -101,6 +127,29 @@ const handleDelete= async ()=>{
 		value();
     },[]);
       
+      const handleMatchUpload = async (e)=>{
+        e.preventDefault();
+        const data = {
+        id: currId,
+        body: matches
+        };
+        const requestOptions = {
+                method: "POST",
+                headers: {
+                    "auth-token":localStorage.getItem('token'),
+                    'Content-Type': 'application/json' 
+                    },
+                body: JSON.stringify(data),
+            };
+            const response = await fetch(
+                `http://localhost:3001/api/match/Update`,
+                requestOptions
+        );
+        if(response.status===200){
+            props.showAlert("Tournament Update Success!!","success");
+            window.location.reload(true);
+        }
+    }  
     const handleUpload = async (e)=>{
         e.preventDefault();
         const data = {
@@ -162,6 +211,9 @@ const handleDelete= async ()=>{
                                     <li className="nav-item mx-5" role="presentation">
                                      Edit
                                     </li>
+                                    <li className="nav-item mx-5" role="presentation">
+                                     Schedule
+                                    </li>
                                 </ul>
                                 {
                                     myTournaments.length!==0?(
@@ -177,6 +229,7 @@ const handleDelete= async ()=>{
                                                         <td>{getDate(val.startDate)}</td>
                                                         <td>{val.game}</td>
                                                         <td className="open-modal" onClick={(event)=> openModal(val._id,event)} style={{cursor: "Pointer"}}><u>Edit</u></td>
+                                                        <td className="open-match-modal" onClick={(event)=> openMatchModal(val._id,event)} style={{cursor: "Pointer"}}><u>Upload Match Schedule</u></td>
                                                     </tr>
                                                 ))}
                                             </tbody>
@@ -274,6 +327,52 @@ const handleDelete= async ()=>{
                 <Button onClick={handleUpload}>Update</Button>
                 <Button onClick={handleDelete}>Delete</Button>
                 <Button onClick={closeModal}>Close</Button>
+                </Modal.Footer>
+                </Modal>
+
+
+                <Modal show={isMatchOpen} onHide={closeMatchModal} size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered>
+                <Modal.Header closeMatchButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                   <p style={{color: 'black'}}>Schedule Matches for Tournament</p>
+                </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <div style={{color: 'black'}}>
+                <h3><u>No of Matches = {noOfMatches}</u></h3>
+                <form className="account-form">
+                {
+                    matches.map((val,key)=>{
+                        return (
+                            <>
+                            <input
+                                    type="text"
+                                    name=""
+                                    id=""
+                                    value={name} 
+                                    onChange={(e)=>{setName(e.target.value);}}
+                                    placeholder="Enter Name*"
+                            />
+                            <input
+                                    type="text"
+                                    name=""
+                                    id=""
+                                    value={name} 
+                                    onChange={(e)=>{setName(e.target.value);}}
+                                    placeholder="Enter Name*"
+                            />
+                            </>
+                        )
+                })
+                }                               
+                        </form>
+                </div>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button onClick={handleMatchUpload}>Update</Button>
+                <Button onClick={closeMatchModal}>Close</Button>
                 </Modal.Footer>
                 </Modal>
             </Fragment>
