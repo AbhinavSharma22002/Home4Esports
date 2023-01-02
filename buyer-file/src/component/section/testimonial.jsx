@@ -3,14 +3,14 @@ import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Rating from "./rating";
 
-const subtitle = "our recent news";
-const title = "Our Most Popular testimonial posts";
+const subtitle = "our Founders";
+const title = "Our Founder & Co-Founders";
 
 let TestimonialListContent = [
     {
         imgUrl: 'assets/images/testimonial/01.jpg',
         imgAlt: 'testimonial thumb',
-        title: 'Somrat Islam',
+        title: 'Peeyush "PsyLens" Kumar',
         desc: 'Ex-Microsoft, Esports Mentor India Accelerator, Speaker, Caster Esports (15+ Yrs),Corporates (8 Yrs)',
         dige: 'Founder of CCE',
         ratingcount: '5.28',
@@ -19,7 +19,7 @@ let TestimonialListContent = [
         imgUrl: 'assets/images/testimonial/03.jpg',
         imgAlt: 'testimonial thumb',
 
-        title: 'Rajib Raj',
+        title: 'Samhita "SheSapien"',
         desc: 'ISB, SEEDS Board Member, Ex-Microsoft, Honeywell, EY-Esports (2+ Yrs), Corporates (15+ Yrs)',
         dige: 'Co-Founder of CCE',
         ratingcount: '5.80',
@@ -27,7 +27,7 @@ let TestimonialListContent = [
     {
         imgUrl: 'assets/images/testimonial/02.jpg',
         imgAlt: 'testimonial thumb',
-        title: 'Rajib Raj',
+        title: 'Pravesh "EvilEvr" Rawat',
         desc: 'Creative Enterpreneur, Pro Gamer, Artist Esports (10+Yrs) ,Corporates (2 Yrs)',
         dige: 'Co-Founder of CCE',
         ratingcount: '5.80',
