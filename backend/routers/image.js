@@ -17,9 +17,9 @@ router.post("/upload",upload.single('image'),async (req,res)=>{
     res.status(200).json({val:'hello world'});
 });
 router.get("/:key",(req,res)=>{
-    const key = req.params.key;
-    const readStream = getFileStream(key);
-    readStream.pipe(res);
+    // const key = req.params.key;
+    // const readStream = getFileStream(key);
+    // readStream.pipe(res);
 })
 
 module.exports = router;

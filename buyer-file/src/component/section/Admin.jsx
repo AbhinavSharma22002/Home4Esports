@@ -6,6 +6,8 @@ import Newmerch from '../../assets/images/banner/Newmerch.png'
 import Blog from "../../assets/images/banner/blog.png"
 import Stream from "../../assets/images/banner/stream.png"
 import Customer from "../../assets/images/banner/customer.png"
+
+import Tournament from "../../assets/images/banner/customer.png"
 import PageHeader from "../layout/pageheader";
 import { Fragment } from 'react';
 const Admin = () => {
@@ -41,6 +43,12 @@ const Admin = () => {
                 <div className='head-1'>
                     <Link to="/streamForm">
                         <img src={Stream} alt="logo" />
+                    </Link>
+                </div>
+
+                <div className='head-1'>
+                    <Link to="/my-tournaments">
+                        <img src={Tournament} alt="logo" />
                     </Link>
                 </div>
             </div>

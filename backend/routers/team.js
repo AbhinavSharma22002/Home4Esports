@@ -56,8 +56,9 @@ async (req, res) => {
     const { teamName,image,tournamentId} = req.body;
    let tournament = await 
     Tournament.findById(tournamentId);
-  
+
     try {
+      if(tournament.noOfTeams<tournament.team.length){
         let team = await Team.create({
             teamName: teamName,
             author: leader._id,
@@ -73,6 +74,10 @@ async (req, res) => {
         let link = process.env.FRONT + "/newMember?new="+  await generateLink(team._id,new Date(Date.now() + 7 * 24 * 60 * 60 * 1000));
 
         return res.status(200).json({link});
+      }
+      else{
+        return res.status(400).json({error: 'Teams Full!!'});
+      }
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Some error occurred");
@@ -107,8 +112,18 @@ async (req, res) => {
 });
 
 router.post('/getByIdAndUpdate',async (req,res)=>{
-  let team = await Team.findById(req.body.id)
+  const {id, type,body} = req.body;
+
+  let team = await Team.findById(id);
+  if(!type)
   team.clicked += 1;
+  else{
+    for(let i =0;i<type.length;i++){
+      let t1 = type[i];
+      let b1 = body[i];
+      team.t1 = b1;
+    }
+  }
   try{
   await Team.findOneAndUpdate({_id: team._id}, team);
   let arr=[];
@@ -122,4 +137,5 @@ router.post('/getByIdAndUpdate',async (req,res)=>{
     res.status(500).send("Some error occurred");
   }
 });
+
 module.exports = router;
