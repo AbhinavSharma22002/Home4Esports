@@ -36,6 +36,8 @@ import TournamentForm from "./component/section/TournamentForm";
 import TeamForm from "./component/section/teamform";
 import Floating_Alert from "./component/layout/floating_alert";
 import Tournament from "./pages/Tournament";
+import NewMember from "./component/section/member";
+import MyTournament from "./component/section/MyTournament";
 
 
 function App() {	
@@ -59,10 +61,6 @@ const showAlert = (message,type)=>{
                     "auth-token":localStorage.getItem('token')
                     },
             };
-			// let response = await fetch(
-            //     `http://localhost:3001/api/user/getAll`,
-            //     requestOptions
-            // );
             const response = await fetch(
                 `http://localhost:3001/api/user/status`,
                 requestOptions
@@ -106,6 +104,7 @@ const showAlert = (message,type)=>{
 					<Route path="contact" element={<ContactUs showAlert={showAlert}/>} />
 					<Route path="tournaments" element={<Tournments showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
 					<Route path="tournament" element={<Tournament showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
+					<Route path="newMember" element={<NewMember showAlert={showAlert} />} />
 					{isLoggedIn?(
 						<>
 						{isAdmin?(
@@ -120,8 +119,8 @@ const showAlert = (message,type)=>{
 						):(
 							<>	
 							</>
-						)}
-						
+						)}			
+						<Route path="my-tournaments" element={<MyTournament showAlert={showAlert}/>} />
 						<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert}/>} />
 						<Route path="TeamForm" element={<TeamForm showAlert={showAlert}/>} />
 						</>

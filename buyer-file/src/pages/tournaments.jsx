@@ -26,7 +26,7 @@ const TournamentFunc = (props)=>{
             }
 		}
 		value();
-	});
+	},[]);
 
     return (
         <>

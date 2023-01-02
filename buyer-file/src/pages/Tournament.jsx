@@ -52,7 +52,7 @@ const TournamentFunc = (props)=>{
                         <div className="section-wrapper">
                             <div className="row g-4 justify-content-center">
                                 {
-                            (props.isLoggedIn)?(<>
+                            (props.isLoggedIn && Tournament.noOfTeams<Tournament.team.length)?(<>
                              <div className="col-12">
                                     <div className="match-item item-layer">
                                         <div className="match-inner">
