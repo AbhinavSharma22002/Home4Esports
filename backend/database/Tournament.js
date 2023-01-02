@@ -41,10 +41,8 @@ const formSchema = new Schema({
   },
   
   author: {
-    id: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "users"
-      }
   }
 });
 const tournament = mongoose.model("form", formSchema);

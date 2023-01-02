@@ -54,7 +54,9 @@ const TeamForm = (props)=> {
         if(response.status===200){
             props.showAlert("Team Creation Success!!","success");
             setInvitationLink(dataLink.link);
-
+        }
+        else if(response.status===400){
+            props.showAlert("Registrations Closed!!","danger");
         }
     }
 
