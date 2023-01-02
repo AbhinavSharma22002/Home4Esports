@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Rating from './rating';
 
 const subtitle = "our LATEST VIDEOS";
-const title = "check our live video";
+const title = "click here to check our video";
 
 
 
@@ -14,7 +14,7 @@ let VideoListContentTop = [
     {
         imgUrl: 'assets/images/video/06.jpg',
         imgAlt: 'Video Thum',
-       videoLink: 'https://www.youtube.com/embed/0twXu-smd4k',
+       videoLink: 'https://www.youtube.com/embed/xRgHu4JdcTU',
     },
 ]
 
@@ -22,7 +22,7 @@ let TestimonialListContent = [
     {
         imgUrl: 'assets/images/testimonial/01.jpg',
         imgAlt: 'testimonial thumb',
-        title: 'Somrat Islam',
+        title: 'Peeyush "PsyLens" Kumar',
         desc: 'Ex-Microsoft, Esports Mentor India Accelerator, Speaker, Caster Esports (15+ Yrs),Corporates (8 Yrs)',
         dige: 'Founder of CCE',
         ratingcount: '5.28',
@@ -31,7 +31,7 @@ let TestimonialListContent = [
         imgUrl: 'assets/images/testimonial/03.jpg',
         imgAlt: 'testimonial thumb',
 
-        title: 'Rajib Raj',
+        title: 'Samhita "SheSapien"',
         desc: 'ISB, SEEDS Board Member, Ex-Microsoft, Honeywell, EY-Esports (2+ Yrs), Corporates (15+ Yrs)',
         dige: 'Co-Founder of CCE',
         ratingcount: '5.80',
@@ -39,7 +39,7 @@ let TestimonialListContent = [
     {
         imgUrl: 'assets/images/testimonial/02.jpg',
         imgAlt: 'testimonial thumb',
-        title: 'Rajib Raj',
+        title: 'Pravesh "EvilEvr" Rawat',
         desc: 'Creative Enterpreneur, Pro Gamer, Artist Esports (10+Yrs) ,Corporates (2 Yrs)',
         dige: 'Co-Founder of CCE',
         ratingcount: '5.80',

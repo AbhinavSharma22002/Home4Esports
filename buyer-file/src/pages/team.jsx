@@ -47,6 +47,7 @@ return (
                         <p>{subtitle}</p>
                         <h2>{title}</h2>
                     </div>
+                    <div className="container">
                     <div className="section-wrapper">
                         <div className="row g-4">
                             {members.map((val, i) => (
@@ -66,6 +67,7 @@ return (
                                 </div>
                             ))}
                         </div>
+                    </div>
                     </div>
                 </div>
             </section>
