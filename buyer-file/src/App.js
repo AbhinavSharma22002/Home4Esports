@@ -38,12 +38,14 @@ import Floating_Alert from "./component/layout/floating_alert";
 import Tournament from "./pages/Tournament";
 import NewMember from "./component/section/member";
 import MyTournament from "./component/section/MyTournament";
-
+import UpdateCustomer from "./component/section/Customer";
 
 function App() {	
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [isAdmin, setIsAdmin] = useState(false);
+const [isSuperAdmin, setIsSuperAdmin] = useState(false);
 const [alert,setAlert] = useState(null);
+
 
 const showAlert = (message,type)=>{
     setAlert([message,type])
@@ -71,11 +73,15 @@ const showAlert = (message,type)=>{
 					if(data.role==="admin"){
 						setIsAdmin(true);
 					}
+					else if(data.role==="superadmin"){
+						setIsSuperAdmin(true);
+					}
 					else{
 						setIsAdmin(false);
 					}
             }
             else{
+				setIsSuperAdmin(false);
 					setIsAdmin(false);
                     setIsLoggedIn(false);
             }
@@ -107,6 +113,17 @@ const showAlert = (message,type)=>{
 					<Route path="newMember" element={<NewMember showAlert={showAlert} />} />
 					{isLoggedIn?(
 						<>
+						{
+							isSuperAdmin?(<>
+								<Route path="admin" element={<Admin showAlert={showAlert}/>}/>
+								<Route path="Schedule" element={<Schedule showAlert={showAlert}/>} />
+								<Route path="Mgmt" element={<Mgmt showAlert={showAlert}/>} />
+								<Route path="Customer" element={<Customer showAlert={showAlert}/>}/>
+								<Route path="createBlog" element={<CreateBlog showAlert={showAlert}/>}/>
+								<Route path="streamForm" element={<StreamForm showAlert={showAlert}/>}/>
+								<Route path="my-customer" element={<UpdateCustomer showAlert={showAlert}/>}/>	
+							</>):(<></>)
+						}
 						{isAdmin?(
 							<>
 							<Route path="admin" element={<Admin showAlert={showAlert}/>}/>
@@ -114,7 +131,7 @@ const showAlert = (message,type)=>{
 							<Route path="Mgmt" element={<Mgmt showAlert={showAlert}/>} />
 							<Route path="Customer" element={<Customer showAlert={showAlert}/>}/>
 							<Route path="createBlog" element={<CreateBlog showAlert={showAlert}/>}/>
-							<Route path="streamForm" element={<StreamForm showAlert={showAlert}/>}/>	
+							<Route path="streamForm" element={<StreamForm showAlert={showAlert}/>}/>
 							</>
 						):(
 							<>	

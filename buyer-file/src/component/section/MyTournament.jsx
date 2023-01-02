@@ -26,7 +26,9 @@ const openMatchModal = (msg,e)=>{
         setCurrId(msg);
         let requestOptions = {
                 method: "POST",
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',
+                    "auth-token":localStorage.getItem('token')
+                    },
                 body: JSON.stringify({id: msg})
         };
             fetch(
@@ -351,7 +353,7 @@ const handleDelete= async ()=>{
                                     type="text"
                                     name=""
                                     id=""
-                                    value={name} 
+                                    value={val} 
                                     onChange={(e)=>{setName(e.target.value);}}
                                     placeholder="Enter Name*"
                             />
