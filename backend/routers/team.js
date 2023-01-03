@@ -58,7 +58,7 @@ async (req, res) => {
     Tournament.findById(tournamentId);
 
     try {
-      if(tournament.noOfTeams<tournament.team.length){
+      if(tournament.noOfTeams>tournament.team.length){
         let team = await Team.create({
             teamName: teamName,
             author: leader._id,

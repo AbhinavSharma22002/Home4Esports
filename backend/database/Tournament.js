@@ -23,6 +23,15 @@ const formSchema = new Schema({
     }
 
 }],
+matches: [{
+  id:{type:mongoose.Schema.Types.ObjectId,
+  ref: "match"
+  }
+}],
+noOfMatches:{
+  type: Number,
+  required: true
+},
   teamSize:{
     type: Number,
     required: true

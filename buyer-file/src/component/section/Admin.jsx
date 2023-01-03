@@ -51,6 +51,12 @@ const Admin = () => {
                         <img src={Tournament} alt="logo" />
                     </Link>
                 </div>
+
+                <div className='head-1'>
+                    <Link to="/my-customer">
+                        <img src={Tournament} alt="logo" />
+                    </Link>
+                </div>
             </div>
           <br /><br /><br /><br /> <br /><br /><br /><br /><br />
         </Fragment>
