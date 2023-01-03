@@ -3,12 +3,12 @@ import {useNavigate  } from "react-router-dom";
 import PageHeader from "../layout/pageheader";
 
 
-
 const TeamForm = (props)=> {
     const title = "Create Your Team";
 
     const [teamName,setTeamName] = useState('');
     const[image,setImage] = useState('');
+    const[invitationLink,setInvitationLink] = useState('');
 
 
     const navigate =useNavigate();
@@ -50,10 +50,13 @@ const TeamForm = (props)=> {
                 `http://localhost:3001/api/team/create`,
                 requestOptions
         );
+        const dataLink = await response.json();
         if(response.status===200){
             props.showAlert("Team Creation Success!!","success");
-            
-            navigate(`/tournament?id=${data.tournamentId}`);
+            setInvitationLink(dataLink.link);
+        }
+        else if(response.status===400){
+            props.showAlert("Registrations Closed!!","danger");
         }
     }
 
@@ -66,7 +69,10 @@ const TeamForm = (props)=> {
                 <div className=" container">
                     <div className="account-wrapper">
                         <h3 className="title">{title}</h3>
-                        <form className="account-form">
+       
+                        {invitationLink ===''? (
+                            <>
+                                             <form className="account-form">
                             <div className="form-group">
                                 <input
                                     type="text"
@@ -90,7 +96,16 @@ const TeamForm = (props)=> {
                                 <button className="d-block default-button" onClick = {handleUpload}><span>CREATE TEAM</span></button>
                             </div>
                         </form>
-                        
+                            </>
+                        ):(
+                            <>
+                            <div>
+                            <p>Invitation link:</p>
+                            <input type="text" value={invitationLink} readOnly/>
+                            <br />
+                          </div>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

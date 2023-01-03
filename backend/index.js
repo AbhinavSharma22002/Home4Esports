@@ -1,9 +1,8 @@
 const connectToMongo = require("./backend");
 connectToMongo();
 const express = require('express');
-const mongoose = require('mongoose');
 
-const cron = require('cron');
+const cron = require('node-cron');
 const app = express();
 const server = require('http').Server(app);
 const Cors = require("cors");
@@ -40,27 +39,26 @@ const Teams = require('./database/Team');
 const teamUpdate = async ()=>{
     let teams = await Teams.find({});
     for(let i=0;i<teams.length;i++){
-        let clicked = teams[i];
+        let clicked = teams[i].clicked;
         if(clicked < 10){
-            teams[i].tier= 3;
-            let team = await Team.findOneAndUpdate({_id: team[i]._id}, teams[i]);
+            teams[i].tier+= 3;
+            let team = await Teams.findOneAndUpdate({_id: teams[i]._id}, teams[i]);
         }else if(clicked>=10 && clicked <20){
-            teams[i].tier=2;
-            let team = await Team.findOneAndUpdate({_id: team[i]._id}, teams[i]);
+            teams[i].tier+=2;
+            let team = await Teams.findOneAndUpdate({_id: teams[i]._id}, teams[i]);
         }
         else{
-            teams[i].tier=1;
-            let team = await Team.findOneAndUpdate({_id: team[i]._id}, teams[i]);
+            teams[i].tier+=1;
+            let team = await Teams.findOneAndUpdate({_id: teams[i]._id}, teams[i]);
         }
         
     }
 }
 
-const job = new cron.CronJob('0 0 * * *', () => {
+cron.schedule('0 0 * * *', () => {
     console.log('Running cron job');
     teamUpdate();
 });
-
 server.listen(process.env.PORT,()=>{
     console.log(`RUnning on ${process.env.PORT}`);
 })

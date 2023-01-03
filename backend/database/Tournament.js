@@ -20,7 +20,21 @@ const formSchema = new Schema({
   team: [{
     id:{type:mongoose.Schema.Types.ObjectId,
     ref: "team"
-    }
+    },
+    team1:{
+      type:String,
+      required:true
+    },
+    team2:{
+      type:String,
+      required:true
+    },
+
+}],
+matches: [{
+  id:{type:mongoose.Schema.Types.ObjectId,
+  ref: "matches"
+  },
 
 }],
   teamSize:{
@@ -41,10 +55,8 @@ const formSchema = new Schema({
   },
   
   author: {
-    id: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "users"
-      }
   }
 });
 const tournament = mongoose.model("form", formSchema);

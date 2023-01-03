@@ -12,25 +12,25 @@ let CollectionListContent = [
         imgUrl: 'assets/images/game/01.png',
         imgAlt: 'collect thumb',
         title: 'Studio',
-        link:'google.com'
+        link:'#'
     },
     {
         imgUrl: 'assets/images/game/02.png',
         imgAlt: 'collect thumb',
         title: 'Khelshaala',
-        link:'google.com'
+        link:'#'
     },
     {
         imgUrl: 'assets/images/game/03.png',
         imgAlt: 'collect thumb',
         title: 'Crowd Forge',
-        link:'google.com'
+        link:'#'
     },
     {
         imgUrl: 'assets/images/game/04.png',
         imgAlt: 'collect thumb',
         title: 'Metabits',
-        link:'google.com'
+        link:'#'
     },
 ]
 

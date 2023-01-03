@@ -53,7 +53,7 @@ const TournamentForm = (props)=> {
         );
         if(response.status===200){
             props.showAlert("Tournament Host Success!!","success");
-            navigate("/tournament");
+            navigate(`/tournaments`);
         }
     }
 

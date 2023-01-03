@@ -21,7 +21,7 @@ import SignUp from "./pages/signup";
 import Tournments from "./pages/tournaments";
 
 import Footer from "./component/layout/footer";
-import Header from "./component/layout/header";
+import Header from "./component/layout/header"
 import TeamPage from "./pages/team";
 import TeamSinglePage from "./pages/team-single";
 import Admin from "./component/section/Admin";
@@ -36,18 +36,22 @@ import TournamentForm from "./component/section/TournamentForm";
 import TeamForm from "./component/section/teamform";
 import Floating_Alert from "./component/layout/floating_alert";
 import Tournament from "./pages/Tournament";
-
+import NewMember from "./component/section/member";
+import MyTournament from "./component/section/MyTournament";
+import UpdateCustomer from "./component/section/Customer";
 
 function App() {	
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [isAdmin, setIsAdmin] = useState(false);
+const [isSuperAdmin, setIsSuperAdmin] = useState(false);
 const [alert,setAlert] = useState(null);
+
 
 const showAlert = (message,type)=>{
     setAlert([message,type])
     setTimeout(()=>{
       setAlert(null);
-    },1500);
+    },2000);
   };
 
 
@@ -59,10 +63,6 @@ const showAlert = (message,type)=>{
                     "auth-token":localStorage.getItem('token')
                     },
             };
-			// let response = await fetch(
-            //     `http://localhost:3001/api/user/getAll`,
-            //     requestOptions
-            // );
             const response = await fetch(
                 `http://localhost:3001/api/user/status`,
                 requestOptions
@@ -73,11 +73,15 @@ const showAlert = (message,type)=>{
 					if(data.role==="admin"){
 						setIsAdmin(true);
 					}
+					else if(data.role==="superadmin"){
+						setIsSuperAdmin(true);
+					}
 					else{
 						setIsAdmin(false);
 					}
             }
             else{
+				setIsSuperAdmin(false);
 					setIsAdmin(false);
                     setIsLoggedIn(false);
             }
@@ -106,8 +110,20 @@ const showAlert = (message,type)=>{
 					<Route path="contact" element={<ContactUs showAlert={showAlert}/>} />
 					<Route path="tournaments" element={<Tournments showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
 					<Route path="tournament" element={<Tournament showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
+					<Route path="newMember" element={<NewMember showAlert={showAlert} />} />
 					{isLoggedIn?(
 						<>
+						{
+							isSuperAdmin?(<>
+								<Route path="admin" element={<Admin showAlert={showAlert}/>}/>
+								<Route path="Schedule" element={<Schedule showAlert={showAlert}/>} />
+								<Route path="Mgmt" element={<Mgmt showAlert={showAlert}/>} />
+								<Route path="Customer" element={<Customer showAlert={showAlert}/>}/>
+								<Route path="createBlog" element={<CreateBlog showAlert={showAlert}/>}/>
+								<Route path="streamForm" element={<StreamForm showAlert={showAlert}/>}/>
+								<Route path="my-customer" element={<UpdateCustomer showAlert={showAlert}/>}/>	
+							</>):(<></>)
+						}
 						{isAdmin?(
 							<>
 							<Route path="admin" element={<Admin showAlert={showAlert}/>}/>
@@ -115,13 +131,13 @@ const showAlert = (message,type)=>{
 							<Route path="Mgmt" element={<Mgmt showAlert={showAlert}/>} />
 							<Route path="Customer" element={<Customer showAlert={showAlert}/>}/>
 							<Route path="createBlog" element={<CreateBlog showAlert={showAlert}/>}/>
-							<Route path="streamForm" element={<StreamForm showAlert={showAlert}/>}/>	
+							<Route path="streamForm" element={<StreamForm showAlert={showAlert}/>}/>
 							</>
 						):(
 							<>	
 							</>
-						)}
-						
+						)}			
+						<Route path="my-tournaments" element={<MyTournament showAlert={showAlert}/>} />
 						<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert}/>} />
 						<Route path="TeamForm" element={<TeamForm showAlert={showAlert}/>} />
 						</>
