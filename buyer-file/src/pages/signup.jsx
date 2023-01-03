@@ -104,11 +104,11 @@ const SignUpFunction = (props)=>{
                             </form>
                             <div className="account-bottom">
                                 <span className="d-block cate pt-10">Are you a member? <Link to="/login">Login</Link></span>
-                                <span className="or"><span>or</span></span>
+                                {/* <span className="or"><span>or</span></span>
                                 <h5 className="subtitle">Register With Social Media</h5>
                                 <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center mt-4">
                                     <SocialMedia />
-                                </ul>
+                                </ul> */}
                             </div>
                         </div>
                     </div>

@@ -33,6 +33,7 @@ import React from "react";
 import ErrorPage from "./pages/errorpage";
 import CreateBlog from "./component/section/createBlog";
 import TournamentForm from "./component/section/TournamentForm";
+import DisplayForm from "./component/section/displayForm";
 import TeamForm from "./component/section/teamform";
 import Floating_Alert from "./component/layout/floating_alert";
 import Tournament from "./pages/Tournament";
@@ -120,6 +121,7 @@ function App() {
 								<Route path="Customer" element={<Customer showAlert={showAlert} />} />
 								<Route path="createBlog" element={<CreateBlog showAlert={showAlert} />} />
 								<Route path="streamForm" element={<StreamForm showAlert={showAlert} />} />
+								<Route path="displayForm" element={<DisplayForm showAlert={showAlert}/>}/>
 								<Route path="my-customer" element={<UpdateCustomer showAlert={showAlert} />} />
 							</>) : (<></>)
 						}
