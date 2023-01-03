@@ -97,6 +97,53 @@ router.post("/signup",
    }
 });
 
+
+router.post("/getByIdAndUpdate",fetchUser,async(req,res)=>{
+  const {id, type,body} = req.body;
+  try {
+    const superadmin = await User.findById(req.user.id);
+    if(superadmin && superadmin.role==='superadmin'){
+      const user = await User.findById(id).select("-password -date");
+      
+    for(let i =0;i<type.length;i++){
+      let t1 = type[i];
+      let b1 = body[i];
+      if(t1==="fname"){
+        user.fname= b1;
+      }
+      if(t1==="email"){
+        user.email= b1;
+      }
+      if(t1==="role"){
+        user.role= b1;
+      }
+    }
+      await User.findOneAndUpdate({_id: user._id}, user);
+      res.status(200).send("Success");
+    }
+    else{
+      res.status(401).json({value:"Don't have access to view!!"});
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Internal server error");
+  }
+});
+router.post("/getById",fetchUser,async(req,res)=>{
+  try {
+    const superadmin = await User.findById(req.user.id);
+    if(superadmin && superadmin.role==='superadmin'){
+      const user = await User.findById(req.body.id).select("-password -date");
+      res.status(200).json({user});
+    }
+    else{
+      res.status(401).json({value:"Don't have access to view!!"});
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Internal server error");
+  }
+});
 router.get(
   "/status",fetchUser,
   async (req, res) => {
@@ -110,10 +157,16 @@ router.get(
     }
   }
 );
-router.get("/getAll",fetchUser,async(req,res)=>{
+router.post("/getAll",fetchUser,async(req,res)=>{
   try {
-    const users = await User.find().select("-password -date");
-    res.send(users);
+    const superadmin = await User.findById(req.user.id);
+    if(superadmin && superadmin.role==='superadmin'){
+      const users = await User.find().select("-password -date");
+      res.status(200).json({users});
+    }
+    else{
+      res.status(401).json({value:"Don't have access to view!!"});
+    }
   } catch (error) {
     console.log(error.message);
     res.status(500).send("Internal server error");

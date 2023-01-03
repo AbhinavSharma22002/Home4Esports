@@ -52,7 +52,7 @@ const HeaderFunction = (props) => {
             const data = await response.json();
             if (response.status === 200) {
                 setIsLoggedIn(true);
-                if (data.role === "admin") {
+                if (data.role === "admin"|| data.role==='superadmin') {
                     setIsAdmin(true);
                 }
                 else {
