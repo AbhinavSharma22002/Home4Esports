@@ -41,120 +41,117 @@ import NewMember from "./component/section/member";
 import MyTournament from "./component/section/MyTournament";
 import UpdateCustomer from "./component/section/Customer";
 
-function App() {	
-const [isLoggedIn, setIsLoggedIn] = useState(false);
-const [isAdmin, setIsAdmin] = useState(false);
-const [isSuperAdmin, setIsSuperAdmin] = useState(false);
-const [alert,setAlert] = useState(null);
+function App() {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isAdmin, setIsAdmin] = useState(false);
+	const [isSuperAdmin, setIsSuperAdmin] = useState(false);
+	const [alert, setAlert] = useState(null);
 
 
-const showAlert = (message,type)=>{
-    setAlert([message,type])
-    setTimeout(()=>{
-      setAlert(null);
-    },2000);
-  };
+	const showAlert = (message, type) => {
+		setAlert([message, type])
+		setTimeout(() => {
+			setAlert(null);
+		}, 2000);
+	};
 
 
-    useEffect(() => {
-		const value= async()=> {
-             const requestOptions = {
-                method: "GET",
-                headers: {
-                    "auth-token":localStorage.getItem('token')
-                    },
-            };
-            const response = await fetch(
-                `http://localhost:3001/api/user/status`,
-                requestOptions
-            );
+	useEffect(() => {
+		const value = async () => {
+			const requestOptions = {
+				method: "GET",
+				headers: {
+					"auth-token": localStorage.getItem('token')
+				},
+			};
+			const response = await fetch(
+				`http://localhost:3001/api/user/status`,
+				requestOptions
+			);
 			const data = await response.json();
-            if(response.status===200){
-                    setIsLoggedIn(true);
-					if(data.role==="admin"){
-						setIsAdmin(true);
-					}
-					else if(data.role==="superadmin"){
-						setIsSuperAdmin(true);
-					}
-					else{
-						setIsAdmin(false);
-					}
-            }
-            else{
-				setIsSuperAdmin(false);
+			if (response.status === 200) {
+				setIsLoggedIn(true);
+				if (data.role === "admin") {
+					setIsAdmin(true);
+				}
+				else if (data.role === "superadmin") {
+					setIsSuperAdmin(true);
+				}
+				else {
 					setIsAdmin(false);
-                    setIsLoggedIn(false);
-            }
+				}
+			}
+			else {
+				setIsSuperAdmin(false);
+				setIsAdmin(false);
+				setIsLoggedIn(false);
+			}
 		}
 		value();
-	},[isLoggedIn]);
+	}, [isLoggedIn]);
 	return (
 		<AccessState>
-				<ScrollToTop />
-			
-			<Header setIsLoggedIn={setIsLoggedIn} alert={alert}/>
-				<Routes>
-					<Route path="/" element={<HomePage showAlert={showAlert}/>} />
-					<Route path="about" element={<AboutPage showAlert={showAlert}/>} />
-					<Route path="gallery" element={<GalleryPage showAlert={showAlert}/>} />
-					<Route path="game-list" element={<GameListSection showAlert={showAlert}/>} />
-					<Route path="game-list2" element={<GameListTwoSection showAlert={showAlert}/>} />
-					<Route path="partners" element={<PartnerPage showAlert={showAlert}/>} />
-					<Route path="achievements" element={<AchievementPage showAlert={showAlert}/>} />
-					<Route path="team" element={<TeamPage showAlert={showAlert}/>} />
-					<Route path="*" element={<ErrorPage showAlert={showAlert}/>} />
-					<Route path="shop" element={<ShopPage showAlert={showAlert}/>} />
-					<Route path="shop-single" element={<ShopDetails showAlert={showAlert}/>} />
-					<Route path="cart-page" element={<ShopCart showAlert={showAlert}/>} />
-					<Route path="blog-single" element={<BlogDetails showAlert={showAlert}/>} />
-					<Route path="contact" element={<ContactUs showAlert={showAlert}/>} />
-					<Route path="tournaments" element={<Tournments showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
-					<Route path="tournament" element={<Tournament showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
-					<Route path="newMember" element={<NewMember showAlert={showAlert} />} />
-					{isLoggedIn?(
-						<>
+			<ScrollToTop />
+			<Header setIsLoggedIn={setIsLoggedIn} alert={alert} />
+			<Routes>
+				<Route path="/" element={<HomePage showAlert={showAlert} />} />
+				<Route path="about" element={<AboutPage showAlert={showAlert} />} />
+				<Route path="gallery" element={<GalleryPage showAlert={showAlert} />} />
+				<Route path="game-list" element={<GameListSection showAlert={showAlert} />} />
+				<Route path="game-list2" element={<GameListTwoSection showAlert={showAlert} />} />
+				<Route path="partners" element={<PartnerPage showAlert={showAlert} />} />
+				<Route path="achievements" element={<AchievementPage showAlert={showAlert} />} />
+				<Route path="team" element={<TeamPage showAlert={showAlert} />} />
+				<Route path="*" element={<ErrorPage showAlert={showAlert} />} />
+				<Route path="shop" element={<ShopPage showAlert={showAlert} />} />
+				<Route path="shop-single" element={<ShopDetails showAlert={showAlert} />} />
+				<Route path="cart-page" element={<ShopCart showAlert={showAlert} />} />
+				<Route path="blog-single" element={<BlogDetails showAlert={showAlert} />} />
+				<Route path="contact" element={<ContactUs showAlert={showAlert} />} />
+				<Route path="tournaments" element={<Tournments showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
+				<Route path="tournament" element={<Tournament showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
+				<Route path="newMember" element={<NewMember showAlert={showAlert} />} />
+				{isLoggedIn ? (
+					<>
 						{
-							isSuperAdmin?(<>
-								<Route path="admin" element={<Admin showAlert={showAlert}/>}/>
-								<Route path="Schedule" element={<Schedule showAlert={showAlert}/>} />
-								<Route path="Mgmt" element={<Mgmt showAlert={showAlert}/>} />
-								<Route path="Customer" element={<Customer showAlert={showAlert}/>}/>
-								<Route path="createBlog" element={<CreateBlog showAlert={showAlert}/>}/>
-								<Route path="streamForm" element={<StreamForm showAlert={showAlert}/>}/>
+							isSuperAdmin ? (<>
+								<Route path="admin" element={<Admin showAlert={showAlert} />} />
+								<Route path="Schedule" element={<Schedule showAlert={showAlert} />} />
+								<Route path="Mgmt" element={<Mgmt showAlert={showAlert} />} />
+								<Route path="Customer" element={<Customer showAlert={showAlert} />} />
+								<Route path="createBlog" element={<CreateBlog showAlert={showAlert} />} />
+								<Route path="streamForm" element={<StreamForm showAlert={showAlert} />} />
 								<Route path="displayForm" element={<DisplayForm showAlert={showAlert}/>}/>
-								<Route path="my-customer" element={<UpdateCustomer showAlert={showAlert}/>}/>	
-							</>):(<></>)
+								<Route path="my-customer" element={<UpdateCustomer showAlert={showAlert} />} />
+							</>) : (<></>)
 						}
-						{isAdmin?(
+						{isAdmin ? (
 							<>
-							<Route path="admin" element={<Admin showAlert={showAlert}/>}/>
-							<Route path="Schedule" element={<Schedule showAlert={showAlert}/>} />
-							<Route path="Mgmt" element={<Mgmt showAlert={showAlert}/>} />
-							<Route path="Customer" element={<Customer showAlert={showAlert}/>}/>
-							<Route path="createBlog" element={<CreateBlog showAlert={showAlert}/>}/>
-							<Route path="streamForm" element={<StreamForm showAlert={showAlert}/>}/>
+								<Route path="admin" element={<Admin showAlert={showAlert} />} />
+								<Route path="Schedule" element={<Schedule showAlert={showAlert} />} />
+								<Route path="Mgmt" element={<Mgmt showAlert={showAlert} />} />
+								<Route path="Customer" element={<Customer showAlert={showAlert} />} />
+								<Route path="createBlog" element={<CreateBlog showAlert={showAlert} />} />
+								<Route path="streamForm" element={<StreamForm showAlert={showAlert} />} />
 							</>
-						):(
-							<>	
+						) : (
+							<>
 							</>
-						)}			
-						<Route path="my-tournaments" element={<MyTournament showAlert={showAlert}/>} />
-						<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert}/>} />
-						<Route path="TeamForm" element={<TeamForm showAlert={showAlert}/>} />
-						</>
-					):(<>
-						<Route path="login" element={<LogIn setIsLoggedIn={setIsLoggedIn} showAlert={showAlert}/>} />
-						<Route path="signup" element={<SignUp showAlert={showAlert}/>} />
-					</>)
+						)}
+						<Route path="my-tournaments" element={<MyTournament showAlert={showAlert} />} />
+						<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert} />} />
+						<Route path="TeamForm" element={<TeamForm showAlert={showAlert} />} />
+					</>
+				) : (<>
+					<Route path="login" element={<LogIn setIsLoggedIn={setIsLoggedIn} showAlert={showAlert} />} />
+					<Route path="signup" element={<SignUp showAlert={showAlert} />} />
+				</>)
 				}
-				</Routes>
-				
-                <div>
-                <Floating_Alert/>
-                </div>
-			
+			</Routes>
 			<Footer />
+			<span className="icons">
+				<Floating_Alert />
+			</span>
 		</AccessState>
 	);
 }

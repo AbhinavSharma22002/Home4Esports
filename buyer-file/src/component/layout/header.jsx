@@ -52,7 +52,7 @@ const HeaderFunction = (props) => {
             const data = await response.json();
             if (response.status === 200) {
                 setIsLoggedIn(true);
-                if (data.role === "admin"|| data.role==='superadmin') {
+                if (data.role === "admin" || data.role==='superadmin') {
                     setIsAdmin(true);
                 }
                 else {
@@ -139,7 +139,7 @@ const menuTrigger = ()=> {
                                             <ul className="submenu dropdown-menu" aria-labelledby="dropdown">
                                                 <li><NavLink to="/about">About</NavLink></li>
                                                 <li><NavLink to="/gallery">gallery</NavLink></li>
-                                                <li><NavLink to="/game-list2">game list</NavLink></li>
+                                                <li><NavLink to="/game-list2">game list 2</NavLink></li>
                                                 <li><NavLink to="/partners">partners</NavLink></li>
                                                 <li><NavLink to="/achievements">achievement</NavLink></li>
                                                 <li><NavLink to="/tournaments">tournaments</NavLink></li>

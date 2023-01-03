@@ -6,8 +6,10 @@ import Newmerch from '../../assets/images/banner/Newmerch.png'
 import Blog from "../../assets/images/banner/blog.png"
 import Stream from "../../assets/images/banner/stream.png"
 import Customer from "../../assets/images/banner/customer.png"
+
 import Best from "../../assets/images/banner/best.png";
 import Users from "../../assets/images/banner/users.png";
+
 
 import Tournament from "../../assets/images/banner/customer.png"
 import PageHeader from "../layout/pageheader";
@@ -47,7 +49,6 @@ const Admin = () => {
                         <img src={Stream} alt="logo" />
                     </Link>
                 </div>
-
                 <div className='head-1'>
                     <Link to="/my-tournaments">
                         <img src={Tournament} alt="logo" />
@@ -65,7 +66,6 @@ const Admin = () => {
                         <img src={Best} alt="logo" />
                     </Link>
                 </div>
-
             </div>
           <br /><br /><br /><br /> <br /><br /><br /><br /><br />
         </Fragment>
