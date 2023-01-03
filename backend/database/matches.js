@@ -2,19 +2,21 @@ const mongoose = require("mongoose");
 const {schema} = mongoose;
 
 const matchSchema = new mongoose.Schema({
-      team1: {
+      teams: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Team'
+        ref: 'team'
+      }],
+      date:{
+        type: Date,
+        required: true
       },
-      team2: {
+      time:{
+         type: String,
+         required: true
+      },
+      results: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Team'
-      },
-      date: Date,
-      time: String,
-      winner: {
-        type: Boolean,
-        default: false
+        ref: 'team'
       }
 });
 const Match  = mongoose.model("match",matchSchema);

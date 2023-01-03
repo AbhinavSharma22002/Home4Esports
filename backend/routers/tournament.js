@@ -56,7 +56,7 @@ async (req, res) => {
     let userId = req.user.id;
     const user = await User.findById(userId).select("-password");
     //check for access level
-  const { name,description,game,teamSize,noOfTeams,startDate,priceMoney,image} = req.body;
+  const { name,description,game,teamSize,noOfTeams,startDate,priceMoney,noOfMatches,image} = req.body;
   try {
     let tournament = await Tournament.create({
         name: name,
@@ -67,7 +67,8 @@ async (req, res) => {
         startDate:startDate,
         priceMoney:priceMoney,
         image:image,
-        author: user._id
+        author: user._id,
+        noOfMatches: noOfMatches
       });
     return res.status(200).send("Success");
   } catch (error) {

@@ -3,13 +3,14 @@ import { Fragment,useEffect,useState } from "react";
 import PageHeader from "../layout/pageheader";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
+import * as XLSX from "xlsx";
 
 const MyTournament = (props)=>{
     const [myTournaments,setMyTournamentsList] = useState([]);
     const [isOpen,setIsOpen] = useState(false);
     const [isMatchOpen,setIsMatchOpen] = useState(false);
+    const [isTeamOpen,setIsTeamOpen] = useState(false);
     const [currId,setCurrId] = useState('');
-
     
     const [name,setName] = useState('');
     const [description,setDescription] = useState('');
@@ -20,7 +21,94 @@ const MyTournament = (props)=>{
     const [priceMoney,setPriceMoney] = useState('');
     const [matches,setMatches] = useState([]);
     const [noOfMatches,setNoOfMatches] = useState('');
+    const [teams,setTeams] = useState([]);
 
+const readExcel = (file)=>{
+    const promise = new Promise((resolve,reject)=>{
+        const fileReader=new FileReader();
+        fileReader.readAsArrayBuffer(file);
+
+        fileReader.onload = function(){
+            const bufferArray = fileReader.result;
+
+            const wb = XLSX.read(bufferArray,{type:'buffer'});
+
+            const wsname= wb.SheetNames[0];
+
+            const ws = wb.Sheets[wsname];
+            const data = XLSX.utils.sheet_to_json(ws);
+
+            resolve(data);
+        }
+        fileReader.onerror = function(error){
+            reject(error);
+
+        }
+    });
+
+    promise.then((d)=>{
+        console.log(d);
+        let filtered_Data = [];
+        for(let i=0;i<d.length;i++){
+            let row = d[i];
+            
+            let curr_match ={};
+            if(row.$Matches && row.$Teams && row.$Date && row.$Round && row.$Time){
+                curr_match.date = row.$Date;
+                curr_match.time = row.$Time;
+                curr_match.results = row.$Results;
+                let noTeam = row.$Teams;
+                let curr_teams = [];
+                for(let j = 1;j<=noTeam;j++){
+                    let team_row = d[j+i];
+                    if(team_row.$Teams){
+                        curr_teams.push(team_row.$Teams);
+                    }
+                    else{
+                        //throw Error
+                        throw "INVALID SYNTAX OF EXCEL";
+                    }
+                }
+                i+= noTeam;
+                curr_match.teams = curr_teams;
+            }
+            else{
+                //throw Syntax error
+                throw "INVALID SYNTAX OF EXCEL";
+            }
+            filtered_Data.push(curr_match);
+        }
+        console.log(filtered_Data);
+        setMatches(filtered_Data);
+    })
+};
+const openTeamModal = (msg,e)=>{
+        e.preventDefault();
+        setCurrId(msg);
+        let requestOptions = {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json',
+                    "auth-token":localStorage.getItem('token')
+                    },
+                body: JSON.stringify({id: msg})
+        };
+            fetch(
+                `http://localhost:3001/api/tournament/getById`,
+                requestOptions
+            ).then((res) => res.json())
+            .then((json) => {
+                setTeams(json.list);
+                console.log(json.list);
+                json = json.tournament;
+                setNoOfTeams(json.noOfTeams);
+            })
+    setIsTeamOpen(true);
+}
+const closeTeammodal = ()=>{
+    setIsTeamOpen(false);
+    setNoOfTeams('');
+    setTeams([]);
+}
 const openMatchModal = (msg,e)=>{
         e.preventDefault();
         setCurrId(msg);
@@ -42,7 +130,7 @@ const openMatchModal = (msg,e)=>{
             })
     setIsMatchOpen(true);
 }
-const closeMatchModal = ()=>{
+const closematchmodal = ()=>{
     setIsMatchOpen(false);
     setMatches([]);
     setNoOfMatches('');
@@ -132,8 +220,8 @@ const handleDelete= async ()=>{
       const handleMatchUpload = async (e)=>{
         e.preventDefault();
         const data = {
-        id: currId,
-        body: matches
+        tourId: currId,
+        matches
         };
         const requestOptions = {
                 method: "POST",
@@ -144,7 +232,7 @@ const handleDelete= async ()=>{
                 body: JSON.stringify(data),
             };
             const response = await fetch(
-                `http://localhost:3001/api/match/Update`,
+                `http://localhost:3001/api/match/getAndUpdateMatches`,
                 requestOptions
         );
         if(response.status===200){
@@ -188,7 +276,6 @@ const handleDelete= async ()=>{
         var formattedDate = year + "-" + month + "-" + day;
         return formattedDate;
     }
-
     return (
         <>
         <Fragment>
@@ -214,6 +301,9 @@ const handleDelete= async ()=>{
                                      Edit
                                     </li>
                                     <li className="nav-item mx-5" role="presentation">
+                                     Teams
+                                    </li>
+                                    <li className="nav-item mx-5" role="presentation">
                                      Schedule
                                     </li>
                                 </ul>
@@ -231,6 +321,7 @@ const handleDelete= async ()=>{
                                                         <td>{getDate(val.startDate)}</td>
                                                         <td>{val.game}</td>
                                                         <td className="open-modal" onClick={(event)=> openModal(val._id,event)} style={{cursor: "Pointer"}}><u>Edit</u></td>
+                                                        <td className="open-team-modal" onClick={(event)=> openTeamModal(val._id,event)} style={{cursor: "Pointer"}}><u>Show Teams</u></td>
                                                         <td className="open-match-modal" onClick={(event)=> openMatchModal(val._id,event)} style={{cursor: "Pointer"}}><u>Upload Match Schedule</u></td>
                                                     </tr>
                                                 ))}
@@ -333,48 +424,75 @@ const handleDelete= async ()=>{
                 </Modal>
 
 
-                <Modal show={isMatchOpen} onHide={closeMatchModal} size="lg"
+                <Modal show={isMatchOpen} onHide={closematchmodal} size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered>
-                <Modal.Header closeMatchButton>
+                <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                    <p style={{color: 'black'}}>Schedule Matches for Tournament</p>
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                 <div style={{color: 'black'}}>
-                <h3><u>No of Matches = {noOfMatches}</u></h3>
+                <h3 style={{color:'black'}}><u>No of Matches = {noOfMatches}</u></h3>
                 <form className="account-form">
-                {
-                    matches.map((val,key)=>{
-                        return (
-                            <>
                             <input
-                                    type="text"
+                                    type="file"
                                     name=""
                                     id=""
-                                    value={val} 
-                                    onChange={(e)=>{setName(e.target.value);}}
-                                    placeholder="Enter Name*"
-                            />
-                            <input
-                                    type="text"
-                                    name=""
-                                    id=""
-                                    value={name} 
-                                    onChange={(e)=>{setName(e.target.value);}}
-                                    placeholder="Enter Name*"
-                            />
-                            </>
-                        )
-                })
-                }                               
-                        </form>
+                                    onChange={(e)=>{
+                                        const file = e.target.files[0];
+                                        readExcel(file);
+                                    }}
+                                    placeholder="Upload File*"
+                            />                          
+                </form>
                 </div>
                 </Modal.Body>
                 <Modal.Footer>
                 <Button onClick={handleMatchUpload}>Update</Button>
-                <Button onClick={closeMatchModal}>Close</Button>
+                <Button onClick={closematchmodal}>Close</Button>
+                </Modal.Footer>
+                </Modal>
+
+                
+
+                <Modal show={isTeamOpen} onHide={closeTeammodal} size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered>
+                <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                   <p style={{color: 'black'}}>Teams for Tournament</p>
+                </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <div style={{color: 'black'}}>
+                <h3 style={{color:'black'}}><u>No of Teams = {noOfTeams}</u></h3>
+                            <table className="table">
+                                            <tbody>
+                                            <tr>
+                                                        <td>Index</td>
+                                                        <td>Id</td>
+                                                        <td>Team Name</td>
+                                                        <td>Current Team Size</td>
+                                                        <td>Team Tier</td>                                            
+                                            </tr>
+                                                {teams.map((val, i) => (
+                                                    <tr key={i}>
+                                                        <td>{i+1}</td>
+                                                        <td><b>{val._id}</b></td>
+                                                        <td>{val.teamName}</td>
+                                                        <td>{val.teamMembers.length}</td>
+                                                        <td>{val.tier}</td>
+                                                    </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+               
+                </div>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button onClick={closeTeammodal}>Close</Button>
                 </Modal.Footer>
                 </Modal>
             </Fragment>
