@@ -20,23 +20,18 @@ const formSchema = new Schema({
   team: [{
     id:{type:mongoose.Schema.Types.ObjectId,
     ref: "team"
-    },
-    team1:{
-      type:String,
-      required:true
-    },
-    team2:{
-      type:String,
-      required:true
-    },
+    }
 
 }],
 matches: [{
   id:{type:mongoose.Schema.Types.ObjectId,
-  ref: "matches"
-  },
-
+  ref: "match"
+  }
 }],
+noOfMatches:{
+  type: Number,
+  required: true
+},
   teamSize:{
     type: Number,
     required: true
