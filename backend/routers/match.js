@@ -4,42 +4,63 @@ const Match = require("../database/matches");
 const User = require("../database/User");
 const fetchuser = require('../middleware/Fetchuser');
 const Tournament = require("../database/Tournament");
-const createMatch = async (req, res) => {
 
-    const team1 = await Match.findById(req.body.team1Id);
-    const team2 = await Match.findById(req.body.team2Id);
-
-
-    let userId = req.user.id;
-    const user = User.findById(userId).select("-password");
-    //check for access level
-  const {team1Id,team2Id,date,time,winner} = req.body;
+const createMatch = async (teams,date,time,results) => {
   try {
-    let match = Match.create({
-        team1:team1Id,
-        team2:team2Id,
+    if(results){
+      const match_id = await Match.create({
+        teams:teams,
         date:date,
         time:time,
-        winner:winner,
-        author: {
-            id: user._id
-        }
+        results:results
       });
-    return res.status(200).send({
-        team1: {
-            _id: team1._id,
-            name: team1.name
-          },
-          team2: {
-            _id: team2._id,
-            name: team2.name
-          }
-        });
+      return match_id._id;
+    }
+    else{
+      const match_id = await Match.create({
+        teams:teams,
+        date:date,
+        time:time
+      });
+      return match_id._id;
+    }
+    
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Some error occurred");
   }
 };
+
+router.post("/getAndUpdateMatches",fetchuser, async (req,res)=>{
+  //access
+  try{
+    const userID = req.user.id;
+  let {matches,tourId} = req.body;
+  let tournament = await Tournament.findOne({_id: tourId, author: userID});
+  if(tournament){
+    let presentMatches = tournament.matches;
+    for(let i = 0;i<presentMatches.length;i++){
+    await Match.findByIdAndDelete(presentMatches[i].id);
+    }
+    tournament.matches = [];
+    let temP_arr = [];
+    for(let i = 0;i<matches.length;i++){
+      let newCreated = await createMatch(matches[i].teams,matches[i].date,matches[i].time,matches[i].results);
+      temP_arr.push({
+        id: newCreated
+      });
+    }
+    tournament.matches = temP_arr;
+    await Tournament.findOneAndUpdate({_id: tournament._id}, tournament);
+    res.status(200).send("Success");
+  }
+  else{
+    res.status(200).send("No Tournament Exists with that ID");
+  }
+  }catch(error){
+    console.error(error.message);
+    res.status(500).send("Some error occured");
+  }
+});
 
 router.post("/getById", async(req,res)=>{
     try {

@@ -14,6 +14,7 @@ const TournamentForm = (props)=> {
     const [noOfTeams,setNoOfTeams] = useState('');
     const [startDate,setStartDate] = useState('');
     const [priceMoney,setPriceMoney] = useState('');
+    const [noOfMatches,setNoOfMatches] = useState('');
     const[image,setImage] = useState('');
 
     const navigate =useNavigate();
@@ -37,7 +38,7 @@ const TournamentForm = (props)=> {
     const handleUpload = async (e)=>{
         e.preventDefault();
         const data = {
-            name,description,game,teamSize,noOfTeams,startDate,priceMoney,image
+            name,description,game,teamSize,noOfTeams,startDate,priceMoney,noOfMatches,image
         };
         const requestOptions = {
                 method: "POST",
@@ -121,6 +122,16 @@ const TournamentForm = (props)=> {
                                     value={noOfTeams} 
                                     onChange={(e)=>{setNoOfTeams(e.target.value);}}
                                     placeholder="Enter The Number Of Teams*"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <input
+                                    type="number"
+                                    name=""
+                                    id=""
+                                    value={noOfMatches} 
+                                    onChange={(e)=>{setNoOfMatches(e.target.value);}}
+                                    placeholder="Enter The Number Of Matches*"
                                 />
                             </div>
                             <div className="form-group">
