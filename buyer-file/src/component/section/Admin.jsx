@@ -6,6 +6,7 @@ import Newmerch from '../../assets/images/banner/Newmerch.png'
 import Blog from "../../assets/images/banner/blog.png"
 import Stream from "../../assets/images/banner/stream.png"
 import Customer from "../../assets/images/banner/customer.png"
+import tour from "../../assets/images/banner/tournament.png"
 
 import Best from "../../assets/images/banner/best.png";
 import Users from "../../assets/images/banner/users.png";
@@ -51,7 +52,7 @@ const Admin = () => {
                 </div>
                 <div className='head-1'>
                     <Link to="/my-tournaments">
-                        <img src={Tournament} alt="logo" />
+                        <img src={tour} alt="logo" />
                     </Link>
                 </div>
 
