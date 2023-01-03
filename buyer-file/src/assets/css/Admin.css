@@ -19,6 +19,17 @@
     box-shadow: 6px 6px 40px 10px #5F4B8BFF;
     transform: translate3d(10px, 0, 0px);
 }
+@media only screen and (min-device-width: 768px) and (max-device-width: 1366px){
+.head-1 img {
+    margin: 20px;
+    border: 1px solid blanchedalmond;
+    height: 190px;
+    border-radius: 8%;
+    cursor: pointer;
+}
+
+}
+
 
 /* iphone SE ----------- */
 @media only screen and (min-device-width : 375px) and (max-device-width : 667px) {

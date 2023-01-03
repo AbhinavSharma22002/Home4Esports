@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 const subtitle = "WE OUR PARTNERS";
-const title = "BECOME A PARTNER of bigamer";
+const title = "BECOME A PARTNER OF CROWD CONTROL ESPORTS";
 const btnText = "BECOME A PARTNER";
 
 
