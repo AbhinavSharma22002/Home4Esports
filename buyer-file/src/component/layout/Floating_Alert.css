@@ -1,47 +1,51 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 5d4f840b2e4d7c3a5c734d4b8a83f9f97e0a9d81
-.i-icofont-linkedin:before {
-   
+.icons {
     font-size: xxx-large;
+    width: 15px;
     position: fixed;
-    right: 34px;
-    top: 90vh;
+    top: 567px;
+    right: 39px;
 }
 
-.i-icofont-youtube-play:before {
-   
-    font-size: xxx-large;
-    position: fixed;
-    right: 34px;
-    top: 90vh;
+/* iphone SE ----------- */
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
+    .icons {
+       display: none;
+    }
 }
 
-.i-icofont-facebook:before {
-    
-    font-size: xxx-large;
-    position: fixed;
-    right: 34px;
-    top: 90vh;
+@media only screen and (min-device-width : 360px) and (max-device-width : 740px) {
+    .icons {
+          display: none;
+    }
 }
 
-.i-icofont-ebuddy:before {
-  
-    font-size: xxx-large;
-    position: fixed;
-    right: 34px;
-    top: 90vh;
+@media only screen and (min-device-width : 800px) and (max-device-width : 1280px) {
+    .icons{
+          width: 30px;
+    }
 }
 
-.i-icofont-instagram:before {
-    
-    font-size: xxx-large;
-    position: fixed;
-    right: 34px;
-    top: 90vh;
-<<<<<<< HEAD
+@media only screen and (min-device-width : 820px) and (max-device-width : 1180px) {
+    .icons{
+          display: none;
+    }
 }
-=======
+
+@media only screen and (min-device-width : 280px) and (max-device-width : 653px) {
+    .icons{
+          display: none;
+    }
 }
->>>>>>> 5d4f840b2e4d7c3a5c734d4b8a83f9f97e0a9d81
+
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .icons {
+           display: none;
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .icons {
+          display: none;
+    }
+}
