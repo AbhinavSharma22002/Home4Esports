@@ -93,7 +93,9 @@ function App() {
 	return (
 		<AccessState>
 			<ScrollToTop />
+			
 			<Header setIsLoggedIn={setIsLoggedIn} alert={alert} />
+			
 			<Routes>
 				<Route path="/" element={<HomePage showAlert={showAlert} />} />
 				<Route path="about" element={<AboutPage showAlert={showAlert} />} />
@@ -146,13 +148,12 @@ function App() {
 				) : (<>
 					<Route path="login" element={<LogIn setIsLoggedIn={setIsLoggedIn} showAlert={showAlert} />} />
 					<Route path="signup" element={<SignUp showAlert={showAlert} />} />
+					
 				</>)
 				}
 			</Routes>
 			<Footer />
-			<span className="icons">
-				<Floating_Alert />
-			</span>
+			
 		</AccessState>
 	);
 }

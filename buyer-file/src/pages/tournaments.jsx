@@ -68,7 +68,7 @@ const TournamentFunc = (props)=>{
                                                 <p className="match-team-info">Teams  {val.noOfTeams} <span className="fw-bold">  Players {val.noOfTeams * val.teamSize}</span></p>
                                             </div>
                                             
-                                            <div className="match-content gradient-bg-yellow">
+                                            <div className="match-content">
                                                 <div className="row gy-4 align-items-center justify-content-center">
                                                     <div className="col-xl-4 col-md-6 order-md-2">
                                                         <div className="match-game-team">
@@ -81,9 +81,9 @@ const TournamentFunc = (props)=>{
                                                     </div>
                                                     <div className="col-xl-4 col-md-6 order-md-1">
                                                         <div className="match-game-info">
-                                                            <h4><Link to={`/tournament?id=${val._id}`}>{val.name}</Link></h4>
+                                                            <h4 ><Link style={{color:"rgb(183 221 200)"}} to={`/tournament?id=${val._id}` }>{val.name}</Link></h4>
                                                             <p className="d-flex flex-wrap justify-content-center  justify-content-md-start">
-                                                                <span className="match-date">{val.startDate} </span>
+                                                                <span className="match-date" style={{color:"#e5e5e5"}}>{val.startDate} </span>
                                                             </p>
                                                         </div>
                                                     </div>

@@ -9,27 +9,27 @@ const title = "Our Features";
 
 let CollectionListContent = [
     {
-        imgUrl: 'assets/images/game/logo.png',
+        imgUrl: 'assets/images/game/icon06.png',
         imgAlt: 'collect thumb',
         title: 'Studio',
         link:'#'
     },
     {
-        imgUrl: 'assets/images/game/logo.png',
+        imgUrl: 'assets/images/game/icon71.png',
         imgAlt: 'collect thumb',
         title: 'Khelshaala',
         link:'#'
     },
     {
-        imgUrl: 'assets/images/game/logo.png',
+        imgUrl: 'assets/images/game/icon5.png',
         imgAlt: 'collect thumb',
-        title: 'Crowd Forge',
+        title: 'Metabits',
         link:'#'
     },
     {
-        imgUrl: 'assets/images/game/logo.png',
+        imgUrl: 'assets/images/game/icon4.png',
         imgAlt: 'collect thumb',
-        title: 'Metabits',
+        title: 'Crowd forge',
         link:'#'
     },
 ]
@@ -51,9 +51,10 @@ class CollectionSection extends Component {
                                     <div className="game-item item-layer">
                                         <div className="game-item-inner">
                                             <div className="game-thumb">
-                                                <img 
+                                                <img
                                                     src={`${val.imgUrl}`} 
                                                     alt={`${val.imgAlt}`} 
+                                                    style={{height:"248px",width:"272px"}}
                                                 />
                                             </div>
                                             <div className="game-overlay">
