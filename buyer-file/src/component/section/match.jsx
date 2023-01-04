@@ -76,7 +76,7 @@ const MatchSection = (props)=>{
                                     <div className="match-item item-layer">
                                         <div className="match-inner">
                                             <div className="match-header d-flex flex-wrap justify-content-between align-items-center">
-                                                <p className="match-team-info">{val.groupcount} <span className="fw-bold">{val.playercount}</span></p>
+                                                <p className="match-team-info">{val.groupcount} Round <span className="fw-bold">{val.playercount}</span></p>
                                             </div>
                                             <div className="match-content gradient-bg-yellow">
                                                 <div className="row gy-4 align-items-center justify-content-center">
@@ -132,7 +132,7 @@ const MatchSection = (props)=>{
                                                 <div className="match-item-2 item-layer">
                                                     <div className="match-inner">
                                                         <div className="match-header d-flex flex-wrap justify-content-between align-items-center">
-                                                            <p className="match-team-info">{val.groupcount} <span className="fw-bold">{val.playercount}</span></p>
+                                                            <p className="match-team-info">{val.groupcount} Round <span className="fw-bold">{val.playercount}</span></p>
                                                         </div>
                                                         <div className="match-content">
                                                             <div className="row align-items-center justify-content-center">
@@ -184,7 +184,7 @@ const MatchSection = (props)=>{
                                                 <div className="match-item-2 item-layer">
                                                     <div className="match-inner">
                                                         <div className="match-header d-flex flex-wrap justify-content-between align-items-center">
-                                                            <p className="match-team-info">{val.groupcount} <span className="fw-bold">{val.playercount}</span></p>
+                                                            <p className="match-team-info">{val.groupcount} Round <span className="fw-bold">{val.playercount}</span></p>
                                                         </div>
                                                         <div className="match-content">
                                                             <div className="row align-items-center justify-content-center">
