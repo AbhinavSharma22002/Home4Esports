@@ -65,7 +65,7 @@ const TournamentFunc = (props)=>{
                                     <div className="match-item item-layer">
                                         <div className="match-inner">
                                             <div className="match-header d-flex flex-wrap justify-content-between align-items-center">
-                                                <p className="match-team-info">{val.noOfTeams} <span className="fw-bold">{val.noOfTeams * val.teamSize}</span></p>
+                                                <p className="match-team-info">Teams  {val.noOfTeams} <span className="fw-bold">  Players {val.noOfTeams * val.teamSize}</span></p>
                                             </div>
                                             
                                             <div className="match-content gradient-bg-yellow">

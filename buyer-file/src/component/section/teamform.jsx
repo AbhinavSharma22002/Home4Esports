@@ -101,7 +101,7 @@ const TeamForm = (props)=> {
                             <>
                             <div>
                             <p>Invitation link:</p>
-                            <input type="text" value={invitationLink} readOnly/>
+                            <input type="text" value={invitationLink} onClick={() => {props.showAlert("Copied To Clipboard!!","success"); navigator.clipboard.writeText(invitationLink)}} readOnly/>
                             <br />
                           </div>
                             </>
