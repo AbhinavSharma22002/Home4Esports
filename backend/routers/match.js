@@ -95,6 +95,13 @@ router.get("/previousMatches", async(req,res)=>{
               team_arr.push(each_team);
            }
            match.teams = team_arr;
+           
+        
+      let date = new Date(match.date);
+      var year = date.toLocaleString("default", { year: "numeric" });
+      var month = date.toLocaleString("default", { month: "2-digit" });
+      var day = date.toLocaleString("default", { day: "2-digit" });
+      var formattedDate = year + "-" + month + "-" + day;
 
           arr.push({
             imageone: match.teams[0].image,
@@ -102,8 +109,8 @@ router.get("/previousMatches", async(req,res)=>{
             imagetwo: match.teams[1].image,
             alt2: 'game name 2',
             title: 'Tournament Name',
-            matchdate: match.date.getDate(),
-            matchtime: `Time: ${match.date.getTime()}`,
+            matchdate: formattedDate,
+            matchtime: `Time: ${date.toLocaleTimeString("it-IT")}`,
             playercount: `${match.teams.length} Players` ,
             groupcount: match.round
           });
@@ -141,17 +148,24 @@ router.get("/todayMatches", async(req,res)=>{
            }
            match.teams = team_arr;
 
-          arr.push({
-            imageone: match.teams[0].image,
-            alt1: 'game name 1',
-            imagetwo: match.teams[1].image,
-            alt2: 'game name 2',
-            title: 'Tournament Name',
-            matchdate: match.date.getDate(),
-            matchtime: `Time: ${match.date.getTime()}`,
-            playercount: `${match.teams.length} Players` ,
-            groupcount: match.round
-          });
+        
+           let date = new Date(match.date);
+           var year = date.toLocaleString("default", { year: "numeric" });
+           var month = date.toLocaleString("default", { month: "2-digit" });
+           var day = date.toLocaleString("default", { day: "2-digit" });
+           var formattedDate = year + "-" + month + "-" + day;
+     
+               arr.push({
+                 imageone: match.teams[0].image,
+                 alt1: 'game name 1',
+                 imagetwo: match.teams[1].image,
+                 alt2: 'game name 2',
+                 title: 'Tournament Name',
+                 matchdate: formattedDate,
+                 matchtime: `Time: ${date.toLocaleTimeString("it-IT")}`,
+                 playercount: `${match.teams.length} Players` ,
+                 groupcount: match.round
+               });
          }
          matches[i] = match;
          }
@@ -186,17 +200,23 @@ router.get("/futureMatches", async(req,res)=>{
            }
            match.teams = team_arr;
 
-          arr.push({
-            imageone: match.teams[0].image,
-            alt1: 'game name 1',
-            imagetwo: match.teams[1].image,
-            alt2: 'game name 2',
-            title: 'Tournament Name',
-            matchdate: match.date.getDate(),
-            matchtime: `Time: ${match.date.getTime()}`,
-            playercount: `${match.teams.length} Players` ,
-            groupcount: match.round
-          });
+        
+           let date = new Date(match.date);
+           var year = date.toLocaleString("default", { year: "numeric" });
+           var month = date.toLocaleString("default", { month: "2-digit" });
+           var day = date.toLocaleString("default", { day: "2-digit" });
+           var formattedDate = year + "-" + month + "-" + day;
+               arr.push({
+                 imageone: match.teams[0].image,
+                 alt1: 'game name 1',
+                 imagetwo: match.teams[1].image,
+                 alt2: 'game name 2',
+                 title: 'Tournament Name',
+                 matchdate: formattedDate,
+                 matchtime: `Time: ${date.toLocaleTimeString("it-IT")}`,
+                 playercount: `${match.teams.length} Players` ,
+                 groupcount: match.round
+               });
          }
          matches[i] = match;
          }
