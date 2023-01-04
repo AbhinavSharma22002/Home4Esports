@@ -22,7 +22,6 @@ router.post("/getAll",async(req,res)=>{
 
 //invitation link 
 async function generateLink(teamId,tournamentId, expirationDate) {
-  console.log(teamId);
   let payload = {
     team: {
       id: teamId,
@@ -67,7 +66,8 @@ async (req, res) => {
             image: image,
             teamMembers: [{
                 id: leader._id
-            }]
+            }],
+            tag: teamName.substring(0,3)
         });
 
         tournament.team.push({

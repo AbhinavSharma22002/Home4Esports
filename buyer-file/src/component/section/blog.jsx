@@ -23,7 +23,7 @@ const BlogSectionFunction = ()=>{
                 array.push({
                     imgUrl: `${data.blogs[i].image[0].link}`,
                     title: `${data.blogs[i].title}`,
-                    desc: `${data.blogs[i].body.split("{Image}")[1]}`,
+                    desc: `${data.blogs[i].body.split("{Image}")[1].substring(0,100)}...`,
                     pubAuthor: `${data.blogs[i].author.username}`,
                     pubDate: `${data.blogs[i].date}`,
                     btnText: 'read more',

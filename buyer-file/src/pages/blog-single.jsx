@@ -14,9 +14,19 @@ import Tags from "../component/sidebar/tags";
 const BlogDetailsFunction = (props)=>{
 
     const [BlogContent, setBlogContent] = useState({body:[]});
+    const [BlogComments, setBlogComments] = useState([]);
     function getID(){
         let pair = window.location.search.substring(1).split("=");
         return pair[1];
+    };
+    
+function convertDate(finDate){
+    let date = new Date(finDate);
+    let year = date.toLocaleString("default", { year: "numeric" });
+    let month = date.toLocaleString("default", { month: "2-digit" });
+    let day = date.toLocaleString("default", { day: "2-digit" });
+    let formattedDate = year + "-" + month + "-" + day;
+    return formattedDate;
     };
     useEffect(() => {
 		const getBlog = async ()=>{
@@ -49,8 +59,20 @@ const BlogDetailsFunction = (props)=>{
                         author: data.blogs.author.username,
                         comment_number: data.blogs.comments.length,
                         body: b,
-                        images: im
+                        images: im,
+                        _id: data.blogs._id
                     });
+                    let arr = [];
+                    for(let i = 0;i<data.blogs.comments.length;i++){
+                        let date = convertDate(data.blogs.comments[i].Date);
+                        console.log(date);
+                        arr.push({
+                            Date: date,
+                            Name: data.blogs.comments[i].Name,
+                            Massage: data.blogs.comments[i].Massage
+                        })
+                    }
+                    setBlogComments(arr);
                 }
             }
     };
@@ -90,20 +112,16 @@ const BlogDetailsFunction = (props)=>{
                                         </div>
 
 
-                                        <Comments />
-                                        <CommentForm />
+                                        <Comments comments={BlogComments} id={BlogContent._id}/>
+                                        <CommentForm comments={BlogComments} id={BlogContent._id}/>
                                     </article>
                                 </div>
 
 
                                 <div className="col-lg-4 col-md-7 col-12">
                                     <aside className="ps-lg-4">
-                                        <SearchBar />
                                         <RecentPost />
-                                        <CategorieTwo />
-                                        <Instagram />
-                                        <Archive />
-                                        <Tags />
+                                        {/*<Instagram />*/}
                                     </aside>
                                 </div>
 
