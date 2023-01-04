@@ -480,7 +480,7 @@ const handleDelete= async ()=>{
                                                 {teams.map((val, i) => (
                                                     <tr key={i}>
                                                         <td>{i+1}</td>
-                                                        <td><b>{val._id}</b></td>
+                                                        <td onClick={() => {props.showAlert("Copied To Clipboard!!","success"); navigator.clipboard.writeText(val._id)}}><b>{val._id}</b></td>
                                                         <td>{val.teamName}</td>
                                                         <td>{val.teamMembers.length}</td>
                                                         <td>{val.tier}</td>
