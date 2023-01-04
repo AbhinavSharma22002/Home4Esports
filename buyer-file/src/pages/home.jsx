@@ -16,12 +16,12 @@ const HomeFunction = ()=>{
     return (
         <>
                 <BannerSection />
-                <CollectionSection />
+                <CollectionSection /> 
                 <MatchSection />
                 <VideoSection />
                 <ProductSection />
-                <BlogSection />
-                <Player />
+                <BlogSection /><br /> 
+                <Player /> <br /> <br /> 
                 <CtaSection imgUrl={'assets/images/cta/01.png'} />
                 <HrShape />
                 <SponsorSection />

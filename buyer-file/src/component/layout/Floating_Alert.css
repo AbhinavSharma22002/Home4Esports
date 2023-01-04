@@ -1,12 +1,21 @@
 .icons {
-    font-size: xxx-large;
-    width: 15px;
-    position: fixed;
-    top: 85vh;
-    right: 39px;
+    font-size: xx-large;
+    width: 10px;
+    position: relative;
+    left: 19vw;
+    display: inline;
+    
 }
 
-/* iphone SE ----------- */
+
+@media (min-width: 992px) and (max-width: 1199px){
+.icons {
+    padding: 10px 12px;
+}
+}
+
+
+
 @media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
     .icons {
        display: none;
@@ -22,6 +31,17 @@
 @media only screen and (min-device-width : 800px) and (max-device-width : 1280px) {
     .icons{
           width: 30px;
+    }
+}
+
+
+@media only screen and (min-device-width : 800px) and (max-device-width : 1280px) {
+    .icons{
+        font-size: xx-large;
+        width: 10px;
+        position: relative;
+        left: 20vw;
+        display: inline;
     }
 }
 
