@@ -25,7 +25,11 @@ const MatchSection = (props)=>{
                 requestOptions
             ).then((res) => res.json())
             .then((json) => {
-                setMatchInfoListThree(json.matches);
+                let arr = [];
+                for(let i = 0;i<json.matches.length && i<3;i++){
+                    arr.push(json.matches[i]);
+                }
+                setMatchInfoListThree(arr);
             })
 		}
         const value2 = async () => {
@@ -37,8 +41,11 @@ const MatchSection = (props)=>{
                 `http://localhost:3001/api/match/todayMatches`,
                 requestOptions
             ).then((res) => res.json())
-            .then((json) => {
-                setMatchInfoListOne(json.matches);
+            .then((json) => {let arr = [];
+                for(let i = 0;i<json.matches.length && i<3;i++){
+                    arr.push(json.matches[i]);
+                }
+                setMatchInfoListOne(arr);
             })
 		}
         const value3 = async () => {
@@ -51,7 +58,11 @@ const MatchSection = (props)=>{
                 requestOptions
             ).then((res) => res.json())
             .then((json) => {
-                setMatchInfoListTwo(json.matches);
+                let arr = [];
+                for(let i = 0;i<json.matches.length && i<3;i++){
+                    arr.push(json.matches[i]);
+                }
+                setMatchInfoListTwo(arr);
             })
 		}
 
@@ -84,20 +95,20 @@ const MatchSection = (props)=>{
                                                         <div className="match-game-team">
                                                             <ul className="match-team-list d-flex flex-wrap align-items-center justify-content-center">
                                                                 <li className="match-team-thumb">
-                                                                    <a href="/team-single"><img src={val.imageone} alt={val.alt1} /></a>
+                                                                    <a href={`${val.link}`}><img src={val.imageone} alt={val.alt1} /></a>
                                                                 </li>
                                                                 <li className="text-center">
                                                                     <img className="w-75 w-md-100" src="assets/images/match/vs.png" alt="vs" />
                                                                 </li>
                                                                 <li className="match-team-thumb">
-                                                                    <a href="/team-single"><img src={val.imagetwo} alt={val.alt2} /></a>
+                                                                    <a href={`${val.link}`}><img src={val.imagetwo} alt={val.alt2} /></a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                     <div className="col-xl-4 col-md-6 order-md-1">
                                                         <div className="match-game-info">
-                                                            <h4><a href="/team-single">{val.title}</a></h4>
+                                                            <h4><a href={`/team?id=${val.results._id}`}>{val.title}</a>{val.title}</h4>
                                                             <p className="d-flex flex-wrap justify-content-center  justify-content-md-start">
                                                                 <span className="match-date">{val.matchdate} </span>
                                                                 <span className="match-time">{val.matchtime}</span>
@@ -109,7 +120,7 @@ const MatchSection = (props)=>{
                                                             <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center justify-content-xl-start">
                                                             
                                                                 <li>
-                                                                    <a href="#" className="default-button reverse-effect"><span>{btntextTwo} <i className="icofont-play-alt-1"></i></span></a>
+                                                                    <a href={`${val.link}`} className="default-button reverse-effect"><span>{btntextTwo} <i className="icofont-play-alt-1"></i></span></a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -138,7 +149,7 @@ const MatchSection = (props)=>{
                                                             <div className="row align-items-center justify-content-center">
                                                                 <div className="col-md-2 col-5 p-0">
                                                                     <div className="match-team-thumb text-center">
-                                                                        <Link to="/team-single" className="text-center"><img src={val.imageone} alt={val.alt1} /></Link>
+                                                                        <a href={`${val.link}`} className="text-center"><img src={val.imageone} alt={val.alt1} /></a>
                                                                     </div>
                                                                 </div>
                                                                 <div className="col-2 d-md-none">
@@ -146,12 +157,12 @@ const MatchSection = (props)=>{
                                                                 </div>
                                                                 <div className="col-md-2 col-5 order-md-3 p-0">
                                                                     <div className="match-team-thumb text-center">
-                                                                        <Link to="/team-single"><img src={val.imagetwo} alt={val.alt2} /></Link>
+                                                                        <a href={`${val.link}`}><img src={val.imagetwo} alt={val.alt2} /></a>
                                                                     </div>
                                                                 </div>
                                                                 <div className="col-md-8 order-md-2 mt-4 mt-md-0">
                                                                     <div className="match-game-info text-center">
-                                                                        <h4><Link to="/team-single">{val.title}</Link>
+                                                                        <h4><a href={`${val.link}`}>{val.title}</a>
                                                                         </h4>
                                                                         <p className="d-flex flex-wrap justify-content-center">
                                                                             <span className="match-date">{val.matchdate} </span>
@@ -160,7 +171,7 @@ const MatchSection = (props)=>{
                                                                          <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center">
                                                                             
                                                                             
-                                                                            <a href="#" className="default-button reverse-effect"><span>{btntextTwo} <i className="icofont-play-alt-1"></i></span></a>
+                                                                            <a href={`${val.link}`} className="default-button reverse-effect"><span>{btntextTwo} <i className="icofont-play-alt-1"></i></span></a>
                                                                 
                                                                         </ul>
                                                                     </div>
@@ -190,9 +201,9 @@ const MatchSection = (props)=>{
                                                             <div className="row align-items-center justify-content-center">
                                                                 <div className="col-md-2 col-5 p-0">
                                                                     <div className="match-team-thumb text-center">
-                                                                        <Link to="/team-single" className="text-center">
+                                                                        <a href={`${val.link}`} className="text-center">
                                                                             <img src={val.imageone} alt={val.alt1} />
-                                                                        </Link>
+                                                                        </a>
                                                                     </div>
 
                                                                 </div>
@@ -201,14 +212,14 @@ const MatchSection = (props)=>{
                                                                 </div>
                                                                 <div className="col-md-2 col-5 order-md-3 p-0">
                                                                     <div className="match-team-thumb text-center">
-                                                                        <Link to="/team-single">
+                                                                        <a href={`${val.link}`}>
                                                                             <img src={val.imagetwo} alt={val.alt2} />
-                                                                        </Link>
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                                 <div className="col-md-8 order-md-2 mt-4 mt-md-0">
                                                                     <div className="match-game-info text-center">
-                                                                        {/*<h4><Link to="/team-single">{val.result}</Link></h4>*/}
+                                                                        <h4><Link to={`/team?id=${val.results._id}`}>{val.results.teamName} Won</Link></h4>
                                                                         <p className="d-flex flex-wrap justify-content-center">
                                                                             <span className="match-date">{val.matchdate} </span>
                                                                             <span className="match-time">{val.matchtime}</span>
@@ -216,7 +227,7 @@ const MatchSection = (props)=>{
                                                                         <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center">
                                                                             
                                                                             
-                                                                            <a href="#" className="default-button reverse-effect"><span>{btntextTwo} <i className="icofont-play-alt-1"></i></span></a>
+                                                                            <a href={`${val.link}`} className="default-button reverse-effect"><span>{btntextTwo} <i className="icofont-play-alt-1"></i></span></a>
                                                                 
                                                                         </ul>
                                                                     </div>
