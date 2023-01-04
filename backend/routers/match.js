@@ -102,7 +102,8 @@ router.get("/previousMatches", async(req,res)=>{
       var month = date.toLocaleString("default", { month: "2-digit" });
       var day = date.toLocaleString("default", { day: "2-digit" });
       var formattedDate = year + "-" + month + "-" + day;
-
+      const result = await Team.findById(match.results);
+      match.results = result;
           arr.push({
             imageone: match.teams[0].image,
             alt1: 'game name 1',
@@ -112,7 +113,10 @@ router.get("/previousMatches", async(req,res)=>{
             matchdate: formattedDate,
             matchtime: `Time: ${date.toLocaleTimeString("it-IT")}`,
             playercount: `${match.teams.length} Players` ,
-            groupcount: match.round
+            groupcount: match.round,
+            result: match.results,
+            link: match.link,
+            _id: match._id
           });
          }
          matches[i] = match;
@@ -164,7 +168,9 @@ router.get("/todayMatches", async(req,res)=>{
                  matchdate: formattedDate,
                  matchtime: `Time: ${date.toLocaleTimeString("it-IT")}`,
                  playercount: `${match.teams.length} Players` ,
-                 groupcount: match.round
+                 groupcount: match.round,
+                 link: match.link,
+                 _id: match._id
                });
          }
          matches[i] = match;
@@ -215,7 +221,9 @@ router.get("/futureMatches", async(req,res)=>{
                  matchdate: formattedDate,
                  matchtime: `Time: ${date.toLocaleTimeString("it-IT")}`,
                  playercount: `${match.teams.length} Players` ,
-                 groupcount: match.round
+                 groupcount: match.round,
+                 link: match.link,
+                 _id: match._id
                });
          }
          matches[i] = match;

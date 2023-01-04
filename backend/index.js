@@ -39,7 +39,7 @@ app.use('/api/display',bestMatchRouter);
 
 
 const Teams = require('./database/Team');
-
+const Display = require('./database/Display');
 const teamUpdate = async ()=>{
     let teams = await Teams.find({});
     for(let i=0;i<teams.length;i++){
@@ -59,9 +59,21 @@ const teamUpdate = async ()=>{
     }
 }
 
+const updateBestMatch = async ()=>{
+    date
+    let match = await Display.find();
+    match = match[0];
+    let presentDate = new Date();
+    if(match.date>presentDate){
+        await Display.findByIdAndDelete(match._id);
+    }    
+};
+
+
 cron.schedule('0 0 * * *', () => {
     console.log('Running cron job');
     teamUpdate();
+    updateBestMatch();
 });
 server.listen(process.env.PORT,()=>{
     console.log(`RUnning on ${process.env.PORT}`);
