@@ -25,7 +25,10 @@ const SignUpFunction = (props)=>{
         Lname: regLName
         });
         if (data.status === 200) {
-            navigate("/login");
+            localStorage.setItem("token", data.authData);
+            props.setIsLoggedIn(true);
+            props.showAlert("Login Success","success");
+            navigate("/");
         }
         else{
             props.showAlert("Something Went Wrong!! Try Again","danger");
