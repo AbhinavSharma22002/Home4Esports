@@ -71,15 +71,64 @@ router.post("/getAndUpdateMatches",fetchuser, async (req,res)=>{
 router.get("/previousMatches", async(req,res)=>{
     try {
         let matches = await Match.find().sort({date:1});
-        // matches.forEach(async (match) => {
-        //     await match.remove();
-        //   });
-        //   matches = [];
-        console.log(matches);
+        let arr = [];
+        matches.forEach(async (match) => {
+           let date = match.date;
+           let time = match.time.split(":");
+           date.setHours(time[0]);
+           date.setMinutes(time[1]);
+           date.setSeconds(time[2]);
+           let presentDate = new Date();
+           if(date.getDate()<presentDate.getDate())
+           arr.push(match);
+          });
+          matches = arr; 
           res.status(200).json({matches});
     } catch (error) {
         
     }
+})
+
+router.get("/todayMatches", async(req,res)=>{
+  try {
+      let matches = await Match.find().sort({date:1});
+      let arr = [];
+      matches.forEach(async (match) => {
+         let date = match.date;
+         let time = match.time.split(":");
+           date.setHours(time[0]);
+           date.setMinutes(time[1]);
+           date.setSeconds(time[2]);
+         let presentDate = new Date();
+         if(date.getDate() === presentDate.getDate())
+         arr.push(match);
+        });
+        matches = arr; 
+        res.status(200).json({matches});
+  } catch (error) {
+      
+  }
+})
+
+router.get("/futureMatches", async(req,res)=>{
+  try {
+      let matches = await Match.find().sort({date:1});
+      let arr = [];
+      matches.forEach(async (match) => {
+         let date = match.date;
+         let time = match.time.split(":");
+           date.setHours(time[0]);
+           date.setMinutes(time[1]);
+           date.setSeconds(time[2]);
+         let presentDate = new Date();
+         if(date.getDate() > presentDate.getDate())
+         arr.push(match);
+        });
+        matches = arr; 
+        res.status(200).json({matches});
+  } catch (error) {
+      
+  }
 })
 
 
