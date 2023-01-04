@@ -23,6 +23,14 @@ const MyTournament = (props)=>{
     const [noOfMatches,setNoOfMatches] = useState('');
     const [teams,setTeams] = useState([]);
 
+ function formatHoursMinutesSeconds(num){
+  var hours = Math.floor(num * 24);
+  var minutes = Math.floor(((num * 24) - hours) * 60);
+  var seconds = Math.floor(((((num * 24) - hours) * 60)-minutes)*60);
+
+  return (hours + ":" + minutes.toString().padStart(2, '0') + ":" + 
+  seconds.toString().padStart(2, '0'));
+ }
 const readExcel = (file)=>{
     const promise = new Promise((resolve,reject)=>{
         const fileReader=new FileReader();
@@ -55,8 +63,9 @@ const readExcel = (file)=>{
             
             let curr_match ={};
             if(row.$Matches && row.$Teams && row.$Date && row.$Round && row.$Time){
-                curr_match.date = new Date(Date.UTC(0, 0, row.$Date - 1));
-                curr_match.time = row.$Time;
+                curr_match.date = new Date(Date.UTC(0, 0, row.$Date - 1));            
+                curr_match.time = formatHoursMinutesSeconds(row.$Time);
+
                 curr_match.results = row.$Results;
                 let noTeam = row.$Teams;
                 let curr_teams = [];
