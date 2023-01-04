@@ -121,7 +121,7 @@ function convertDate(finDate){
                                 <div className="col-lg-4 col-md-7 col-12">
                                     <aside className="ps-lg-4">
                                         <RecentPost />
-                                        <Instagram />
+                                        {/*<Instagram />*/}
                                     </aside>
                                 </div>
 
