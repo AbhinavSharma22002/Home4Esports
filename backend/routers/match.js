@@ -68,14 +68,15 @@ router.post("/getAndUpdateMatches",fetchuser, async (req,res)=>{
   }
 });
 
-router.post("/getById", async(req,res)=>{
+router.get("/previousMatches", async(req,res)=>{
     try {
-        let tournament = await Tournament.findById(req.params.id);
-        tournament.matches.forEach(async (match) => {
-            await match.remove();
-          });
-          tournament.matches = [];
-          res.status(200).json({tournament});
+        let matches = await Match.find().sort({date:1});
+        // matches.forEach(async (match) => {
+        //     await match.remove();
+        //   });
+        //   matches = [];
+        console.log(matches);
+          res.status(200).json({matches});
     } catch (error) {
         
     }
