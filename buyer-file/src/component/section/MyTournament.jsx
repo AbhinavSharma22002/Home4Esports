@@ -78,7 +78,6 @@ const readExcel = (file)=>{
             }
             filtered_Data.push(curr_match);
         }
-        console.log(filtered_Data);
         setMatches(filtered_Data);
     })
 };
@@ -98,7 +97,6 @@ const openTeamModal = (msg,e)=>{
             ).then((res) => res.json())
             .then((json) => {
                 setTeams(json.list);
-                console.log(json.list);
                 json = json.tournament;
                 setNoOfTeams(json.noOfTeams);
             })

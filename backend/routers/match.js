@@ -4,12 +4,18 @@ const Match = require("../database/matches");
 const User = require("../database/User");
 const fetchuser = require('../middleware/Fetchuser');
 const Tournament = require("../database/Tournament");
+const Team = require("../database/Team");
 
 const createMatch = async (teams,date,time,results) => {
   try {
+    let final_teams = [];
+    for(let i = 0;i<teams.length;i++){
+      const team = await Team.findOne({tag: teams[i]}).select("_id");
+      final_teams.push(team);
+    }
     if(results){
       const match_id = await Match.create({
-        teams:teams,
+        teams:final_teams,
         date:date,
         time:time,
         results:results
