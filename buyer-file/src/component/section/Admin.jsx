@@ -49,6 +49,11 @@ const Admin = () => {
                         <img src={Users} alt="logo" />
                     </Link>
                 </div>
+                <div className='head-1'>
+                    <Link to="/createBlog">
+                        <img src={Blog} alt="logo" />
+                    </Link>
+                </div>
 
                 <div className='head-1'>
                     <Link to="/displayForm">

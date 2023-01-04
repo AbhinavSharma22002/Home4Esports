@@ -67,7 +67,8 @@ async (req, res) => {
             image: image,
             teamMembers: [{
                 id: leader._id
-            }]
+            }],
+            tag: teamName.substring(0,3)
         });
 
         tournament.team.push({

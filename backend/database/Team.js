@@ -24,6 +24,10 @@ const TeamSchema = new Schema({
     default: 3,
     required: true
   },
+  tag:{
+    type: String,
+    required: true
+  },
   clicked:{
     type: Number,
     default: 0,
