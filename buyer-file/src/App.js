@@ -98,8 +98,7 @@ function App() {
 				<Route path="/" element={<HomePage showAlert={showAlert} />} />
 				<Route path="about" element={<AboutPage showAlert={showAlert} />} />
 				<Route path="gallery" element={<GalleryPage showAlert={showAlert} />} />
-				<Route path="game-list" element={<GameListSection showAlert={showAlert} />} />
-				<Route path="game-list2" element={<GameListTwoSection showAlert={showAlert} />} />
+				<Route path="game-list" element={<GameListTwoSection showAlert={showAlert} />} />
 				<Route path="partners" element={<PartnerPage showAlert={showAlert} />} />
 				<Route path="achievements" element={<AchievementPage showAlert={showAlert} />} />
 				<Route path="team" element={<TeamPage showAlert={showAlert} />} />
@@ -150,9 +149,7 @@ function App() {
 				}
 			</Routes>
 			<Footer />
-			<span className="icons">
-				<Floating_Alert />
-			</span>
+			
 		</AccessState>
 	);
 }
