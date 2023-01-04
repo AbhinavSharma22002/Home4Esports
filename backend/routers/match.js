@@ -72,6 +72,7 @@ router.get("/previousMatches", async(req,res)=>{
     try {
         let matches = await Match.find().sort({date:1});
         let arr = [];
+        let arr1 = [];
         matches.forEach(async (match) => {
            let date = match.date;
            let time = match.time.split(":");
@@ -79,34 +80,57 @@ router.get("/previousMatches", async(req,res)=>{
            date.setMinutes(time[1]);
            date.setSeconds(time[2]);
            let presentDate = new Date();
-           if(date.getDate()<presentDate.getDate())
-           arr.push(match);
+           if(date.getDate()<presentDate.getDate()){
+           let match_teams = match.teams;
+
+           let team_arr =[];
+           for(let i=0;i<match_teams.length;i++){
+              const each_team = await Team.findById(match_teams[i]);
+              team_arr.push(each_team);
+           }
+
+            arr1.push(team_arr);
+              arr.push(match);
+          }
           });
           matches = arr; 
+          matches.teams = arr1;
           res.status(200).json({matches});
     } catch (error) {
+      console.error(error);
+      res.status(400).send("Some error Occured");
         
     }
 })
-
 router.get("/todayMatches", async(req,res)=>{
   try {
       let matches = await Match.find().sort({date:1});
       let arr = [];
-      matches.forEach(async (match) => {
-         let date = match.date;
-         let time = match.time.split(":");
+        let arr1 = [];
+        matches.forEach(async (match) => {
+           let date = match.date;
+           let time = match.time.split(":");
            date.setHours(time[0]);
            date.setMinutes(time[1]);
            date.setSeconds(time[2]);
-         let presentDate = new Date();
-         if(date.getDate() === presentDate.getDate())
-         arr.push(match);
-        });
-        matches = arr; 
+           let presentDate = new Date();
+           if(date.getDate()===presentDate.getDate()){
+           let match_teams = match.teams;
+           let team_arr =[];
+           for(let i=0;i<match_teams.length;i++){
+              const each_team = await Team.findById(match_teams[i]);
+              team_arr.push(each_team);
+           }
+           arr1.push(team_arr);
+             arr.push(match);
+         }
+         });
+         matches = arr; 
+         matches.teams = arr1;
         res.status(200).json({matches});
   } catch (error) {
-      
+    console.error(error);
+    res.status(400).send("Some error Occured");
   }
 })
 
@@ -114,19 +138,32 @@ router.get("/futureMatches", async(req,res)=>{
   try {
       let matches = await Match.find().sort({date:1});
       let arr = [];
-      matches.forEach(async (match) => {
-         let date = match.date;
-         let time = match.time.split(":");
+        let arr1 = [];
+        matches.forEach(async (match) => {
+           let date = match.date;
+           let time = match.time.split(":");
            date.setHours(time[0]);
            date.setMinutes(time[1]);
            date.setSeconds(time[2]);
-         let presentDate = new Date();
-         if(date.getDate() > presentDate.getDate())
-         arr.push(match);
-        });
-        matches = arr; 
+           let presentDate = new Date();
+           if(date.getDate()>presentDate.getDate()){
+           let match_teams = match.teams;
+
+           let team_arr =[];
+           for(let i=0;i<match_teams.length;i++){
+              const each_team = await Team.findById(match_teams[i]);
+              team_arr.push(each_team);
+           }
+           arr1.push(team_arr);
+             arr.push(match);
+         }
+         });
+         matches = arr; 
+         matches.teams = arr1;
         res.status(200).json({matches});
   } catch (error) {
+    console.error(error);
+    res.status(400).send("Some error Occured");
       
   }
 })

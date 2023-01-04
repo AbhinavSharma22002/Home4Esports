@@ -7,6 +7,9 @@ const subtitle = "Anywhere, Anytime";
 const btnText = "Browse All Matches";
 const Upcomingtitle = "Upcoming Matches";
 const Previoutitle = "Previous Matches";
+const btntextTwo=  "Watch Now";
+
+
 
 let MatchInfoListOne = [
     {
@@ -21,7 +24,6 @@ let MatchInfoListOne = [
         playercount: '32 Players',
         matchpname: 'Prize Pool',
         matchpamount: '$3200',
-        btntextTwo: 'Watch Now',
     },
 ]
 let MatchInfoListTwo = [
@@ -109,10 +111,27 @@ let MatchInfoListThree = [
 ]
 
 
-class MatchSection extends Component {
-    render() { 
-        return (
-            <section className="match-section padding-top padding-bottom" style= {{backgroundImage: "url(/assets/images/match/bg.jpg)"}}>
+const MatchSection = (props)=>{
+    useEffect(() => {
+        const value = async () => {
+            let requestOptions = {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' }
+            };
+            fetch(
+                `http://localhost:3001/api/match/previousMatches`,
+                requestOptions
+            ).then((res) => res.json())
+            .then((json) => {
+                setTournament(json.matches);
+            })
+		}
+		value();
+        
+	},[]);
+    return (
+        <>
+        <section className="match-section padding-top padding-bottom" style= {{backgroundImage: "url(/assets/images/match/bg.jpg)"}}>
                 <div className="container">
                     <div className="section-header">
                         <p>{subtitle}</p>
@@ -157,9 +176,9 @@ class MatchSection extends Component {
                                                     <div className="col-xl-4 col-md-6 order-md-3">
                                                         <div className="match-game-social">
                                                             <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center justify-content-xl-start">
-                                                                <SocialMedia />
+                                                            
                                                                 <li>
-                                                                    <a href="#" className="default-button reverse-effect"><span>{val.btntextTwo} <i className="icofont-play-alt-1"></i></span></a>
+                                                                    <a href="#" className="default-button reverse-effect"><span>{btntextTwo} <i className="icofont-play-alt-1"></i></span></a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -208,8 +227,11 @@ class MatchSection extends Component {
                                                                             <span className="match-date">{val.matchdate} </span>
                                                                             <span className="match-time">{val.matchtime}</span>
                                                                         </p>
-                                                                        <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center">
-                                                                            <SocialMedia />
+                                                                         <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center">
+                                                                            
+                                                                            
+                                                                            <a href="#" className="default-button reverse-effect"><span>{btntextTwo} <i className="icofont-play-alt-1"></i></span></a>
+                                                                
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -263,7 +285,10 @@ class MatchSection extends Component {
                                                                             <span className="match-time">{val.matchtime}</span>
                                                                         </p>
                                                                         <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center">
-                                                                            <SocialMedia />
+                                                                            
+                                                                            
+                                                                            <a href="#" className="default-button reverse-effect"><span>{btntextTwo} <i className="icofont-play-alt-1"></i></span></a>
+                                                                
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -284,8 +309,10 @@ class MatchSection extends Component {
                     </div>
                 </div>
             </section>
-        );
-    }
-}
+        </>
+    );
+};
+
+
  
 export default MatchSection;
