@@ -72,7 +72,6 @@ router.get("/previousMatches", async(req,res)=>{
     try {
         let matches = await Match.find().sort({date:1});
         let arr = [];
-        let arr1 = [];
         matches.forEach(async (match) => {
            let date = match.date;
            let time = match.time.split(":");
@@ -89,12 +88,11 @@ router.get("/previousMatches", async(req,res)=>{
               team_arr.push(each_team);
            }
 
-            arr1.push(team_arr);
+           matches.teams = team_arr;
               arr.push(match);
           }
           });
           matches = arr; 
-          matches.teams = arr1;
           res.status(200).json({matches});
     } catch (error) {
       console.error(error);
@@ -106,7 +104,6 @@ router.get("/todayMatches", async(req,res)=>{
   try {
       let matches = await Match.find().sort({date:1});
       let arr = [];
-        let arr1 = [];
         matches.forEach(async (match) => {
            let date = match.date;
            let time = match.time.split(":");
@@ -121,12 +118,11 @@ router.get("/todayMatches", async(req,res)=>{
               const each_team = await Team.findById(match_teams[i]);
               team_arr.push(each_team);
            }
-           arr1.push(team_arr);
+           matches.teams = team_arr;
              arr.push(match);
          }
          });
          matches = arr; 
-         matches.teams = arr1;
         res.status(200).json({matches});
   } catch (error) {
     console.error(error);
@@ -138,7 +134,6 @@ router.get("/futureMatches", async(req,res)=>{
   try {
       let matches = await Match.find().sort({date:1});
       let arr = [];
-        let arr1 = [];
         matches.forEach(async (match) => {
            let date = match.date;
            let time = match.time.split(":");
@@ -152,14 +147,15 @@ router.get("/futureMatches", async(req,res)=>{
            let team_arr =[];
            for(let i=0;i<match_teams.length;i++){
               const each_team = await Team.findById(match_teams[i]);
+              console.log(match_teams[i]);
+              console.log(each_team);
               team_arr.push(each_team);
            }
-           arr1.push(team_arr);
+           match.teams = team_arr;
              arr.push(match);
          }
          });
          matches = arr; 
-         matches.teams = arr1;
         res.status(200).json({matches});
   } catch (error) {
     console.error(error);
