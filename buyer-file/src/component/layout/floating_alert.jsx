@@ -7,24 +7,24 @@ const FloatingFunc = () => {
     const [active, setActive] = useState(false);
     let Social = [
         {
-            IconName: 'i-icofont-linkedin',
-            IconLink: '#',
+            IconName: 'icofont-linkedin',
+            IconLink: 'https://www.linkedin.com/company/crowd-control-esports/mycompany/',
         },
         {
-            IconName: 'i-icofont-facebook',
-            IconLink: '#',
+            IconName: 'icofont-facebook',
+            IconLink: 'https://www.facebook.com/CrowdControlEsportsFB',
+        },      
+        {
+            IconName: 'icofont-ebuddy',
+            IconLink: 'https://discord.com/invite/4fWwCjaFwG',
         },
         {
-            IconName: 'i-icofont-ebuddy',
-            IconLink: '#',
+            IconName: 'icofont-youtube-play',
+            IconLink: 'https://www.youtube.com/c/CrowdControlEsports1',
         },
         {
-            IconName: 'i-icofont-youtube-play',
-            IconLink: '#',
-        },
-        {
-            IconName: 'i-icofont-instagram',
-            IconLink: '#',
+            IconName: ' icofont-instagram',
+            IconLink: 'https://www.instagram.com/crowd_control_esports/',
         },
     ]
 
