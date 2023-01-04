@@ -57,7 +57,11 @@ return (
                                             <div className="player-thumb-2">
                                                     <img src={`${val.image}`} alt='hello' />
                                             </div>
+                                            <div>
+                                                <h3>{val.fname}</h3>
+                                            </div>
                                             <div className="player-content-2">
+                                            
                                                 <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center">
                                                     <SocialMedia />
                                                 </ul>

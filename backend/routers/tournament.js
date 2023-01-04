@@ -17,21 +17,33 @@ router.get("/getAll",async(req,res)=>{
 router.post("/getById",async (req,res)=>{
     try {
         let id = req.body.id;
+        let type = req.body.type;
         let tournament = await Tournament.findById(id);
         let arr = [];
+        if(type==="suggestion"){
+          for(let i = 0;i<tournament.team.length;i++){
+            let d = tournament.team[i].id;
+            let team = await Team.findById(d);
+            if(team.teamMembers.length<tournament.teamSize){
+              arr.push(team);
+            }
+          }
+        }
+        else{
         for(let i = 0;i<tournament.team.length;i++){
           let d = tournament.team[i].id;
           arr.push(await Team.findById(d))
         }
+      }
         
-        let date = new Date(tournament.startDate);
-        var year = date.toLocaleString("default", { year: "numeric" });
-        var month = date.toLocaleString("default", { month: "2-digit" });
-        var day = date.toLocaleString("default", { day: "2-digit" });
-        var formattedDate = year + "-" + month + "-" + day;
+      let date = new Date(tournament.startDate);
+      var year = date.toLocaleString("default", { year: "numeric" });
+      var month = date.toLocaleString("default", { month: "2-digit" });
+      var day = date.toLocaleString("default", { day: "2-digit" });
+      var formattedDate = year + "-" + month + "-" + day;
 
-        tournament.startDate = formattedDate;
-        return res.status(200).json({tournament,list: arr});
+      tournament.startDate = formattedDate;
+      return res.status(200).json({tournament,list: arr});
       } catch (error) {
         console.error(error.message);
         res.status(500).send("Some error occurred");

@@ -40,6 +40,7 @@ import Tournament from "./pages/Tournament";
 import NewMember from "./component/section/member";
 import MyTournament from "./component/section/MyTournament";
 import UpdateCustomer from "./component/section/Customer";
+import JoinTeam from "./component/section/JoinTeam";
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -127,20 +128,20 @@ function App() {
 						}
 						{isAdmin ? (
 							<>
-								<Route path="admin" element={<Admin showAlert={showAlert} />} />
-								<Route path="Schedule" element={<Schedule showAlert={showAlert} />} />
-								<Route path="Mgmt" element={<Mgmt showAlert={showAlert} />} />
-								<Route path="Customer" element={<Customer showAlert={showAlert} />} />
-								<Route path="createBlog" element={<CreateBlog showAlert={showAlert} />} />
-								<Route path="streamForm" element={<StreamForm showAlert={showAlert} />} />
+								<Route path="admin" element={<Admin showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
+								<Route path="Schedule" element={<Schedule showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
+								<Route path="Mgmt" element={<Mgmt showAlert={showAlert} />} isLoggedIn={isLoggedIn} />
+								<Route path="createBlog" element={<CreateBlog showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
+								<Route path="streamForm" element={<StreamForm showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
 							</>
 						) : (
 							<>
 							</>
 						)}
-						<Route path="my-tournaments" element={<MyTournament showAlert={showAlert} />} />
-						<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert} />} />
-						<Route path="TeamForm" element={<TeamForm showAlert={showAlert} />} />
+						<Route path="joinTeam" element={<JoinTeam showAlert={showAlert} isLoggedIn={isLoggedIn}/>}/>
+						<Route path="my-tournaments" element={<MyTournament showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
+						<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
+						<Route path="TeamForm" element={<TeamForm showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
 					</>
 				) : (<>
 					<Route path="login" element={<LogIn setIsLoggedIn={setIsLoggedIn} showAlert={showAlert} />} />

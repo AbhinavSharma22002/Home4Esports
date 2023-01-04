@@ -34,7 +34,10 @@ const TeamSchema = new Schema({
     ref:"users",
     required:true
     }
-  }]
+  }],
+  link:{
+    type: String
+  }
 });
 const Team = mongoose.model("team", TeamSchema);
 module.exports = Team;

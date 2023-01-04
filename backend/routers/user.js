@@ -190,11 +190,12 @@ router.post("/update",fetchUser,async(req,res)=>{
     res.status(500).send("Internal server error");
   }
 });
-router.post("/getById",async(req,res)=>{
+router.post("/get", fetchUser,async(req,res)=>{
   try {
-    const user= req.body.id;    
-    let successUser = await User.findById(user).select("-password -email -date -role");
-    res.status(200).json(successUser);
+
+    const user= req.user.id;    
+    let successUser = await User.findById(user).select("-password -email -date -role -_id -fname -lname");
+    res.status(200).json({successUser});
   } catch (error) {
     console.log(error.message);
     res.status(500).send("Internal server error");

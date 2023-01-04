@@ -72,6 +72,26 @@ const TournamentFunc = (props)=>{
                             </>)
                         }
                         {
+                            (props.isLoggedIn && TeamList.length!==0)?(<>
+                             <div className="col-12">
+                                    <div className="match-item item-layer">
+                                        <div className="match-inner">
+                                            <div className="match-content gradient-bg-yellow">
+                                                <div className="row gy-4 align-items-center justify-content-center">
+                                                    <div className="col-xl-4 col-md-6 order-md-1">
+                                                        <div className="match-game-info">
+                                                            <h4><Link to={`/joinTeam?tourID=${Tournament._id}`}>Join A Team</Link></h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>):(<>
+                            </>)
+                        }
+                        {
                             (TeamList.map((val,i)=>(
                                 <Teams val={val} key={i} Tournament={Tournament}/>
                             )))

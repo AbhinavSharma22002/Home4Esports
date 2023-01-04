@@ -21,11 +21,12 @@ router.post("/getAll",async(req,res)=>{
 
 
 //invitation link 
-async function generateLink(teamId, expirationDate) {
+async function generateLink(teamId,tournamentId, expirationDate) {
   console.log(teamId);
   let payload = {
     team: {
       id: teamId,
+      tournamentId: tournamentId
     },
   };
   const authData = await jwt.sign(payload, JWT_secret,{expiresIn:"1h"});
@@ -59,6 +60,7 @@ async (req, res) => {
 
     try {
       if(tournament.noOfTeams>tournament.team.length){
+        
         let team = await Team.create({
             teamName: teamName,
             author: leader._id,
@@ -67,12 +69,18 @@ async (req, res) => {
                 id: leader._id
             }]
         });
+
         tournament.team.push({
           id:team._id
         });
+        
         await Tournament.findOneAndUpdate({_id:tournamentId},tournament);
-        let link = process.env.FRONT + "/newMember?new="+  await generateLink(team._id,new Date(Date.now() + 7 * 24 * 60 * 60 * 1000));
 
+        let link = process.env.FRONT + "/newMember?new="+  await generateLink(team._id,tournamentId,new Date(Date.now() + 7 * 24 * 60 * 60 * 1000));
+        team.link = link;
+        
+        await Team.findOneAndUpdate({_id:team._id},team);
+        
         return res.status(200).json({link});
       }
       else{
@@ -92,22 +100,31 @@ async (req, res) => {
     const {image} = req.body;
     const data = jwt.verify(team_id,JWT_secret);
     team_id = data.team.id;
+    tour_id = data.team.tournamentId;
+    let tournament = await Tournament.findById(tour_id).select("teamSize");
     const user = await User.findById(userId).select("-password");
     let teams = await Team.findById(team_id);
     //check for access level
   try {
     for(let i = 0;i<teams.teamMembers.length;i++){
+      console.log("team1  "+teams.teamMembers[i].id)
+      console.log(user._id);
         if(teams.teamMembers[i].id===user._id){
             return res.status(200).send("You have already registered.");
         }
     }
-    teams.teamMembers.push({
-        id: user._id
-    })
-    user.image = image;
-    let team = await Team.findOneAndUpdate({_id: team_id}, teams);
-    await User.findOneAndUpdate({_id: user._id},user);
-    return res.status(200).send("Success");
+    if(tournament.teamSize>teams.teamMembers.length){
+      teams.teamMembers.push({
+          id: user._id
+      })
+      user.image = image;
+      let team = await Team.findOneAndUpdate({_id: team_id}, teams);
+      await User.findOneAndUpdate({_id: user._id},user);
+      return res.status(200).send("Success");
+    }
+    else{
+      return res.status(400).send("Team Full");
+    }
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Some error occurred");
@@ -132,7 +149,7 @@ router.post('/getByIdAndUpdate',async (req,res)=>{
   let arr=[];
   for(let i = 0;i<team.teamMembers.length;i++){
     let id = team.teamMembers[i].id;
-    arr.push(await User.findById(id));
+    arr.push(await User.findById(id).select("-password -email -role"));
   }
   res.status(200).json({team:team,members: arr});
   }catch(error){

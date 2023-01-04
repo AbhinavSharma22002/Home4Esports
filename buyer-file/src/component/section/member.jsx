@@ -7,12 +7,36 @@ import {useNavigate  } from "react-router-dom";
 
 const Member = (props) => {
     const[image,setImage] = useState('');
+    useEffect(() => {
+            let val = getID();
+        const value = async () => {
+            let requestOptions = {
+                method: "POST",
+                headers: { 
+                    "auth-token":localStorage.getItem('token')
+                 },
+                body: JSON.stringify({id: val,type: "suggestion"})
+            };
+            fetch(
+                `http://localhost:3001/api/user/get`,
+                requestOptions
+            ).then((res) => res.json())
+            .then((json) => {
+                
+                if(json.successUser.image!==""){
+                    setImage(json.successUser.image)
+                }
+            })
+		}
+		value();
+	},[]);
     function getID(){
         let pair = window.location.search.substring(1).split("=");
         return pair[1];
     }
     const navigate = useNavigate();
      const addFile = async (e)=>{
+        if(image===""){
         const formData = new FormData();
         formData.append("image",e.target.files[0]);
         const requestOptions = {
@@ -28,12 +52,13 @@ const Member = (props) => {
         );
 		const data = await response.json();
         setImage(data.val)
+        }
     }
     const handleUpload = async (e) =>{
         
         e.preventDefault();
         let link = getID();
-        const data = {image};
+        let data = {image};
         const requestOptions = {
             method: "POST",
                 headers: {
@@ -65,17 +90,24 @@ const Member = (props) => {
                 <div className=" container">
                     <div className="account-wrapper">
                         <form className="account-form">
-                           
-                            <div className="form-group">
-                            <label for="tournamentImage">Your Image</label>
+                           {
+                            (image==="")?(
+                                <div className="form-group">
+                            <label htmlFor="tournamentImage">Your Image</label>
                                 <input 
                                     type="file"
                                     name=""
                                     id="tournamentImage"
                                     onChange={addFile}
-                                    placeholder="Please Select Tournament Image*"
+                                    placeholder="Please Select Your Image*"
                                 />
                             </div>
+                            ):(
+                                <>
+                                </>
+                            )
+                           }
+                            
                             <div className="form-group">
                                 <button className="d-block default-button" onClick = {handleUpload}><span>JOIN TEAM</span></button>
                             </div>
