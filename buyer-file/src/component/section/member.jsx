@@ -37,7 +37,8 @@ const Member = (props) => {
         const requestOptions = {
             method: "POST",
                 headers: {
-                    "auth-token":localStorage.getItem('token')
+                    "auth-token":localStorage.getItem('token'),
+                    'Content-Type': 'application/json' 
                 },
                 body :  JSON.stringify(data),
 

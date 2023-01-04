@@ -104,8 +104,9 @@ async (req, res) => {
     teams.teamMembers.push({
         id: user._id
     })
-    teams.image = image;
+    user.image = image;
     let team = await Team.findOneAndUpdate({_id: team_id}, teams);
+    await User.findOneAndUpdate({_id: user._id},user);
     return res.status(200).send("Success");
   } catch (error) {
     console.error(error.message);

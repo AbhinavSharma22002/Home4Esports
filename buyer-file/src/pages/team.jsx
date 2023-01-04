@@ -52,10 +52,10 @@ return (
                         <div className="row g-4">
                             {members.map((val, i) => (
                                 <div className="col-lg-4 col-sm-6 col-12" key={i}>
-                                    <div className="player-item-2 text-center" style={{backgroundImage: `url(${val.bgImgUrl})`}}>
+                                    <div className="player-item-2 text-center">
                                         <div className="player-inner-2">
                                             <div className="player-thumb-2">
-                                                    <img src={`${val.imgUrl}`} alt={`${val.imgAlt}`} />
+                                                    <img src={`${val.image}`} alt='hello' />
                                             </div>
                                             <div className="player-content-2">
                                                 <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center">
