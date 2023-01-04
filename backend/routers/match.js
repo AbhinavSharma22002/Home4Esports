@@ -6,7 +6,7 @@ const fetchuser = require('../middleware/Fetchuser');
 const Tournament = require("../database/Tournament");
 const Team = require("../database/Team");
 
-const createMatch = async (teams,date,time,results) => {
+const createMatch = async (teams,date,time,results,round,link) => {
   try {
     let final_teams = [];
     for(let i = 0;i<teams.length;i++){
@@ -18,7 +18,9 @@ const createMatch = async (teams,date,time,results) => {
         teams:final_teams,
         date:date,
         time:time,
-        results:results
+        results:results,
+        round:round,
+        link: link
       });
       return match_id._id;
     }
@@ -26,7 +28,9 @@ const createMatch = async (teams,date,time,results) => {
       const match_id = await Match.create({
         teams:teams,
         date:date,
-        time:time
+        time:time,
+        round: round,
+        link: link
       });
       return match_id._id;
     }
@@ -50,7 +54,7 @@ router.post("/getAndUpdateMatches",fetchuser, async (req,res)=>{
     tournament.matches = [];
     let temP_arr = [];
     for(let i = 0;i<matches.length;i++){
-      let newCreated = await createMatch(matches[i].teams,matches[i].date,matches[i].time,matches[i].results);
+      let newCreated = await createMatch(matches[i].teams,matches[i].date,matches[i].time,matches[i].results,matches[i].round,matches[i].link);
       temP_arr.push({
         id: newCreated
       });
@@ -67,6 +71,7 @@ router.post("/getAndUpdateMatches",fetchuser, async (req,res)=>{
     res.status(500).send("Some error occured");
   }
 });
+
 
 router.get("/previousMatches", async(req,res)=>{
     try {
@@ -89,7 +94,18 @@ router.get("/previousMatches", async(req,res)=>{
            }
 
            matches.teams = team_arr;
-              arr.push(match);
+           
+          arr.push({
+            imageone: matches.teams[0].image,
+            alt1: 'game name 1',
+            imagetwo: matches.teams[1].image,
+            alt2: 'game name 2',
+            title: 'Tournament Name',
+            matchdate: matches.date.getDate(),
+            matchtime: `Time: ${matches.date.getTime()}`,
+            playercount: `${matches.teams.length} Players` ,
+            groupcount: matches.round
+          });
           }
           });
           matches = arr; 
@@ -119,7 +135,18 @@ router.get("/todayMatches", async(req,res)=>{
               team_arr.push(each_team);
            }
            matches.teams = team_arr;
-             arr.push(match);
+            
+          arr.push({
+            imageone: matches.teams[0].image,
+            alt1: 'game name 1',
+            imagetwo: matches.teams[1].image,
+            alt2: 'game name 2',
+            title: 'Tournament Name',
+            matchdate: matches.date.getDate(),
+            matchtime: `Time: ${matches.date.getTime()}`,
+            playercount: `${matches.teams.length} Players` ,
+            groupcount: matches.round
+          });
          }
          });
          matches = arr; 
@@ -152,7 +179,18 @@ router.get("/futureMatches", async(req,res)=>{
               team_arr.push(each_team);
            }
            match.teams = team_arr;
-             arr.push(match);
+            
+          arr.push({
+            imageone: matches.teams[0].image,
+            alt1: 'game name 1',
+            imagetwo: matches.teams[1].image,
+            alt2: 'game name 2',
+            title: 'Tournament Name',
+            matchdate: matches.date.getDate(),
+            matchtime: `Time: ${matches.date.getTime()}`,
+            playercount: `${matches.teams.length} Players` ,
+            groupcount: matches.round
+          });
          }
          });
          matches = arr; 

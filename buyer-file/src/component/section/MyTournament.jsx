@@ -62,11 +62,16 @@ const readExcel = (file)=>{
             let row = d[i];
             
             let curr_match ={};
-            if(row.$Matches && row.$Teams && row.$Date && row.$Round && row.$Time){
+            if(row.$Matches && row.$Teams && row.$Date && row.$Round && row.$Time && row.$Link){
                 curr_match.date = new Date(Date.UTC(0, 0, row.$Date - 1));            
                 curr_match.time = formatHoursMinutesSeconds(row.$Time);
 
                 curr_match.results = row.$Results;
+
+                curr_match.round = row.$Round;
+                curr_match.link = row.$Link;
+
+
                 let noTeam = row.$Teams;
                 let curr_teams = [];
                 for(let j = 1;j<=noTeam;j++){

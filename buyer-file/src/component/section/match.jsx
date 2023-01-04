@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component,useEffect,useState } from "react";
 import { Link } from "react-router-dom";
 import SocialMedia from "./socialmedia";
 
@@ -9,111 +9,13 @@ const Upcomingtitle = "Upcoming Matches";
 const Previoutitle = "Previous Matches";
 const btntextTwo=  "Watch Now";
 
-
-
-let MatchInfoListOne = [
-    {
-        imageone: 'assets/images/match/teamsm/teamsm-1.png',
-        alt1: 'game list name',
-        imagetwo: 'assets/images/match/teamsm/teamsm-2.png',
-        alt2: 'game list name',
-        title: 'Battlefield-4 tournament',
-        matchdate: '30  April 2021',
-        matchtime: 'Time: 08:30PM',
-        groupcount: '2 group',
-        playercount: '32 Players',
-        matchpname: 'Prize Pool',
-        matchpamount: '$3200',
-    },
-]
-let MatchInfoListTwo = [
-    {
-        imageone: 'assets/images/match/teamsm/teamsm-1.png',
-        alt1: 'game list name',
-        imagetwo: 'assets/images/match/teamsm/teamsm-2.png',
-        alt2: 'game list name',
-        title: 'call of duty TOURNAMENT',
-        matchdate: '15  May 2022',
-        matchtime: 'Time: 08:30PM',
-        groupcount: '2 group',
-        playercount: '32 Players',
-        matchpname: 'Prize Pool',
-        matchpamount: '$3200',
-    },
-    {
-        imageone: 'assets/images/match/teamsm/teamsm-3.png',
-        alt1: 'game list name',
-        imagetwo: 'assets/images/match/teamsm/teamsm-4.png',
-        alt2: 'game list name',
-        title: 'LEAGUE BATTLE tournament',
-        matchdate: '15  May 2022',
-        matchtime: 'Time: 08:30PM',
-        groupcount: '2 group',
-        playercount: '32 Players',
-        matchpname: 'Prize Pool',
-        matchpamount: '$3600',
-    },
-    {
-        imageone: 'assets/images/match/teamsm/teamsm-5.png',
-        alt1: 'game list name',
-        imagetwo: 'assets/images/match/teamsm/teamsm-6.png',
-        alt2: 'game list name',
-        title: 'pubg classic tournament',
-        matchdate: '15  May 2022',
-        matchtime: 'Time: 08:30PM',
-        groupcount: '2 group',
-        playercount: '32 Players',
-        matchpname: 'Prize Pool',
-        matchpamount: '$3400',
-    },
-]
-
-let MatchInfoListThree = [
-    {
-        imageone: 'assets/images/match/teamsm/teamsm-7.png',
-        alt1: 'game list name',
-        imagetwo: 'assets/images/match/teamsm/teamsm-8.png',
-        alt2: 'game list name',
-        result: '4 - 2',
-        matchdate: '15  May 2022',
-        matchtime: 'Time: 08:30PM',
-        groupcount: '2 group',
-        playercount: '32 Players',
-        matchpname: 'Prize Pool',
-        matchpamount: '$3200',
-    },
-    {
-        imageone: 'assets/images/match/teamsm/teamsm-9.png',
-        alt1: 'game list name',
-        imagetwo: 'assets/images/match/teamsm/teamsm-10.png',
-        alt2: 'game list name',
-        result: '3 - 1',
-        matchdate: '15  May 2022',
-        matchtime: 'Time: 08:30PM',
-        groupcount: '2 group',
-        playercount: '32 Players',
-        matchpname: 'Prize Pool',
-        matchpamount: '$3600',
-    },
-    {
-        imageone: 'assets/images/match/teamsm/teamsm-11.png',
-        alt1: 'game list name',
-        imagetwo: 'assets/images/match/teamsm/teamsm-12.png',
-        alt2: 'game list name',
-        result: '0 - 0',
-        matchdate: '15  May 2022',
-        matchtime: 'Time: 08:30PM',
-        groupcount: '2 group',
-        playercount: '32 Players',
-        matchpname: 'Prize Pool',
-        matchpamount: '$3400',
-    },
-]
-
-
 const MatchSection = (props)=>{
+
+    const [MatchInfoListOne,setMatchInfoListOne] = useState([]);
+    const [MatchInfoListTwo,setMatchInfoListTwo] = useState([]);
+    const [MatchInfoListThree,setMatchInfoListThree] = useState([]);
     useEffect(() => {
-        const value = async () => {
+        const value1 = async () => {
             let requestOptions = {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' }
@@ -123,10 +25,40 @@ const MatchSection = (props)=>{
                 requestOptions
             ).then((res) => res.json())
             .then((json) => {
-                setTournament(json.matches);
+                setMatchInfoListOne(json.matches);
             })
 		}
-		value();
+        const value2 = async () => {
+            let requestOptions = {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' }
+            };
+            fetch(
+                `http://localhost:3001/api/match/todayMatches`,
+                requestOptions
+            ).then((res) => res.json())
+            .then((json) => {
+                setMatchInfoListTwo(json.matches);
+            })
+		}
+        const value3 = async () => {
+            let requestOptions = {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' }
+            };
+            fetch(
+                `http://localhost:3001/api/match/futureMatches`,
+                requestOptions
+            ).then((res) => res.json())
+            .then((json) => {
+                setMatchInfoListThree(json.matches);
+            })
+		}
+
+		value1();
+        value2();
+        value3();
+
         
 	},[]);
     return (
@@ -145,7 +77,6 @@ const MatchSection = (props)=>{
                                         <div className="match-inner">
                                             <div className="match-header d-flex flex-wrap justify-content-between align-items-center">
                                                 <p className="match-team-info">{val.groupcount} <span className="fw-bold">{val.playercount}</span></p>
-                                                <p className="match-prize">{val.matchpname} <span className="fw-bold">{val.matchpamount}</span></p>
                                             </div>
                                             <div className="match-content gradient-bg-yellow">
                                                 <div className="row gy-4 align-items-center justify-content-center">
@@ -202,7 +133,6 @@ const MatchSection = (props)=>{
                                                     <div className="match-inner">
                                                         <div className="match-header d-flex flex-wrap justify-content-between align-items-center">
                                                             <p className="match-team-info">{val.groupcount} <span className="fw-bold">{val.playercount}</span></p>
-                                                            <p className="match-prize">{val.matchpname} <span className="fw-bold">{val.matchpamount}</span></p>
                                                         </div>
                                                         <div className="match-content">
                                                             <div className="row align-items-center justify-content-center">
@@ -255,7 +185,6 @@ const MatchSection = (props)=>{
                                                     <div className="match-inner">
                                                         <div className="match-header d-flex flex-wrap justify-content-between align-items-center">
                                                             <p className="match-team-info">{val.groupcount} <span className="fw-bold">{val.playercount}</span></p>
-                                                            <p className="match-prize">{val.matchpname} <span className="fw-bold">{val.matchpamount}</span></p>
                                                         </div>
                                                         <div className="match-content">
                                                             <div className="row align-items-center justify-content-center">
@@ -279,7 +208,7 @@ const MatchSection = (props)=>{
                                                                 </div>
                                                                 <div className="col-md-8 order-md-2 mt-4 mt-md-0">
                                                                     <div className="match-game-info text-center">
-                                                                        <h4><Link to="/team-single">{val.result}</Link></h4>
+                                                                        {/*<h4><Link to="/team-single">{val.result}</Link></h4>*/}
                                                                         <p className="d-flex flex-wrap justify-content-center">
                                                                             <span className="match-date">{val.matchdate} </span>
                                                                             <span className="match-time">{val.matchtime}</span>

@@ -6,6 +6,14 @@ const matchSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'team'
       }],
+      link:{
+        type: String,
+        required: true
+      },
+      round:{
+        type: String,
+        required: true
+      },
       date:{
         type: Date,
         required: true
