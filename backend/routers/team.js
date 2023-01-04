@@ -89,6 +89,7 @@ fetchuser,
 async (req, res) => {
     let userId = req.user.id;
     let team_id = req.params.key;
+    const {image} = req.body;
     const data = jwt.verify(team_id,JWT_secret);
     team_id = data.team.id;
     const user = await User.findById(userId).select("-password");
@@ -103,6 +104,7 @@ async (req, res) => {
     teams.teamMembers.push({
         id: user._id
     })
+    teams.image = image;
     let team = await Team.findOneAndUpdate({_id: team_id}, teams);
     return res.status(200).send("Success");
   } catch (error) {

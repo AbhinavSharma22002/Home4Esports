@@ -34,18 +34,6 @@ const Admin = () => {
                 </div>
 
                 <div className='head-1'>
-                    <Link to="/Customer">
-                        <img src={Customer} alt="logo" />
-                    </Link>
-                </div>
-
-                <div className='head-1'>
-                    <Link to="/createBlog">
-                        <img src={Blog} alt="logo" />
-                    </Link>
-                </div>
-
-                <div className='head-1'>
                     <Link to="/streamForm">
                         <img src={Stream} alt="logo" />
                     </Link>

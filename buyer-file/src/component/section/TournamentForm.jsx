@@ -155,10 +155,11 @@ const TournamentForm = (props)=> {
                                 />
                             </div> 
                             <div className="form-group">
+                            <label for="tournamentImage">Tournament Image</label>
                                 <input 
                                     type="file"
                                     name=""
-                                    id="image"
+                                    id="tournamentImage"
                                     onChange={addFile}
                                     placeholder="Please Select Tournament Image*"
                                 />

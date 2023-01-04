@@ -28,6 +28,9 @@ const UserSchema = new Schema({
     default: Date.now,
     required: true,
   },
+  image:{
+    type: String
+  },
    role: {
     type: String,
     default: "local",

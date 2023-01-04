@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
 const JWT_secret = process.env.JWT_secret;
-
+require('dotenv').config();
 const Fetchuser = (req,res,next)=>{
     //Get the user from the jwt token and add id to req object
     const token = req.header('auth-token');
     if(!token){
-       return res.redirect( process.env.FRONT+ "/login")
+        res.status(401).send("Some Error Occured");
     }
     try{
         const data = jwt.verify(token,JWT_secret);
@@ -13,7 +13,7 @@ const Fetchuser = (req,res,next)=>{
         next();
     }
     catch(error){
-        res.redirect( process.env.FRONT + "/login")
+        res.status(401).send("Some Error Occured");
     }
 };
 
