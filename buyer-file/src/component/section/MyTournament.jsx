@@ -40,6 +40,7 @@ const readExcel = (file)=>{
 
             resolve(data);
         }
+
         fileReader.onerror = function(error){
             reject(error);
 
@@ -54,7 +55,7 @@ const readExcel = (file)=>{
             
             let curr_match ={};
             if(row.$Matches && row.$Teams && row.$Date && row.$Round && row.$Time){
-                curr_match.date = row.$Date;
+                curr_match.date = new Date(Date.UTC(0, 0, row.$Date - 1));
                 curr_match.time = row.$Time;
                 curr_match.results = row.$Results;
                 let noTeam = row.$Teams;
@@ -78,6 +79,7 @@ const readExcel = (file)=>{
             }
             filtered_Data.push(curr_match);
         }
+        console.log(filtered_Data);
         setMatches(filtered_Data);
     })
 };
