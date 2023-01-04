@@ -6,12 +6,12 @@ const fetchuser = require('../middleware/Fetchuser');
 const Tournament = require("../database/Tournament");
 const Team = require("../database/Team");
 
-const createMatch = async (teams,date,time,results,round,link) => {
+const createMatch = async (teams1,date,time,results,round,link) => {
   try {
     let final_teams = [];
-    for(let i = 0;i<teams.length;i++){
-      const team = await Team.findOne({tag: teams[i]}).select("_id");
-      final_teams.push(team);
+    for(let i = 0;i<teams1.length;i++){
+      const team = await Team.findOne({tag: teams1[i]});
+      final_teams.push(team._id);
     }
     if(results){
       const match_id = await Match.create({
@@ -26,7 +26,7 @@ const createMatch = async (teams,date,time,results,round,link) => {
     }
     else{
       const match_id = await Match.create({
-        teams:teams,
+        teams:final_teams,
         date:date,
         time:time,
         round: round,
@@ -77,7 +77,9 @@ router.get("/previousMatches", async(req,res)=>{
     try {
         let matches = await Match.find().sort({date:1});
         let arr = [];
-        matches.forEach(async (match) => {
+      for(let i = 0;i<matches.length;i++)
+         {
+            let match = matches[i];
            let date = match.date;
            let time = match.time.split(":");
            date.setHours(time[0]);
@@ -92,23 +94,23 @@ router.get("/previousMatches", async(req,res)=>{
               const each_team = await Team.findById(match_teams[i]);
               team_arr.push(each_team);
            }
+           match.teams = team_arr;
 
-           matches.teams = team_arr;
-           
           arr.push({
-            imageone: matches.teams[0].image,
+            imageone: match.teams[0].image,
             alt1: 'game name 1',
-            imagetwo: matches.teams[1].image,
+            imagetwo: match.teams[1].image,
             alt2: 'game name 2',
             title: 'Tournament Name',
-            matchdate: matches.date.getDate(),
-            matchtime: `Time: ${matches.date.getTime()}`,
-            playercount: `${matches.teams.length} Players` ,
-            groupcount: matches.round
+            matchdate: match.date.getDate(),
+            matchtime: `Time: ${match.date.getTime()}`,
+            playercount: `${match.teams.length} Players` ,
+            groupcount: match.round
           });
-          }
-          });
-          matches = arr; 
+         }
+         matches[i] = match;
+         }
+         matches = arr;  
           res.status(200).json({matches});
     } catch (error) {
       console.error(error);
@@ -120,7 +122,9 @@ router.get("/todayMatches", async(req,res)=>{
   try {
       let matches = await Match.find().sort({date:1});
       let arr = [];
-        matches.forEach(async (match) => {
+      for(let i = 0;i<matches.length;i++)
+         {
+            let match = matches[i];
            let date = match.date;
            let time = match.time.split(":");
            date.setHours(time[0]);
@@ -129,26 +133,28 @@ router.get("/todayMatches", async(req,res)=>{
            let presentDate = new Date();
            if(date.getDate()===presentDate.getDate()){
            let match_teams = match.teams;
+
            let team_arr =[];
            for(let i=0;i<match_teams.length;i++){
               const each_team = await Team.findById(match_teams[i]);
               team_arr.push(each_team);
            }
-           matches.teams = team_arr;
-            
+           match.teams = team_arr;
+
           arr.push({
-            imageone: matches.teams[0].image,
+            imageone: match.teams[0].image,
             alt1: 'game name 1',
-            imagetwo: matches.teams[1].image,
+            imagetwo: match.teams[1].image,
             alt2: 'game name 2',
             title: 'Tournament Name',
-            matchdate: matches.date.getDate(),
-            matchtime: `Time: ${matches.date.getTime()}`,
-            playercount: `${matches.teams.length} Players` ,
-            groupcount: matches.round
+            matchdate: match.date.getDate(),
+            matchtime: `Time: ${match.date.getTime()}`,
+            playercount: `${match.teams.length} Players` ,
+            groupcount: match.round
           });
          }
-         });
+         matches[i] = match;
+         }
          matches = arr; 
         res.status(200).json({matches});
   } catch (error) {
@@ -161,7 +167,9 @@ router.get("/futureMatches", async(req,res)=>{
   try {
       let matches = await Match.find().sort({date:1});
       let arr = [];
-        matches.forEach(async (match) => {
+      for(let i = 0;i<matches.length;i++)
+         {
+            let match = matches[i];
            let date = match.date;
            let time = match.time.split(":");
            date.setHours(time[0]);
@@ -174,25 +182,24 @@ router.get("/futureMatches", async(req,res)=>{
            let team_arr =[];
            for(let i=0;i<match_teams.length;i++){
               const each_team = await Team.findById(match_teams[i]);
-              console.log(match_teams[i]);
-              console.log(each_team);
               team_arr.push(each_team);
            }
            match.teams = team_arr;
-            
+
           arr.push({
-            imageone: matches.teams[0].image,
+            imageone: match.teams[0].image,
             alt1: 'game name 1',
-            imagetwo: matches.teams[1].image,
+            imagetwo: match.teams[1].image,
             alt2: 'game name 2',
             title: 'Tournament Name',
-            matchdate: matches.date.getDate(),
-            matchtime: `Time: ${matches.date.getTime()}`,
-            playercount: `${matches.teams.length} Players` ,
-            groupcount: matches.round
+            matchdate: match.date.getDate(),
+            matchtime: `Time: ${match.date.getTime()}`,
+            playercount: `${match.teams.length} Players` ,
+            groupcount: match.round
           });
          }
-         });
+         matches[i] = match;
+         }
          matches = arr; 
         res.status(200).json({matches});
   } catch (error) {

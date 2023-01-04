@@ -17,7 +17,7 @@ const MatchSection = (props)=>{
     useEffect(() => {
         const value1 = async () => {
             let requestOptions = {
-                method: "POST",
+                method: "GET",
                 headers: { 'Content-Type': 'application/json' }
             };
             fetch(
@@ -25,12 +25,12 @@ const MatchSection = (props)=>{
                 requestOptions
             ).then((res) => res.json())
             .then((json) => {
-                setMatchInfoListOne(json.matches);
+                setMatchInfoListThree(json.matches);
             })
 		}
         const value2 = async () => {
             let requestOptions = {
-                method: "POST",
+                method: "GET",
                 headers: { 'Content-Type': 'application/json' }
             };
             fetch(
@@ -38,12 +38,12 @@ const MatchSection = (props)=>{
                 requestOptions
             ).then((res) => res.json())
             .then((json) => {
-                setMatchInfoListTwo(json.matches);
+                setMatchInfoListOne(json.matches);
             })
 		}
         const value3 = async () => {
             let requestOptions = {
-                method: "POST",
+                method: "GET",
                 headers: { 'Content-Type': 'application/json' }
             };
             fetch(
@@ -51,7 +51,7 @@ const MatchSection = (props)=>{
                 requestOptions
             ).then((res) => res.json())
             .then((json) => {
-                setMatchInfoListThree(json.matches);
+                setMatchInfoListTwo(json.matches);
             })
 		}
 
