@@ -9,25 +9,25 @@ const title = "Our Features";
 
 let CollectionListContent = [
     {
-        imgUrl: 'assets/images/game/01.png',
+        imgUrl: 'assets/images/game/logo.png',
         imgAlt: 'collect thumb',
         title: 'Studio',
         link:'#'
     },
     {
-        imgUrl: 'assets/images/game/02.png',
+        imgUrl: 'assets/images/game/logo.png',
         imgAlt: 'collect thumb',
         title: 'Khelshaala',
         link:'#'
     },
     {
-        imgUrl: 'assets/images/game/03.png',
+        imgUrl: 'assets/images/game/logo.png',
         imgAlt: 'collect thumb',
         title: 'Crowd Forge',
         link:'#'
     },
     {
-        imgUrl: 'assets/images/game/04.png',
+        imgUrl: 'assets/images/game/logo.png',
         imgAlt: 'collect thumb',
         title: 'Metabits',
         link:'#'
