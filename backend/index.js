@@ -25,6 +25,7 @@ const teamRouter = require("./routers/team");
 const tournamentRouter = require('./routers/tournament');
 const matchRouter = require('./routers/match');
 const bestMatchRouter = require('./routers/display');
+const contactRouter = require('./routers/contact');
 app.use('/',indexRouter);
 app.use('/api/user/',userRouter);
 app.use('/api/newsletter/',newsletterRouter);
@@ -36,7 +37,7 @@ app.use("/api/team/",teamRouter);
 app.use('/api/tournament/',tournamentRouter);
 app.use('/api/match/',matchRouter);
 app.use('/api/display',bestMatchRouter);
-
+app.use('/api/contact',contactRouter);
 
 const Teams = require('./database/Team');
 const Display = require('./database/Display');

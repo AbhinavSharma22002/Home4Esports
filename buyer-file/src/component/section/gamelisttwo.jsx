@@ -104,7 +104,7 @@ const GameListTwo = () => {
                                                         <div className="match-game-social">
                                                             <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center justify-content-xl-start">
                                                                 <li>
-                                                                    <a href="#" className="default-button reverse-effect"><span>{val.btntextTwo} <i className="icofont-play-alt-1"></i></span></a>
+                                                                    <a href={`${val.link}`} className="default-button reverse-effect"><span>{val.btntextTwo} <i className="icofont-play-alt-1"></i></span></a>
                                                                 </li>
                                                             </ul>
                                                         </div>

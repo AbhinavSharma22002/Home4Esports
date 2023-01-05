@@ -1,8 +1,7 @@
-import { Component, Fragment } from "react";
+import React, { useState } from 'react';
 import PageHeader from "../component/layout/pageheader";
 import GoogleMap from "../component/section/googlemap";
-import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
+
 
 
 const infosubtitle = "Get in touch with us";
@@ -10,55 +9,60 @@ const infotitle = "We're Always Eager To Hear From You!";
 const contacttitle = "Fill The Form Below So We Can Get To Know You And Your Needs Better.";
 
 
-let infoListContent = [
-    {
-        imgUrl: 'assets/images/contact/icon/01.png',
-        imgAlt: 'Contact Info Thumb',
-        title: 'Office Address',
-        desc: 'Sec-82, Gurugram, Haryana, India-122004',
-    },
-    {
-        imgUrl: 'assets/images/contact/icon/02.png',
-        imgAlt: 'Contact Info Thumb',
-        title: 'Phone number',
-        desc: '+91 954 092 2345',
-    },
-    {
-        imgUrl: 'assets/images/contact/icon/03.png',
-        imgAlt: 'Contact Info Thumb',
-        title: 'Send Email',
-        desc: 'ccesports@gmail.com',
-    },
-]
 
-class ContactUs extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            contactName: '',
-            contactEmail: '',
-            contactSubject: '',
-            contactNumber: '',
-            contactMassage: '',
+
+const ContactUs = (props) => {
+    const [respondName, setRespondName] = useState('');
+    const [respondEmail, setRespondEmail] = useState('');
+    const [respondSubject, setRespondSubject] = useState('');
+    const [respondMessage, setRespondMessage] = useState('');
+    const [respondContact, setRespondContact] = useState('');
+
+    let infoListContent = [
+        {
+            imgUrl: 'assets/images/contact/icon/01.png',
+            imgAlt: 'Contact Info Thumb',
+            title: 'Office Address',
+            desc: 'Sec-82, Gurugram, Haryana, India-122004',
+        },
+        {
+            imgUrl: 'assets/images/contact/icon/02.png',
+            imgAlt: 'Contact Info Thumb',
+            title: 'Phone number',
+            desc: '+91 954 092 2345',
+        },
+        {
+            imgUrl: 'assets/images/contact/icon/03.png',
+            imgAlt: 'Contact Info Thumb',
+            title: 'Send Email',
+            desc: 'ccesports@gmail.com',
+        },
+    ]
+
+    const handleSubmit = async (e)=>{
+        e.preventDefault();
+        const data = {
+            respondName,respondEmail,respondSubject,respondContact,respondMessage
         };
+        const requestOptions = {
+                method: "POST",
+                headers: {
+                    "auth-token":localStorage.getItem('token'),
+                    'Content-Type': 'application/json' 
+                    },
+                body: JSON.stringify(data),
+            };
+            const response = await fetch(
+                `http://localhost:3001/api/contact/create`,
+                requestOptions
+        );
+        if(response.status===200){
+            props.showAlert("commented Success!!","success");
+        }
     }
 
-    render() { 
-        const sendEmail = (e) => {
-            
-            e.preventDefault();
-        
-            emailjs.sendForm('service_qqfu3vo', 'template_lg1tlv1',e.target, 'cEJhncmDmn0afNfar')
-              .then((result) => {
-                  console.log(result.text);
-              }, (error) => {
-                  console.log(error.text);
-              });
-          };
-
         return (
-
-            <Fragment>
+            <>
                 <PageHeader title={'CONTACT US'} curPage={'CONTACT'} />
                 <div className="info-section padding-top padding-bottom">
                     <div className="container">
@@ -96,14 +100,14 @@ class ContactUs extends Component {
                                 <div className="col-12 col-lg-9">
                                     <div className="contact-form-wrapper text-center">
                                         <h2 className="mb-5">{contacttitle}</h2>
-                                        <form className="contact-form" id="contact-form" onSubmit={sendEmail}>
+                                        <form className="contact-form" id="contact-form">
                                             <div className="form-group" >
                                                 <input
                                                     type="text"
                                                     name="name"
                                                     id="item01"
-                                                    value={this.state.contactName}
-                                                    onChange={(e)=>{this.setState({contactName: e.target.value});}}
+                                                    value={respondName}
+                                                    onChange={(e)=>{setRespondName(e.target.value)}}
                                                     placeholder="Your Name *"
                                                 />
                                             </div>
@@ -112,8 +116,8 @@ class ContactUs extends Component {
                                                     type="text"
                                                     name="email"
                                                     id="item02"
-                                                    value={this.state.contactEmail}
-                                                    onChange={(e)=>{this.setState({contactEmail: e.target.value});}}
+                                                    value={respondEmail}
+                                                    onChange={(e)=>{setRespondEmail(e.target.value)}}
                                                     placeholder="Your Email *"
                                                 />
                                             </div>
@@ -122,8 +126,8 @@ class ContactUs extends Component {
                                                     type="text"
                                                     name="number"
                                                     id="item04"
-                                                    value={this.state.contactNumber}
-                                                    onChange={(e)=>{this.setState({contactNumber: e.target.value});}}
+                                                    value={respondContact}
+                                                    onChange={(e)=>{setRespondContact(e.target.value)}}
                                                     placeholder="Mobile Number *"
                                                 />
                                             </div>
@@ -132,8 +136,8 @@ class ContactUs extends Component {
                                                     type="text"
                                                     name="subject"
                                                     id="item03"
-                                                    value={this.state.contactSubject}
-                                                    onChange={(e)=>{this.setState({contactSubject: e.target.value});}}
+                                                    value={respondSubject}
+                                                    onChange={(e)=>{setRespondSubject(e.target.value)}}
                                                     placeholder="Your Subject *"
                                                 />
                                             </div>
@@ -143,13 +147,13 @@ class ContactUs extends Component {
                                                         type="text"
                                                         id="item05"
                                                         name="message"
-                                                        value={this.state.respondMassage}
-                                                        onChange={(e)=>{this.setState({respondMassage: e.target.value});}}
+                                                        value={respondMessage}
+                                                        onChange={(e)=>{setRespondMessage(e.target.value)}}
                                                         placeholder="Your Message"
                                                     ></textarea>
                                             </div>
                                             <div className="form-group w-100 text-center">
-                                                <button className="default-button" type="submit" value="send"><span>Send Message</span></button>
+                                                <button className="default-button" type="submit" value="send" onClick={handleSubmit}><span>Send Message</span></button>
                                             </div>
                                         </form>
                                         <p className="form-message"></p>
@@ -170,9 +174,8 @@ class ContactUs extends Component {
                         </div>
                     </div>
                 </div>
-            </Fragment>
+                </>
         );
     }
-}
- 
+
 export default ContactUs;

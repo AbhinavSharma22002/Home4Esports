@@ -14,6 +14,9 @@ var commentSchema = new mongoose.Schema({
     Subject:{
         type:String
     },
+    Contact:{
+        type:String
+    }
     // comments: [{
     //     type: mongoose.Schema.Types.ObjectId, 
     //     ref: "Comment"
