@@ -63,12 +63,13 @@ return(
     <>
     <Fragment>
     <div className="container-fluid">
+    {
+    (tierOneList.length!==0?(<>
                    <div className="section-header">
                        <p>{subtitle}</p>
                        <h2>{title}</h2>
                    </div>
-{
-    (tierThreeList.length!==0?(<>
+
                     <div className="section-wrapper">
                        <div className="player-slider">
                            <Swiper
