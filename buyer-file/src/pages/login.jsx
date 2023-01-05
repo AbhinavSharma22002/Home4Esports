@@ -1,14 +1,40 @@
-import { Component, Fragment,useState, useContext  } from "react";
+import { Component, Fragment,useState, useContext,useEffect } from "react";
 import { Link,useNavigate  } from "react-router-dom";
 import Footer from "../component/layout/footer";
 import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import SocialMedia from "../component/section/socialmedia";
 import accessContext from '../context/roles/accessContext';
+import useFetch from "./useFetch";
 const title = "Login";
 
 
 const LoginFunction = (props)=>{
+
+    const { handleGoogle, loading, error } = useFetch(
+        "http://localhost:3001/login"
+      );
+
+      useEffect(() => {
+        /* global google */
+        if (window.google) {
+          google.accounts.id.initialize({
+            client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+            callback: handleGoogle,
+          });
+    
+          google.accounts.id.renderButton(document.getElementById("loginDiv"), {
+            // type: "standard",
+            theme: "filled_blue",
+            // size: "small",
+            text: "signin_with",
+            shape: "pill",
+          });
+    
+          // google.accounts.id.prompt()
+        }
+      }, [handleGoogle]);
+
 	const [userEmail, setuserEmail] = useState('');
 	const [userPass, setuserPass] = useState('');
 
@@ -77,6 +103,7 @@ const LoginFunction = (props)=>{
                                     onClick = {handleSubmit}
                                     ><span>Submit Now</span></button>
                                 </div>
+                                <div id="loginDiv"></div>
                             </form>
                             <div className="account-bottom">
                                 <span className="d-block cate pt-10">Don’t Have any Account? <Link to="/signup"> Sign Up</Link></span>

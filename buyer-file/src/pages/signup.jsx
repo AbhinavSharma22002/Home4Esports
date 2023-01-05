@@ -1,12 +1,19 @@
-import { Component, Fragment,useState,useContext } from "react";
+import { Component, Fragment,useState,useContext,useEffect } from "react";
 import { Link,useNavigate  } from "react-router-dom";
 import PageHeader from "../component/layout/pageheader";
 import SocialMedia from "../component/section/socialmedia";
 import accessContext from '../context/roles/accessContext';
+import useFetch from "./useFetch";
 
 const title = "Register Now";
 
 const SignUpFunction = (props)=>{
+
+    const { handleGoogle, loading, error } = useFetch(
+        "http://localhost:3001/signup"
+      );
+
+      
 	const [regFName, setregFName] = useState('');
 	const [regLName, setregLName] = useState('');
 	const [regEmail, setregEmail] = useState('');
@@ -40,6 +47,26 @@ const SignUpFunction = (props)=>{
      setregPassword("");
      setregConPassword("");
     }
+
+    useEffect(() => {
+        /* global google */
+        if (window.google) {
+          google.accounts.id.initialize({
+            client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+            callback: handleGoogle,
+          });
+    
+          google.accounts.id.renderButton(document.getElementById("signUpDiv"), {
+            // type: "standard",
+            theme: "filled_blue",
+            // size: "small",
+            text: "continue_with",
+            shape: "pill",
+          });
+    
+          // google.accounts.id.prompt()
+        }
+      }, [handleGoogle]);
     return (
         <>
             <Fragment>
@@ -104,6 +131,7 @@ const SignUpFunction = (props)=>{
                                     onClick = {handleSubmit}
                                     ><span>Get Started Now</span></button>
                                 </div>
+                                <div id="signUpDiv" data-text="signup_with"></div>
                             </form>
                             <div className="account-bottom">
                                 <span className="d-block cate pt-10">Are you a member? <Link to="/login">Login</Link></span>

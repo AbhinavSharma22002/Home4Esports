@@ -29,7 +29,7 @@ async function generateLink(teamId,tournamentId, expirationDate) {
       tournamentId: tournamentId
     },
   };
-  const authData = await jwt.sign(payload, JWT_secret,{expiresIn:"1h"});
+  const authData = await jwt.sign(payload, JWT_secret,{expiresIn:"4d"});
   return authData;
 }
 
