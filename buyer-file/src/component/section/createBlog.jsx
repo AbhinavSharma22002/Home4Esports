@@ -54,7 +54,6 @@ const CreateBlog = (props)=>{
         const data = {
             title,image,body
         };
-        console.log(data);
         const requestOptions = {
                 method: "POST",
                 headers: {

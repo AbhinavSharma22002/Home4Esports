@@ -35,7 +35,6 @@ const Mgmt = (props)=>{
         const data = {
             productTitle,productPrice,productSize,image
         };
-        console.log(data);
         const requestOptions = {
                 method: "POST",
                 headers: {
@@ -99,6 +98,8 @@ const Mgmt = (props)=>{
                                 
                             </div>
                             <div className="form-group">
+                            <label htmlFor="product-image">Product Image</label>
+
                                 <input 
                                     type="file"
                                     name=""
