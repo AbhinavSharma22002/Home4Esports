@@ -3,7 +3,9 @@ const router = express.Router();
 const Tournament= require("../database/Tournament");
 const Team= require("../database/Team");
 const User = require("../database/User");
+
 const Request = require("../database/Request");
+
 const fetchuser = require('../middleware/Fetchuser');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -108,19 +110,22 @@ router.post("/getTeamById",fetchuser,async(req,res)=>{
   const {teamId} = req.body;
   try{
     const team = await Team.findById(teamId);
-    if(team.author===req.user.id){
+    const user = await User.findById(req.user.id);
+    if((team.author).equals(user._id)){
       let arr = [];
       for(let i = 0;i<team.requests.length;i++){
-        let request = await Request.findById(team.requests[i]);
-        let user = await User.findById(request.User);
-        console.log(request);
-        request.User =  user;
+        let request = await Request.findById(team.requests[i].id);
+        let user1 = await User.findById(request.User);
+        request.User =  user1;
+        request.Team = team;
         arr.push(request);
       }
       res.status(200).json({requests: arr});
     }
-    else
-    throw "You don't have the access";
+    else{
+      res.status(400).send("Unauthorized");
+    }
+
   }catch(error){
     console.error(error.message);
     res.status(500).send("Some error occured");
@@ -130,21 +135,26 @@ router.post("/getTeamById",fetchuser,async(req,res)=>{
 router.post("/newMember",
 fetchuser,
 async (req, res) => {
-    const {requestId} = req.body;
-    let request = await Request.findById(requestId);
-  let teams = await Team.findById(request.Team);
-  const user = await User.findById(req.user.id).select("-password");
-    if(user){
-  try {
-    for(let i = 0;i<teams.teamMembers.length;i++){
-        if(teams.teamMembers[i].id===user._id){
-            return res.status(400).send("You have already registered.");
-        }
-    }
-      teams.teamMembers.push({
-          id: request.User
-      });
-      await Team.findOneAndUpdate({_id: team_id}, teams);
+    const {requestId,tag} = req.body;
+    if(tag==='delete'){
+      //delete
+      let request = await Request.findById(requestId);
+      let teams = await Team.findById(request.Team);
+      const user = await User.findById(req.user.id).select("-password");
+      if(user._id===request.User){
+        try {
+          let arr = [];
+          for(let i = 0;i<teams.requests.length;i++){
+            if(teams.requests[i].id===request._id){
+              continue;
+            }
+            else{
+              arr.push(teams.requests[i]);
+            }
+          }
+          teams.requests = arr;
+      await Team.findOneAndUpdate({_id: teams._id}, teams);
+      await Request.findByIdAndDelete(request._id);
       return res.status(200).send("Success");
     }
     catch(error){
@@ -154,6 +164,45 @@ async (req, res) => {
   } else{
     res.status(400).send("User doesn't exists");
   }
+    }
+    else{
+      //accept
+      let request = await Request.findById(requestId);
+  let teams = await Team.findById(request.Team);
+  const user = await User.findById(req.user.id).select("-password");
+    if(user){
+  try {
+    for(let i = 0;i<teams.teamMembers.length;i++){
+        if(teams.teamMembers[i].id===user._id.toString()){
+            return res.status(400).send("You have already registered.");
+        }
+    }
+      teams.teamMembers.push({
+          id: request.User
+      });
+      let arr = [];
+          for(let i = 0;i<teams.requests.length;i++){
+            if(teams.requests[i].id===request._id){
+              continue;
+            }
+            else{
+              arr.push(teams.requests[i]);
+            }
+          }
+          teams.requests = arr;
+      await Team.findOneAndUpdate({_id: teams._id}, teams);
+      await Request.findByIdAndDelete(request._id);
+      return res.status(200).send("Success");
+    }
+    catch(error){
+      console.error(error.message);
+      res.status(500).send("Some error occurred");
+    }
+  } else{
+    res.status(400).send("User doesn't exists");
+  }
+    }
+    
 });
 
 
@@ -172,7 +221,7 @@ async (req, res) => {
     //check for access level
   try {
     for(let i = 0;i<teams.teamMembers.length;i++){
-        if(teams.teamMembers[i].id===user._id){
+        if(teams.teamMembers[i].id===user._id.toString()){
             return res.status(400).send("You have already registered.");
         }
     }

@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-
+const { Schema } = mongoose;
 var commentSchema = new mongoose.Schema({
     Date: {type: Date, default: Date.now},
     Massage: {
