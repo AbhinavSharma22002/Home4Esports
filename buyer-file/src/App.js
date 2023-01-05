@@ -36,6 +36,8 @@ import TournamentForm from "./component/section/TournamentForm";
 import DisplayForm from "./component/section/displayForm";
 import TeamForm from "./component/section/teamform";
 import Floating_Alert from "./component/layout/floating_alert";
+
+import MyTeams from "./component/section/MyTeams";
 import Tournament from "./pages/Tournament";
 import NewMember from "./component/section/member";
 import MyTournament from "./component/section/MyTournament";
@@ -112,7 +114,7 @@ function App() {
 				<Route path="contact" element={<ContactUs showAlert={showAlert} />} />
 				<Route path="tournaments" element={<Tournments showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
 				<Route path="tournament" element={<Tournament showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
-				<Route path="newMember" element={<NewMember showAlert={showAlert} />} />
+				<Route path="newRequest" element={<NewMember showAlert={showAlert} />} />
 				{isLoggedIn ? (
 					<>
 						{
@@ -139,6 +141,8 @@ function App() {
 							<>
 							</>
 						)}
+						<Route path="my-teams" element={<MyTeams showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
+						
 						<Route path="joinTeam" element={<JoinTeam showAlert={showAlert} isLoggedIn={isLoggedIn}/>}/>
 						<Route path="my-tournaments" element={<MyTournament showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
 						<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />

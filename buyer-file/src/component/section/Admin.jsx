@@ -12,6 +12,9 @@ import Best from "../../assets/images/banner/best.png";
 import Users from "../../assets/images/banner/users.png";
 
 
+
+import Teams from "../../assets/images/banner/users.png";
+
 import Tournament from "../../assets/images/banner/customer.png"
 import PageHeader from "../layout/pageheader";
 import { Fragment } from 'react';
@@ -58,6 +61,11 @@ const Admin = () => {
                 <div className='head-1'>
                     <Link to="/displayForm">
                         <img src={Best} alt="logo" />
+                    </Link>
+                </div>
+                <div className='head-1'>
+                    <Link to="/my-teams">
+                        <img src={Teams} alt="logo" />
                     </Link>
                 </div>
             </div>

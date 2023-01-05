@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var commentSchema = new mongoose.Schema({
+var requestSchema = new mongoose.Schema({
     Date: {type: Date, default: Date.now},
     Team:{
         type: mongoose.Schema.Types.ObjectId,
@@ -13,4 +13,4 @@ var commentSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("Request", commentSchema);
+module.exports = mongoose.model("Request", requestSchema);
