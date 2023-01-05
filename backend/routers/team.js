@@ -3,6 +3,7 @@ const router = express.Router();
 const Tournament= require("../database/Tournament");
 const Team= require("../database/Team");
 const User = require("../database/User");
+const Request = require("../database/Request");
 const fetchuser = require('../middleware/Fetchuser');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -76,7 +77,7 @@ async (req, res) => {
         
         await Tournament.findOneAndUpdate({_id:tournamentId},tournament);
 
-        let link = process.env.FRONT + "/newMember?new="+  await generateLink(team._id,tournamentId,new Date(Date.now() + 7 * 24 * 60 * 60 * 1000));
+        let link = process.env.FRONT + "/newRequest?new="+  await generateLink(team._id,tournamentId,new Date(Date.now() + 7 * 24 * 60 * 60 * 1000));
         team.link = link;
         
         await Team.findOneAndUpdate({_id:team._id},team);
@@ -108,7 +109,15 @@ router.post("/getTeamById",fetchuser,async(req,res)=>{
   try{
     const team = await Team.findById(teamId);
     if(team.author===req.user.id){
-      res.status(200).send({request: team});
+      let arr = [];
+      for(let i = 0;i<team.requests.length;i++){
+        let request = await Request.findById(team.requests[i]);
+        let user = await User.findById(request.User);
+        console.log(request);
+        request.User =  user;
+        arr.push(request);
+      }
+      res.status(200).json({requests: arr});
     }
     else
     throw "You don't have the access";
@@ -118,11 +127,10 @@ router.post("/getTeamById",fetchuser,async(req,res)=>{
   }
 });
 
-
-router.post("/newMember/:key",
+router.post("/newMember",
 fetchuser,
 async (req, res) => {
-    const requestId = req.params.key;
+    const {requestId} = req.body;
     let request = await Request.findById(requestId);
   let teams = await Team.findById(request.Team);
   const user = await User.findById(req.user.id).select("-password");

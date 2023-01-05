@@ -154,7 +154,7 @@ const openModal = (msg,e)=>{
         setCurrId(msg);
         let requestOptions = {
                 method: "POST",
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',"auth-token":localStorage.getItem('token') },
                 body: JSON.stringify({id: msg})
         };
             fetch(
