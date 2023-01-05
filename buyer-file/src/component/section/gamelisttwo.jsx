@@ -75,7 +75,7 @@ const GameListTwo = () => {
                                             <p className="match-team-info">{val.groupcount} <span className="fw-bold">{val.playercount}</span></p>
                                             <p className="match-prize">{val.matchpname} <span className="fw-bold">{val.matchpamount}</span></p>
                                         </div>
-                                        <div className="match-content">
+                                        <div className="match-content gradient-bg-yellow">
                                             <div className="row align-items-center justify-content-center">
                                                 <div className="col-md-2 col-5 p-0">
                                                     <div className="match-team-thumb text-center">
@@ -92,19 +92,19 @@ const GameListTwo = () => {
                                                 </div>
                                                 <div className="col-md-8 order-md-2 mt-4 mt-md-0">
                                                     <div className="match-game-info text-center">
-                                                        <h4><Link style={{ color: "rgb(183 221 200)" }} to="/team-single">{val.title}</Link>
+                                                        <h4><Link to="/team-single">{val.title}</Link>
                                                         </h4>
                                                         <p className="d-flex flex-wrap justify-content-center">
-                                                            <span className="match-date" style={{ color: "#e5e5e5" }}>{val.matchdate} </span>
-                                                            <span className="match-time" style={{ color: "#e5e5e5" }}>{val.matchtime}</span>
+                                                            <span className="match-date" >{val.matchdate} </span>
+                                                            <span className="match-time" >{val.matchtime}</span>
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <div className="col-xl-4 col-md-6 order-md-3">
                                                     <div className="match-game-social">
                                                         <ul className="match-social-list d-flex flex-wrap align-items-center justify-content-center justify-content-xl-start">
-                                                           <li style={{position:"relative",display:"inline"}}> 
-                                                                <a href="#" className="default-button reverse-effect"><span>Browse Videos &nbsp;<i className="icofont-play-alt-1"></i></span></a>
+                                                           <li> 
+                                                                <a href={`${val.link}`} className="default-button reverse-effect"><span>watch now &nbsp;<i className="icofont-play-alt-1"></i></span></a>
                                                             </li>
                                                         </ul>
                                                     </div>
