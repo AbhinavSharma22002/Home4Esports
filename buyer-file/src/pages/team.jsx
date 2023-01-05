@@ -3,7 +3,7 @@ import PageHeader from "../component/layout/pageheader";
 import CtaSection from "../component/section/cta";
 import { Link } from "react-router-dom";
 import SocialMedia from "../component/section/socialmedia";
-import "../assets/css/cards.css"
+import "../assets/css/cards.css";
 
 const TeamPage = (props)=>{
 const [team,setTeam]=useState({});
