@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import "../../assets/css/sponser.css"
+
 
 const subtitle = "WE OUR PARTNERS";
 const title = "BECOME A PARTNER of crowd control esports";
