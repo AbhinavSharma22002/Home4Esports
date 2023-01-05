@@ -36,7 +36,7 @@ const Member = (props) => {
     }
     const navigate = useNavigate();
      const addFile = async (e)=>{
-        if(image===""){
+        if(image==="" || image===undefined){
         const formData = new FormData();
         formData.append("image",e.target.files[0]);
         const requestOptions = {
@@ -83,6 +83,7 @@ const Member = (props) => {
         props.showAlert("Some Error Occured","danger");
     }
     }
+    console.log(image);
     return (
         <>
         <Fragment>
@@ -91,7 +92,7 @@ const Member = (props) => {
                     <div className="account-wrapper">
                         <form className="account-form">
                            {
-                            (image==="")?(
+                            (image==="" || image===undefined)?(
                                 <div className="form-group">
                             <label htmlFor="tournamentImage">Your Image</label>
                                 <input 
