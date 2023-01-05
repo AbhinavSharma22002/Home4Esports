@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-
+import "../../assets/css/sponser.css"
 
 const subtitle = "WE OUR PARTNERS";
 const title = "BECOME A PARTNER of crowd control esports";
@@ -26,18 +26,6 @@ let SponsorListContent = [
     },
     {
         imgUrl: 'assets/images/sponsor/05.png',
-        imgAlt: 'Sponsor Thumb',
-    },
-    {
-        imgUrl: 'assets/images/sponsor/06.png',
-        imgAlt: 'Sponsor Thumb',
-    },
-    {
-        imgUrl: 'assets/images/sponsor/07.png',
-        imgAlt: 'Sponsor Thumb',
-    },
-    {
-        imgUrl: 'assets/images/sponsor/08.png',
         imgAlt: 'Sponsor Thumb',
     },
 ]

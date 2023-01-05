@@ -12,7 +12,7 @@ const title = "click here to check our video";
 
 let VideoListContentTop = [
     {
-        imgUrl: 'assets/images/video/06.jpg',
+        imgUrl: 'assets/images/game/vdothumbs.png',
         imgAlt: 'Video Thum',
        videoLink: 'https://www.youtube.com/embed/xRgHu4JdcTU',
     },
