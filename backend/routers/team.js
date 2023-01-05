@@ -92,7 +92,64 @@ async (req, res) => {
     }
 });
 
+router.post("/getMyTeams",fetchuser,async(req,res)=>{
+    let userId = req.user.id;
+    try{
+      let teams = await Team.find({author: userId});
+      return res.status(200).json({teams});
+    }
+    catch(error){
+      console.error(error.message);
+      res.status(500).send("Some error occured");
+    }
+});
+router.post("/getTeamById",fetchuser,async(req,res)=>{
+  const {teamId} = req.body;
+  try{
+    const team = await Team.findById(teamId);
+    if(team.author===req.user.id){
+      res.status(200).send({request: team});
+    }
+    else
+    throw "You don't have the access";
+  }catch(error){
+    console.error(error.message);
+    res.status(500).send("Some error occured");
+  }
+});
+
+
 router.post("/newMember/:key",
+fetchuser,
+async (req, res) => {
+    const requestId = req.params.key;
+    let request = await Request.findById(requestId);
+  let teams = await Team.findById(request.Team);
+  const user = await User.findById(req.user.id).select("-password");
+    if(user){
+  try {
+    for(let i = 0;i<teams.teamMembers.length;i++){
+        if(teams.teamMembers[i].id===user._id){
+            return res.status(400).send("You have already registered.");
+        }
+    }
+      teams.teamMembers.push({
+          id: request.User
+      });
+      await Team.findOneAndUpdate({_id: team_id}, teams);
+      return res.status(200).send("Success");
+    }
+    catch(error){
+      console.error(error.message);
+      res.status(500).send("Some error occurred");
+    }
+  } else{
+    res.status(400).send("User doesn't exists");
+  }
+});
+
+
+router.post("/newRequest/:key",
 fetchuser,
 async (req, res) => {
     let userId = req.user.id;
@@ -107,16 +164,18 @@ async (req, res) => {
     //check for access level
   try {
     for(let i = 0;i<teams.teamMembers.length;i++){
-      console.log("team1  "+teams.teamMembers[i].id)
-      console.log(user._id);
         if(teams.teamMembers[i].id===user._id){
-            return res.status(200).send("You have already registered.");
+            return res.status(400).send("You have already registered.");
         }
     }
     if(tournament.teamSize>teams.teamMembers.length){
-      teams.teamMembers.push({
-          id: user._id
-      })
+      const request = await Request.create({
+        Team: teams._id,
+        User: user._id
+      });
+      teams.requests.push({
+        id: request._id
+      });
       user.image = image;
       let team = await Team.findOneAndUpdate({_id: team_id}, teams);
       await User.findOneAndUpdate({_id: user._id},user);

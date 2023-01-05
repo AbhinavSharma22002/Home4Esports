@@ -39,6 +39,11 @@ const TeamSchema = new Schema({
     required:true
     }
   }],
+  requests:[{
+    id: {type: mongoose.Schema.Types.ObjectId,
+    ref:"Request"
+    }
+  }],
   link:{
     type: String
   }

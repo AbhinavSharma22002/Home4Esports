@@ -69,11 +69,11 @@ const Member = (props) => {
 
         };
     const response = await fetch(
-            `http://localhost:3001/api/team/newMember/${link}`,
+            `http://localhost:3001/api/team/newRequest/${link}`,
             requestOptions
     );
     if(response.status === 200){
-        props.showAlert("successfully joined the respective team","success");
+        props.showAlert("successfully requested to join the respective team","success");
         navigate("/");
     }else if(response.status===401){
         props.showAlert("Please Login In","danger");
