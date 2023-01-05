@@ -56,7 +56,7 @@ class SponsorSection extends Component {
                             ))}
                         </div>
                         <div className="text-center mt-5">
-                            <Link to="/partners" className="default-button"><span>{btnText} <i className="icofont-circled-right"></i></span> </Link>
+                            <a href="https://discord.com/invite/4fWwCjaFwG" className="default-button"><span>{btnText} <i className="icofont-circled-right"></i></span> </a>
                         </div>
                     </div>
                 </div>
