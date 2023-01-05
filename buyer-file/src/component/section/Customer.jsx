@@ -29,7 +29,6 @@ const openModal = (msg,e)=>{
             ).then((res) => res.json())
             .then((json) => {
                 json = json.user;
-                console.log(json.role);
                 setType(json.role);
                 setName(json.fname);
                 setEmail(json.email);

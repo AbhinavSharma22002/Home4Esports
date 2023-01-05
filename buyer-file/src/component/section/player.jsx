@@ -54,13 +54,10 @@ const PlayerSection = (props)=>{
             }
     };
             someFunc(1);
-            someFunc(2);
-            someFunc(3);
+            // someFunc(2);
+            // someFunc(3);
 
     },[]);
-    console.log(tierOneList);
-    console.log(tierTwoList);
-    console.log(tierThreeList);
 
 return(
     <>
@@ -100,7 +97,7 @@ return(
                            >
                                {
                                
-                               tierThreeList.map((val, i) => (
+                               tierOneList.map((val, i) => (
                                    <SwiperSlide key={i}>
                                        <div className="player-item-2 text-center" style={{backgroundImage: `url({${val.image}})`}}>
                                            <Link to ={`/team?id=${val._id}`}>

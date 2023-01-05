@@ -56,7 +56,6 @@ const readExcel = (file)=>{
     });
 
     promise.then((d)=>{
-        console.log(d);
         let filtered_Data = [];
         for(let i=0;i<d.length;i++){
             let row = d[i];
@@ -93,7 +92,6 @@ const readExcel = (file)=>{
             }
             filtered_Data.push(curr_match);
         }
-        console.log(filtered_Data);
         setMatches(filtered_Data);
     })
 };
