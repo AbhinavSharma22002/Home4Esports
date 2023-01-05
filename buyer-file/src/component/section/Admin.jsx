@@ -19,6 +19,7 @@ import Tournament from "../../assets/images/banner/customer.png"
 import PageHeader from "../layout/pageheader";
 import { Fragment } from 'react';
 const Admin = (props) => {
+    console.log(props);
     return (
         <Fragment >
              <PageHeader title={'ADMIN PAGE '} curPage={'admin page'} />
@@ -26,7 +27,7 @@ const Admin = (props) => {
             <div className='container-1'>
 
             {
-                (props.isSuperAdmin)?(<>
+                (props.isSuperAdmin && !props.isAdmin && props.isLoggedIn)?(<>
                 <div className='head-1'>
                     <Link to="/my-tournaments">
                         <img src={tour} alt="logo" />
@@ -69,9 +70,12 @@ const Admin = (props) => {
                         <img src={Best} alt="logo" />
                     </Link>
                 </div>
-
-                </>):(<></>)
-                (props.isAdmin)?(<>
+                </>):(<>
+                
+                </>)
+            }
+            {
+                (!props.isSuperAdmin && props.isAdmin && props.isLoggedIn)?(<>
                 <div className='head-1'>
                     <Link to="/my-tournaments">
                         <img src={tour} alt="logo" />
@@ -105,7 +109,9 @@ const Admin = (props) => {
                 </div>
 
                 </>):(<></>)
-                (props.isLoggedIn)?(<>
+            }
+            {
+                (!props.isSuperAdmin && !props.isAdmin && props.isLoggedIn)?(<>
                 <div className='head-1'>
                     <Link to="/my-tournaments">
                         <img src={tour} alt="logo" />

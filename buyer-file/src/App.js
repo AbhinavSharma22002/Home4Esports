@@ -76,12 +76,18 @@ function App() {
 				setIsLoggedIn(true);
 				if (data.role === "admin") {
 					setIsAdmin(true);
+					setIsLoggedIn(true);
+					setIsSuperAdmin(false);
 				}
 				else if (data.role === "superadmin") {
 					setIsSuperAdmin(true);
+					setIsAdmin(false);
+					setIsLoggedIn(true);
 				}
 				else {
 					setIsAdmin(false);
+					setIsSuperAdmin(false);
+					setIsLoggedIn(true);
 				}
 			}
 			else {
