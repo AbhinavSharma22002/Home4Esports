@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
-
-var requestSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+var requestSchema = new Schema({
     Date: {type: Date, default: Date.now},
     Team:{
         type: mongoose.Schema.Types.ObjectId,
@@ -13,4 +13,5 @@ var requestSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("Request", requestSchema);
+const Request = mongoose.model("request", requestSchema);
+module.exports = Request;

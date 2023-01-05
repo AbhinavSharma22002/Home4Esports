@@ -34,6 +34,7 @@ const openModal = (msg,e)=>{
 }
 const closeModal = ()=>{
     setIsOpen(false);
+    setRequest([]);
     setAccept(false);
 }
     useEffect(()=>{
@@ -59,33 +60,10 @@ const closeModal = ()=>{
 		}
 		value();
     },[]);
-      
-    const handleDelete = async (e)=>{
-        e.preventDefault();
+    const handleUpload = async (id,tag)=>{
         const data = {
-            requestId:currId,
-        };
-        const requestOptions = {
-                method: "POST",
-                headers: {
-                    "auth-token":localStorage.getItem('token'),
-                    'Content-Type': 'application/json' 
-                    },
-                body: JSON.stringify(data),
-            };
-            const response = await fetch(
-                `http://localhost:3001/api/team/deleteMember`,
-                requestOptions
-        );
-        if(response.status===200){
-            props.showAlert("Team Deleted Success!!","success");
-            window.location.reload(true);
-        }
-    }  
-    const handleUpload = async (e)=>{
-        e.preventDefault();
-        const data = {
-            requestId:currId,
+            requestId: id._id,
+            tag
         };
         const requestOptions = {
                 method: "POST",
@@ -100,7 +78,7 @@ const closeModal = ()=>{
                 requestOptions
         );
         if(response.status===200){
-            props.showAlert("Tournament Update Success!!","success");
+            props.showAlert("Team Update Success!!","success");
             window.location.reload(true);
         }
     }   
@@ -112,6 +90,7 @@ const closeModal = ()=>{
         var formattedDate = year + "-" + month + "-" + day;
         return formattedDate;
     }
+    console.log(request);
     return (
         <>
         <Fragment>
@@ -184,25 +163,24 @@ const closeModal = ()=>{
                                             <tbody>
                                             <tr>
                                                         <td>Index</td>
-                                                        <td>Tag</td>
+                                                        <td>Current Team Size</td>  
                                                         <td>Team Name</td>
-                                                        <td>Current Team Size</td>
-                                                        <td>Team Tier</td>                                            
+                                                        <td>Team Author</td>
+                                                        <td>Accept</td>
+                                                        <td>Reject</td>                                   
                                             </tr>
                                                 {request.map((val, i) => (
                                                     <tr key={i}>
-                                                        <td>{i+1}</td>
-                                                        <td><b>{val.tag}</b></td>
-                                                        <td>{val.teamName}</td>
-                                                        <td>{val.teamMembers.length}</td>
-                                                        <td>{val.tier}</td>
-                                                        <td><input type="checkbox" id="topping" onClick={handleUpload(val._id)}/>Accept</td>
-                                                        <td><input type="checkbox" id="topping" onClick={handleDelete(val._id)}/>Reject</td>
+                                                        <td>{i+1}.</td>
+                                                        <td>{val.Team.teamMembers.length}</td>
+                                                        <td>{val.Team.teamName}</td>
+                                                        <td>{val.User.fname+" "+val.User.lname}</td>
+                                                        <td><input type="checkbox" onClick={(e)=> handleUpload(val,'upload')}/></td>
+                                                        <td><input type="checkbox" onClick={(e)=> handleUpload(val,'delete')}/></td>
                                                     </tr>
                                         ))}
                                     </tbody>
                                 </table>
-               
                 </div>
                 </Modal.Body>
                 <Modal.Footer>
