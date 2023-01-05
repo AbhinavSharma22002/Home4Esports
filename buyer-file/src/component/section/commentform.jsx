@@ -1,19 +1,39 @@
-import { Component } from "react";
+import { Component,useState } from "react";
 
 const title = "Leave a Comment";
 
-class CommentForm extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            respondName: '',
-            respondEmail: '',
-            respondSubject: '',
-            respondMassage: '',
+const CommentForm = (props)=>{
+    
+    const [respondName, setRespondName] = useState('');
+    const [respondEmail, setRespondEmail] = useState('');
+    const [respondSubject, setRespondSubject] = useState('');
+    const [respondMassage, setRespondMassage] = useState('');
+
+    const handleSubmit = async (e)=>{
+        e.preventDefault();
+        const data = {
+            respondName,respondEmail,respondSubject,respondMassage,id: props.id
         };
+        const requestOptions = {
+                method: "POST",
+                headers: {
+                    "auth-token":localStorage.getItem('token'),
+                    'Content-Type': 'application/json' 
+                    },
+                body: JSON.stringify(data),
+            };
+            const response = await fetch(
+                `http://localhost:3001/api/blog/createComment`,
+                requestOptions
+        );
+        const responseData = await response.json();
+        if(response.status===200){
+            props.showAlert("commented Success!!","success");
+            props.comments.push(responseData);
+        }
     }
-    render() { 
-        return (
+    return (
+        <>
             <div id="respond" className="comment-respond">
                 <h6 className="h7">{title}</h6>
                 <div className="add-comment">
@@ -22,16 +42,16 @@ class CommentForm extends Component {
                             type="text"
                             name="name"
                             id="item01"
-                            value={this.state.respondName}
-                            onChange={(e)=>{this.setState({respondName: e.target.value});}}
+                            value={respondName}
+                            onChange={(e)=>{setRespondName(e.target.value)}}
                             placeholder="Your Name *"
                         />
                         <input 
                             type="text"
                             name="email"
                             id="item02"
-                            value={this.state.respondEmail}
-                            onChange={(e)=>{this.setState({respondEmail: e.target.value});}}
+                            value={respondEmail}
+                            onChange={(e)=>{setRespondEmail(e.target.value)}}
                             placeholder="Your email *" 
                         />
                         <input 
@@ -39,8 +59,8 @@ class CommentForm extends Component {
                             name="subject"
                             id="item03"
                             className="w-100"
-                            value={this.state.respondSubject}
-                            onChange={(e)=>{this.setState({respondSubject: e.target.value});}}
+                            value={respondSubject}
+                            onChange={(e)=>{setRespondSubject(e.target.value)}}
                             placeholder="Write a Subject"
                         />
                         <textarea 
@@ -48,16 +68,17 @@ class CommentForm extends Component {
                             type="text"
                             id="item04"
                             name="message"
-                            value={this.state.respondMassage}
-                            onChange={(e)=>{this.setState({respondMassage: e.target.value});}}
+                            value={respondMassage}
+                            onChange={(e)=>{setRespondMassage(e.target.value)}}
                             placeholder="Your Message"
                         ></textarea>
-                        <button type="submit" className="default-button"><span>Send Comment</span></button>
+                        <button type="submit" className="default-button" onClick={handleSubmit}><span>Send Comment</span></button>
                     </form>
                 </div>
             </div>
-        );
-    }
-}
+
+        </>
+    );
+};
  
 export default CommentForm;

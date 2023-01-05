@@ -32,7 +32,6 @@ const StreamForm = (props)=>{
         const data = {
             videoTitle,videoGenre,link,image
         };
-        console.log(data);
         const requestOptions = {
                 method: "POST",
                 headers: {
@@ -89,6 +88,7 @@ const StreamForm = (props)=>{
                                 />
                             </div>
                             <div className="form-group">
+                            <label htmlFor="image">Image</label>
                                 <input 
                                     type="file"
                                     name=""

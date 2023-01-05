@@ -1,6 +1,7 @@
 import { Component, useState, useEffect, useContext } from "react";
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import Alert from "./alert";
+import Floating_Alert from "../layout/floating_alert"
 import accessContext from '../../context/roles/accessContext';
 import '../../assets/css/logout.css'
 const contactNumber = "+91 954 092 2345";
@@ -52,7 +53,7 @@ const HeaderFunction = (props) => {
             const data = await response.json();
             if (response.status === 200) {
                 setIsLoggedIn(true);
-                if (data.role === "admin" || data.role==='superadmin') {
+                if (data.role === "admin" || data.role === 'superadmin') {
                     setIsAdmin(true);
                 }
                 else {
@@ -63,36 +64,36 @@ const HeaderFunction = (props) => {
                 setIsAdmin(false);
                 setIsLoggedIn(false);
             }
-		}
-		value();
-	});
-const menuTrigger = ()=> {
+        }
+        value();
+    });
+    const menuTrigger = () => {
         document.querySelector('.menu').classList.toggle('active')
         document.querySelector('.header-bar').classList.toggle('active')
-       
+
     }
-   
+
     const menuTriggerTwo = () => {
-       
+
         document.querySelector('.header-top').classList.toggle('open')
         document.querySelector('.header-bar').classList.toggle('active')
     }
-    const Logout = ()=>{
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
-    setIsAdmin(false);
-    props.setIsLoggedIn(false);
-    navigate("/");
+    const Logout = () => {
+        localStorage.removeItem("token");
+        setIsLoggedIn(false);
+        setIsAdmin(false);
+        props.setIsLoggedIn(false);
+        navigate("/");
     }
-    
-        window.addEventListener('scroll', function () {
-            var value = window.scrollY;
-            if (value > 200) {
-                document.querySelector('.header-section').classList.add(['header-fixed'], ['fadeInUp'])
-            } else {
-                document.querySelector('.header-section').classList.remove(['header-fixed'], ['fadeInUp'])
-            }
-        });
+
+    window.addEventListener('scroll', function () {
+        var value = window.scrollY;
+        if (value > 200) {
+            document.querySelector('.header-section').classList.add(['header-fixed'], ['fadeInUp'])
+        } else {
+            document.querySelector('.header-section').classList.remove(['header-fixed'], ['fadeInUp'])
+        }
+    });
     return (
         <header className="header-section">
             <div className="container">
@@ -105,7 +106,7 @@ const menuTrigger = ()=> {
                         </div>
                     </div>
                     <div className="header-menu-part">
-                        
+
                         <div className="header-top">
                             <div className="header-top-area">
                                 <ul className="left">
@@ -130,16 +131,15 @@ const menuTrigger = ()=> {
                             <div className="header-wrapper justify-content-lg-end">
                                 <div className="mobile-logo d-lg-none">
                                     <Link to="/"><img src="assets/images/logo/logo.png" alt="logo" /></Link>
-                                </div>  
+                                </div>
                                 <div className="menu-area">
                                     <ul className="menu">
-                                           <li><Link to="/">Home</Link></li>
+                                        <li><Link to="/">Home</Link></li>
                                         <li className="menu-item-has-children">
-                                            <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Features</a>
+                                            <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">CCE</a>
                                             <ul className="submenu dropdown-menu" aria-labelledby="dropdown">
                                                 <li><NavLink to="/about">About</NavLink></li>
                                                 <li><NavLink to="/gallery">gallery</NavLink></li>
-                                                <li><NavLink to="/game-list2">game list 2</NavLink></li>
                                                 <li><NavLink to="/partners">partners</NavLink></li>
                                                 <li><NavLink to="/achievements">achievement</NavLink></li>
                                                 <li><NavLink to="/tournaments">tournaments</NavLink></li>
@@ -156,6 +156,9 @@ const menuTrigger = ()=> {
                                         <li><NavLink to="/contact">Contact</NavLink></li>
                                         {isLoggedIn ? (
                                             <>
+                                             <span className="icons"  style={{left:"23vw"}}>
+                                                        <Floating_Alert />
+                                                    </span>
                                                 {isAdmin ? (
                                                     <>
                                                         <li><Link to="/admin" className="adminpage"><i className="icofont-user"></i>Admin Page</Link></li>
@@ -164,11 +167,14 @@ const menuTrigger = ()=> {
                                                     <>
                                                     </>
                                                 )}
-                                                <li><Link to="/" className="logout" style={{color: "#fff", background: "none", fontSize: "1rem", fontWeight: "700", textTransform: "uppercase", top:"10px" }} onClick={Logout}><i className="icofont-user"></i><span>Logout</span></Link></li>
+                                                <li><Link to="/" className="logout" style={{ color: "#fff", background: "none", fontSize: "1rem", fontWeight: "700", textTransform: "uppercase", top: "10px" }} onClick={Logout}><i className="icofont-user"></i><span>Logout</span></Link></li>
                                             </>
                                         )
                                             : (
                                                 <>
+                                                    <span className="icons">
+                                                        <Floating_Alert />
+                                                    </span>
                                                     <li><Link to="/login"><i className="icofont-user" ></i> <span>LOG IN</span> </Link></li>
                                                     <li><Link to="/signup"><i className="icofont-users" ></i> <span>SIGN UP</span></Link></li>
                                                 </>
@@ -190,7 +196,7 @@ const menuTrigger = ()=> {
                     </div>
                 </div>
                 <div>
-                {props.alert===null?"": <Alert m={props.alert}/>}
+                    {props.alert === null ? "" : <Alert m={props.alert} />}
                 </div>
             </div>
         </header>

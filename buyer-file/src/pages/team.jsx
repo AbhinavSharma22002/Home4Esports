@@ -3,6 +3,7 @@ import PageHeader from "../component/layout/pageheader";
 import CtaSection from "../component/section/cta";
 import { Link } from "react-router-dom";
 import SocialMedia from "../component/section/socialmedia";
+import "../assets/css/cards.css";
 
 const TeamPage = (props)=>{
 const [team,setTeam]=useState({});
@@ -44,17 +45,17 @@ return (
                 <section className="player-section padding-top padding-bottom">
                 <div className="container">
                     <div className="section-header">
-                        <p>{subtitle}</p>
-                        <h2>{title}</h2>
+                        <p  >{subtitle}</p>
+                        <h2  >{title}</h2>
                     </div>
-                    <div className="container">
+                    <div className="container" >
                     <div className="section-wrapper">
-                        <div className="row g-4">
+                        <div className="row g-4" >
                             {members.map((val, i) => (
                                 <div className="col-lg-4 col-sm-6 col-12" key={i}>
                                     <div className="player-item-2 text-center">
-                                        <div className="player-inner-2">
-                                            <div className="player-thumb-2">
+                                        <div className="player-inner-2" >
+                                            <div className="player-thumb-2" >
                                                     <img src={`${val.image}`} alt='hello' />
                                             </div>
                                             <div>

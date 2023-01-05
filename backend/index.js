@@ -1,7 +1,7 @@
 const connectToMongo = require("./backend");
 connectToMongo();
 const express = require('express');
-
+const { OAuth2Client } = require("google-auth-library");
 const cron = require('node-cron');
 const app = express();
 const server = require('http').Server(app);
@@ -25,6 +25,7 @@ const teamRouter = require("./routers/team");
 const tournamentRouter = require('./routers/tournament');
 const matchRouter = require('./routers/match');
 const bestMatchRouter = require('./routers/display');
+const contactRouter = require('./routers/contact');
 app.use('/',indexRouter);
 app.use('/api/user/',userRouter);
 app.use('/api/newsletter/',newsletterRouter);
@@ -36,10 +37,10 @@ app.use("/api/team/",teamRouter);
 app.use('/api/tournament/',tournamentRouter);
 app.use('/api/match/',matchRouter);
 app.use('/api/display',bestMatchRouter);
-
+app.use('/api/contact',contactRouter);
 
 const Teams = require('./database/Team');
-
+const Display = require('./database/Display');
 const teamUpdate = async ()=>{
     let teams = await Teams.find({});
     for(let i=0;i<teams.length;i++){
@@ -59,9 +60,21 @@ const teamUpdate = async ()=>{
     }
 }
 
+const updateBestMatch = async ()=>{
+    date
+    let match = await Display.find();
+    match = match[0];
+    let presentDate = new Date();
+    if(match.date>presentDate){
+        await Display.findByIdAndDelete(match._id);
+    }    
+};
+
+
 cron.schedule('0 0 * * *', () => {
     console.log('Running cron job');
     teamUpdate();
+    updateBestMatch();
 });
 server.listen(process.env.PORT,()=>{
     console.log(`RUnning on ${process.env.PORT}`);

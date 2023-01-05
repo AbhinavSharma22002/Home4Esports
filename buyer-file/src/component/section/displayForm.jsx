@@ -74,7 +74,6 @@ const DisplayForm = (props)=>{
         const data = {
             team1Logo,team2Logo,date,videoLink,time,title,tournamentLogo
         };
-        console.log(data);
         const requestOptions = {
                 method: "POST",
                 headers: {
@@ -124,6 +123,8 @@ const DisplayForm = (props)=>{
                                 />
                             </div>
                         <div className="form-group">
+                        <label htmlFor="team1logo">Team 1 Logo</label>
+
                                 <input 
                                     type="file"
                                     name=""
@@ -133,6 +134,8 @@ const DisplayForm = (props)=>{
                                 />
                             </div>
                             <div className="form-group">
+                            <label htmlFor="team2logo">Team 2 Logo</label>
+
                                 <input 
                                     type="file"
                                     name=""
@@ -142,6 +145,8 @@ const DisplayForm = (props)=>{
                                 />
                             </div>
                             <div className="form-group">
+                            <label htmlFor="tournament-logo">Tournament Logo</label>
+
                                 <input 
                                     type="file"
                                     name=""

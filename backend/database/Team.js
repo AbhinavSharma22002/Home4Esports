@@ -24,6 +24,10 @@ const TeamSchema = new Schema({
     default: 3,
     required: true
   },
+  tag:{
+    type: String,
+    required: true
+  },
   clicked:{
     type: Number,
     default: 0,
@@ -33,6 +37,11 @@ const TeamSchema = new Schema({
     id: {type: mongoose.Schema.Types.ObjectId,
     ref:"users",
     required:true
+    }
+  }],
+  requests:[{
+    id: {type: mongoose.Schema.Types.ObjectId,
+    ref:"Request"
     }
   }],
   link:{

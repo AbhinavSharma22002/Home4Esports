@@ -36,6 +36,8 @@ import TournamentForm from "./component/section/TournamentForm";
 import DisplayForm from "./component/section/displayForm";
 import TeamForm from "./component/section/teamform";
 import Floating_Alert from "./component/layout/floating_alert";
+
+import MyTeams from "./component/section/MyTeams";
 import Tournament from "./pages/Tournament";
 import NewMember from "./component/section/member";
 import MyTournament from "./component/section/MyTournament";
@@ -93,13 +95,14 @@ function App() {
 	return (
 		<AccessState>
 			<ScrollToTop />
+			
 			<Header setIsLoggedIn={setIsLoggedIn} alert={alert} />
+			
 			<Routes>
 				<Route path="/" element={<HomePage showAlert={showAlert} />} />
 				<Route path="about" element={<AboutPage showAlert={showAlert} />} />
 				<Route path="gallery" element={<GalleryPage showAlert={showAlert} />} />
-				<Route path="game-list" element={<GameListSection showAlert={showAlert} />} />
-				<Route path="game-list2" element={<GameListTwoSection showAlert={showAlert} />} />
+				<Route path="game-list" element={<GameListTwoSection showAlert={showAlert} />} />
 				<Route path="partners" element={<PartnerPage showAlert={showAlert} />} />
 				<Route path="achievements" element={<AchievementPage showAlert={showAlert} />} />
 				<Route path="team" element={<TeamPage showAlert={showAlert} />} />
@@ -111,7 +114,7 @@ function App() {
 				<Route path="contact" element={<ContactUs showAlert={showAlert} />} />
 				<Route path="tournaments" element={<Tournments showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
 				<Route path="tournament" element={<Tournament showAlert={showAlert} isLoggedIn={isLoggedIn} />} />
-				<Route path="newMember" element={<NewMember showAlert={showAlert} />} />
+				<Route path="newRequest" element={<NewMember showAlert={showAlert} />} />
 				{isLoggedIn ? (
 					<>
 						{
@@ -138,6 +141,8 @@ function App() {
 							<>
 							</>
 						)}
+						<Route path="my-teams" element={<MyTeams showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
+						
 						<Route path="joinTeam" element={<JoinTeam showAlert={showAlert} isLoggedIn={isLoggedIn}/>}/>
 						<Route path="my-tournaments" element={<MyTournament showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
 						<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
@@ -146,13 +151,12 @@ function App() {
 				) : (<>
 					<Route path="login" element={<LogIn setIsLoggedIn={setIsLoggedIn} showAlert={showAlert} />} />
 					<Route path="signup" element={<SignUp showAlert={showAlert} />} />
+					
 				</>)
 				}
 			</Routes>
 			<Footer />
-			<span className="icons">
-				<Floating_Alert />
-			</span>
+			
 		</AccessState>
 	);
 }

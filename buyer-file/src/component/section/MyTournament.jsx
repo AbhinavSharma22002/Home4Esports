@@ -23,6 +23,14 @@ const MyTournament = (props)=>{
     const [noOfMatches,setNoOfMatches] = useState('');
     const [teams,setTeams] = useState([]);
 
+ function formatHoursMinutesSeconds(num){
+  var hours = Math.floor(num * 24);
+  var minutes = Math.floor(((num * 24) - hours) * 60);
+  var seconds = Math.floor(((((num * 24) - hours) * 60)-minutes)*60);
+
+  return (hours + ":" + minutes.toString().padStart(2, '0') + ":" + 
+  seconds.toString().padStart(2, '0'));
+ }
 const readExcel = (file)=>{
     const promise = new Promise((resolve,reject)=>{
         const fileReader=new FileReader();
@@ -40,6 +48,7 @@ const readExcel = (file)=>{
 
             resolve(data);
         }
+
         fileReader.onerror = function(error){
             reject(error);
 
@@ -47,16 +56,21 @@ const readExcel = (file)=>{
     });
 
     promise.then((d)=>{
-        console.log(d);
         let filtered_Data = [];
         for(let i=0;i<d.length;i++){
             let row = d[i];
             
             let curr_match ={};
-            if(row.$Matches && row.$Teams && row.$Date && row.$Round && row.$Time){
-                curr_match.date = row.$Date;
-                curr_match.time = row.$Time;
+            if(row.$Matches && row.$Teams && row.$Date && row.$Round && row.$Time && row.$Link){
+                curr_match.date = new Date(Date.UTC(0, 0, row.$Date - 1));            
+                curr_match.time = formatHoursMinutesSeconds(row.$Time);
+
                 curr_match.results = row.$Results;
+
+                curr_match.round = row.$Round;
+                curr_match.link = row.$Link;
+
+
                 let noTeam = row.$Teams;
                 let curr_teams = [];
                 for(let j = 1;j<=noTeam;j++){
@@ -78,7 +92,6 @@ const readExcel = (file)=>{
             }
             filtered_Data.push(curr_match);
         }
-        console.log(filtered_Data);
         setMatches(filtered_Data);
     })
 };
@@ -98,7 +111,6 @@ const openTeamModal = (msg,e)=>{
             ).then((res) => res.json())
             .then((json) => {
                 setTeams(json.list);
-                console.log(json.list);
                 json = json.tournament;
                 setNoOfTeams(json.noOfTeams);
             })
@@ -140,7 +152,7 @@ const openModal = (msg,e)=>{
         setCurrId(msg);
         let requestOptions = {
                 method: "POST",
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',"auth-token":localStorage.getItem('token') },
                 body: JSON.stringify({id: msg})
         };
             fetch(
@@ -472,7 +484,7 @@ const handleDelete= async ()=>{
                                             <tbody>
                                             <tr>
                                                         <td>Index</td>
-                                                        <td>Id</td>
+                                                        <td>Tag</td>
                                                         <td>Team Name</td>
                                                         <td>Current Team Size</td>
                                                         <td>Team Tier</td>                                            
@@ -480,7 +492,7 @@ const handleDelete= async ()=>{
                                                 {teams.map((val, i) => (
                                                     <tr key={i}>
                                                         <td>{i+1}</td>
-                                                        <td onClick={() => {props.showAlert("Copied To Clipboard!!","success"); navigator.clipboard.writeText(val._id)}}><b>{val._id}</b></td>
+                                                        <td onClick={() => {props.showAlert("Copied To Clipboard!!","success"); navigator.clipboard.writeText(val.tag)}}><b>{val.tag}</b></td>
                                                         <td>{val.teamName}</td>
                                                         <td>{val.teamMembers.length}</td>
                                                         <td>{val.tier}</td>

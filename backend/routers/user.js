@@ -53,12 +53,15 @@ async (req, res) => {
 //signup
 router.post("/signup",
 [
-  body("name", "Enter your first Name").isLength({ min: 5 }),
-  body("Lname", "Enter your last Name").isLength({ min: 5 }),
+  body("name", "Enter your first Name").isLength({ min: 1 }),
+  body("Lname", "Enter your last Name").isLength({ min: 1 }),
   body("email", "Enter valid Email").isEmail(),
   body("password", "Enter valid Password").isLength({ min: 5 }),
 ],async (req,res)=>{
    //If there are errors, return bad request
+
+
+
    const errors = validationResult(req);
    if (!errors.isEmpty()) {
      return res.status(400).json({ errors: errors.array()});

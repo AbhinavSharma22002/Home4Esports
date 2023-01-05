@@ -3,15 +3,15 @@ import { Fragment,useEffect,useState } from "react";
 import PageHeader from "../layout/pageheader";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
+import * as XLSX from "xlsx";
 
-const MyCustomer = (props)=>{
-    const [myTournaments,setMyTournamentsList] = useState([]);
+const MyTournament = (props)=>{
+    const [myTeams,setMyTeamsList] = useState([]);
     const [isOpen,setIsOpen] = useState(false);
     const [currId,setCurrId] = useState('');
 
-    const [type,setType] = useState('');
-    const [name,setName] = useState('');
-    const [email,setEmail] = useState('');
+    const [request,setRequest] = useState([]);
+    const [accept,setAccept] = useState(false);
 
 const openModal = (msg,e)=>{
         e.preventDefault();
@@ -19,28 +19,23 @@ const openModal = (msg,e)=>{
         let requestOptions = {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json',
-                    "auth-token":localStorage.getItem('token')
-                    },
-                body: JSON.stringify({id: msg})
+                "auth-token":localStorage.getItem('token') },
+                body: JSON.stringify({teamId: msg})
         };
             fetch(
-                `http://localhost:3001/api/user/getById`,
+                `http://localhost:3001/api/team/getTeamById`,
                 requestOptions
             ).then((res) => res.json())
             .then((json) => {
-                json = json.user;
-                setType(json.role);
-                setName(json.fname);
-                setEmail(json.email);
+                json = json.requests;
+                setRequest(json);
             })
     setIsOpen(true);
 }
 const closeModal = ()=>{
     setIsOpen(false);
-    setCurrId('');
-                setType('');
-                setName('');
-                setEmail('');
+    setRequest([]);
+    setAccept(false);
 }
     useEffect(()=>{
         const value = async () => {
@@ -51,12 +46,13 @@ const closeModal = ()=>{
                     }
             };
             const response = await fetch(
-                `http://localhost:3001/api/user/getAll`,
+                `http://localhost:3001/api/team/getMyTeams`,
                 requestOptions
             );
             const data = await response.json();
             if (response.status === 200) {
-                setMyTournamentsList(data.users);
+                console.log(data.teams);
+                setMyTeamsList(data.teams);
             }
             else {
                 props.showAlert("Something went wrong!!","danger");
@@ -64,18 +60,11 @@ const closeModal = ()=>{
 		}
 		value();
     },[]);
-
-    const handleUpload = async (e)=>{
-        e.preventDefault();
+    const handleUpload = async (id,tag)=>{
         const data = {
-        id:currId,
-        type:[
-            "fname","email","role"
-        ],
-        body: [
-            name,email,type
-        ]
-    };
+            requestId: id._id,
+            tag
+        };
         const requestOptions = {
                 method: "POST",
                 headers: {
@@ -85,19 +74,27 @@ const closeModal = ()=>{
                 body: JSON.stringify(data),
             };
             const response = await fetch(
-                `http://localhost:3001/api/user/getByIdAndUpdate`,
+                `http://localhost:3001/api/team/newMember`,
                 requestOptions
         );
         if(response.status===200){
-            props.showAlert("User Update Success!!","success");
+            props.showAlert("Team Update Success!!","success");
             window.location.reload(true);
         }
     }   
-
+    const getDate = (startDate)=>{
+         let date = new Date(startDate);
+        let year = date.toLocaleString("default", { year: "numeric" });
+        let month = date.toLocaleString("default", { month: "2-digit" });
+        let day = date.toLocaleString("default", { day: "2-digit" });
+        var formattedDate = year + "-" + month + "-" + day;
+        return formattedDate;
+    }
+    console.log(request);
     return (
         <>
         <Fragment>
-                <PageHeader title={'MY USERS'} curPage={'MyUSER'} />
+                <PageHeader title={'MY TEAMS'} curPage={'MYTEAM'} />
                 <div className="achievement-section padding-top padding-bottom">
                     <div className="container">
                         <div className="section-wrapper">
@@ -108,32 +105,31 @@ const closeModal = ()=>{
                                     </li>
                                     <li className="nav-item " role="presentation">
                                      Name
-                                    </li>
-                                    <li className="nav-item mx-5" role="presentation">
-                                     Email
+                                    </li><li className="nav-item " role="presentation">
+                                     Creation Date
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                     Role
+                                     Current Team Size
                                     </li>
                                     <li className="nav-item mx-5" role="presentation">
-                                     Edit
+                                     Request
                                     </li>
                                 </ul>
                                 {
-                                    myTournaments.length!==0?(
+                                    myTeams.length!==0?(
                                         <>
                                     <div className="tab-content" id="myTabContent">
                                     <div className="tab-pane fade show active" id="tabOne" role="tabpanel" aria-labelledby="tabOne-tab">
                                         <table className="table text-white">
                                             <tbody>
-                                                {myTournaments.map((val, i) => (
+                                                {myTeams.map((val, i) => (
                                                     <tr key={i}>
                                                         <td>{i+1}</td>
-                                                        <td><b>{val.name}</b></td>
-                                                        <td>{val.email}</td>
-                                                        <td>{val.role}</td>
-                                                        <td className="open-modal" onClick={(event)=> openModal(val._id,event)} style={{cursor: "Pointer"}}><u>Edit</u></td>
-                                                        </tr>
+                                                        <td><b>{val.teamName}</b></td>
+                                                        <td>{getDate(val.date)}</td>
+                                                        <td>{val.teamMembers.length}</td>
+                                                        <td className="open-team-modal" onClick={(event)=> openModal(val._id,event)} style={{cursor: "Pointer"}}><u>Show Request</u></td>
+                                                    </tr>
                                                 ))}
                                             </tbody>
                                         </table>
@@ -150,48 +146,44 @@ const closeModal = ()=>{
                         </div>
                     </div>
                 </div>
+
+                
+
                 <Modal show={isOpen} onHide={closeModal} size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered>
                 <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                   <p style={{color: 'black'}}>Edit Tournament</p>
+                   <p style={{color: 'black'}}>Request for Joining Teams</p>
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                 <div style={{color: 'black'}}>
-                <form className="account-form">
-                                <input
-                                    type="text"
-                                    name=""
-                                    id=""
-                                    value={name} 
-                                    onChange={(e)=>{setName(e.target.value);}}
-                                    placeholder="Enter Name*"
-                                />
-                                <input
-                                    type="text"
-                                    name=""
-                                    id=""
-                                    value={email} 
-                                    onChange={(e)=>{setEmail(e.target.value);}}
-                                    placeholder="Enter Email*"
-                                />
-                                <select name=""
-                                    id=""
-                                    value={type}
-                                    onChange={(e)=>{setType(e.target.value);}}
-                                    >
-                                    <option>-Select Type-</option>
-                                     <option value="superadmin">superadmin</option>
-                                    <option value="admin">admin</option>
-                                     <option value="local">local</option>
-                            </select>
-                        </form>
+                            <table className="table">
+                                            <tbody>
+                                            <tr>
+                                                        <td>Index</td>
+                                                        <td>Current Team Size</td>  
+                                                        <td>Team Name</td>
+                                                        <td>Team Author</td>
+                                                        <td>Accept</td>
+                                                        <td>Reject</td>                                   
+                                            </tr>
+                                                {request.map((val, i) => (
+                                                    <tr key={i}>
+                                                        <td>{i+1}.</td>
+                                                        <td>{val.Team.teamMembers.length}</td>
+                                                        <td>{val.Team.teamName}</td>
+                                                        <td>{val.User.fname+" "+val.User.lname}</td>
+                                                        <td><input type="checkbox" onClick={(e)=> handleUpload(val,'upload')}/></td>
+                                                        <td><input type="checkbox" onClick={(e)=> handleUpload(val,'delete')}/></td>
+                                                    </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                 </div>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button onClick={handleUpload}>Update</Button>
                 <Button onClick={closeModal}>Close</Button>
                 </Modal.Footer>
                 </Modal>
@@ -200,4 +192,4 @@ const closeModal = ()=>{
     );
 
 };
-export default MyCustomer;
+export default MyTournament;
