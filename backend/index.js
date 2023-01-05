@@ -46,18 +46,13 @@ const teamUpdate = async ()=>{
     let teams = await Teams.find({});
     for(let i=0;i<teams.length;i++){
         let clicked = teams[i].clicked;
-        if(clicked < 10){
+        if(clicked < 50){
             teams[i].tier+= 3;
             let team = await Teams.findOneAndUpdate({_id: teams[i]._id}, teams[i]);
-        }else if(clicked>=10 && clicked <20){
+        }else{
             teams[i].tier+=2;
             let team = await Teams.findOneAndUpdate({_id: teams[i]._id}, teams[i]);
-        }
-        else{
-            teams[i].tier+=1;
-            let team = await Teams.findOneAndUpdate({_id: teams[i]._id}, teams[i]);
-        }
-        
+        }        
     }
 }
 

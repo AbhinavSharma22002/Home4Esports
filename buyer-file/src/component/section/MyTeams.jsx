@@ -159,11 +159,14 @@ const closeModal = ()=>{
                 </Modal.Header>
                 <Modal.Body>
                 <div style={{color: 'black'}}>
-                            <table className="table">
+                {
+                    (request.length===0)?(<>
+                    NO DATA available
+                    </>):(<>
+                    <table className="table">
                                             <tbody>
                                             <tr>
-                                                        <td>Index</td>
-                                                        <td>Current Team Size</td>  
+                                                        <td>Index</td> 
                                                         <td>Team Name</td>
                                                         <td>Team Author</td>
                                                         <td>Accept</td>
@@ -172,7 +175,6 @@ const closeModal = ()=>{
                                                 {request.map((val, i) => (
                                                     <tr key={i}>
                                                         <td>{i+1}.</td>
-                                                        <td>{val.Team.teamMembers.length}</td>
                                                         <td>{val.Team.teamName}</td>
                                                         <td>{val.User.fname+" "+val.User.lname}</td>
                                                         <td><input type="checkbox" onClick={(e)=> handleUpload(val,'upload')}/></td>
@@ -180,7 +182,10 @@ const closeModal = ()=>{
                                                     </tr>
                                         ))}
                                     </tbody>
-                                </table>
+                            </table>
+                    </>)
+                }
+                            
                 </div>
                 </Modal.Body>
                 <Modal.Footer>
