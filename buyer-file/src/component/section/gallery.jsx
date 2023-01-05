@@ -118,8 +118,8 @@ const GallerySection = () => {
                 <ul className="gallery-filter">
                     
                    
-                    <li onClick={() => setItems(GalleryData) }><span className="category">All Photos <span className="itemcount">35</span></span></li>
-                    <li onClick={() => filterItem('khelshala') } ><span className="category">KHELSHALA <span className="itemcount">18</span></span> </li>
+                    <li onClick={() => setItems(GalleryData) }><span className="category">All Photos <span className="itemcount">19</span></span></li>
+                    <li onClick={() => filterItem('khelshala') } ><span className="category">KHELSHALA <span className="itemcount">2</span></span> </li>
                    <li onClick={() => filterItem('event') } ><span className="category">EVENTS <span className="itemcount">17</span></span> </li>
                   {/*<li onClick={() => filterItem('uplay') } ><span className="category">uplay</span> <span className="itemcount">02</span></li> */}
                 </ul>
