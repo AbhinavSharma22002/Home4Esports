@@ -13,17 +13,31 @@ import Users from "../../assets/images/banner/users.png";
 
 
 
-import Teams from "../../assets/images/banner/users.png";
+import Teams from "../../assets/images/banner/teams.png";
 
 import Tournament from "../../assets/images/banner/customer.png"
 import PageHeader from "../layout/pageheader";
 import { Fragment } from 'react';
-const Admin = () => {
+const Admin = (props) => {
+    console.log(props);
     return (
         <Fragment >
              <PageHeader title={'ADMIN PAGE '} curPage={'admin page'} />
              <br /><br /><br /><br /> <br /><br /><br />
             <div className='container-1'>
+
+            {
+                (props.isSuperAdmin && !props.isAdmin && props.isLoggedIn)?(<>
+                <div className='head-1'>
+                    <Link to="/my-tournaments">
+                        <img src={tour} alt="logo" />
+                    </Link>
+                </div>
+                <div className='head-1'>
+                    <Link to="/my-teams">
+                        <img src={Teams} alt="logo" />
+                    </Link>
+                </div>
                 <div className='head-1'>
                     <Link to="/Schedule">
                         <img src={Newgame} alt="logo" />                
@@ -35,26 +49,19 @@ const Admin = () => {
                         <img src={Newmerch} alt="logo" />
                     </Link>
                 </div>
-
+                <div className='head-1'>
+                    <Link to="/createBlog">
+                        <img src={Blog} alt="logo" />
+                    </Link>
+                </div>
                 <div className='head-1'>
                     <Link to="/streamForm">
                         <img src={Stream} alt="logo" />
                     </Link>
                 </div>
                 <div className='head-1'>
-                    <Link to="/my-tournaments">
-                        <img src={tour} alt="logo" />
-                    </Link>
-                </div>
-
-                <div className='head-1'>
                     <Link to="/my-customer">
                         <img src={Users} alt="logo" />
-                    </Link>
-                </div>
-                <div className='head-1'>
-                    <Link to="/createBlog">
-                        <img src={Blog} alt="logo" />
                     </Link>
                 </div>
 
@@ -63,11 +70,62 @@ const Admin = () => {
                         <img src={Best} alt="logo" />
                     </Link>
                 </div>
+                </>):(<>
+                
+                </>)
+            }
+            {
+                (!props.isSuperAdmin && props.isAdmin && props.isLoggedIn)?(<>
+                <div className='head-1'>
+                    <Link to="/my-tournaments">
+                        <img src={tour} alt="logo" />
+                    </Link>
+                </div>
                 <div className='head-1'>
                     <Link to="/my-teams">
                         <img src={Teams} alt="logo" />
                     </Link>
                 </div>
+                <div className='head-1'>
+                    <Link to="/Schedule">
+                        <img src={Newgame} alt="logo" />                
+                    </Link>
+                </div>
+
+                <div className='head-1'>
+                    <Link to="/Mgmt">
+                        <img src={Newmerch} alt="logo" />
+                    </Link>
+                </div>
+                <div className='head-1'>
+                    <Link to="/createBlog">
+                        <img src={Blog} alt="logo" />
+                    </Link>
+                </div>
+                <div className='head-1'>
+                    <Link to="/streamForm">
+                        <img src={Stream} alt="logo" />
+                    </Link>
+                </div>
+
+                </>):(<></>)
+            }
+            {
+                (!props.isSuperAdmin && !props.isAdmin && props.isLoggedIn)?(<>
+                <div className='head-1'>
+                    <Link to="/my-tournaments">
+                        <img src={tour} alt="logo" />
+                    </Link>
+                </div>
+                <div className='head-1'>
+                    <Link to="/my-teams">
+                        <img src={Teams} alt="logo" />
+                    </Link>
+                </div>
+                </>):(<></>)
+
+
+            }
             </div>
           <br /><br /><br /><br /> <br /><br /><br /><br /><br />
         </Fragment>

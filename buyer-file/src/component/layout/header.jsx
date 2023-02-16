@@ -34,7 +34,6 @@ const HeaderFunction = (props) => {
 
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [isAdmin, setIsAdmin] = useState(false);
 
     const Context = useContext(accessContext);
     const { LoggedInStates } = Context;
@@ -53,15 +52,8 @@ const HeaderFunction = (props) => {
             const data = await response.json();
             if (response.status === 200) {
                 setIsLoggedIn(true);
-                if (data.role === "admin" || data.role === 'superadmin') {
-                    setIsAdmin(true);
-                }
-                else {
-                    setIsAdmin(false);
-                }
             }
             else {
-                setIsAdmin(false);
                 setIsLoggedIn(false);
             }
         }
@@ -81,7 +73,6 @@ const HeaderFunction = (props) => {
     const Logout = () => {
         localStorage.removeItem("token");
         setIsLoggedIn(false);
-        setIsAdmin(false);
         props.setIsLoggedIn(false);
         navigate("/");
     }
@@ -159,14 +150,8 @@ const HeaderFunction = (props) => {
                                              <span className="icons"  style={{left:"23vw"}}>
                                                         <Floating_Alert />
                                                     </span>
-                                                {isAdmin ? (
-                                                    <>
                                                         <li><Link to="/admin" className="adminpage"><i className="icofont-user"></i>Admin Page</Link></li>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                    </>
-                                                )}
+                                               
                                                 <li><Link to="/" className="logout" style={{ color: "#fff", background: "none", fontSize: "1rem", fontWeight: "700", textTransform: "uppercase", top: "10px" }} onClick={Logout}><i className="icofont-user"></i><span>Logout</span></Link></li>
                                             </>
                                         )

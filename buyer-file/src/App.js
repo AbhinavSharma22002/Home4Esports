@@ -75,12 +75,18 @@ function App() {
 				setIsLoggedIn(true);
 				if (data.role === "admin") {
 					setIsAdmin(true);
+					setIsLoggedIn(true);
+					setIsSuperAdmin(false);
 				}
 				else if (data.role === "superadmin") {
 					setIsSuperAdmin(true);
+					setIsAdmin(false);
+					setIsLoggedIn(true);
 				}
 				else {
 					setIsAdmin(false);
+					setIsSuperAdmin(false);
+					setIsLoggedIn(true);
 				}
 			}
 			else {
@@ -118,7 +124,6 @@ function App() {
 					<>
 						{
 							isSuperAdmin ? (<>
-								<Route path="admin" element={<Admin showAlert={showAlert} />} />
 								<Route path="Schedule" element={<Schedule showAlert={showAlert} />} />
 								<Route path="Mgmt" element={<Mgmt showAlert={showAlert} />} />
 								<Route path="Customer" element={<Customer showAlert={showAlert} />} />
@@ -130,7 +135,6 @@ function App() {
 						}
 						{isAdmin ? (
 							<>
-								<Route path="admin" element={<Admin showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
 								<Route path="Schedule" element={<Schedule showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
 								<Route path="Mgmt" element={<Mgmt showAlert={showAlert} />} isLoggedIn={isLoggedIn} />
 								<Route path="createBlog" element={<CreateBlog showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
@@ -140,8 +144,8 @@ function App() {
 							<>
 							</>
 						)}
+						<Route path="admin" element={<Admin showAlert={showAlert} isLoggedIn={isLoggedIn} isAdmin={isAdmin} isSuperAdmin={isSuperAdmin}/>} />
 						<Route path="my-teams" element={<MyTeams showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
-						
 						<Route path="joinTeam" element={<JoinTeam showAlert={showAlert} isLoggedIn={isLoggedIn}/>}/>
 						<Route path="my-tournaments" element={<MyTournament showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
 						<Route path="TournamentForm" element={<TournamentForm showAlert={showAlert} isLoggedIn={isLoggedIn}/>} />
@@ -150,7 +154,6 @@ function App() {
 				) : (<>
 					<Route path="login" element={<LogIn setIsLoggedIn={setIsLoggedIn} showAlert={showAlert} />} />
 					<Route path="signup" element={<SignUp showAlert={showAlert} />} />
-					
 				</>)
 				}
 			</Routes>

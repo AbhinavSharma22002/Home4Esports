@@ -74,7 +74,10 @@ const MatchSection = (props)=>{
 	},[]);
     return (
         <>
-        <section className="match-section padding-top padding-bottom" style= {{backgroundImage: "url(/assets/images/match/bg.jpg)"}}>
+        {
+            ((MatchInfoListOne.length!==0) && ((MatchInfoListTwo.length!==0) || (MatchInfoListThree.length!==0)))?(
+                <>
+                <section className="match-section padding-top padding-bottom" style= {{backgroundImage: "url(/assets/images/match/bg.jpg)"}}>
                 <div className="container">
                     <div className="section-header">
                         <p>{subtitle}</p>
@@ -132,7 +135,10 @@ const MatchSection = (props)=>{
                                 </div>
                             ))}
                         </div>
-
+                        {
+                            ((MatchInfoListThree.length===0)||(MatchInfoListTwo.length===0))?(<>
+                            </>):(<>
+                            
                         <div className="row g-5">
                             <div className="col-lg-6">
                                 <div className="upcome-matches">
@@ -242,13 +248,20 @@ const MatchSection = (props)=>{
                                 </div>
                             </div>
                         </div>
-
+                            </>)
+                        }
                         <div className="button-wrapper text-center mt-5">
                             <Link to="/game-list" className="default-button"><span>{btnText} <i className="icofont-circled-right"></i></span></Link>
                         </div>
                     </div>
                 </div>
             </section>
+                </>
+            ):(
+                <></>
+            )
+        }
+        
         </>
     );
 };

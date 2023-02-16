@@ -21,7 +21,10 @@ async (req, res) => {
     const user = await User.findById(userId).select("-password");
     //check for access level
   const {title, team1Logo,team2Logo,date,videoLink,time,tournamentLogo} = req.body;
- console.log(req.body);
+  const allDisplay = await Display.find();
+  if(allDisplay.length>0){
+    return res.status(400).send("Already Registered 1 match");
+  }
   try {
     let display = await Display.create({
       tournamentLogo:tournamentLogo,

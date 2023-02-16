@@ -54,7 +54,7 @@ async (req, res) => {
 
     let userId = req.user.id;
 
-    const leader = await User.findById(userId).select("-password");
+    const leader = await User.findById(userId).select("-password -image");
     //check for access level
     const { teamName,image,tournamentId} = req.body;
    let tournament = await 
@@ -110,16 +110,31 @@ router.post("/getTeamById",fetchuser,async(req,res)=>{
   const {teamId} = req.body;
   try{
     const team = await Team.findById(teamId);
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id).select("-password -image");
     if((team.author).equals(user._id)){
       let arr = [];
-      for(let i = 0;i<team.requests.length;i++){
+      let fin_arr = [];
+        for(let i = 0;i<team.requests.length;i++){
         let request = await Request.findById(team.requests[i].id);
-        let user1 = await User.findById(request.User);
-        request.User =  user1;
-        request.Team = team;
-        arr.push(request);
+        if(request){
+          let user1 = await User.findById(request.User).select("-password -image");
+          request.User =  user1;
+          request.Team = team;
+          arr.push(request);
+          fin_arr.push(team.requests[i]);
+        }     
+        else{
+          try{
+            await Request.findByIdAndDelete(team.requests[i].id);
+          }
+          catch(error){
+            console.error(error);
+          }
+        }
       }
+      team.requests = fin_arr;
+      console.log(team);
+      await Team.findOneAndUpdate({_id: team._id}, team);
       res.status(200).json({requests: arr});
     }
     else{
@@ -140,8 +155,8 @@ async (req, res) => {
       //delete
       let request = await Request.findById(requestId);
       let teams = await Team.findById(request.Team);
-      const user = await User.findById(req.user.id).select("-password");
-      if(user._id===request.User){
+      const user = await User.findById(req.user.id).select("-password -image");
+      if((user._id).equals(request.User)){
         try {
           let arr = [];
           for(let i = 0;i<teams.requests.length;i++){
@@ -169,7 +184,7 @@ async (req, res) => {
       //accept
       let request = await Request.findById(requestId);
   let teams = await Team.findById(request.Team);
-  const user = await User.findById(req.user.id).select("-password");
+  const user = await User.findById(req.user.id).select("-password -image");
     if(user){
   try {
     for(let i = 0;i<teams.teamMembers.length;i++){
@@ -216,7 +231,7 @@ async (req, res) => {
     team_id = data.team.id;
     tour_id = data.team.tournamentId;
     let tournament = await Tournament.findById(tour_id).select("teamSize");
-    const user = await User.findById(userId).select("-password");
+    const user = await User.findById(userId).select("-password -image");
     let teams = await Team.findById(team_id);
     //check for access level
   try {

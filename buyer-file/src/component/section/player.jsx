@@ -29,12 +29,6 @@ const PlayerSection = (props)=>{
             if(response.status===200){
                 switch (tier) {
                     case 1:
-                        setTierOneList(data.teams);
-                        break;
-                    case 2:
-                        setTierTwoList(data.teams);
-                        break;
-                    case 3:
                     let arr = [];
                     for(let i = 0;i<data.teams.length;i++){
                         
@@ -46,7 +40,13 @@ const PlayerSection = (props)=>{
                     data.teams[i].date = formattedDate;
                     arr.push(data.teams[i]);
                     }
-                        setTierThreeList(arr);
+                        setTierOneList(arr);
+                        break;
+                    case 2:
+                        setTierTwoList(data.teams);
+                        break;
+                    case 3:
+                        setTierThreeList(data.teams);
                         break;
                     default:
                         break;
@@ -63,12 +63,13 @@ return(
     <>
     <Fragment>
     <div className="container-fluid">
+    {
+    (tierOneList.length!==0?(<>
                    <div className="section-header">
                        <p>{subtitle}</p>
                        <h2>{title}</h2>
                    </div>
-{
-    (tierThreeList.length!==0?(<>
+
                     <div className="section-wrapper">
                        <div className="player-slider">
                            <Swiper
@@ -107,8 +108,6 @@ return(
                                                </div>
                                                <div className="player-content-2">
                                                    <h2>{val.teamName}</h2>
-                                                   <h2>Date: {val.date}</h2>
-                                                   <h2>Tier: {val.tier}</h2>
                                                </div>
                                            </div>
                                            </Link>

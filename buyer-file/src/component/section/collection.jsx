@@ -54,7 +54,7 @@ class CollectionSection extends Component {
                                                 <img
                                                     src={`${val.imgUrl}`} 
                                                     alt={`${val.imgAlt}`} 
-                                                    style={{height:"248px",width:"272px"}}
+                                                    style={{height:"230px",width:"240px"}}
                                                 />
                                             </div>
                                             <div className="game-overlay">
