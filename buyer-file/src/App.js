@@ -36,7 +36,6 @@ import TournamentForm from "./component/section/TournamentForm";
 import DisplayForm from "./component/section/displayForm";
 import TeamForm from "./component/section/teamform";
 import Floating_Alert from "./component/layout/floating_alert";
-
 import MyTeams from "./component/section/MyTeams";
 import Tournament from "./pages/Tournament";
 import NewMember from "./component/section/member";
