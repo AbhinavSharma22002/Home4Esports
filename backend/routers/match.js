@@ -6,7 +6,7 @@ const fetchuser = require('../middleware/Fetchuser');
 const Tournament = require("../database/Tournament");
 const Team = require("../database/Team");
 
-const createMatch = async (teams1,date,time,results,round,link) => {
+const createMatch = async (teams1,date,time,results,round,link,tourId,author,id) => {
   try {
     let final_teams = [];
     for(let i = 0;i<teams1.length;i++){
@@ -20,7 +20,10 @@ const createMatch = async (teams1,date,time,results,round,link) => {
         time:time,
         results:results,
         round:round,
-        link: link
+        link: link,
+        author: author,
+        tournament: tourId,
+        tournamentId: id
       });
       return match_id._id;
     }
@@ -30,7 +33,10 @@ const createMatch = async (teams1,date,time,results,round,link) => {
         date:date,
         time:time,
         round: round,
-        link: link
+        link: link,
+        author: author,
+        tournament: tourId,
+        tournamentId: id
       });
       return match_id._id;
     }
@@ -54,7 +60,7 @@ router.post("/getAndUpdateMatches",fetchuser, async (req,res)=>{
     tournament.matches = [];
     let temP_arr = [];
     for(let i = 0;i<matches.length;i++){
-      let newCreated = await createMatch(matches[i].teams,matches[i].date,matches[i].time,matches[i].results,matches[i].round,matches[i].link);
+      let newCreated = await createMatch(matches[i].teams,matches[i].date,matches[i].time,matches[i].results,matches[i].round,matches[i].link,tournament.name,userID,tournament._id);
       temP_arr.push({
         id: newCreated
       });
@@ -109,7 +115,7 @@ router.get("/previousMatches", async(req,res)=>{
             alt1: 'game name 1',
             imagetwo: match.teams[1].image,
             alt2: 'game name 2',
-            title: 'Tournament Name',
+            title: match.tournament,
             matchdate: formattedDate,
             matchtime: `Time: ${date.toLocaleTimeString("it-IT")}`,
             playercount: `${match.teams.length} Players` ,
@@ -164,7 +170,7 @@ router.get("/todayMatches", async(req,res)=>{
                  alt1: 'game name 1',
                  imagetwo: match.teams[1].image,
                  alt2: 'game name 2',
-                 title: 'Tournament Name',
+                 title: match.tournament,
                  matchdate: formattedDate,
                  matchtime: `Time: ${date.toLocaleTimeString("it-IT")}`,
                  playercount: `${match.teams.length} Players` ,
@@ -217,7 +223,7 @@ router.get("/futureMatches", async(req,res)=>{
                  alt1: 'game name 1',
                  imagetwo: match.teams[1].image,
                  alt2: 'game name 2',
-                 title: 'Tournament Name',
+                 title: match.tournament,
                  matchdate: formattedDate,
                  matchtime: `Time: ${date.toLocaleTimeString("it-IT")}`,
                  playercount: `${match.teams.length} Players` ,

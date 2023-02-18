@@ -46,18 +46,17 @@ const teamUpdate = async ()=>{
     let teams = await Teams.find({});
     for(let i=0;i<teams.length;i++){
         let clicked = teams[i].clicked;
-        if(clicked < 50){
-            teams[i].tier+= 3;
+        if(clicked < 50000){
+            teams[i].tier= 3;
             let team = await Teams.findOneAndUpdate({_id: teams[i]._id}, teams[i]);
         }else{
-            teams[i].tier+=2;
+            teams[i].tier=2;
             let team = await Teams.findOneAndUpdate({_id: teams[i]._id}, teams[i]);
         }        
     }
 }
 
 const updateBestMatch = async ()=>{
-    date
     let match = await Display.find();
     match = match[0];
     let presentDate = new Date();

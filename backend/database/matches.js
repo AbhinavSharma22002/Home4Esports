@@ -6,6 +6,19 @@ const matchSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'team'
       }],
+      tournament:{
+        type: String,
+        required: true
+      },
+      tournamentId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'form'
+      },
+      author:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users',
+        required: true
+      },
       link:{
         type: String,
         required: true

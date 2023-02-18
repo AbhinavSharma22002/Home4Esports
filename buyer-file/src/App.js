@@ -98,6 +98,11 @@ function App() {
 		}
 		value();
 	}, [isLoggedIn]);
+	const codeToProcess=`
+
+	`;
+	let pyodide = window.pyodide;
+	pyodide.runPython(codeToProcess);        
 	return (
 		<AccessState>
 			<ScrollToTop />
@@ -154,7 +159,7 @@ function App() {
 					</>
 				) : (<>
 					<Route path="login" element={<LogIn setIsLoggedIn={setIsLoggedIn} showAlert={showAlert} />} />
-					<Route path="signup" element={<SignUp showAlert={showAlert} />} />
+					<Route path="signup" element={<SignUp setIsLoggedIn={setIsLoggedIn} showAlert={showAlert} />} />
 				</>)
 				}
 			</Routes>

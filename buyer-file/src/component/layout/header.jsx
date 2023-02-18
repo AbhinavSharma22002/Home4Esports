@@ -126,6 +126,7 @@ const HeaderFunction = (props) => {
                                 <div className="menu-area">
                                     <ul className="menu">
                                         <li><Link to="/">Home</Link></li>
+                                        <li><Link to="/tournaments">Tournaments</Link></li>
                                         <li className="menu-item-has-children">
                                             <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">CCE</a>
                                             <ul className="submenu dropdown-menu" aria-labelledby="dropdown">
@@ -133,15 +134,6 @@ const HeaderFunction = (props) => {
                                                 <li><NavLink to="/gallery">gallery</NavLink></li>
                                                 <li><NavLink to="/partners">partners</NavLink></li>
                                                 <li><NavLink to="/achievements">achievement</NavLink></li>
-                                                <li><NavLink to="/tournaments">tournaments</NavLink></li>
-                                            </ul>
-                                        </li>
-                                        <li className="menu-item-has-children">
-                                            <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">Shop</a>
-                                            <ul className="submenu dropdown-menu">
-                                                <li><NavLink to="/shop">shop</NavLink></li>
-                                                <li><NavLink to="/shop-single">Shop Details</NavLink></li>
-                                                {/* <li><NavLink to="/cart-page">Cart Page</NavLink></li> */}
                                             </ul>
                                         </li>
                                         <li><NavLink to="/contact">Contact</NavLink></li>

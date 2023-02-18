@@ -25,20 +25,22 @@ const SignUpFunction = (props)=>{
     const handleSubmit = async (event)=>{
         event.preventDefault();
         if(regConPassword===regPassword){
-        const data = await SignUpRequest({
+        const response = await SignUpRequest({
         email: regEmail,
         password: regPassword,
         name: regFName,
         Lname: regLName
         });
-        if (data.status === 200) {
+        const data = await response.json();
+        if (response.status === 200) {
+            props.showAlert("Login Success","success");
             localStorage.setItem("token", data.authData);
             props.setIsLoggedIn(true);
-            props.showAlert("Login Success","success");
             navigate("/");
         }
         else{
             props.showAlert("Something Went Wrong!! Try Again","danger");
+            navigate("/signup");
         }
         }
      setregFName("");

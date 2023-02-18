@@ -45,6 +45,7 @@ const MatchSection = (props)=>{
                 for(let i = 0;i<json.matches.length && i<3;i++){
                     arr.push(json.matches[i]);
                 }
+                
                 setMatchInfoListOne(arr);
             })
 		}
@@ -74,9 +75,6 @@ const MatchSection = (props)=>{
 	},[]);
     return (
         <>
-        {
-            ((MatchInfoListOne.length!==0) && ((MatchInfoListTwo.length!==0) || (MatchInfoListThree.length!==0)))?(
-                <>
                 <section className="match-section padding-top padding-bottom" style= {{backgroundImage: "url(/assets/images/match/bg.jpg)"}}>
                 <div className="container">
                     <div className="section-header">
@@ -98,20 +96,29 @@ const MatchSection = (props)=>{
                                                         <div className="match-game-team">
                                                             <ul className="match-team-list d-flex flex-wrap align-items-center justify-content-center">
                                                                 <li className="match-team-thumb">
-                                                                    <a href={`${val.link}`}><img src={val.imageone} alt={val.alt1} /></a>
+                                                                    <div className="col-md-2 col-5 order-md-3 p-0">
+                                                                    <div className="match-team-thumb text-center">
+                                                                        <a href={`${val.link}`}><img src={val.imageone} alt={val.alt1} /></a>
+                                                                    </div>
+                                                                </div>
                                                                 </li>
+                                                                
                                                                 <li className="text-center">
                                                                     <img className="w-75 w-md-100" src="assets/images/match/vs.png" alt="vs" />
                                                                 </li>
                                                                 <li className="match-team-thumb">
+                                                                 <div className="col-md-2 col-5 order-md-3 p-0">
+                                                                    <div className="match-team-thumb text-center">
                                                                     <a href={`${val.link}`}><img src={val.imagetwo} alt={val.alt2} /></a>
+                                                                    </div>
+                                                                </div>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                     <div className="col-xl-4 col-md-6 order-md-1">
                                                         <div className="match-game-info">
-                                                            <h4><a href={`/team?id=${val.results._id}`}>{val.title}</a>{val.title}</h4>
+                                                            <h4><a href={`/team?id=${val._id}`}>{val.title}</a></h4>
                                                             <p className="d-flex flex-wrap justify-content-center  justify-content-md-start">
                                                                 <span className="match-date">{val.matchdate} </span>
                                                                 <span className="match-time">{val.matchtime}</span>
@@ -135,9 +142,7 @@ const MatchSection = (props)=>{
                                 </div>
                             ))}
                         </div>
-                        {
-                            ((MatchInfoListThree.length===0)||(MatchInfoListTwo.length===0))?(<>
-                            </>):(<>
+                        
                             
                         <div className="row g-5">
                             <div className="col-lg-6">
@@ -248,23 +253,14 @@ const MatchSection = (props)=>{
                                 </div>
                             </div>
                         </div>
-                            </>)
-                        }
                         <div className="button-wrapper text-center mt-5">
                             <Link to="/game-list" className="default-button"><span>{btnText} <i className="icofont-circled-right"></i></span></Link>
                         </div>
                     </div>
                 </div>
-            </section>
-                </>
-            ):(
-                <></>
-            )
-        }
-        
+            </section>        
         </>
-    );
-};
+    )};
 
 
  
