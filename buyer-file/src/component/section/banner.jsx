@@ -41,7 +41,7 @@ const BannerSection = (props)=>{
             (bannerList.length!==0)?(<>
         <div className="banner-section" style={{ backgroundImage: "url(/assets/images/banner/bg.jpg)"}}>
                                 {bannerList.map((val, i) => (
-                                    <div className="container">
+                                    <div className="container" key={i}>
                                     <div >
                                         <div className="banner-content text-center">
                                             <h4 className="fw-normal theme-color mb-4">{`${val.title}`}</h4>

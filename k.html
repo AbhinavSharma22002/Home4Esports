@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    Pyodide test page <br />
+    Open your browser console to see Pyodide output
+    <script type="text/javascript">
+            // async function main(){
+            //   let pyodide = await loadPyodide();
+            //   console.log(pyodide.runPython(`
+            //       import sys
+            //       sys.version
+            //   `));
+            //   pyodide.runPython("print(1 + 2)");
+            //   pyodide.runPython(`if(2==2):
+            //       `);
+            // }
+            // main();
+            var videoId = 'video';
+      var scaleFactor = 0.25;
+      var snapshots = [];
+
+      /**
+       * Captures a image frame from the provided video element.
+       *
+       * @param {Video} video HTML5 video element from where the image frame will be captured.
+       * @param {Number} scaleFactor Factor to scale the canvas element that will be return. This is an optional parameter.
+       *
+       * @return {Canvas}
+       */
+      function capture(video, scaleFactor) {
+          if(scaleFactor == null){
+              scaleFactor = 1;
+          }
+          var w = video.videoWidth *scaleFactor;
+          var h = video.videoHeight *scaleFactor;
+          var canvas = document.createElement('canvas');
+              canvas.width  = w;
+              canvas.height = h;
+            var ctx = canvas.getContext('2d');
+            var sourceX = 1000;
+            var sourceY = 0;
+            var sourceWidth = w;
+            var sourceHeight = h;
+            var destWidth = w;
+            var destHeight = h;
+            var destX = canvas.width / 2 - destWidth / 2;
+            var destY = canvas.height / 2 - destHeight / 2;
+
+        //   var sourceX = 1000;
+        // var sourceY = 0;
+        // var sourceWidth = w;
+        // var sourceHeight = h-50;
+        // var destWidth = w;
+        // var destHeight = h-120;
+        // var destX = canvas.width / 2 - destWidth / 2;
+        // var destY = canvas.height / 2 - destHeight / 2;
+          console.log(sourceX+" "+ sourceY+" "+ sourceWidth+" "+ sourceHeight+" "+ destX+" "+ destY+" "+ destWidth+" "+ destHeight);
+          ctx.drawImage(video, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
+              // ctx.drawImage(video, 58, 1075, w-50, h-590);
+          return canvas;
+      }
+
+      /**
+       * Invokes the &lt;code&gt;capture&lt;/code&gt; function and attaches the canvas element to the DOM.
+       */
+      function shoot(){
+          var video  = document.getElementById(videoId);
+          var output = document.getElementById('output');
+          var canvas = capture(video, scaleFactor);
+              canvas.onclick = function(){
+                  window.open(this.toDataURL());
+              };
+          snapshots.unshift(canvas);
+          output.innerHTML = '';
+          // for(var i=0; i<snapshots.length; i++){
+          //     output.appendChild(snapshots[i]);
+          // }
+          output.appendChild(snapshots[0]);
+      }
+    </script>
+    <div style="border: solid 1px #ccc; padding: 10px; text-align: center">
+      <video id="video" width="320" controls="true" >
+        <source src="video.mp4" />
+      </video
+      ><br />
+      <button onclick="shoot()" style="width: 64px; border: solid 2px #ccc">
+        Capture</button
+      ><br />
+      <div
+        id="output"
+        style="
+          display: inline-block;
+          top: 4px;
+          position: relative;
+          border: dotted 1px #ccc;
+          padding: 2px;
+        "
+      ></div>
+    </div>
+  </body>
+</html>

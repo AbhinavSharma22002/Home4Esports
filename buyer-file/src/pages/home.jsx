@@ -12,6 +12,7 @@ import ProductSection from "../component/section/product";
 import SponsorSection from "../component/section/sponsor";
 import TestimonialSection from "../component/section/testimonial";
 import VideoSection from "../component/section/video";
+import Stream from "../component/section/stream";
 const HomeFunction = ()=>{
     return (
         <>
@@ -27,6 +28,7 @@ const HomeFunction = ()=>{
                 <SponsorSection />
                 <TestimonialSection />
                 <AboutSection imgUrl={'assets/images/about/01.png'} />
+                <Stream />
         </>
     );
 }

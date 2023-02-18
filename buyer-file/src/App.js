@@ -97,11 +97,6 @@ function App() {
 		}
 		value();
 	}, [isLoggedIn]);
-	const codeToProcess=`
-
-	`;
-	let pyodide = window.pyodide;
-	pyodide.runPython(codeToProcess);        
 	return (
 		<AccessState>
 			<ScrollToTop />
