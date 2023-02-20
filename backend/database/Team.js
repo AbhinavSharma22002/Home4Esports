@@ -28,10 +28,6 @@ const TeamSchema = new Schema({
     type: String,
     required: true
   },
-  seed: {
-    type: Number,
-    required: true,
-  },
   clicked:{
     type: Number,
     default: 0,
