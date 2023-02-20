@@ -131,4 +131,72 @@ router.post('/getByIdAndUpdate',async (req,res)=>{
     res.status(500).send("Some error occurred");
   }
 });
+//code for tournament bracket
+
+router.get('/bracket/:id', async (req, res) => {
+  try {
+    const tournament = await Tournament.findById(req.params.id);
+    res.json({
+      bracket:generateBracket(tournament.team)
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+function generateBracket(teams) {
+  // Sort teams by seed
+  const sortedTeams = teams;
+console.log(teams);
+  // Initialize bracket
+  const bracket = [];
+
+  const rounds = Math.ceil(Math.log2(sortedTeams.length));
+  for (let i = 0; i < rounds; i++) {
+      const round = [];
+      const roundTeams = teams.length / Math.pow(2, i + 1);
+      for (let j = 0; j < roundTeams; j++) {
+        const team1 = teams[j];
+        const team2 = teams[teams.length - j - 1];
+        round.push([team1, team2]);
+      }
+      bracket.push(round);
+      console.log(bracket);
+    } 
+
+  // Assigning teams for the first round
+  let numByes = Math.pow(2, rounds) - sortedTeams.length;
+
+  let index= 0;
+  for (let i = 0; i < bracket[0].length; i++) {
+    if (numByes > 0) {
+      bracket[0][i][0] = { name: 'Bye' };
+      numByes--;
+    } else {
+      bracket[0][i][0] = {team:sortedTeams[index]};
+      index++;
+    }
+    bracket[0][i][1] = {team:sortedTeams[index]};
+    index++;
+  }
+
+  // Assign teams to remaining rounds
+  for (let i = 1; i < bracket.length; i++) {
+    for (let j = 0; j < bracket[i].length; j++) {
+      const match = bracket[i][j];
+      const previousMatch = bracket[i - 1][Math.floor(j / 2)];
+      if (j % 2 === 0) {
+        match[0] = previousMatch[0] && previousMatch[0].winner ? previousMatch[0].winner : null;
+        match[1] = previousMatch[1];
+      } else {
+        match[0] = previousMatch[0];
+        match[1] = previousMatch[1] && previousMatch[1].winner ? previousMatch[1].winner : null;
+      }
+    }
+  }
+
+  return bracket;
+}
+
+
 module.exports = router;

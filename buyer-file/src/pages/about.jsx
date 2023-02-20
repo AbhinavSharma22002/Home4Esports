@@ -12,7 +12,7 @@ class AboutPage extends Component {
     render() { 
         return (
             <Fragment>
-                <PageHeader title={'CROWD CONTROL ESPORTS'} curPage={'About Us'} />
+                <PageHeader title={'ESPORTS HUB'} curPage={'About Us'} />
                 <AboutSection imgUrl={'assets/images/about/01.png'} />
                 <VideoTestimonial />
                 <HrShape />
