@@ -17,7 +17,7 @@ const HomeFunction = ()=>{
     return (
         <>
                 <BannerSection />
-                <CollectionSection /> 
+                {/* <CollectionSection />  */}
                 <MatchSection />
                 <VideoSection />
                 <ProductSection />

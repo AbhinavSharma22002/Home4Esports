@@ -11,7 +11,7 @@ let AboutListContent = [
         imgUrl: 'assets/images/about/icon-1.png',
         imgAlt: 'About Icon',
         title: 'About Ourselves',
-        desc: 'One of them decided to get intentional about structure in esports. His passion for esports and belief that esports could be a structured ecosystem for gamers, crew and fans led to the set up of CCE in 2020.',
+        desc: 'One of them decided to get intentional about structure in esports. His passion for esports and belief that esports could be a structured ecosystem for gamers, crew and fans led to the set up of Esports HUB in 2020.',
     },
     {
         imgUrl: 'assets/images/about/icon-2.png',

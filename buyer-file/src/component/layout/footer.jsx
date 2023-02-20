@@ -7,7 +7,7 @@ import accessContext from "../../context/roles/accessContext";
 const postTitle = "Top jackpot games";
 const newsTitle = "Our Newsletter";
 const desc = "We're creating the best in interactive entertainment by making games that change the way people have fun.";
-const newsdesc = "Crowd Control Esports organization supported by community leaders";
+const newsdesc = "Esports HUB organization supported by community leaders";
 const NewsLetter = ()=>{
     const [userEmail, setuserEmail] = useState('');
 	const [userName, setuserName] = useState('');
@@ -40,7 +40,7 @@ const NewsLetter = ()=>{
                                             <img src="assets/images/footer/icons/01.png" alt="Phone-icon" />
                                         </div>
                                         <div className="lab-content">
-                                            <span>Phone Number : +91 954 092 2345</span>
+                                            <span>Phone Number :  +91 987 654 3210</span>
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@ const NewsLetter = ()=>{
                                             <img src="assets/images/footer/icons/02.png" alt="email-icon" />
                                         </div>
                                         <div className="lab-content">
-                                            <span>Email : ccesports@gmail.com</span>
+                                            <span>Email : esportshub@gmail.com</span>
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@ const NewsLetter = ()=>{
                                             <img src="assets/images/footer/icons/03.png" alt="location-icon" />
                                         </div>
                                         <div className="lab-content">
-                                            <span>Address : <br /> Sec-82, Gurugram, Haryana, India-122004</span>
+                                            <span>Address : Sec-XYZ, Ghaziabad, U.P, India</span>
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@ const NewsLetter = ()=>{
                                 <div className="footer-middle-item-wrapper">
                                     <div className="footer-middle-item mb-lg-0">
                                         <div className="fm-item-title mb-4">
-                                            <img src="assets/images/logo/logo.png" alt="logo" />
+                                            <img src="assets/images/logo/1.png" alt="logo" />
                                         </div>
                                         <div className="fm-item-content">
                                             <p className="mb-4">{desc}</p>
@@ -166,7 +166,7 @@ const NewsLetter = ()=>{
                         <div className="row">
                             <div className="col-12">
                                 <div className="footer-bottom-content text-center">
-                                    {<p>&copy;2022-23 <Link to="/">Crowd Control Esports</Link> - #Home4Esports</p>}
+                                    {<p>&copy;2022-23 <Link to="/">Esports HUB</Link> - #AllAboutEsports</p>}
                                 </div>
                             </div>
                         </div>

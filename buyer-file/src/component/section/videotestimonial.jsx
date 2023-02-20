@@ -12,38 +12,46 @@ const title = "click here to check our video";
 
 let VideoListContentTop = [
     {
-        imgUrl: 'assets/images/game/vdothumbs.png',
+        imgUrl: 'assets/images/video/01.jpg',
         imgAlt: 'Video Thum',
-       videoLink: 'https://www.youtube.com/embed/xRgHu4JdcTU',
+       videoLink: 'https://www.youtube.com/embed/QT3xiKdLdKQ',
     },
 ]
 
 let TestimonialListContent = [
     {
-        imgUrl: 'assets/images/testimonial/01.jpg',
-        imgAlt: 'testimonial thumb',
-        title: 'Peeyush "PsyLens" Kumar',
-        desc: 'Ex-Microsoft, Esports Mentor India Accelerator, Speaker, Caster Esports (15+ Yrs),Corporates (8 Yrs)',
-        dige: 'Founder of CCE',
-        ratingcount: '5.28',
-    },
-    {
-        imgUrl: 'assets/images/testimonial/03.jpg',
-        imgAlt: 'testimonial thumb',
+        imgUrl: 'assets/images/testimonial/ZZ.png',
+       imgAlt: 'testimonial thumb',
+       title: 'Ajay Pandey',
+       desc: 'KIET Groups of Institutions, Ghaziabad(201206)',
+       dige: 'Information Technology',
+       ratingcount: '5.28',
+   },
+   {
+        imgUrl: 'assets/images/testimonial/ZZ.png',
+       imgAlt: 'testimonial thumb',
 
-        title: 'Samhita "SheSapien"',
-        desc: 'ISB, SEEDS Board Member, Ex-Microsoft, Honeywell, EY-Esports (2+ Yrs), Corporates (15+ Yrs)',
-        dige: 'Co-Founder of CCE',
-        ratingcount: '5.80',
-    },
-    {
-        imgUrl: 'assets/images/testimonial/02.jpg',
-        imgAlt: 'testimonial thumb',
-        title: 'Pravesh "EvilEvr" Rawat',
-        desc: 'Creative Enterpreneur, Pro Gamer, Artist Esports (10+Yrs) ,Corporates (2 Yrs)',
-        dige: 'Co-Founder of CCE',
-        ratingcount: '5.80',
-    },
+       title: 'Abhinav Sharma',
+       desc: 'KIET Groups of Institutions, Ghaziabad(201206)',
+       dige: 'Information Technology',
+       ratingcount: '5.80',
+   },
+   {
+        imgUrl: 'assets/images/testimonial/ZZ.png',
+       imgAlt: 'testimonial thumb',
+       title: 'Madhav Ojha',
+       desc: 'KIET Groups of Institutions, Ghaziabad(201206)',
+       dige: 'Information Technology',
+       ratingcount: '5.80',
+   },
+   {
+        imgUrl: 'assets/images/testimonial/ZZ.png',
+       imgAlt: 'testimonial thumb',
+       title: 'Devyansh Popli',
+       desc: 'KIET Groups of Institutions, Ghaziabad(201206)',
+       dige: 'Information Technology',
+       ratingcount: '5.80',
+   },
 ]
 
 

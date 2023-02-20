@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 
 
-const title = <h2 className="mb-3">JOIN <span className="theme-color text-uppercase">Crowd control</span> ESPORTS TO BECOME NEXT PRO GAMER TODAY!</h2>;
+const title = <h2 className="mb-3">JOIN <span className="theme-color text-uppercase">ESPORTS HUB</span>  TO BECOME NEXT PRO GAMER TODAY!</h2>;
 
 const subtitle = "Let's Play together";
 
@@ -26,7 +26,7 @@ class CtaSection extends Component {
                                         <p className="theme-color text-uppercase ls-2">{subtitle}</p>
                                         {title}
                                         <p className="mb-4">{desc}</p>
-                                        <a href="https://discord.com/invite/4fWwCjaFwG" className="default-button"><span>{btnText} <i className="icofont-circled-right"></i></span></a>
+                                        <a href="#" className="default-button"><span>{btnText} <i className="icofont-circled-right"></i></span></a>
                                     </div>
                                 </div>
                                 <div className="col-lg-6">

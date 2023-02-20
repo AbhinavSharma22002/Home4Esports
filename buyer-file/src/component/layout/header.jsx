@@ -4,29 +4,29 @@ import Alert from "./alert";
 import Floating_Alert from "../layout/floating_alert"
 import accessContext from '../../context/roles/accessContext';
 import '../../assets/css/logout.css'
-const contactNumber = "+91 954 092 2345";
-const contactAddress = "Sec-82, Gurugram, Haryana, India-122004";
+const contactNumber = "+91 987 654 3210";
+const contactAddress = "Sec-XYZ, Ghaziabad, U.P, India-20202";
 
 let SocialMideaList = [
     {
         IconName: 'icofont-facebook',
-        IconLink: 'https://www.facebook.com/CrowdControlEsportsFB',
+        IconLink: '#',
     },
     {
         IconName: 'icofont-youtube-play',
-        IconLink: 'https://www.youtube.com/c/CrowdControlEsports1',
+        IconLink: '#',
     },
     {
         IconName: 'icofont-instagram',
-        IconLink: 'https://www.instagram.com/crowd_control_esports/',
+        IconLink: '#',
     },
     {
         IconName: 'icofont-linkedin',
-        IconLink: 'https://www.linkedin.com/company/crowd-control-esports/mycompany/',
+        IconLink: '#',
     },
     {
         IconName: 'icofont-ebuddy',
-        IconLink: 'https://discord.com/invite/4fWwCjaFwG',
+        IconLink: '#',
     },
 ]
 
@@ -92,7 +92,7 @@ const HeaderFunction = (props) => {
                     <div className="brand-logo d-none d-lg-inline-block">
                         <div className="logo">
                             <Link to="/">
-                                <img src="assets/images/logo/logo.png" alt="logo" />
+                                <img src="assets/images/logo/1.png" alt="logo" />
                             </Link>
                         </div>
                     </div>
@@ -128,12 +128,12 @@ const HeaderFunction = (props) => {
                                         <li><Link to="/">Home</Link></li>
                                         <li><Link to="/tournaments">Tournaments</Link></li>
                                         <li className="menu-item-has-children">
-                                            <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">CCE</a>
+                                            <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">ESPORTS_HUB</a>
                                             <ul className="submenu dropdown-menu" aria-labelledby="dropdown">
                                                 <li><NavLink to="/about">About</NavLink></li>
-                                                <li><NavLink to="/gallery">gallery</NavLink></li>
+                                                {/* <li><NavLink to="/gallery">gallery</NavLink></li> */}
                                                 <li><NavLink to="/partners">partners</NavLink></li>
-                                                <li><NavLink to="/achievements">achievement</NavLink></li>
+                                                {/* <li><NavLink to="/achievements">achievement</NavLink></li> */}
                                             </ul>
                                         </li>
                                         <li><NavLink to="/contact">Contact</NavLink></li>
