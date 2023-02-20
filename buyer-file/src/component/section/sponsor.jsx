@@ -2,8 +2,8 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 
 
-const subtitle = "WE OUR PARTNERS";
-const title = "BECOME A PARTNER of crowd control esports";
+const subtitle = "OUR PARTNERS";
+const title = "BECOME A PARTNER of Esports HUB";
 const btnText = "BECOME A PARTNER";
 
 
@@ -56,7 +56,7 @@ class SponsorSection extends Component {
                             ))}
                         </div>
                         <div className="text-center mt-5">
-                            <a href="https://discord.com/invite/4fWwCjaFwG" className="default-button"><span>{btnText} <i className="icofont-circled-right"></i></span> </a>
+                            <a href="#" className="default-button"><span>{btnText} <i className="icofont-circled-right"></i></span> </a>
                         </div>
                     </div>
                 </div>

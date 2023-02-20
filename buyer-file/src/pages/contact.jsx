@@ -23,19 +23,19 @@ const ContactUs = (props) => {
             imgUrl: 'assets/images/contact/icon/01.png',
             imgAlt: 'Contact Info Thumb',
             title: 'Office Address',
-            desc: 'Sec-82, Gurugram, Haryana, India-122004',
+            desc: ' Sec-XYZ, Ghaziabad, U.P, India-2020202',
         },
         {
             imgUrl: 'assets/images/contact/icon/02.png',
             imgAlt: 'Contact Info Thumb',
             title: 'Phone number',
-            desc: '+91 954 092 2345',
+            desc: '+91 987 654 3210',
         },
         {
             imgUrl: 'assets/images/contact/icon/03.png',
             imgAlt: 'Contact Info Thumb',
             title: 'Send Email',
-            desc: 'ccesports@gmail.com',
+            desc: 'esportshub@gmail.com',
         },
     ]
 

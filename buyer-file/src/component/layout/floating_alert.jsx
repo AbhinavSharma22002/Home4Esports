@@ -8,23 +8,23 @@ const FloatingFunc = () => {
     let Social = [
         {
             IconName: 'icofont-linkedin',
-            IconLink: 'https://www.linkedin.com/company/crowd-control-esports/mycompany/',
+            IconLink: '#',
         },
         {
             IconName: 'icofont-facebook',
-            IconLink: 'https://www.facebook.com/CrowdControlEsportsFB',
+            IconLink: '#',
         },      
         {
             IconName: 'icofont-ebuddy',
-            IconLink: 'https://discord.com/invite/4fWwCjaFwG',
+            IconLink: '#',
         },
         {
             IconName: 'icofont-youtube-play',
-            IconLink: 'https://www.youtube.com/c/CrowdControlEsports1',
+            IconLink: '#',
         },
         {
             IconName: ' icofont-instagram',
-            IconLink: 'https://www.instagram.com/crowd_control_esports/',
+            IconLink: '#',
         },
     ]
 

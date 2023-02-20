@@ -3,49 +3,42 @@ import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Rating from "./rating";
 
-const subtitle = "our reviews";
-const title = "Our Testimonials";
+const subtitle = "our team";
+const title = "DEVELOPERS";
 
 let TestimonialListContent = [
     {
-        imgUrl: 'assets/images/testimonial/01.jpg',
+         imgUrl: 'assets/images/testimonial/ZZ.png',
         imgAlt: 'testimonial thumb',
-        title: 'INSTINCTs',
-        desc: 'We love this event, looking forword to enjoy upcoming event with better time management.',
-        dige: 'Second (2nd)',
+        title: 'Ajay Pandey',
+        desc: 'KIET Groups of Institutions, Ghaziabad(201206)',
+        dige: 'Information Technology',
         ratingcount: '5.28',
     },
     {
-        imgUrl: 'assets/images/testimonial/01.jpg',
+         imgUrl: 'assets/images/testimonial/ZZ.png',
         imgAlt: 'testimonial thumb',
-        title: 'AlphaQ',
-        desc: 'Was good enough, maybe streaming can get better as we are unable to view a few past games. ',
-        dige: 'First (1st)',
-        ratingcount: '5.28',
+
+        title: 'Abhinav Sharma',
+        desc: 'KIET Groups of Institutions, Ghaziabad(201206)',
+        dige: 'Information Technology',
+        ratingcount: '5.80',
     },
     {
-        imgUrl: 'assets/images/testimonial/01.jpg',
+         imgUrl: 'assets/images/testimonial/ZZ.png',
         imgAlt: 'testimonial thumb',
-        title: 'Satanic',
-        desc: 'We do not face any time issue but others do so if possible then 100% of the audience will love your tournaments',
-        dige: 'Second (2nd)',
-        ratingcount: '5.28',
+        title: 'Madhav Ojha',
+        desc: 'KIET Groups of Institutions, Ghaziabad(201206)',
+        dige: 'Information Technology',
+        ratingcount: '5.80',
     },
     {
-        imgUrl: 'assets/images/testimonial/01.jpg',
+         imgUrl: 'assets/images/testimonial/ZZ.png',
         imgAlt: 'testimonial thumb',
-        title: 'Nirvana Esports',
-        desc: 'Include Winner bracket Looser bracket format, its interesting.',
-        dige: 'Fourth (4th)',
-        ratingcount: '5.28',
-    },
-    {
-        imgUrl: 'assets/images/testimonial/01.jpg',
-        imgAlt: 'testimonial thumb',
-        title: 'OMEN eSports ',
-        desc: 'Nice tourney no issues from our side ',
-        dige: 'Third (3rd)',
-        ratingcount: '5.28',
+        title: 'Devyansh Popli',
+        desc: 'KIET Groups of Institutions, Ghaziabad(201206)',
+        dige: 'Information Technology',
+        ratingcount: '5.80',
     },
 ]
 
@@ -90,7 +83,9 @@ class TestimonialSection extends Component {
                                             <div className="testimonial-inner">
                                                 <div className="testimonial-head">
                                                     <div className="testi-top">
-                                                       
+                                                    <div className="testimonial-thumb">
+                                                                        <img src={`${val.imgUrl}`} alt={`${val.imgAlt}`} />
+                                                                    </div>
                                                         <div className="name-des">
                                                             <h5>{val.title}</h5>
                                                             <p>{val.dige}</p>
