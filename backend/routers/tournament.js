@@ -7,7 +7,7 @@ const Fetchuser = require('../middleware/Fetchuser');
 
 router.get("/getAll",async(req,res)=>{
     try {
-        let tournament = await await Tournament.find({});
+        let tournament = await Tournament.find({});
         return res.status(200).json({tournament});
       } catch (error) {
         console.error(error.message);
